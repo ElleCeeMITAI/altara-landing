@@ -1,0 +1,37 @@
+{
+  "name": "Bella Tavola Catering",
+  "description": "Full-service wedding caterer offering plated, buffet, and family-style dining for 20–500 guests. Specializing in Italian-American and seasonal farm-to-table menus with extensive dietary accommodation.",
+  "url": "https://agents.altara.ai/vendors/bella-tavola-catering",
+  "version": "1.0.0",
+  "protocol": "a2a/1.0",
+  "capabilities": {
+    "skills": [
+      "check_availability",
+      "get_menus",
+      "generate_quote",
+      "accommodate_dietary",
+      "negotiate_pricing",
+      "confirm_booking"
+    ],
+    "negotiation": {
+      "supports_rfp": true,
+      "supports_counter_offer": true,
+      "supports_reverse_auction": true,
+      "auto_approve_threshold_per_head": 85
+    }
+  },
+  "constraints": {
+    "min_guest_count": 20,
+    "max_guest_count": 500,
+    "service_regions": ["Greater Boston", "Cape Cod", "Rhode Island", "Southern NH"],
+    "advance_booking_days_min": 30,
+    "cuisine_types": ["Italian-American", "New England", "Farm-to-Table", "Mediterranean"],
+    "service_styles": ["plated", "buffet", "family_style", "stations", "cocktail_reception"]
+  },
+  "trust": {
+    "rating": 4.8,
+    "total_events": 342,
+    "on_time_delivery_pct": 99.1,
+    "avg_response_time_hours": 1.2
+  }
+}
