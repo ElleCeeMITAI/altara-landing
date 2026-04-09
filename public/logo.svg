@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <!-- Left ring -->
+  <circle cx="30" cy="40" r="22" stroke="#D4878F" stroke-width="2.5" fill="none"/>
+  <!-- Right ring -->
+  <circle cx="50" cy="40" r="22" stroke="#D4878F" stroke-width="2.5" fill="none"/>
+  <!-- Heart in the overlap -->
+  <path d="M40 50 C40 50 33 43 33 38.5 C33 35.5 35.5 33.5 38 33.5 C39.5 33.5 40 34.5 40 34.5 C40 34.5 40.5 33.5 42 33.5 C44.5 33.5 47 35.5 47 38.5 C47 43 40 50 40 50Z" fill="#D4878F"/>
+  <!-- Text -->
+  <text x="82" y="52" font-family="'DM Serif Display', Georgia, serif" font-size="42" fill="#D4878F" letter-spacing="0.5">altara</text>
+</svg>

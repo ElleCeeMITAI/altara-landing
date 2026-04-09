@@ -19,8 +19,8 @@
       --sage-dark: #5C6B52;
       --charcoal: #2C2C2C;
       --charcoal-light: #4A4A4A;
-      --blush: #D4A59A;
-      --blush-light: #E8C5BE;
+      --blush: #D4878F;
+      --blush-light: #E4A8AE;
       --gold: #B8963E;
       --text: #333333;
       --text-muted: #6B6B6B;
@@ -52,11 +52,14 @@
     }
 
     .nav-logo {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.5rem;
-      color: var(--charcoal);
       text-decoration: none;
-      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo img {
+      height: 36px;
+      width: auto;
     }
 
     .nav-links { display: flex; gap: 2rem; align-items: center; }
@@ -423,10 +426,13 @@
     }
 
     .footer-logo {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.3rem;
-      color: white;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-logo img {
+      height: 32px;
+      width: auto;
+      filter: brightness(0) invert(1);
     }
 
     footer p {
@@ -460,7 +466,7 @@
 <body>
 
   <nav>
-    <a href="#" class="nav-logo">altara</a>
+    <a href="#" class="nav-logo"><img src="/logo.svg" alt="Altara"></a>
     <div class="nav-links">
       <a href="#how-it-works">How It Works</a>
       <a href="#couples">For Couples</a>
@@ -595,7 +601,7 @@
   </section>
 
   <footer>
-    <div class="footer-logo">altara</div>
+    <div class="footer-logo"><img src="/logo.svg" alt="Altara"></div>
     <p>&copy; 2026 Altara. All rights reserved.</p>
   </footer>
 
