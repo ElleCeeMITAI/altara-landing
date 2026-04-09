@@ -93,6 +93,162 @@ const CONFIG = {
     keto: { supported: true, upcharge: 10, max_pct: 30 },
   },
 
+  // ── Dish Database: every dish tagged with what it contains ─────────
+  // Tags: meat, poultry, fish, shellfish, dairy, eggs, gluten, nuts, pork, alcohol
+  DISH_DB: {
+    // Italian Classic
+    "Bruschetta Trio":              { tags: ["gluten"], label: "Bruschetta Trio" },
+    "Burrata with Heirloom Tomatoes": { tags: ["dairy"], label: "Burrata with Heirloom Tomatoes" },
+    "Arancini":                     { tags: ["dairy", "gluten", "eggs"], label: "Arancini" },
+    "Caesar Salad":                 { tags: ["dairy", "eggs", "fish"], label: "Caesar Salad" }, // anchovies + parm + egg yolk
+    "Mixed Greens with Balsamic Vinaigrette": { tags: [], label: "Mixed Greens with Balsamic Vinaigrette" },
+    "Chicken Parmigiana":           { tags: ["poultry", "dairy", "gluten", "eggs"], label: "Chicken Parmigiana" },
+    "Pan-Seared Salmon with Lemon Caper Sauce": { tags: ["fish"], label: "Pan-Seared Salmon with Lemon Caper Sauce" },
+    "Braised Short Rib with Polenta": { tags: ["meat"], label: "Braised Short Rib with Polenta" },
+    "Eggplant Rollatini":           { tags: ["dairy", "gluten"], label: "Eggplant Rollatini" },
+    "Roasted Seasonal Vegetables":  { tags: [], label: "Roasted Seasonal Vegetables" },
+    "Garlic Mashed Potatoes":       { tags: ["dairy"], label: "Garlic Mashed Potatoes" },
+    "Risotto":                      { tags: ["dairy"], label: "Risotto" },
+    "Tiramisu":                     { tags: ["dairy", "eggs", "gluten", "alcohol"], label: "Tiramisu" },
+    "Cannoli":                      { tags: ["dairy", "gluten", "eggs"], label: "Cannoli" },
+    "Panna Cotta":                  { tags: ["dairy", "eggs"], label: "Panna Cotta" },
+
+    // New England Harvest
+    "Lobster Bisque Shooters":      { tags: ["shellfish", "dairy"], label: "Lobster Bisque Shooters" },
+    "New England Clam Chowder Bread Bowls": { tags: ["shellfish", "dairy", "gluten"], label: "New England Clam Chowder Bread Bowls" },
+    "Autumn Harvest Salad with Cranberry Vinaigrette": { tags: [], label: "Autumn Harvest Salad with Cranberry Vinaigrette" },
+    "Roasted Cod with Brown Butter": { tags: ["fish", "dairy"], label: "Roasted Cod with Brown Butter" },
+    "Herb-Crusted Prime Rib":       { tags: ["meat", "gluten"], label: "Herb-Crusted Prime Rib" },
+    "Maple-Glazed Duck Breast":     { tags: ["poultry"], label: "Maple-Glazed Duck Breast" },
+    "Stuffed Butternut Squash":     { tags: ["dairy"], label: "Stuffed Butternut Squash" },
+    "Roasted Root Vegetables":      { tags: [], label: "Roasted Root Vegetables" },
+    "Wild Rice Pilaf":              { tags: [], label: "Wild Rice Pilaf" },
+    "Corn Bread":                   { tags: ["gluten", "dairy", "eggs"], label: "Corn Bread" },
+    "Apple Crisp":                  { tags: ["gluten", "dairy"], label: "Apple Crisp" },
+    "Blueberry Buckle":             { tags: ["gluten", "dairy", "eggs"], label: "Blueberry Buckle" },
+    "Maple Creme Brulee":           { tags: ["dairy", "eggs"], label: "Maple Creme Brulee" },
+
+    // Farm-to-Table
+    "Local Cheese Board":           { tags: ["dairy", "nuts"], label: "Local Cheese Board" },
+    "Seasonal Soup du Jour":        { tags: [], label: "Seasonal Soup du Jour" },
+    "Farm Greens with Herb Vinaigrette": { tags: [], label: "Farm Greens with Herb Vinaigrette" },
+    "Free-Range Chicken with Seasonal Compote": { tags: ["poultry"], label: "Free-Range Chicken with Seasonal Compote" },
+    "Grass-Fed Filet Mignon":       { tags: ["meat"], label: "Grass-Fed Filet Mignon" },
+    "Wild-Caught Halibut":          { tags: ["fish"], label: "Wild-Caught Halibut" },
+    "Vegetable Tasting Plate":      { tags: [], label: "Vegetable Tasting Plate" },
+    "Grilled Local Vegetables":     { tags: [], label: "Grilled Local Vegetables" },
+    "Potato Gratin":                { tags: ["dairy"], label: "Potato Gratin" },
+    "Quinoa Tabbouleh":             { tags: [], label: "Quinoa Tabbouleh" },
+    "Seasonal Fruit Tart":          { tags: ["gluten", "dairy", "eggs"], label: "Seasonal Fruit Tart" },
+    "Chocolate Ganache Cake":       { tags: ["dairy", "gluten", "eggs"], label: "Chocolate Ganache Cake" },
+    "Cheese Course":                { tags: ["dairy"], label: "Cheese Course" },
+
+    // Mediterranean Garden
+    "Mezze Platter":                { tags: [], label: "Mezze Platter" },
+    "Grilled Halloumi Skewers":     { tags: ["dairy"], label: "Grilled Halloumi Skewers" },
+    "Greek Salad":                  { tags: ["dairy"], label: "Greek Salad" },
+    "Fattoush":                     { tags: ["gluten"], label: "Fattoush" },
+    "Lamb Chops with Tzatziki":     { tags: ["meat", "dairy"], label: "Lamb Chops with Tzatziki" },
+    "Grilled Swordfish with Olive Tapenade": { tags: ["fish"], label: "Grilled Swordfish with Olive Tapenade" },
+    "Chicken Souvlaki":             { tags: ["poultry", "dairy"], label: "Chicken Souvlaki" },
+    "Moussaka":                     { tags: ["meat", "dairy", "gluten", "eggs"], label: "Moussaka" },
+    "Roasted Mediterranean Vegetables": { tags: [], label: "Roasted Mediterranean Vegetables" },
+    "Couscous":                     { tags: ["gluten"], label: "Couscous" },
+    "Warm Pita":                    { tags: ["gluten"], label: "Warm Pita" },
+    "Baklava":                      { tags: ["gluten", "nuts"], label: "Baklava" },
+    "Loukoumades":                  { tags: ["gluten", "dairy"], label: "Loukoumades" },
+    "Galaktoboureko":               { tags: ["gluten", "dairy", "eggs"], label: "Galaktoboureko" },
+
+    // Budget Friendly
+    "House Bruschetta":             { tags: ["gluten"], label: "House Bruschetta" },
+    "Garden Salad with House Dressing": { tags: [], label: "Garden Salad with House Dressing" },
+    "Grilled Chicken Marsala":      { tags: ["poultry", "gluten", "alcohol"], label: "Grilled Chicken Marsala" },
+    "Penne alla Vodka":             { tags: ["gluten", "dairy", "alcohol"], label: "Penne alla Vodka" },
+    "Baked Haddock":                { tags: ["fish", "gluten"], label: "Baked Haddock" },
+    "Roasted Vegetables":           { tags: [], label: "Roasted Vegetables" },
+    "Roasted Potatoes":             { tags: [], label: "Roasted Potatoes" },
+    "Assorted Cookie Platter":      { tags: ["gluten", "dairy", "eggs", "nuts"], label: "Assorted Cookie Platter" },
+
+    // ── Substitution dishes (added when originals are removed) ──────
+    "Bruschetta with Tomato & Basil (GF bread)": { tags: [], label: "Bruschetta with Tomato & Basil (GF bread)" },
+    "Grilled Vegetable Antipasto":  { tags: [], label: "Grilled Vegetable Antipasto" },
+    "Stuffed Grape Leaves":         { tags: [], label: "Stuffed Grape Leaves" },
+    "Roasted Beet & Citrus Salad":  { tags: [], label: "Roasted Beet & Citrus Salad" },
+    "Arugula with Lemon Vinaigrette": { tags: [], label: "Arugula with Lemon Vinaigrette" },
+    "Mushroom & Herb Risotto (dairy-free)": { tags: [], label: "Mushroom & Herb Risotto (dairy-free)" },
+    "Grilled Portobello Steak":     { tags: [], label: "Grilled Portobello Steak" },
+    "Cauliflower Steak with Chimichurri": { tags: [], label: "Cauliflower Steak with Chimichurri" },
+    "Stuffed Bell Peppers":         { tags: [], label: "Stuffed Bell Peppers" },
+    "Wild Mushroom Ragu over Polenta": { tags: [], label: "Wild Mushroom Ragu over Polenta" },
+    "Lentil Bolognese with Zucchini Noodles": { tags: [], label: "Lentil Bolognese with Zucchini Noodles" },
+    "Herb-Crusted Tofu with Roasted Vegetables": { tags: [], label: "Herb-Crusted Tofu with Roasted Vegetables" },
+    "Coconut Milk Panna Cotta with Berries": { tags: [], label: "Coconut Milk Panna Cotta with Berries" },
+    "Dark Chocolate Avocado Mousse": { tags: [], label: "Dark Chocolate Avocado Mousse" },
+    "Fresh Fruit Platter with Mint": { tags: [], label: "Fresh Fruit Platter with Mint" },
+    "Sorbet Trio (Lemon, Raspberry, Mango)": { tags: [], label: "Sorbet Trio (Lemon, Raspberry, Mango)" },
+    "Flourless Chocolate Cake":     { tags: ["eggs", "dairy"], label: "Flourless Chocolate Cake" },
+    "Flourless Chocolate Cake (Vegan)": { tags: [], label: "Flourless Chocolate Cake (Vegan)" },
+    "Rice Noodle Pad Thai (Vegan)": { tags: [], label: "Rice Noodle Pad Thai (Vegan)" },
+    "Olive Oil Smashed Potatoes":   { tags: [], label: "Olive Oil Smashed Potatoes" },
+    "Steamed Jasmine Rice":         { tags: [], label: "Steamed Jasmine Rice" },
+    "Quinoa with Roasted Vegetables": { tags: [], label: "Quinoa with Roasted Vegetables" },
+    "Hummus & Crudité Platter":     { tags: [], label: "Hummus & Crudité Platter" },
+    "Roasted Red Pepper Soup":      { tags: [], label: "Roasted Red Pepper Soup" },
+    "GF Penne with Marinara":       { tags: [], label: "GF Penne with Marinara" },
+    "GF Chocolate Torte":           { tags: ["eggs"], label: "GF Chocolate Torte" },
+    "GF Chocolate Torte (Vegan)":   { tags: [], label: "GF Chocolate Torte (Vegan)" },
+    "Macarons (GF)":                { tags: ["eggs", "nuts"], label: "Macarons (GF)" },
+    "Herb-Roasted Chicken (Halal)": { tags: ["poultry"], label: "Herb-Roasted Chicken (Halal)" },
+    "Grilled Lamb Kofta (Halal)":   { tags: ["meat"], label: "Grilled Lamb Kofta (Halal)" },
+  },
+
+  // ── Dietary filter rules: which tags to exclude ──────────────────
+  // vegetarian: no meat, poultry, fish, shellfish
+  // vegan: no meat, poultry, fish, shellfish, dairy, eggs
+  // gluten_free: no gluten
+  // dairy_free: no dairy
+  // nut_free: no nuts
+  // kosher: no shellfish, no pork (simplified)
+  // halal: no pork, no alcohol
+  DIETARY_EXCLUSIONS: {
+    vegetarian: ["meat", "poultry", "fish", "shellfish", "pork"],
+    vegan: ["meat", "poultry", "fish", "shellfish", "dairy", "eggs", "pork"],
+    gluten_free: ["gluten"],
+    dairy_free: ["dairy"],
+    nut_free: ["nuts"],
+    kosher: ["shellfish", "pork"],
+    halal: ["pork", "alcohol"],
+    shellfish_free: ["shellfish"],
+  },
+
+  // ── Substitution pool per course (used when dishes are filtered out)
+  SUBSTITUTIONS: {
+    appetizer: [
+      "Grilled Vegetable Antipasto", "Stuffed Grape Leaves", "Hummus & Crudité Platter",
+      "Roasted Red Pepper Soup", "Bruschetta with Tomato & Basil (GF bread)",
+    ],
+    salad: [
+      "Roasted Beet & Citrus Salad", "Arugula with Lemon Vinaigrette",
+      "Mixed Greens with Balsamic Vinaigrette",
+    ],
+    entree: [
+      "Grilled Portobello Steak", "Cauliflower Steak with Chimichurri",
+      "Stuffed Bell Peppers", "Wild Mushroom Ragu over Polenta",
+      "Lentil Bolognese with Zucchini Noodles", "Herb-Crusted Tofu with Roasted Vegetables",
+      "Rice Noodle Pad Thai (Vegan)",
+    ],
+    side: [
+      "Roasted Seasonal Vegetables", "Olive Oil Smashed Potatoes",
+      "Steamed Jasmine Rice", "Quinoa with Roasted Vegetables",
+      "Roasted Root Vegetables", "Wild Rice Pilaf",
+    ],
+    dessert: [
+      "Coconut Milk Panna Cotta with Berries", "Dark Chocolate Avocado Mousse",
+      "Fresh Fruit Platter with Mint", "Sorbet Trio (Lemon, Raspberry, Mango)",
+      "Flourless Chocolate Cake (Vegan)", "GF Chocolate Torte (Vegan)",
+    ],
+  },
+
   // Menu Templates
   MENU_TEMPLATES: {
     italian_classic: {
@@ -105,7 +261,7 @@ const CONFIG = {
           "Chicken Parmigiana",
           "Pan-Seared Salmon with Lemon Caper Sauce",
           "Braised Short Rib with Polenta",
-          "Eggplant Rollatini (V)",
+          "Eggplant Rollatini",
         ],
         side: ["Roasted Seasonal Vegetables", "Garlic Mashed Potatoes", "Risotto"],
         dessert: ["Tiramisu", "Cannoli", "Panna Cotta"],
@@ -122,7 +278,7 @@ const CONFIG = {
           "Roasted Cod with Brown Butter",
           "Herb-Crusted Prime Rib",
           "Maple-Glazed Duck Breast",
-          "Stuffed Butternut Squash (V)",
+          "Stuffed Butternut Squash",
         ],
         side: ["Roasted Root Vegetables", "Wild Rice Pilaf", "Corn Bread"],
         dessert: ["Apple Crisp", "Blueberry Buckle", "Maple Creme Brulee"],
@@ -139,7 +295,7 @@ const CONFIG = {
           "Free-Range Chicken with Seasonal Compote",
           "Grass-Fed Filet Mignon",
           "Wild-Caught Halibut",
-          "Vegetable Tasting Plate (V/GF)",
+          "Vegetable Tasting Plate",
         ],
         side: ["Grilled Local Vegetables", "Potato Gratin", "Quinoa Tabbouleh"],
         dessert: ["Seasonal Fruit Tart", "Chocolate Ganache Cake", "Cheese Course"],
@@ -156,7 +312,7 @@ const CONFIG = {
           "Lamb Chops with Tzatziki",
           "Grilled Swordfish with Olive Tapenade",
           "Chicken Souvlaki",
-          "Moussaka (V option available)",
+          "Moussaka",
         ],
         side: ["Roasted Mediterranean Vegetables", "Couscous", "Warm Pita"],
         dessert: ["Baklava", "Loukoumades", "Galaktoboureko"],
@@ -171,7 +327,7 @@ const CONFIG = {
         salad: ["Garden Salad with House Dressing"],
         entree: [
           "Grilled Chicken Marsala",
-          "Penne alla Vodka (V)",
+          "Penne alla Vodka",
           "Baked Haddock",
         ],
         side: ["Roasted Vegetables", "Roasted Potatoes"],
@@ -375,6 +531,103 @@ function findNearbyDates(target, guestCount, serviceStyle, searchRange = 14) {
 // SKILL: Menu Management
 // ============================================================================
 
+// ── Dietary filtering: removes incompatible dishes, adds substitutions ──
+
+function getDishTags(dishName) {
+  // Try exact match first, then fuzzy match
+  const db = CONFIG.DISH_DB;
+  if (db[dishName]) return db[dishName].tags;
+  // Strip "(V)", "(GF)", etc. suffixes for matching
+  const cleaned = dishName.replace(/\s*\([^)]*\)\s*$/, "").trim();
+  if (db[cleaned]) return db[cleaned].tags;
+  // Unknown dish — assume safe (empty tags)
+  return [];
+}
+
+function isDishCompatible(dishName, dietaryNeeds) {
+  const tags = getDishTags(dishName);
+  for (const need of dietaryNeeds) {
+    const key = need.toLowerCase().replace(/-/g, "_").replace(/ /g, "_");
+    const exclusions = CONFIG.DIETARY_EXCLUSIONS[key];
+    if (!exclusions) continue;
+    for (const tag of tags) {
+      if (exclusions.includes(tag)) return false;
+    }
+  }
+  return true;
+}
+
+function getSubstitution(course, dietaryNeeds, alreadyUsed, existingDishes = []) {
+  const pool = CONFIG.SUBSTITUTIONS[course] || [];
+  for (const sub of pool) {
+    if (alreadyUsed.has(sub)) continue;
+    if (existingDishes.includes(sub)) continue; // Don't duplicate dishes already in the course
+    if (isDishCompatible(sub, dietaryNeeds)) {
+      alreadyUsed.add(sub);
+      return sub;
+    }
+  }
+  return null;
+}
+
+function filterMenuForDietary(courses, dietaryNeeds) {
+  if (!dietaryNeeds || dietaryNeeds.length === 0) {
+    return { courses, removed: [], substituted: [] };
+  }
+
+  const filtered = {};
+  const removed = [];
+  const substituted = [];
+  const usedSubs = new Set();
+
+  for (const [course, dishes] of Object.entries(courses)) {
+    const kept = [];
+    // First pass: keep compatible dishes
+    for (const dish of dishes) {
+      if (isDishCompatible(dish, dietaryNeeds)) {
+        kept.push(dish);
+      } else {
+        removed.push({ course, dish, reason: _getRemovalReason(dish, dietaryNeeds) });
+      }
+    }
+    // Second pass: add substitutes for removed dishes
+    const removedInCourse = removed.filter(r => r.course === course);
+    for (const r of removedInCourse) {
+      const sub = getSubstitution(course, dietaryNeeds, usedSubs, [...kept, ...dishes]);
+      if (sub) {
+        kept.push(sub);
+        substituted.push({ course, removed: r.dish, added: sub });
+      }
+    }
+    // If a course ended up empty, add at least one substitute
+    if (kept.length === 0) {
+      const sub = getSubstitution(course, dietaryNeeds, usedSubs, dishes);
+      if (sub) {
+        kept.push(sub);
+        substituted.push({ course, removed: "(all items)", added: sub });
+      }
+    }
+    filtered[course] = kept;
+  }
+
+  return { courses: filtered, removed, substituted };
+}
+
+function _getRemovalReason(dishName, dietaryNeeds) {
+  const tags = getDishTags(dishName);
+  const reasons = [];
+  for (const need of dietaryNeeds) {
+    const key = need.toLowerCase().replace(/-/g, "_").replace(/ /g, "_");
+    const exclusions = CONFIG.DIETARY_EXCLUSIONS[key] || [];
+    const conflicts = tags.filter(t => exclusions.includes(t));
+    if (conflicts.length > 0) {
+      reasons.push(`${need} (contains ${conflicts.join(", ")})`);
+    }
+  }
+  return reasons.join("; ");
+}
+
+
 function getPriceRange(tier) {
   const prices = [];
   for (const stylePrices of Object.values(CONFIG.BASE_PRICING)) {
@@ -413,17 +666,33 @@ function getMenus({ cuisine, tier, dietaryNeeds, serviceStyle } = {}) {
     if (cuisine && !template.cuisine.toLowerCase().includes(cuisine.toLowerCase())) continue;
     if (tier && template.tier !== tier) continue;
 
+    // Apply dietary filtering to courses
+    let displayCourses = template.courses;
+    let dietaryAdaptations = null;
+    if (dietaryNeeds && dietaryNeeds.length > 0) {
+      const result = filterMenuForDietary(template.courses, dietaryNeeds);
+      displayCourses = result.courses;
+      dietaryAdaptations = {
+        removed: result.removed,
+        substituted: result.substituted,
+        note: result.removed.length > 0
+          ? `${result.removed.length} item(s) replaced to comply with ${dietaryNeeds.join(", ")} requirements.`
+          : "All items are already compliant.",
+      };
+    }
+
     const menuEntry = {
       id: key,
       name: template.name,
       cuisine: template.cuisine,
       tier: template.tier,
-      courses: template.courses,
+      courses: displayCourses,
       price_range: getPriceRange(template.tier),
     };
 
     if (dietaryNeeds && dietaryNeeds.length > 0) {
       menuEntry.dietary_compatibility = checkMenuDietaryCompatibility(template, dietaryNeeds);
+      menuEntry.dietary_adaptations = dietaryAdaptations;
     }
 
     menus.push(menuEntry);
@@ -1510,7 +1779,17 @@ class CoupleAgent {
       }
     }
 
-    const selectedMenu = CONFIG.MENU_TEMPLATES[selectedMenuId] || availableMenus[0];
+    const selectedMenuTemplate = CONFIG.MENU_TEMPLATES[selectedMenuId] || availableMenus[0];
+
+    // Apply dietary filtering to the selected menu
+    const menuFilterResult = filterMenuForDietary(
+      selectedMenuTemplate.courses || selectedMenuTemplate.courses,
+      dietaryNeeds
+    );
+    const filteredMenu = {
+      ...selectedMenuTemplate,
+      courses: menuFilterResult.courses,
+    };
 
     // Run dietary accommodation check
     const dietaryResult =
@@ -1518,21 +1797,33 @@ class CoupleAgent {
         ? accommodateDietary(dietaryBreakdown, guestCount, selectedMenuId)
         : { feasible: true, accommodations: [], total_dietary_upcharge: 0, recommendations: [], warnings: [] };
 
+    // Build summary with what changed
+    const remCount = menuFilterResult.removed.length;
+    const subCount = menuFilterResult.substituted.length;
+    let menuAdaptNote = "";
+    if (remCount > 0) {
+      menuAdaptNote = ` ${remCount} dish(es) removed and ${subCount} substitution(s) made to comply with dietary restrictions.`;
+    }
+
     steps.push({
       step: 4,
       from: "couple",
       label: "Select Menu",
       summary:
-        `The couple selects the "${selectedMenu?.name || selectedMenuId}" menu` +
+        `The couple selects the "${filteredMenu?.name || selectedMenuId}" menu` +
         (dietaryNeeds.length > 0
-          ? ` with ${dietaryNeeds.join(", ")} accommodations. ` +
+          ? ` with ${dietaryNeeds.join(", ")} accommodations.${menuAdaptNote} ` +
             (dietaryResult.feasible
               ? `All dietary needs are feasible${dietaryResult.total_dietary_upcharge > 0 ? ` (upcharge: $${dietaryResult.total_dietary_upcharge})` : ""}.`
               : `Warning: some dietary needs cannot be fully accommodated.`)
           : "."),
       data: {
         selected_menu_id: selectedMenuId,
-        selected_menu: selectedMenu,
+        selected_menu: filteredMenu,
+        original_courses: selectedMenuTemplate.courses,
+        adapted_courses: menuFilterResult.courses,
+        dishes_removed: menuFilterResult.removed,
+        dishes_substituted: menuFilterResult.substituted,
         dietary_analysis: dietaryResult,
         available_menus: availableMenus.map((m) => ({ id: m.id, name: m.name, tier: m.tier })),
       },
@@ -1652,6 +1943,7 @@ module.exports = {
   CoupleAgent,
   CONFIG,
   // Individual skills exported for testing
+  filterMenuForDietary,
   checkAvailability,
   getMenus,
   accommodateDietary,
