@@ -1,6 +1,8 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const { runSimulation, CatererAgent, CONFIG } = require("./agents");
+const { runLiveNegotiation } = require("./negotiate");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -151,6 +153,48 @@ app.post("/api/agent", (req, res) => {
     console.error("Agent message error:", err);
     res.status(500).json({ error: "Agent error", details: err.message });
   }
+});
+
+// GET /api/simulate-live — SSE endpoint for real Claude-powered negotiation
+app.get("/api/simulate-live", async (req, res) => {
+  // Set SSE headers
+  res.writeHead(200, {
+    "Content-Type": "text/event-stream",
+    "Cache-Control": "no-cache",
+    Connection: "keep-alive",
+  });
+
+  const formData = {
+    budget: parseInt(req.query.budget, 10) || 10000,
+    guestCount: parseInt(req.query.guestCount, 10) || 120,
+    serviceStyle: (req.query.serviceStyle || "Plated").replace(/_/g, " "),
+    cuisinePreference: req.query.cuisinePreference || "",
+    dietaryNeeds: req.query.dietaryNeeds
+      ? req.query.dietaryNeeds.split(",").filter(Boolean)
+      : [],
+  };
+
+  // Validate guest count against venue capacity
+  if (formData.guestCount > 200) {
+    res.write(
+      `data: ${JSON.stringify({ type: "error", message: "Grand Meridian Ballroom has a maximum capacity of 200 guests." })}\n\n`
+    );
+    res.write("data: [DONE]\n\n");
+    return res.end();
+  }
+
+  function sendEvent(data) {
+    res.write(`data: ${JSON.stringify(data)}\n\n`);
+  }
+
+  try {
+    await runLiveNegotiation(formData, sendEvent);
+  } catch (err) {
+    sendEvent({ type: "error", message: err.message });
+  }
+
+  res.write("data: [DONE]\n\n");
+  res.end();
 });
 
 // Catch-all: serve index.html for SPA routing

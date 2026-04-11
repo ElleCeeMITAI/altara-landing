@@ -1204,6 +1204,116 @@
       });
     }
 
+    // --- Retry with increased budget ---
+    window.retryWithBudget = function(newBudget) {
+      // Reset the simulation view
+      timeline.innerHTML = '';
+      resultArea.innerHTML = '';
+      progressFill.style.width = '0%';
+      progressFill.style.background = '';
+      progressStep.textContent = 'Re-negotiating with updated budget...';
+      progressCount.textContent = '0 / 0';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Update the hidden budget field so it's captured
+      document.getElementById('budget').value = newBudget;
+
+      // Re-read current form values
+      var serviceStyle = document.getElementById('serviceStyle').value;
+      var cuisinePreference = document.getElementById('cuisinePreference').value;
+      var guestCount = parseInt(document.getElementById('guestCount').value, 10) || 120;
+      var dietaryChecked = document.querySelectorAll('input[name="dietary"]:checked');
+      var dietaryNeeds = Array.from(dietaryChecked).map(function(cb) { return cb.value; });
+
+      var params = new URLSearchParams({
+        budget: newBudget,
+        guestCount: guestCount,
+        serviceStyle: serviceStyle,
+        cuisinePreference: cuisinePreference,
+        dietaryNeeds: dietaryNeeds.join(',')
+      });
+
+      var evtSource = new EventSource('/api/simulate-live?' + params.toString());
+      var stepCount = 0;
+
+      evtSource.onmessage = function(event) {
+        if (event.data === '[DONE]') { evtSource.close(); return; }
+        var msg;
+        try { msg = JSON.parse(event.data); } catch(e) { return; }
+
+        if (msg.type === 'status') {
+          progressStep.textContent = msg.message;
+          if (msg.total) {
+            progressCount.textContent = (msg.step || 0) + ' / ' + msg.total;
+            progressFill.style.width = Math.round((msg.step / msg.total) * 100) + '%';
+          }
+          return;
+        }
+
+        if (msg.type === 'error') {
+          progressStep.textContent = 'Error: ' + msg.message;
+          progressFill.style.width = '100%';
+          progressFill.style.background = '#c0392b';
+          evtSource.close();
+          return;
+        }
+
+        if (msg.type === 'message') {
+          stepCount++;
+          var step = { step: stepCount, from: msg.from, label: msg.label, summary: msg.summary, data: msg.data };
+          var total = msg.total || 8;
+          progressFill.style.width = Math.round((stepCount / total) * 100) + '%';
+          progressStep.textContent = msg.label;
+          progressCount.textContent = stepCount + ' / ' + total;
+          var card = buildMessageCard(step);
+          timeline.appendChild(card);
+          requestAnimationFrame(function() { requestAnimationFrame(function() { card.classList.add('visible'); }); });
+          card.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+
+        if (msg.type === 'done') {
+          // Reuse the same done handler logic — trigger the form submit handler's done block
+          var outcome = msg.outcome || msg.summary?.outcome || 'accepted';
+          progressStep.textContent = outcome === 'rejected' ? 'Negotiation Failed' : 'Negotiation Complete';
+          progressFill.style.width = '100%';
+          if (outcome === 'rejected') progressFill.style.background = '#c0392b';
+
+          var terms = msg.summary.final_terms || {};
+          var totalCost = terms.total_price || 0;
+          var perGuest = terms.price_per_head || 0;
+          var budget = newBudget;
+
+          setTimeout(function() {
+            if (outcome === 'rejected') {
+              var gap = totalCost - budget;
+              var minIncrease = Math.ceil(gap / 500) * 500;
+              var midIncrease = minIncrease + 500;
+              var comfortIncrease = minIncrease + 1500;
+              resultArea.innerHTML = '<div class="result-card" id="result-card">' +
+                '<div class="result-header"><div class="result-icon">❌</div><div><div class="result-title">Deal Not Reached</div><div class="result-subtitle">The venue\'s best offer was $' + totalCost.toLocaleString() + ' — still $' + gap.toLocaleString() + ' over your updated $' + budget.toLocaleString() + ' budget.</div></div></div>' +
+                '<div style="margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap">' +
+                  '<button class="btn-budget-option" onclick="retryWithBudget(' + (budget + minIncrease) + ')" style="padding:0.6rem 1.2rem;border:1.5px solid var(--rose);background:rgba(196,99,110,0.08);color:var(--rose);border-radius:10px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer">+$' + minIncrease.toLocaleString() + ' → $' + (budget + minIncrease).toLocaleString() + '</button>' +
+                  '<button class="btn-secondary" onclick="resetSimulation()" style="margin-top:0">Back to Settings</button>' +
+                '</div></div>';
+            } else {
+              var bookingData = { totalCost: totalCost, perGuest: perGuest, serviceStyle: terms.service_style || serviceStyle, cuisine: cuisinePreference, eventDate: terms.date || 'June 14, 2027', menu: [] };
+              resultArea.innerHTML = buildResultCard(bookingData);
+            }
+            requestAnimationFrame(function() { requestAnimationFrame(function() {
+              var rc = document.getElementById('result-card');
+              if (rc) { rc.classList.add('visible'); rc.scrollIntoView({ behavior: 'smooth', block: 'end' }); }
+            }); });
+          }, 600);
+          evtSource.close();
+        }
+      };
+
+      evtSource.onerror = function() {
+        progressStep.textContent = 'Connection lost';
+        evtSource.close();
+      };
+    };
+
     // --- Reset ---
     window.resetSimulation = function() {
       simView.classList.remove('active');
@@ -1211,6 +1321,7 @@
       timeline.innerHTML = '';
       resultArea.innerHTML = '';
       progressFill.style.width = '0%';
+      progressFill.style.background = '';
       progressStep.textContent = 'Initializing...';
       progressCount.textContent = '0 / 0';
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1416,8 +1527,8 @@
       ];
     }
 
-    // --- Form submit ---
-    form.addEventListener('submit', async function(e) {
+    // --- Form submit (SSE live negotiation) ---
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
 
       const budget = parseInt(document.getElementById('budget').value, 10) || 10000;
@@ -1427,39 +1538,173 @@
       const dietaryChecked = document.querySelectorAll('input[name="dietary"]:checked');
       const dietaryNeeds = Array.from(dietaryChecked).map(function(cb) { return cb.value; });
 
-      const payload = { budget, guestCount, serviceStyle, cuisinePreference, dietaryNeeds };
-
-      // Show loading
+      // Show simulation view
       loading.classList.add('active');
-
-      let steps;
-
-      try {
-        const res = await fetch('/api/simulate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (res.ok) {
-          const data = await res.json();
-          steps = data.steps || data;
-        }
-      } catch (err) {
-        console.warn('API not available, using mock data:', err);
-      }
-
-      if (!steps || !Array.isArray(steps) || steps.length === 0) {
-        steps = generateMockSteps(budget, guestCount, serviceStyle, dietaryNeeds);
-      }
-
-      // Small delay for realism
       setTimeout(function() {
         loading.classList.remove('active');
         inputPanel.style.display = 'none';
         simView.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        animateSteps(steps);
-      }, 1200);
+      }, 600);
+
+      // Build SSE URL with query params
+      const params = new URLSearchParams({
+        budget: budget,
+        guestCount: guestCount,
+        serviceStyle: serviceStyle,
+        cuisinePreference: cuisinePreference,
+        dietaryNeeds: dietaryNeeds.join(',')
+      });
+
+      const evtSource = new EventSource('/api/simulate-live?' + params.toString());
+      let stepCount = 0;
+
+      evtSource.onmessage = function(event) {
+        if (event.data === '[DONE]') {
+          evtSource.close();
+          return;
+        }
+
+        var msg;
+        try { msg = JSON.parse(event.data); } catch(e) { return; }
+
+        if (msg.type === 'status') {
+          progressStep.textContent = msg.message;
+          if (msg.total) {
+            progressCount.textContent = (msg.step || 0) + ' / ' + msg.total;
+            progressFill.style.width = Math.round((msg.step / msg.total) * 100) + '%';
+          }
+          return;
+        }
+
+        if (msg.type === 'error') {
+          progressStep.textContent = 'Error: ' + msg.message;
+          progressFill.style.width = '100%';
+          progressFill.style.background = '#c0392b';
+          evtSource.close();
+          return;
+        }
+
+        if (msg.type === 'message') {
+          stepCount++;
+          var step = {
+            step: stepCount,
+            from: msg.from,
+            label: msg.label,
+            summary: msg.summary,
+            data: msg.data
+          };
+
+          // Update progress
+          var total = msg.total || 8;
+          var pct = Math.round((stepCount / total) * 100);
+          progressFill.style.width = pct + '%';
+          progressStep.textContent = msg.label;
+          progressCount.textContent = stepCount + ' / ' + total;
+
+          // Add card to timeline
+          var card = buildMessageCard(step);
+          timeline.appendChild(card);
+          requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+              card.classList.add('visible');
+            });
+          });
+          card.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+
+        if (msg.type === 'done') {
+          var outcome = msg.outcome || msg.summary?.outcome || 'accepted';
+          progressStep.textContent = outcome === 'rejected' ? 'Negotiation Failed' : 'Negotiation Complete';
+          progressFill.style.width = '100%';
+          if (outcome === 'rejected') progressFill.style.background = '#c0392b';
+
+          var terms = msg.summary.final_terms || {};
+          var totalCost = terms.total_price || 0;
+          var perGuest = terms.price_per_head || 0;
+
+          setTimeout(function() {
+            if (outcome === 'rejected') {
+              var gap = totalCost - budget;
+              // Round up to nearest $500 for budget increase options
+              var minIncrease = Math.ceil(gap / 500) * 500;
+              var midIncrease = minIncrease + 500;
+              var comfortIncrease = minIncrease + 1500;
+
+              resultArea.innerHTML = '<div class="result-card" id="result-card">' +
+                '<div class="result-header">' +
+                  '<div class="result-icon">❌</div>' +
+                  '<div><div class="result-title">Deal Not Reached</div>' +
+                  '<div class="result-subtitle">The venue\'s best offer was $' + (totalCost || 0).toLocaleString() + ' ($' + (perGuest || 0) + '/head) — that\'s $' + gap.toLocaleString() + ' over your $' + budget.toLocaleString() + ' budget. Here are your options:</div></div>' +
+                '</div>' +
+                '<div class="result-grid">' +
+                  '<div class="result-item"><div class="ri-label">Venue\'s Best Offer</div><div class="ri-value highlight">$' + (totalCost || 0).toLocaleString() + '</div></div>' +
+                  '<div class="result-item"><div class="ri-label">Per Guest</div><div class="ri-value">$' + (perGuest || 0).toFixed(2) + '</div></div>' +
+                  '<div class="result-item"><div class="ri-label">Your Budget</div><div class="ri-value">$' + budget.toLocaleString() + '</div></div>' +
+                  '<div class="result-item"><div class="ri-label">Gap</div><div class="ri-value" style="color:#c0392b">+$' + gap.toLocaleString() + '</div></div>' +
+                '</div>' +
+
+                /* Option 1: Increase budget */
+                '<div style="margin-top:1.5rem;padding:1.25rem;background:var(--cream);border-radius:12px;border:1px solid var(--sand)">' +
+                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">Option 1: Increase your budget</div>' +
+                  '<div style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.75rem">You\'re only $' + gap.toLocaleString() + ' away. Would you like to raise your budget and re-negotiate?</div>' +
+                  '<div style="display:flex;gap:0.5rem;flex-wrap:wrap">' +
+                    '<button class="btn-budget-option" onclick="retryWithBudget(' + (budget + minIncrease) + ')" style="padding:0.6rem 1.2rem;border:1.5px solid var(--rose);background:rgba(196,99,110,0.08);color:var(--rose);border-radius:10px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s">+$' + minIncrease.toLocaleString() + ' → $' + (budget + minIncrease).toLocaleString() + '</button>' +
+                    '<button class="btn-budget-option" onclick="retryWithBudget(' + (budget + midIncrease) + ')" style="padding:0.6rem 1.2rem;border:1.5px solid var(--rose);background:rgba(196,99,110,0.08);color:var(--rose);border-radius:10px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s">+$' + midIncrease.toLocaleString() + ' → $' + (budget + midIncrease).toLocaleString() + '</button>' +
+                    '<button class="btn-budget-option" onclick="retryWithBudget(' + (budget + comfortIncrease) + ')" style="padding:0.6rem 1.2rem;border:1.5px solid var(--rose);background:rgba(196,99,110,0.08);color:var(--rose);border-radius:10px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s">+$' + comfortIncrease.toLocaleString() + ' → $' + (budget + comfortIncrease).toLocaleString() + '</button>' +
+                  '</div>' +
+                '</div>' +
+
+                /* Option 2: Change settings */
+                '<div style="margin-top:0.75rem;padding:1.25rem;background:var(--cream);border-radius:12px;border:1px solid var(--sand)">' +
+                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">Option 2: Adjust your preferences</div>' +
+                  '<div style="font-size:0.9rem;color:var(--text-muted);line-height:1.7">' +
+                    '💡 <strong>Try a different date</strong> — off-peak and weekday dates unlock up to 15% lower pricing<br>' +
+                    '🔄 <strong>Switch service style</strong> — buffet can be 20-30% cheaper than plated or family style<br>' +
+                    '👥 <strong>Reduce guest count</strong> — fewer guests means lower total even at the same per-head price' +
+                  '</div>' +
+                  '<button class="btn-secondary" onclick="resetSimulation()" style="margin-top:0.75rem">' +
+                    '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" /></svg>' +
+                    'Back to Settings' +
+                  '</button>' +
+                '</div>' +
+
+                /* Option 3: Other vendors */
+                '<div style="margin-top:0.75rem;padding:1.25rem;background:var(--cream);border-radius:12px;border:1px solid var(--sand)">' +
+                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">Option 3: Try another vendor</div>' +
+                  '<div style="font-size:0.9rem;color:var(--text-muted)">In the full Altara marketplace, your Planner Agent would automatically contact the next best-matched venue and negotiate on your behalf.</div>' +
+                '</div>' +
+              '</div>';
+            } else {
+              var bookingData = {
+                totalCost: totalCost,
+                perGuest: perGuest,
+                serviceStyle: terms.service_style || serviceStyle,
+                cuisine: cuisinePreference,
+                eventDate: terms.date || 'June 14, 2027',
+                menu: []
+              };
+              resultArea.innerHTML = buildResultCard(bookingData);
+            }
+            requestAnimationFrame(function() {
+              requestAnimationFrame(function() {
+                var rc = document.getElementById('result-card');
+                if (rc) {
+                  rc.classList.add('visible');
+                  rc.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                }
+              });
+            });
+          }, 600);
+
+          evtSource.close();
+        }
+      };
+
+      evtSource.onerror = function() {
+        progressStep.textContent = 'Connection lost — negotiation may have ended';
+        evtSource.close();
+      };
     });
   </script>
 
