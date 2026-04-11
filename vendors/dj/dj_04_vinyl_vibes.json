@@ -1,0 +1,136 @@
+{
+  "id": "dj_04",
+  "name": "Vinyl Vibes DJ Co.",
+  "category": "dj",
+  "region": "Cape Cod",
+  "description": "Boutique DJ service with a vintage vinyl aesthetic. We spin real records alongside digital tracks, creating a warm, authentic sound that perfectly complements laid-back, bohemian, and rustic weddings. Think sunset cocktails and barefoot dancing.",
+  "lgbtq_welcoming": true,
+  "base_location": "Barnstable, MA",
+  "website": "https://www.vinylvibesdj.com",
+  "entertainment_type": "dj",
+  "vocalist_available": false,
+  "live_musicians_available": false,
+  "genre_specialties": ["indie", "folk", "classic rock", "soul", "Motown", "acoustic", "singer-songwriter"],
+  "will_play_genres": ["indie", "folk", "classic rock", "soul", "Motown", "indie pop", "acoustic", "70s classics", "80s classics", "singer-songwriter", "country", "Americana", "reggae", "oldies"],
+  "packages": {
+    "ceremony_only": {
+      "hours": 1.5,
+      "price": 400,
+      "includes": [
+        "DJ with curated ceremony playlist",
+        "Portable speaker system",
+        "Wireless mic for officiant",
+        "Pre-ceremony ambient music (20 min)",
+        "Custom processional and recessional tracks"
+      ]
+    },
+    "reception_only": {
+      "hours": 4,
+      "price": 1200,
+      "includes": [
+        "DJ spinning vinyl and digital",
+        "Vintage-style turntable setup",
+        "Sound system for up to 150 guests",
+        "Warm Edison bulb string light accent",
+        "Wireless mic for speeches",
+        "Custom playlist curation",
+        "Cocktail hour background music"
+      ]
+    },
+    "full_event": {
+      "hours": 7,
+      "price": 1800,
+      "includes": [
+        "DJ spinning vinyl and digital for full event",
+        "Vintage-style turntable setup with display",
+        "Sound system for up to 150 guests",
+        "Warm Edison bulb string light accents",
+        "Wireless mic for officiant and speeches",
+        "Custom playlist curation with client input",
+        "Cocktail hour and dinner background music",
+        "Curated vinyl guest book experience",
+        "Day-of timeline coordination"
+      ]
+    }
+  },
+  "overtime_rate_per_hour": 200,
+  "price_floor": 400,
+  "max_guests_supported": 150,
+  "equipment_included": [
+    "PA system (up to 150 guests)",
+    "Turntable with vinyl collection",
+    "DJ controller with digital backup",
+    "Wireless microphone",
+    "Edison bulb string lights (50 ft)",
+    "Portable ceremony speaker"
+  ],
+  "service_area": {
+    "radius_miles": 40,
+    "base_location": "Barnstable, MA",
+    "beyond_radius_fee": 50,
+    "max_service_miles": 75,
+    "will_not_service_beyond_max": false,
+    "note": "Happy to travel farther for the right event — just adds a travel fee."
+  },
+  "lead_time_days": 30,
+  "hold_days": 21,
+  "max_events_per_weekend": 1,
+  "venue_partnerships": {
+    "preferred_venues": ["venue_04"],
+    "partnership_type": "tried_and_true",
+    "discount_for_partner_venues": true,
+    "note": "Regular DJ at The Cape Cod Inn. Knows the outdoor ceremony setup and reception layout. 10% discount for Cape Cod venue partners."
+  },
+  "playlist_consultation": {
+    "included": true,
+    "process": "Casual phone or video call to talk through musical vibes, must-play and do-not-play songs, and the overall feel of the wedding. We curate a custom playlist that matches your aesthetic. Final playlist review 2 weeks before the event.",
+    "timeline_planning": true,
+    "do_not_play_list": true,
+    "must_play_list": true,
+    "vinyl_requests": "Couples can request specific vinyl records to be spun — we'll source them if we don't have them",
+    "consultation_timing": "3-4 weeks before event"
+  },
+  "eco_friendly": {
+    "available": false,
+    "note": "Not applicable to DJ services."
+  },
+  "deposit_and_cancellation": {
+    "deposit_pct": 25,
+    "deposit_type": "retainer",
+    "deposit_refundable": false,
+    "balance_due": "7 days before event",
+    "cancellation_policy": {
+      "6_plus_months": "Retainer refunded minus $50 processing fee",
+      "30_days_to_6_months": "Retainer forfeited",
+      "under_30_days": "75% of total owed"
+    },
+    "note": "We're a small operation and try to be flexible. If plans change, talk to us."
+  },
+  "ratings": {
+    "platform_average": null,
+    "platform_review_count": 0,
+    "external_average": 4.5,
+    "external_review_count": 63,
+    "external_sources": ["google", "yelp", "weddingwire"],
+    "composite_score": 4.5,
+    "highlights": ["vinyl aesthetic was so cool and unique", "perfect vibe for our beach wedding", "loved the guest book vinyl experience"],
+    "verified_bookings": 0
+  },
+  "sweeteners": [
+    "Free vinyl guest book experience with any package",
+    "Complimentary extra hour for weekday or off-season weddings",
+    "Custom record label coasters as wedding favors (50 count)",
+    "10% discount for Cape Cod venue partners",
+    "Free acoustic playlist curation for dinner service"
+  ],
+  "personality": "Laid-back, creative, and genuine. Vinyl Vibes is perfect for couples who want something different from the typical wedding DJ. Very flexible on pricing and loves to customize. Strong following among bohemian and rustic wedding crowds on the Cape. Small one-person operation with a personal touch on every event.",
+  "negotiation_style": {
+    "flexibility": "very_high",
+    "discount_ceiling_pct": 18,
+    "preferred_tactics": ["flexible_pricing", "off_season_discount", "bundle_extras", "cape_cod_venue_partnership"]
+  },
+  "contact": {
+    "email": "hello@vinylvibesdj.com",
+    "phone": "508-555-0704"
+  }
+}

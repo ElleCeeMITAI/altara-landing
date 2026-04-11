@@ -1,0 +1,105 @@
+{
+  "id": "photographer_01",
+  "name": "Lens & Light Studio",
+  "category": "photographer",
+  "region": "Greater Boston",
+  "description": "Award-winning documentary and fine art wedding photography. We believe in capturing authentic moments with an editorial eye, creating timeless images that feel both candid and cinematic.",
+  "lgbtq_welcoming": true,
+  "packages": {
+    "elopement": {
+      "hours": 3,
+      "price": 1800,
+      "includes": [
+        "1 lead photographer",
+        "Online gallery with 150+ edited images",
+        "Engagement mini-session (30 min)",
+        "Print release for personal use",
+        "Custom timeline planning consultation"
+      ]
+    },
+    "half_day": {
+      "hours": 5,
+      "price": 3500,
+      "includes": [
+        "1 lead photographer",
+        "1 second shooter",
+        "Online gallery with 350+ edited images",
+        "Engagement session (1 hour)",
+        "Print release for personal use",
+        "Wedding day timeline planning",
+        "Sneak peek within 48 hours"
+      ]
+    },
+    "full_day": {
+      "hours": 10,
+      "price": 5500,
+      "includes": [
+        "1 lead photographer",
+        "1 second shooter",
+        "Online gallery with 600+ edited images",
+        "Engagement session (1 hour)",
+        "Print release for personal use",
+        "Wedding day timeline planning",
+        "Sneak peek within 48 hours",
+        "Heirloom linen album (30 pages)",
+        "Bridal portrait session"
+      ]
+    }
+  },
+  "price_floor": 1800,
+  "lead_time_days": 270,
+  "hold_days": 10,
+  "max_events_per_weekend": 1,
+  "travel_radius_miles": 50,
+  "travel_fee_beyond_radius": 150,
+  "second_shooter_rate_per_hour": 75,
+  "turnaround_weeks": 6,
+  "style": ["documentary", "fine art"],
+  "videography_addon": {
+    "available": true,
+    "highlight_film_3min": 1200,
+    "full_ceremony_edit": 1800,
+    "full_day_cinematic": 3000,
+    "note": "We partner with a dedicated videographer for seamless photo+video coverage. Booked as an add-on to any photography package."
+  },
+  "album_and_print_addons": {
+    "linen_album_30page": 450,
+    "premium_album_40page": 700,
+    "parent_album_20page": 250,
+    "canvas_print_16x24": 175,
+    "canvas_print_24x36": 300,
+    "print_package_25_4x6": 75,
+    "engagement_prints_set": 125,
+    "note": "Full-day package includes a 30-page linen album. All other packages can add albums at these rates."
+  },
+  "deposit_and_cancellation": {
+    "retainer_pct": 50,
+    "retainer_refundable": false,
+    "retainer_note": "This is a retainer (not a deposit) — it is earned upon booking to hold your date.",
+    "balance_due": "30 days before event",
+    "cancellation_policy": {
+      "any_time": "Retainer forfeited",
+      "under_90_days": "Full payment required"
+    },
+    "engagement_session_timing": "3-6 months before wedding"
+  },
+  "ratings": {
+    "average": 4.9,
+    "review_count": 156,
+    "highlights": ["stunning editorial shots", "made us feel so comfortable", "worth every penny"],
+    "source": "aggregate"
+  },
+  "sweeteners": [
+    "Complimentary second shooter upgrade for Sunday weddings",
+    "Free engagement session add-on for full-day bookings in off-season",
+    "10% discount for weekday weddings",
+    "Upgrade to premium linen album at no extra cost for early bookings"
+  ],
+  "personality": {
+    "tone": "warm, professional, quietly confident",
+    "negotiation_style": "premium",
+    "flexibility": "low",
+    "eagerness": "selective",
+    "notes": "Values artistic integrity. Prefers clients who appreciate documentary style. Will not heavily discount but may add value through extras. Books up quickly for peak season."
+  }
+}

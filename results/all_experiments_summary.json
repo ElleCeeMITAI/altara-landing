@@ -1,0 +1,48 @@
+{
+  "exp2": [
+    {
+      "vendor_count": 3,
+      "label": "3 vendors",
+      "sequential_sec": 50.7,
+      "parallel_sec": 23.2,
+      "speedup": 2.19,
+      "seq_cost": 0.068139,
+      "par_cost": 0.076902,
+      "seq_tokens": 13277,
+      "par_tokens": 15242
+    },
+    {
+      "vendor_count": 6,
+      "label": "6 vendors",
+      "sequential_sec": 102.4,
+      "parallel_sec": 46.3,
+      "speedup": 2.21,
+      "seq_cost": 0.142074,
+      "par_cost": 0.167637,
+      "seq_tokens": 27946,
+      "par_tokens": 33471
+    },
+    {
+      "vendor_count": 10,
+      "label": "10 vendors",
+      "sequential_sec": 198,
+      "parallel_sec": 45.1,
+      "speedup": 4.39,
+      "seq_cost": 0.294816,
+      "par_cost": 0.235128,
+      "seq_tokens": 59256,
+      "par_tokens": 45976
+    },
+    {
+      "vendor_count": 30,
+      "label": "30 vendors",
+      "sequential_sec": 553,
+      "parallel_sec": 129.7,
+      "speedup": 4.26,
+      "seq_cost": 0.807228,
+      "par_cost": 0.578292,
+      "seq_tokens": 161708,
+      "par_tokens": 113380
+    }
+  ]
+}

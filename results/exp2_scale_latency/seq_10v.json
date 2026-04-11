@@ -1,0 +1,1545 @@
+{
+  "summary": {
+    "mode": "rfp",
+    "model": "claude-sonnet-4-20250514",
+    "vendor_count": 10,
+    "elapsed_ms": 198026,
+    "elapsed_sec": 198,
+    "accepted_count": 9,
+    "rejected_count": 1,
+    "failed_count": 0,
+    "grand_total_wedding_cost": 84150,
+    "budget": 25000,
+    "flex_budget": 3000,
+    "within_budget": false,
+    "within_flex": false,
+    "total_api_cost_usd": 0.294816,
+    "total_tokens": 59256,
+    "results": [
+      {
+        "vendor_id": "venue_01",
+        "vendor_name": "Grand Meridian Ballroom",
+        "category": "venue",
+        "outcome": "accepted",
+        "total_price": 25000,
+        "turns": 5,
+        "cost_usd": 0.033678,
+        "is_backup": false
+      },
+      {
+        "vendor_id": "venue_02",
+        "vendor_name": "Harbor View Estate",
+        "category": "venue",
+        "outcome": "rejected",
+        "total_price": 26300,
+        "turns": 5,
+        "cost_usd": 0.033342,
+        "is_backup": false
+      },
+      {
+        "vendor_id": "catering_01",
+        "vendor_name": "Grand Meridian Ballroom Catering",
+        "category": "catering",
+        "outcome": "accepted",
+        "total_price": 21000,
+        "turns": 5,
+        "cost_usd": 0.034131,
+        "is_backup": false
+      },
+      {
+        "vendor_id": "catering_02",
+        "vendor_name": "Beacon Hill Kitchen",
+        "category": "catering",
+        "outcome": "accepted",
+        "total_price": 16800,
+        "turns": 5,
+        "cost_usd": 0.034305,
+        "is_backup": false
+      },
+      {
+        "vendor_id": "florist_01",
+        "vendor_name": "Bloom & Vine Studio",
+        "category": "florist",
+        "outcome": "accepted",
+        "total_price": 3800,
+        "turns": 3,
+        "cost_usd": 0.01701,
+        "is_backup": false
+      },
+      {
+        "vendor_id": "florist_02",
+        "vendor_name": "Petal & Press",
+        "category": "florist",
+        "outcome": "accepted",
+        "total_price": 2400,
+        "turns": 5,
+        "cost_usd": 0.035163,
+        "is_backup": false
+      },
+      {
+        "vendor_id": "photographer_01",
+        "vendor_name": "Lens & Light Studio",
+        "category": "photographer",
+        "outcome": "accepted",
+        "total_price": 5500,
+        "turns": 5,
+        "cost_usd": 0.036486,
+        "is_backup": false
+      },
+      {
+        "vendor_id": "photographer_02",
+        "vendor_name": "Golden Hour Photography",
+        "category": "photographer",
+        "outcome": "accepted",
+        "total_price": 4500,
+        "turns": 3,
+        "cost_usd": 0.017568,
+        "is_backup": false
+      },
+      {
+        "vendor_id": "dj_01",
+        "vendor_name": "Boston Beat DJs",
+        "category": "dj",
+        "outcome": "accepted",
+        "total_price": 2200,
+        "turns": 3,
+        "cost_usd": 0.017847,
+        "is_backup": false
+      },
+      {
+        "vendor_id": "bakery_01",
+        "vendor_name": "Sugar & Slate Bakery",
+        "category": "bakery",
+        "outcome": "accepted",
+        "total_price": 2950,
+        "turns": 5,
+        "cost_usd": 0.035286,
+        "is_backup": false
+      }
+    ]
+  },
+  "results": [
+    {
+      "vendor_id": "venue_01",
+      "vendor_name": "Grand Meridian Ballroom",
+      "category": "venue",
+      "outcome": "accepted",
+      "final_terms": {
+        "total_price": 25000,
+        "date": "2027-06-12",
+        "guest_count": 120,
+        "notes": "Accepting all terms as proposed - looking forward to a wonderful celebration"
+      },
+      "turns": 5,
+      "messages": [
+        {
+          "turn": 1,
+          "agent": "planner_agent",
+          "vendor_id": "venue_01",
+          "vendor_name": "Grand Meridian Ballroom",
+          "category": "venue",
+          "timestamp": "2026-04-11T18:32:34.327Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "venue_01",
+            "message_type": "rfp",
+            "content": "We are seeking a quote for a wedding reception at Grand Meridian Ballroom for 120 guests with plated dinner service on June 12, 2027. Our clients have a total budget of $25,000 and are flexible with any Saturday in June 2027 if the preferred date is unavailable.",
+            "proposed_terms": {
+              "total_price": null,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Plated dinner service preferred, flexible on any Saturday in June 2027"
+            }
+          },
+          "input_tokens": 285,
+          "output_tokens": 178,
+          "cost_usd": 0.003525
+        },
+        {
+          "turn": 2,
+          "agent": "venue_01",
+          "vendor_id": "venue_01",
+          "vendor_name": "Grand Meridian Ballroom",
+          "category": "venue",
+          "timestamp": "2026-04-11T18:32:40.275Z",
+          "parsed": {
+            "from": "venue_01",
+            "to": "planner_agent",
+            "message_type": "offer",
+            "content": "Thank you for considering Grand Meridian Ballroom for your clients' special day! June 12th is available, and our plated dinner service would be perfect for their 120 guests. Given June is a peak month, I'm proposing our premium package with elegant touches that showcase our stunning ballroom.",
+            "proposed_terms": {
+              "price_per_head": 155,
+              "total_price": 24100,
+              "venue_rental": 5750,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "service_style": "plated",
+              "deposit_percent": 50,
+              "hold_days": 14,
+              "includes": [
+                "venue rental with chandeliers",
+                "plated dinner service",
+                "in-house catering",
+                "complimentary cake cutting",
+                "bridal suite access",
+                "basic AV system"
+              ],
+              "notes": "Peak month pricing includes 15% surcharge. Alternative Saturdays available: June 5th, 19th, 26th with same terms. Package reflects our 4.7-star reputation and seamless coordination."
+            }
+          },
+          "input_tokens": 1334,
+          "output_tokens": 305,
+          "cost_usd": 0.008577
+        },
+        {
+          "turn": 3,
+          "agent": "planner_agent",
+          "vendor_id": "venue_01",
+          "vendor_name": "Grand Meridian Ballroom",
+          "category": "venue",
+          "timestamp": "2026-04-11T18:32:44.374Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "venue_01",
+            "message_type": "counter_offer",
+            "content": "Thank you for the comprehensive proposal. The package looks excellent, but the total of $24,100 plus the venue rental of $5,750 would exceed our clients' $25,000 budget. Could you provide a revised package that fits within their budget while maintaining the quality service Grand Meridian is known for?",
+            "proposed_terms": {
+              "total_price": 25000,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Requesting all-inclusive pricing within $25,000 budget including venue rental, open to adjusting package components if needed"
+            }
+          },
+          "input_tokens": 806,
+          "output_tokens": 190,
+          "cost_usd": 0.005268
+        },
+        {
+          "turn": 4,
+          "agent": "venue_01",
+          "vendor_id": "venue_01",
+          "vendor_name": "Grand Meridian Ballroom",
+          "category": "venue",
+          "timestamp": "2026-04-11T18:32:49.782Z",
+          "parsed": {
+            "from": "venue_01",
+            "to": "planner_agent",
+            "message_type": "counter_offer",
+            "content": "I understand your budget constraints and want to make this work for your clients. Let me offer a revised package at $25,000 all-inclusive that maintains our exceptional quality while fitting their budget perfectly. This includes everything they need for a memorable celebration at our award-winning venue.",
+            "proposed_terms": {
+              "price_per_head": 125,
+              "total_price": 25000,
+              "venue_rental": 5000,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "service_style": "plated",
+              "deposit_percent": 50,
+              "hold_days": 14,
+              "includes": [
+                "venue rental with chandeliers",
+                "plated dinner service",
+                "in-house catering",
+                "complimentary cake cutting",
+                "bridal suite access",
+                "basic AV system",
+                "upgraded linens"
+              ],
+              "notes": "All-inclusive pricing. I'm adding upgraded linens as a value-add. This represents our best offer for a June date while maintaining our quality standards."
+            }
+          },
+          "input_tokens": 1848,
+          "output_tokens": 289,
+          "cost_usd": 0.009879
+        },
+        {
+          "turn": 5,
+          "agent": "planner_agent",
+          "vendor_id": "venue_01",
+          "vendor_name": "Grand Meridian Ballroom",
+          "category": "venue",
+          "timestamp": "2026-04-11T18:32:53.027Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "venue_01",
+            "message_type": "accept",
+            "content": "Perfect! This revised package at exactly $25,000 all-inclusive meets our clients' budget and includes everything they need for their dream wedding. We're delighted to move forward with Grand Meridian Ballroom for June 12, 2027.",
+            "proposed_terms": {
+              "total_price": 25000,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Accepting all terms as proposed - looking forward to a wonderful celebration"
+            }
+          },
+          "input_tokens": 1333,
+          "output_tokens": 162,
+          "cost_usd": 0.006429
+        }
+      ],
+      "total_input_tokens": 5606,
+      "total_output_tokens": 1124,
+      "total_cost_usd": 0.033678
+    },
+    {
+      "vendor_id": "venue_02",
+      "vendor_name": "Harbor View Estate",
+      "category": "venue",
+      "outcome": "rejected",
+      "final_terms": {
+        "price_per_head": 165,
+        "total_price": 26300,
+        "venue_rental": 7500,
+        "date": "2027-06-12",
+        "guest_count": 120,
+        "service_style": "plated",
+        "deposit_percent": 50,
+        "hold_days": 10,
+        "includes": [
+          "outdoor ceremony lawn",
+          "glass-walled reception pavilion",
+          "bridal cottage",
+          "sunset terrace",
+          "boat dock access",
+          "complimentary sparkling wine toast",
+          "bonfire pit access",
+          "rehearsal dinner space"
+        ],
+        "notes": "Reduced peak season rate with significant value-adds. This is our best offer for prime June Saturday."
+      },
+      "turns": 5,
+      "messages": [
+        {
+          "turn": 1,
+          "agent": "planner_agent",
+          "vendor_id": "venue_02",
+          "vendor_name": "Harbor View Estate",
+          "category": "venue",
+          "timestamp": "2026-04-11T18:32:56.282Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "venue_02",
+            "message_type": "rfp",
+            "content": "We are seeking a venue for a wedding with 120 guests on June 12, 2027, with plated dinner service. Our couple has a total budget of $25,000 and is flexible on any Saturday in June 2027 if needed.",
+            "proposed_terms": {
+              "total_price": null,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Plated dinner service preferred, flexible on any Saturday in June 2027"
+            }
+          },
+          "input_tokens": 277,
+          "output_tokens": 165,
+          "cost_usd": 0.003306
+        },
+        {
+          "turn": 2,
+          "agent": "venue_02",
+          "vendor_id": "venue_02",
+          "vendor_name": "Harbor View Estate",
+          "category": "venue",
+          "timestamp": "2026-04-11T18:33:01.992Z",
+          "parsed": {
+            "from": "venue_02",
+            "to": "planner_agent",
+            "message_type": "offer",
+            "content": "Thank you for considering Harbor View Estate for your June wedding! With our stunning waterfront location and 4.9-star rating, we'd love to host your celebration. For 120 guests with plated service on June 12th, our peak season pricing reflects the premium nature of our Cape Cod setting.",
+            "proposed_terms": {
+              "price_per_head": 186,
+              "total_price": 29820,
+              "venue_rental": 9000,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "service_style": "plated",
+              "deposit_percent": 50,
+              "hold_days": 10,
+              "includes": [
+                "outdoor ceremony lawn",
+                "glass-walled reception pavilion",
+                "bridal cottage",
+                "sunset terrace",
+                "boat dock access",
+                "complimentary sparkling wine toast"
+              ],
+              "notes": "Peak season pricing (20% surcharge) for June. Price includes venue rental, plated dinner service, and premium amenities. We can hold this date for 10 days with verbal agreement."
+            }
+          },
+          "input_tokens": 1337,
+          "output_tokens": 297,
+          "cost_usd": 0.008466
+        },
+        {
+          "turn": 3,
+          "agent": "planner_agent",
+          "vendor_id": "venue_02",
+          "vendor_name": "Harbor View Estate",
+          "category": "venue",
+          "timestamp": "2026-04-11T18:33:05.767Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "venue_02",
+            "message_type": "counter_offer",
+            "content": "We appreciate Harbor View Estate's beautiful offerings, but the current pricing exceeds our couple's $25,000 budget by nearly $5,000. Would you consider a reduced rate of $208 per person (total $24,960) to work within their budget while still providing your exceptional service?",
+            "proposed_terms": {
+              "total_price": 24960,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Counter-offering $208 per person to stay within $25,000 budget, maintaining all included amenities and services"
+            }
+          },
+          "input_tokens": 773,
+          "output_tokens": 185,
+          "cost_usd": 0.005094
+        },
+        {
+          "turn": 4,
+          "agent": "venue_02",
+          "vendor_id": "venue_02",
+          "vendor_name": "Harbor View Estate",
+          "category": "venue",
+          "timestamp": "2026-04-11T18:33:10.858Z",
+          "parsed": {
+            "from": "venue_02",
+            "to": "planner_agent",
+            "message_type": "counter_offer",
+            "content": "I understand budget is important, and I'd love to work with your couple. While I can't quite reach that rate for peak June, I can offer $165 per person (total $26,300) which includes everything plus I'll add our bonfire pit access and complimentary rehearsal dinner space - that's significant added value for just $1,300 over budget.",
+            "proposed_terms": {
+              "price_per_head": 165,
+              "total_price": 26300,
+              "venue_rental": 7500,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "service_style": "plated",
+              "deposit_percent": 50,
+              "hold_days": 10,
+              "includes": [
+                "outdoor ceremony lawn",
+                "glass-walled reception pavilion",
+                "bridal cottage",
+                "sunset terrace",
+                "boat dock access",
+                "complimentary sparkling wine toast",
+                "bonfire pit access",
+                "rehearsal dinner space"
+              ],
+              "notes": "Reduced peak season rate with significant value-adds. This is our best offer for prime June Saturday."
+            }
+          },
+          "input_tokens": 1838,
+          "output_tokens": 305,
+          "cost_usd": 0.010089
+        },
+        {
+          "turn": 5,
+          "agent": "planner_agent",
+          "vendor_id": "venue_02",
+          "vendor_name": "Harbor View Estate",
+          "category": "venue",
+          "timestamp": "2026-04-11T18:33:14.276Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "venue_02",
+            "message_type": "reject",
+            "content": "While we truly appreciate Harbor View Estate's beautiful amenities and your willingness to add value, the $26,300 total still exceeds our couple's firm $25,000 budget. We must respectfully decline as we cannot commit beyond their financial parameters.",
+            "proposed_terms": {
+              "total_price": null,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Budget constraints prevent acceptance - seeking venues that can work within $25,000 total"
+            }
+          },
+          "input_tokens": 1309,
+          "output_tokens": 164,
+          "cost_usd": 0.006387
+        }
+      ],
+      "total_input_tokens": 5534,
+      "total_output_tokens": 1116,
+      "total_cost_usd": 0.033342
+    },
+    {
+      "vendor_id": "catering_01",
+      "vendor_name": "Grand Meridian Ballroom Catering",
+      "category": "catering",
+      "outcome": "accepted",
+      "final_terms": {
+        "total_price": 21000,
+        "date": "2027-06-12",
+        "guest_count": 120,
+        "notes": "Accepting complete package including plated dinner, Beer & Wine bar, champagne toast, and venue coordination services"
+      },
+      "turns": 5,
+      "messages": [
+        {
+          "turn": 1,
+          "agent": "planner_agent",
+          "vendor_id": "catering_01",
+          "vendor_name": "Grand Meridian Ballroom Catering",
+          "category": "catering",
+          "timestamp": "2026-04-11T18:33:17.591Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "catering_01",
+            "message_type": "rfp",
+            "content": "We are seeking catering services for a wedding reception on June 12, 2027, for 120 guests with plated service style. Please provide your pricing and package details within our $25,000 total budget.",
+            "proposed_terms": {
+              "total_price": null,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Plated service style preferred, flexible on any Saturday in June 2027 if needed"
+            }
+          },
+          "input_tokens": 294,
+          "output_tokens": 161,
+          "cost_usd": 0.003297
+        },
+        {
+          "turn": 2,
+          "agent": "catering_01",
+          "vendor_id": "catering_01",
+          "vendor_name": "Grand Meridian Ballroom Catering",
+          "category": "catering",
+          "timestamp": "2026-04-11T18:33:23.933Z",
+          "parsed": {
+            "from": "catering_01",
+            "to": "planner_agent",
+            "message_type": "offer",
+            "content": "Thank you for considering Grand Meridian Ballroom Catering for your special day! For your June 12th wedding with 120 guests, I'm pleased to present our elegant plated dinner service. Given it's peak wedding season, we have a 15% peak surcharge, bringing our plated service to $155.25 per head, totaling $18,630 for food service alone.",
+            "proposed_terms": {
+              "price_per_head": 155.25,
+              "total_price": 18630,
+              "guest_count": 120,
+              "service_style": "plated",
+              "bar_package": null,
+              "deposit_percent": 30,
+              "hold_days": 14,
+              "includes": [
+                "plated dinner service",
+                "Italian/Mediterranean/New England menu options",
+                "seamless venue coordination",
+                "professional service staff",
+                "china and glassware"
+              ],
+              "notes": "Peak season pricing applies. Bar packages available from $35-65/head. Complimentary tasting available ($150 value, waived upon booking). Final guest count due 10 days before event."
+            }
+          },
+          "input_tokens": 1415,
+          "output_tokens": 306,
+          "cost_usd": 0.008835
+        },
+        {
+          "turn": 3,
+          "agent": "planner_agent",
+          "vendor_id": "catering_01",
+          "vendor_name": "Grand Meridian Ballroom Catering",
+          "category": "catering",
+          "timestamp": "2026-04-11T18:33:27.905Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "catering_01",
+            "message_type": "counter_offer",
+            "content": "Thank you for the comprehensive proposal. The plated service looks excellent, however the total cost including bar service would exceed our $25,000 budget. Would you consider reducing the peak season surcharge or offering a package deal that includes bar service within our budget?",
+            "proposed_terms": {
+              "total_price": 23000,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Requesting total package including basic bar service within $25,000 budget, flexible on Saturday dates in June if better pricing available"
+            }
+          },
+          "input_tokens": 800,
+          "output_tokens": 178,
+          "cost_usd": 0.00507
+        },
+        {
+          "turn": 4,
+          "agent": "catering_01",
+          "vendor_id": "catering_01",
+          "vendor_name": "Grand Meridian Ballroom Catering",
+          "category": "catering",
+          "timestamp": "2026-04-11T18:33:33.424Z",
+          "parsed": {
+            "from": "catering_01",
+            "to": "planner_agent",
+            "message_type": "counter_offer",
+            "content": "I appreciate your budget considerations and would love to work with you! Let me offer a complete package: our plated dinner at $140 per head plus our Beer & Wine package at $35 per head, totaling $21,000 for 120 guests. This keeps you well within budget while providing excellent value with our seamless venue coordination.",
+            "proposed_terms": {
+              "price_per_head": 175,
+              "total_price": 21000,
+              "guest_count": 120,
+              "service_style": "plated",
+              "bar_package": "Beer & Wine",
+              "deposit_percent": 30,
+              "hold_days": 14,
+              "includes": [
+                "plated dinner service",
+                "Beer & Wine bar package",
+                "Italian/Mediterranean/New England menu options",
+                "seamless venue coordination",
+                "professional service staff",
+                "china and glassware",
+                "complimentary champagne toast"
+              ],
+              "notes": "Complete food and beverage package. As a wedding bonus, complimentary champagne toast included. Complimentary tasting available. This pricing represents our best package value for your June date."
+            }
+          },
+          "input_tokens": 1918,
+          "output_tokens": 306,
+          "cost_usd": 0.010344
+        },
+        {
+          "turn": 5,
+          "agent": "planner_agent",
+          "vendor_id": "catering_01",
+          "vendor_name": "Grand Meridian Ballroom Catering",
+          "category": "catering",
+          "timestamp": "2026-04-11T18:33:36.798Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "catering_01",
+            "message_type": "accept",
+            "content": "Excellent! We accept your complete package offer of $21,000 for 120 guests including plated dinner service and Beer & Wine bar package. This fits perfectly within our budget and provides great value with the complimentary champagne toast and venue coordination.",
+            "proposed_terms": {
+              "total_price": 21000,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Accepting complete package including plated dinner, Beer & Wine bar, champagne toast, and venue coordination services"
+            }
+          },
+          "input_tokens": 1335,
+          "output_tokens": 172,
+          "cost_usd": 0.006585
+        }
+      ],
+      "total_input_tokens": 5762,
+      "total_output_tokens": 1123,
+      "total_cost_usd": 0.034131
+    },
+    {
+      "vendor_id": "catering_02",
+      "vendor_name": "Beacon Hill Kitchen",
+      "category": "catering",
+      "outcome": "accepted",
+      "final_terms": {
+        "total_price": 16800,
+        "date": "2027-06-12",
+        "guest_count": 120,
+        "notes": "Accepting all terms including complimentary tasting, signature cocktail development, and upgraded linen package"
+      },
+      "turns": 5,
+      "messages": [
+        {
+          "turn": 1,
+          "agent": "planner_agent",
+          "vendor_id": "catering_02",
+          "vendor_name": "Beacon Hill Kitchen",
+          "category": "catering",
+          "timestamp": "2026-04-11T18:33:39.966Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "catering_02",
+            "message_type": "rfp",
+            "content": "We are seeking catering services for a wedding with 120 guests on June 12, 2027, with plated service style. Our couple has a total budget of $25,000 and is flexible on any Saturday in June 2027 if needed.",
+            "proposed_terms": {
+              "total_price": null,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Plated service style preferred, flexible on any Saturday in June 2027"
+            }
+          },
+          "input_tokens": 282,
+          "output_tokens": 167,
+          "cost_usd": 0.003351
+        },
+        {
+          "turn": 2,
+          "agent": "catering_02",
+          "vendor_id": "catering_02",
+          "vendor_name": "Beacon Hill Kitchen",
+          "category": "catering",
+          "timestamp": "2026-04-11T18:33:46.363Z",
+          "parsed": {
+            "from": "catering_02",
+            "to": "planner_agent",
+            "message_type": "offer",
+            "content": "Thank you for considering Beacon Hill Kitchen for this special celebration! For 120 guests with our signature plated service in June, I'm proposing our premium experience at $172.50 per head including our 15% peak season surcharge. This includes our French-inspired plated dinner with seasonal ingredients and impeccable presentation that has earned us a 4.9-star rating from 134 couples.",
+            "proposed_terms": {
+              "price_per_head": 172.5,
+              "total_price": 20700,
+              "guest_count": 120,
+              "service_style": "plated",
+              "bar_package": null,
+              "deposit_percent": 30,
+              "hold_days": 10,
+              "includes": [
+                "French-inspired plated dinner",
+                "seasonal farm-to-table ingredients",
+                "professional service staff",
+                "china and glassware",
+                "complimentary amuse-bouche course"
+              ],
+              "notes": "Peak season surcharge applied for June. Bar package available separately. Complimentary tasting available ($250 value, waived upon booking). 10-day hold period to secure date."
+            }
+          },
+          "input_tokens": 1431,
+          "output_tokens": 308,
+          "cost_usd": 0.008913
+        },
+        {
+          "turn": 3,
+          "agent": "planner_agent",
+          "vendor_id": "catering_02",
+          "vendor_name": "Beacon Hill Kitchen",
+          "category": "catering",
+          "timestamp": "2026-04-11T18:33:50.620Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "catering_02",
+            "message_type": "counter_offer",
+            "content": "We appreciate your premium offering and the complimentary tasting is very appealing. However, at $20,700 for catering alone, this would exceed our couple's total wedding budget of $25,000. Could you provide options at a lower price point or consider waiving the peak season surcharge?",
+            "proposed_terms": {
+              "total_price": 18000,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Requesting removal of 15% peak season surcharge or alternative menu options to fit within overall wedding budget constraints"
+            }
+          },
+          "input_tokens": 790,
+          "output_tokens": 185,
+          "cost_usd": 0.005145
+        },
+        {
+          "turn": 4,
+          "agent": "catering_02",
+          "vendor_id": "catering_02",
+          "vendor_name": "Beacon Hill Kitchen",
+          "category": "catering",
+          "timestamp": "2026-04-11T18:33:55.864Z",
+          "parsed": {
+            "from": "catering_02",
+            "to": "planner_agent",
+            "message_type": "counter_offer",
+            "content": "I understand budget constraints and want to help create a beautiful celebration. I can offer our plated service at $140 per head ($16,800 total) which removes most of the peak surcharge. Additionally, I'll include our signature cocktail development service at no charge and upgraded linen package - valued at over $800 - to enhance the dining experience within your budget.",
+            "proposed_terms": {
+              "price_per_head": 140,
+              "total_price": 16800,
+              "guest_count": 120,
+              "service_style": "plated",
+              "bar_package": null,
+              "deposit_percent": 30,
+              "hold_days": 10,
+              "includes": [
+                "French-inspired plated dinner",
+                "seasonal farm-to-table ingredients",
+                "professional service staff",
+                "china and glassware",
+                "complimentary amuse-bouche course",
+                "signature cocktail development",
+                "upgraded linen package"
+              ],
+              "notes": "Reduced peak surcharge applied. Complimentary tasting still included. Bar package can be added separately if desired within remaining budget."
+            }
+          },
+          "input_tokens": 1943,
+          "output_tokens": 299,
+          "cost_usd": 0.010314
+        },
+        {
+          "turn": 5,
+          "agent": "planner_agent",
+          "vendor_id": "catering_02",
+          "vendor_name": "Beacon Hill Kitchen",
+          "category": "catering",
+          "timestamp": "2026-04-11T18:33:59.882Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "catering_02",
+            "message_type": "accept",
+            "content": "We are delighted to accept your revised proposal at $16,800 for 120 guests with plated service. The additional value-adds including signature cocktail development and upgraded linens make this an excellent fit within our couple's budget, leaving room for other wedding essentials.",
+            "proposed_terms": {
+              "total_price": 16800,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Accepting all terms including complimentary tasting, signature cocktail development, and upgraded linen package"
+            }
+          },
+          "input_tokens": 1319,
+          "output_tokens": 175,
+          "cost_usd": 0.006582
+        }
+      ],
+      "total_input_tokens": 5765,
+      "total_output_tokens": 1134,
+      "total_cost_usd": 0.034305
+    },
+    {
+      "vendor_id": "florist_01",
+      "vendor_name": "Bloom & Vine Studio",
+      "category": "florist",
+      "outcome": "accepted",
+      "final_terms": {
+        "total_price": 3800,
+        "date": "2027-06-12",
+        "guest_count": 120,
+        "notes": "Accepting Classic package with 50% deposit, includes consultation and mood board"
+      },
+      "turns": 3,
+      "messages": [
+        {
+          "turn": 1,
+          "agent": "planner_agent",
+          "vendor_id": "florist_01",
+          "vendor_name": "Bloom & Vine Studio",
+          "category": "florist",
+          "timestamp": "2026-04-11T18:34:03.215Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "florist_01",
+            "message_type": "rfp",
+            "content": "We are requesting a proposal for wedding florals for 120 guests with plated dinner service on June 12, 2027. Please provide your comprehensive floral package pricing including bridal bouquet, ceremony arrangements, and reception centerpieces.",
+            "proposed_terms": {
+              "total_price": null,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Comprehensive floral package needed for ceremony and reception"
+            }
+          },
+          "input_tokens": 286,
+          "output_tokens": 156,
+          "cost_usd": 0.003198
+        },
+        {
+          "turn": 2,
+          "agent": "florist_01",
+          "vendor_id": "florist_01",
+          "vendor_name": "Bloom & Vine Studio",
+          "category": "florist",
+          "timestamp": "2026-04-11T18:34:08.294Z",
+          "parsed": {
+            "from": "florist_01",
+            "to": "planner_agent",
+            "message_type": "offer",
+            "content": "Perfect timing for June peonies! For your 120-guest celebration, I recommend our Classic package which beautifully covers ceremony and reception with seasonal blooms. We'll start with a complimentary consultation and create a custom mood board to bring your floral vision to life.",
+            "proposed_terms": {
+              "package": "Classic",
+              "total_price": 3800,
+              "deposit_percent": 50,
+              "hold_days": 14,
+              "includes": [
+                "bridal bouquet",
+                "4 bridesmaid bouquets",
+                "8 boutonnieres",
+                "4 corsages",
+                "10 low centerpieces",
+                "ceremony arch",
+                "cocktail table arrangements",
+                "cake flowers",
+                "delivery and setup"
+              ],
+              "notes": "Includes free consultation, digital mood board, and sample arrangement (fee credited on booking). Perfect for June peonies and garden roses. Petals donated to Petals for Hope after reception."
+            }
+          },
+          "input_tokens": 1733,
+          "output_tokens": 261,
+          "cost_usd": 0.009114
+        },
+        {
+          "turn": 3,
+          "agent": "planner_agent",
+          "vendor_id": "florist_01",
+          "vendor_name": "Bloom & Vine Studio",
+          "category": "florist",
+          "timestamp": "2026-04-11T18:34:12.088Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "florist_01",
+            "message_type": "accept",
+            "content": "Your Classic package at $3,800 is perfect and fits well within our floral budget. The comprehensive coverage including ceremony arch, centerpieces, and bridal party flowers is exactly what we need, and we love the seasonal peony focus for June.",
+            "proposed_terms": {
+              "total_price": 3800,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Accepting Classic package with 50% deposit, includes consultation and mood board"
+            }
+          },
+          "input_tokens": 746,
+          "output_tokens": 164,
+          "cost_usd": 0.004698
+        }
+      ],
+      "total_input_tokens": 2765,
+      "total_output_tokens": 581,
+      "total_cost_usd": 0.01701
+    },
+    {
+      "vendor_id": "florist_02",
+      "vendor_name": "Petal & Press",
+      "category": "florist",
+      "outcome": "accepted",
+      "final_terms": {
+        "total_price": 2400,
+        "date": "2027-06-12",
+        "guest_count": 120,
+        "notes": "Accepting Custom Essential Plus package with 50% deposit and 14-day hold period"
+      },
+      "turns": 5,
+      "messages": [
+        {
+          "turn": 1,
+          "agent": "planner_agent",
+          "vendor_id": "florist_02",
+          "vendor_name": "Petal & Press",
+          "category": "florist",
+          "timestamp": "2026-04-11T18:34:16.089Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "florist_02",
+            "message_type": "rfp",
+            "content": "We are planning a wedding for 120 guests on June 12, 2027 with plated dinner service. Could you please provide a detailed quote for bridal bouquet, bridesmaids bouquets, boutonnieres, ceremony arrangements, and centerpieces for reception tables?",
+            "proposed_terms": {
+              "total_price": null,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Requesting comprehensive floral package quote for wedding ceremony and reception"
+            }
+          },
+          "input_tokens": 284,
+          "output_tokens": 170,
+          "cost_usd": 0.003402
+        },
+        {
+          "turn": 2,
+          "agent": "florist_02",
+          "vendor_id": "florist_02",
+          "vendor_name": "Petal & Press",
+          "category": "florist",
+          "timestamp": "2026-04-11T18:34:21.559Z",
+          "parsed": {
+            "from": "florist_02",
+            "to": "planner_agent",
+            "message_type": "offer",
+            "content": "Perfect timing for a June wedding! For your 120-guest celebration, I recommend our Classic package which beautifully covers all your requested florals with our signature modern, architectural style. This includes everything from your bridal bouquet to stunning centerpieces that will create an unforgettable atmosphere.",
+            "proposed_terms": {
+              "package": "Classic",
+              "total_price": 2850,
+              "deposit_percent": 50,
+              "hold_days": 14,
+              "includes": [
+                "bridal bouquet",
+                "4 bridesmaid bouquets",
+                "6 boutonnieres",
+                "3 corsages",
+                "10 centerpieces (mix low/tall)",
+                "ceremony arch",
+                "cocktail bud vases",
+                "cake flowers",
+                "delivery and setup"
+              ],
+              "notes": "Includes free consultation and digital mood board. We specialize in clean, minimalist designs with architectural flair using premium flowers like orchids, calla lilies, and protea. Final design confirmation 4 weeks before event, balance due 14 days prior."
+            }
+          },
+          "input_tokens": 1663,
+          "output_tokens": 286,
+          "cost_usd": 0.009279
+        },
+        {
+          "turn": 3,
+          "agent": "planner_agent",
+          "vendor_id": "florist_02",
+          "vendor_name": "Petal & Press",
+          "category": "florist",
+          "timestamp": "2026-04-11T18:34:25.838Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "florist_02",
+            "message_type": "counter_offer",
+            "content": "Thank you for the comprehensive Classic package proposal. The inclusions look wonderful and align perfectly with our vision. However, we're hoping to work within a budget of $2,400 for florals. Would you be able to adjust the package or offer an alternative that meets this target while still providing beautiful ceremony and reception arrangements?",
+            "proposed_terms": {
+              "total_price": 2400,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Requesting adjusted pricing while maintaining key elements like bridal bouquet, ceremony arrangements, and centerpieces"
+            }
+          },
+          "input_tokens": 782,
+          "output_tokens": 186,
+          "cost_usd": 0.005136
+        },
+        {
+          "turn": 4,
+          "agent": "florist_02",
+          "vendor_id": "florist_02",
+          "vendor_name": "Petal & Press",
+          "category": "florist",
+          "timestamp": "2026-04-11T18:34:31.537Z",
+          "parsed": {
+            "from": "florist_02",
+            "to": "planner_agent",
+            "message_type": "counter_offer",
+            "content": "I'd love to work within your budget! I can offer a customized package at $2,400 that maintains all your essential florals with our signature modern aesthetic. We'll focus on fewer but impactful varieties and include some of our stunning dried elements like pampas grass to create maximum visual impact while staying cost-effective.",
+            "proposed_terms": {
+              "package": "Custom Essential Plus",
+              "total_price": 2400,
+              "deposit_percent": 50,
+              "hold_days": 14,
+              "includes": [
+                "bridal bouquet",
+                "4 bridesmaid bouquets",
+                "6 boutonnieres",
+                "8 low centerpieces",
+                "ceremony arch with dried elements",
+                "cocktail bud vases",
+                "cake flowers",
+                "delivery and setup",
+                "complimentary pressed-flower keepsake bookmark"
+              ],
+              "notes": "Modified package using fewer flower varieties for greater impact, incorporating our signature dried palms and pampas grass. Includes free consultation, digital mood board, and pressed-flower keepsake as our gift to you."
+            }
+          },
+          "input_tokens": 2154,
+          "output_tokens": 290,
+          "cost_usd": 0.010812
+        },
+        {
+          "turn": 5,
+          "agent": "planner_agent",
+          "vendor_id": "florist_02",
+          "vendor_name": "Petal & Press",
+          "category": "florist",
+          "timestamp": "2026-04-11T18:34:34.972Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "florist_02",
+            "message_type": "accept",
+            "content": "Perfect! We're delighted to accept your Custom Essential Plus package at $2,400. The combination of fresh florals with dried elements sounds beautiful and fits wonderfully within our budget. We look forward to working with you to create a stunning floral design for our June 12th celebration.",
+            "proposed_terms": {
+              "total_price": 2400,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Accepting Custom Essential Plus package with 50% deposit and 14-day hold period"
+            }
+          },
+          "input_tokens": 1308,
+          "output_tokens": 174,
+          "cost_usd": 0.006534
+        }
+      ],
+      "total_input_tokens": 6191,
+      "total_output_tokens": 1106,
+      "total_cost_usd": 0.035163
+    },
+    {
+      "vendor_id": "photographer_01",
+      "vendor_name": "Lens & Light Studio",
+      "category": "photographer",
+      "outcome": "accepted",
+      "final_terms": {
+        "total_price": 5500,
+        "date": "2027-06-12",
+        "guest_count": 120,
+        "notes": "Accepted full-day package with complimentary 3-minute highlight film and upgraded 40-page album. Ready to proceed with booking."
+      },
+      "turns": 5,
+      "messages": [
+        {
+          "turn": 1,
+          "agent": "planner_agent",
+          "vendor_id": "photographer_01",
+          "vendor_name": "Lens & Light Studio",
+          "category": "photographer",
+          "timestamp": "2026-04-11T18:34:38.565Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "photographer_01",
+            "message_type": "rfp",
+            "content": "We are planning a wedding for 120 guests on June 12, 2027 with plated service style. We would like to request pricing for your photography services for this event. The couple has a total wedding budget of $25,000 and is flexible on any Saturday in June 2027 if needed.",
+            "proposed_terms": {
+              "total_price": null,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Plated service style, flexible on any Saturday in June 2027"
+            }
+          },
+          "input_tokens": 281,
+          "output_tokens": 176,
+          "cost_usd": 0.003483
+        },
+        {
+          "turn": 2,
+          "agent": "photographer_01",
+          "vendor_id": "photographer_01",
+          "vendor_name": "Lens & Light Studio",
+          "category": "photographer",
+          "timestamp": "2026-04-11T18:34:43.928Z",
+          "parsed": {
+            "from": "photographer_01",
+            "to": "planner_agent",
+            "message_type": "offer",
+            "content": "Thank you for reaching out about your June 2027 wedding! With 120 guests and plated service, this sounds like a beautiful celebration that would be perfect for our documentary style coverage. I'd recommend our full-day package to capture everything from getting ready through your reception.",
+            "proposed_terms": {
+              "package": "full_day",
+              "total_price": 5500,
+              "hours": 10,
+              "deposit_type": "retainer",
+              "hold_days": 10,
+              "includes": [
+                "1 lead photographer",
+                "1 second shooter",
+                "online gallery with 600+ edited images",
+                "1 hour engagement session",
+                "print release for personal use",
+                "wedding day timeline planning",
+                "sneak peek within 48 hours",
+                "heirloom linen album (30 pages)",
+                "bridal portrait session"
+              ],
+              "notes": "6-week delivery timeline. Videography add-ons available from $1,200-$3,000 if interested. 50% non-refundable retainer due at booking, balance due 30 days before wedding."
+            }
+          },
+          "input_tokens": 1660,
+          "output_tokens": 295,
+          "cost_usd": 0.009405
+        },
+        {
+          "turn": 3,
+          "agent": "planner_agent",
+          "vendor_id": "photographer_01",
+          "vendor_name": "Lens & Light Studio",
+          "category": "photographer",
+          "timestamp": "2026-04-11T18:34:48.478Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "photographer_01",
+            "message_type": "counter_offer",
+            "content": "Thank you for the comprehensive full-day package proposal. The services look excellent and the couple is very interested. However, at $5,500 this would consume over 20% of their total $25,000 wedding budget, which is challenging with all the other vendors needed. Would you be able to work with us on pricing to make this fit better within their overall budget?",
+            "proposed_terms": {
+              "total_price": 4500,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Requesting reduced pricing to fit within couple's total wedding budget constraints. All other package details look perfect."
+            }
+          },
+          "input_tokens": 794,
+          "output_tokens": 196,
+          "cost_usd": 0.005322
+        },
+        {
+          "turn": 4,
+          "agent": "photographer_01",
+          "vendor_id": "photographer_01",
+          "vendor_name": "Lens & Light Studio",
+          "category": "photographer",
+          "timestamp": "2026-04-11T18:34:54.774Z",
+          "parsed": {
+            "from": "photographer_01",
+            "to": "planner_agent",
+            "message_type": "counter_offer",
+            "content": "I appreciate you sharing their budget considerations. Rather than reducing our rate, I can offer incredible added value - I'll include our premium videography partnership with a 3-minute highlight film (normally $1,200) at no extra cost, plus upgrade them to our premium 40-page album (normally $700 upgrade). This gives them $1,900 in additional value while keeping our photography investment at $5,500.",
+            "proposed_terms": {
+              "package": "full_day",
+              "total_price": 5500,
+              "hours": 10,
+              "deposit_type": "retainer",
+              "hold_days": 10,
+              "includes": [
+                "1 lead photographer",
+                "1 second shooter",
+                "online gallery with 600+ edited images",
+                "1 hour engagement session",
+                "print release for personal use",
+                "wedding day timeline planning",
+                "sneak peek within 48 hours",
+                "premium 40-page album (upgraded)",
+                "bridal portrait session",
+                "complimentary 3-minute highlight film"
+              ],
+              "notes": "This package now includes both photo and video coverage - a $6,700 value for $5,500. 50% retainer due at booking, balance 30 days before wedding."
+            }
+          },
+          "input_tokens": 2170,
+          "output_tokens": 325,
+          "cost_usd": 0.011385
+        },
+        {
+          "turn": 5,
+          "agent": "planner_agent",
+          "vendor_id": "photographer_01",
+          "vendor_name": "Lens & Light Studio",
+          "category": "photographer",
+          "timestamp": "2026-04-11T18:34:58.475Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "photographer_01",
+            "message_type": "accept",
+            "content": "Thank you for the added value with the complimentary videography and premium album upgrade. The couple is thrilled to get both photo and video coverage at this price point, which represents excellent value. We accept your proposal of $5,500 for the full-day package with all the included extras.",
+            "proposed_terms": {
+              "total_price": 5500,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Accepted full-day package with complimentary 3-minute highlight film and upgraded 40-page album. Ready to proceed with booking."
+            }
+          },
+          "input_tokens": 1367,
+          "output_tokens": 186,
+          "cost_usd": 0.006891
+        }
+      ],
+      "total_input_tokens": 6272,
+      "total_output_tokens": 1178,
+      "total_cost_usd": 0.036486
+    },
+    {
+      "vendor_id": "photographer_02",
+      "vendor_name": "Golden Hour Photography",
+      "category": "photographer",
+      "outcome": "accepted",
+      "final_terms": {
+        "total_price": 4500,
+        "date": "2027-06-12",
+        "guest_count": 120,
+        "notes": "Accepting full-day package with all included services - 9 hours coverage, two photographers, engagement session, online gallery, album, and rehearsal dinner coverage. Will coordinate timing for optimal golden hour shots."
+      },
+      "turns": 3,
+      "messages": [
+        {
+          "turn": 1,
+          "agent": "planner_agent",
+          "vendor_id": "photographer_02",
+          "vendor_name": "Golden Hour Photography",
+          "category": "photographer",
+          "timestamp": "2026-04-11T18:35:02.411Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "photographer_02",
+            "message_type": "rfp",
+            "content": "We are seeking photography services for a wedding celebration on June 12, 2027 with 120 guests and plated dinner service. Please provide your pricing and package details for full wedding day coverage.",
+            "proposed_terms": {
+              "total_price": null,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Full wedding day photography coverage needed, plated dinner service, flexible on any Saturday in June 2027"
+            }
+          },
+          "input_tokens": 277,
+          "output_tokens": 157,
+          "cost_usd": 0.003186
+        },
+        {
+          "turn": 2,
+          "agent": "photographer_02",
+          "vendor_id": "photographer_02",
+          "vendor_name": "Golden Hour Photography",
+          "category": "photographer",
+          "timestamp": "2026-04-11T18:35:08.327Z",
+          "parsed": {
+            "from": "photographer_02",
+            "to": "planner_agent",
+            "message_type": "offer",
+            "content": "Thank you for considering Golden Hour Photography for this beautiful June wedding! Our full-day package is perfect for capturing every magical moment with our signature warm, golden aesthetic that creates dreamy, magazine-worthy images. This comprehensive package includes two photographers to ensure complete coverage of your 120-guest celebration.",
+            "proposed_terms": {
+              "package": "full_day",
+              "total_price": 4500,
+              "hours": 9,
+              "deposit_type": "retainer",
+              "hold_days": 14,
+              "includes": [
+                "1 lead photographer",
+                "1 second shooter",
+                "Online gallery with 500+ edited images",
+                "1-hour engagement session",
+                "Print release for personal use",
+                "Custom color grading",
+                "Sneak peek within 48 hours",
+                "20-page flush-mount photo album",
+                "1-hour rehearsal dinner coverage"
+              ],
+              "notes": "Perfect timing for golden hour shots in June! Can also add videography services (highlight film $1000, full cinematic $2500) and drone coverage if desired. 50% non-refundable retainer secures your date."
+            }
+          },
+          "input_tokens": 1658,
+          "output_tokens": 297,
+          "cost_usd": 0.009429
+        },
+        {
+          "turn": 3,
+          "agent": "planner_agent",
+          "vendor_id": "photographer_02",
+          "vendor_name": "Golden Hour Photography",
+          "category": "photographer",
+          "timestamp": "2026-04-11T18:35:12.335Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "photographer_02",
+            "message_type": "accept",
+            "content": "Your full-day photography package looks perfect for our couple's June wedding! The comprehensive coverage with two photographers, engagement session, and beautiful album fits exactly what they're looking for within their budget.",
+            "proposed_terms": {
+              "total_price": 4500,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Accepting full-day package with all included services - 9 hours coverage, two photographers, engagement session, online gallery, album, and rehearsal dinner coverage. Will coordinate timing for optimal golden hour shots."
+            }
+          },
+          "input_tokens": 771,
+          "output_tokens": 176,
+          "cost_usd": 0.004953
+        }
+      ],
+      "total_input_tokens": 2706,
+      "total_output_tokens": 630,
+      "total_cost_usd": 0.017568
+    },
+    {
+      "vendor_id": "dj_01",
+      "vendor_name": "Boston Beat DJs",
+      "category": "dj",
+      "outcome": "accepted",
+      "final_terms": {
+        "total_price": 2200,
+        "date": "2027-06-12",
+        "guest_count": 120,
+        "notes": "Accept full-event package with 8 hours of service, all listed inclusions, and online planning portal access"
+      },
+      "turns": 3,
+      "messages": [
+        {
+          "turn": 1,
+          "agent": "planner_agent",
+          "vendor_id": "dj_01",
+          "vendor_name": "Boston Beat DJs",
+          "category": "dj",
+          "timestamp": "2026-04-11T18:35:15.306Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "dj_01",
+            "message_type": "rfp",
+            "content": "We are seeking DJ services for a wedding on June 12, 2027 with 120 guests and plated dinner service. Please provide your pricing and package details for this event.",
+            "proposed_terms": {
+              "total_price": null,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Plated dinner service, flexible on any Saturday in June 2027 if needed"
+            }
+          },
+          "input_tokens": 282,
+          "output_tokens": 152,
+          "cost_usd": 0.003126
+        },
+        {
+          "turn": 2,
+          "agent": "dj_01",
+          "vendor_id": "dj_01",
+          "vendor_name": "Boston Beat DJs",
+          "category": "dj",
+          "timestamp": "2026-04-11T18:35:20.862Z",
+          "parsed": {
+            "from": "dj_01",
+            "to": "planner_agent",
+            "message_type": "offer",
+            "content": "Thanks for reaching out! With 10+ years keeping Boston dance floors packed and a 4.6-star rating across 142 reviews, Boston Beat DJs would love to make your June wedding unforgettable. I'd recommend our full-event package for the best value and seamless ceremony-to-reception flow.",
+            "proposed_terms": {
+              "package": "full_event",
+              "total_price": 2200,
+              "hours": 8,
+              "deposit_type": "retainer",
+              "hold_days": 14,
+              "includes": [
+                "Professional DJ for ceremony and reception",
+                "MC services throughout the event",
+                "Professional sound system with backup equipment",
+                "Dance floor lighting package (uplights + spotlights)",
+                "Wireless lapel mic for officiant",
+                "Wireless mic for speeches and toasts",
+                "Custom playlist curation with client input",
+                "Online planning portal",
+                "Cocktail hour background music",
+                "Day-of coordination with other vendors"
+              ],
+              "notes": "Includes comprehensive playlist consultation 4-6 weeks before your wedding through our online planning portal. Can accommodate all music genres from Top 40 to classic rock to Latin hits."
+            }
+          },
+          "input_tokens": 1727,
+          "output_tokens": 308,
+          "cost_usd": 0.009801
+        },
+        {
+          "turn": 3,
+          "agent": "planner_agent",
+          "vendor_id": "dj_01",
+          "vendor_name": "Boston Beat DJs",
+          "category": "dj",
+          "timestamp": "2026-04-11T18:35:24.666Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "dj_01",
+            "message_type": "accept",
+            "content": "Your full-event package at $2,200 fits perfectly within our budget and includes everything we need for a seamless wedding experience. We're impressed with your comprehensive service offering and would like to move forward with booking June 12, 2027.",
+            "proposed_terms": {
+              "total_price": 2200,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Accept full-event package with 8 hours of service, all listed inclusions, and online planning portal access"
+            }
+          },
+          "input_tokens": 785,
+          "output_tokens": 171,
+          "cost_usd": 0.00492
+        }
+      ],
+      "total_input_tokens": 2794,
+      "total_output_tokens": 631,
+      "total_cost_usd": 0.017847
+    },
+    {
+      "vendor_id": "bakery_01",
+      "vendor_name": "Sugar & Slate Bakery",
+      "category": "bakery",
+      "outcome": "accepted",
+      "final_terms": {
+        "total_price": 2950,
+        "date": "2027-06-12",
+        "guest_count": 120,
+        "notes": "Accepted complete package including 3-tier buttercream cake, 3-variety dessert table, plated service, delivery, tasting, and complimentary anniversary mini-cake. Ready to proceed with design consultation and contract."
+      },
+      "turns": 5,
+      "messages": [
+        {
+          "turn": 1,
+          "agent": "planner_agent",
+          "vendor_id": "bakery_01",
+          "vendor_name": "Sugar & Slate Bakery",
+          "category": "bakery",
+          "timestamp": "2026-04-11T18:35:28.546Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "bakery_01",
+            "message_type": "rfp",
+            "content": "We are planning a wedding for 120 guests on June 12, 2027 and would like to request pricing for your bakery services. We are looking for plated dessert service and are flexible with any Saturday in June 2027 if needed.",
+            "proposed_terms": {
+              "total_price": null,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Plated dessert service preferred, flexible on any Saturday in June 2027"
+            }
+          },
+          "input_tokens": 288,
+          "output_tokens": 167,
+          "cost_usd": 0.003369
+        },
+        {
+          "turn": 2,
+          "agent": "bakery_01",
+          "vendor_id": "bakery_01",
+          "vendor_name": "Sugar & Slate Bakery",
+          "category": "bakery",
+          "timestamp": "2026-04-11T18:35:35.081Z",
+          "parsed": {
+            "from": "bakery_01",
+            "to": "planner_agent",
+            "message_type": "offer",
+            "content": "What an exciting celebration! For 120 guests, I'd recommend our signature tiered wedding cake paired with an elegant dessert table for plated service. This combination creates stunning visual impact while ensuring each guest receives a beautifully plated dessert experience.",
+            "proposed_terms": {
+              "item": "tiered cake + dessert table package",
+              "servings": 120,
+              "total_price": 3240,
+              "deposit_percent": 50,
+              "hold_days": 14,
+              "includes": [
+                "3-tier fondant wedding cake",
+                "curated dessert table with 4 varieties",
+                "plated service setup",
+                "delivery within service area",
+                "basic cake topper",
+                "tasting for couple plus 2 guests"
+              ],
+              "notes": "Design consultation required before tasting. $75 tasting fee credited toward final order. Final design confirmation needed 6 weeks before event. We specialize in hand-painted details, sugar flowers, and sculptural elements. June 12, 2027 is available."
+            }
+          },
+          "input_tokens": 1625,
+          "output_tokens": 281,
+          "cost_usd": 0.00909
+        },
+        {
+          "turn": 3,
+          "agent": "planner_agent",
+          "vendor_id": "bakery_01",
+          "vendor_name": "Sugar & Slate Bakery",
+          "category": "bakery",
+          "timestamp": "2026-04-11T18:35:39.485Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "bakery_01",
+            "message_type": "counter_offer",
+            "content": "Thank you for the beautiful proposal! The tiered cake and dessert table package sounds perfect for our couple's vision. We'd love to move forward with the June 12, 2027 date and would appreciate if you could accommodate our budget parameters.",
+            "proposed_terms": {
+              "total_price": 2800,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Very interested in the complete package including 3-tier fondant cake, dessert table, plated service, delivery, and tasting. Would this pricing work for the full service?"
+            }
+          },
+          "input_tokens": 774,
+          "output_tokens": 187,
+          "cost_usd": 0.005127
+        },
+        {
+          "turn": 4,
+          "agent": "bakery_01",
+          "vendor_id": "bakery_01",
+          "vendor_name": "Sugar & Slate Bakery",
+          "category": "bakery",
+          "timestamp": "2026-04-11T18:35:45.157Z",
+          "parsed": {
+            "from": "bakery_01",
+            "to": "planner_agent",
+            "message_type": "counter_offer",
+            "content": "I appreciate your enthusiasm for our complete package! To meet your budget while maintaining our artisan quality, I can offer a refined approach with a 3-tier buttercream cake and streamlined dessert table with 3 varieties instead of 4. Plus, I'll include a complimentary anniversary mini-cake to be shipped on their first anniversary.",
+            "proposed_terms": {
+              "item": "tiered cake + dessert table package",
+              "servings": 120,
+              "total_price": 2950,
+              "deposit_percent": 50,
+              "hold_days": 14,
+              "includes": [
+                "3-tier buttercream wedding cake with elegant piping",
+                "dessert table with 3 curated varieties",
+                "plated service setup",
+                "delivery within service area",
+                "basic cake topper",
+                "tasting for couple plus 2 guests",
+                "complimentary anniversary mini-cake"
+              ],
+              "notes": "Design consultation required before tasting. $75 tasting fee credited toward final order. This maintains our quality standards while offering exceptional value. Final design confirmation needed 6 weeks before event."
+            }
+          },
+          "input_tokens": 2112,
+          "output_tokens": 299,
+          "cost_usd": 0.010821
+        },
+        {
+          "turn": 5,
+          "agent": "planner_agent",
+          "vendor_id": "bakery_01",
+          "vendor_name": "Sugar & Slate Bakery",
+          "category": "bakery",
+          "timestamp": "2026-04-11T18:35:48.685Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "bakery_01",
+            "message_type": "accept",
+            "content": "Perfect! We're delighted to accept your refined package proposal. The 3-tier buttercream cake with elegant piping, 3-variety dessert table, and the thoughtful anniversary mini-cake addition make this an exceptional value for our couple.",
+            "proposed_terms": {
+              "total_price": 2950,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Accepted complete package including 3-tier buttercream cake, 3-variety dessert table, plated service, delivery, tasting, and complimentary anniversary mini-cake. Ready to proceed with design consultation and contract."
+            }
+          },
+          "input_tokens": 1308,
+          "output_tokens": 197,
+          "cost_usd": 0.006879
+        }
+      ],
+      "total_input_tokens": 6107,
+      "total_output_tokens": 1131,
+      "total_cost_usd": 0.035286
+    }
+  ],
+  "logPath": "/Users/gpmacbookpro3/Desktop/altara-landing/logs/multi_rfp_10v_2026-04-11T18-35-48-685Z.json"
+}

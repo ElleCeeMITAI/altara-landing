@@ -1,0 +1,133 @@
+{
+  "id": "dj_01",
+  "name": "Boston Beat DJs",
+  "category": "dj",
+  "region": "Greater Boston",
+  "description": "Full-service wedding DJ with over 10 years of experience keeping Boston dance floors packed. We handle everything from ceremony music to the last dance, with seamless transitions and professional MC services.",
+  "lgbtq_welcoming": true,
+  "base_location": "Boston, MA",
+  "website": "https://www.bostonbeatdjs.com",
+  "entertainment_type": "dj",
+  "vocalist_available": false,
+  "live_musicians_available": false,
+  "genre_specialties": ["pop", "R&B", "hip-hop", "dance", "rock", "country", "Latin", "oldies", "Top 40"],
+  "will_play_genres": ["pop", "R&B", "hip-hop", "dance", "rock", "country", "Latin", "oldies", "Top 40", "reggaeton", "indie", "Motown", "soul", "80s", "90s"],
+  "packages": {
+    "ceremony_only": {
+      "hours": 2,
+      "price": 500,
+      "includes": [
+        "Professional DJ for ceremony",
+        "Wireless lapel mic for officiant",
+        "Ceremony sound system setup",
+        "Custom processional and recessional music",
+        "Pre-ceremony ambient music (30 min)"
+      ]
+    },
+    "reception_only": {
+      "hours": 5,
+      "price": 1500,
+      "includes": [
+        "Professional DJ for reception",
+        "MC services for introductions and toasts",
+        "Professional sound system",
+        "Basic dance floor lighting (uplights)",
+        "Custom playlist curation",
+        "Wireless mic for speeches",
+        "Online planning portal"
+      ]
+    },
+    "full_event": {
+      "hours": 8,
+      "price": 2200,
+      "includes": [
+        "Professional DJ for ceremony and reception",
+        "MC services throughout the event",
+        "Professional sound system with backup equipment",
+        "Dance floor lighting package (uplights + spotlights)",
+        "Wireless lapel mic for officiant",
+        "Wireless mic for speeches and toasts",
+        "Custom playlist curation with client input",
+        "Online planning portal",
+        "Cocktail hour background music",
+        "Day-of coordination with other vendors"
+      ]
+    }
+  },
+  "overtime_rate_per_hour": 250,
+  "price_floor": 500,
+  "max_guests_supported": 250,
+  "equipment_included": [
+    "Professional PA system (up to 250 guests)",
+    "Subwoofer",
+    "LED uplighting (8 fixtures)",
+    "Wireless microphones (2)",
+    "DJ controller and laptop with backup",
+    "Ceremony speaker system (portable)"
+  ],
+  "service_area": {
+    "radius_miles": 35,
+    "base_location": "Boston, MA",
+    "beyond_radius_fee": 75,
+    "max_service_miles": 60,
+    "will_not_service_beyond_max": true
+  },
+  "lead_time_days": 60,
+  "hold_days": 14,
+  "max_events_per_weekend": 1,
+  "venue_partnerships": {
+    "preferred_venues": ["venue_01", "venue_02"],
+    "partnership_type": "tried_and_true",
+    "discount_for_partner_venues": true,
+    "note": "Regular DJ at The Grand Meridian and The Harborview. Knows the sound setup, load-in process, and venue coordinators well."
+  },
+  "playlist_consultation": {
+    "included": true,
+    "process": "Online planning portal opens upon booking. Couples submit must-play and do-not-play lists. One phone or video call 4-6 weeks before the wedding to finalize timeline, song selections, and special moments.",
+    "timeline_planning": true,
+    "do_not_play_list": true,
+    "must_play_list": true,
+    "consultation_timing": "4-6 weeks before event"
+  },
+  "eco_friendly": {
+    "available": false,
+    "note": "Not applicable to DJ services."
+  },
+  "deposit_and_cancellation": {
+    "deposit_pct": 30,
+    "deposit_type": "retainer",
+    "deposit_refundable": false,
+    "balance_due": "14 days before event",
+    "cancellation_policy": {
+      "6_plus_months": "Retainer forfeited",
+      "30_days_to_6_months": "Retainer forfeited",
+      "under_30_days": "Full payment required"
+    }
+  },
+  "ratings": {
+    "platform_average": null,
+    "platform_review_count": 0,
+    "external_average": 4.6,
+    "external_review_count": 142,
+    "external_sources": ["google", "the_knot", "weddingwire"],
+    "composite_score": 4.6,
+    "highlights": ["kept the dance floor packed all night", "seamless ceremony to reception transition", "great MC — announcements were on point"],
+    "verified_bookings": 0
+  },
+  "sweeteners": [
+    "Free uplighting upgrade (8 to 12 fixtures) for full-event bookings",
+    "Complimentary cocktail hour coverage for off-season weddings",
+    "10% discount for Sunday or Friday events",
+    "Free sparkler send-off soundtrack add-on"
+  ],
+  "personality": "Professional, reliable, and easygoing. Boston Beat is the dependable workhorse of Boston wedding DJs. Not flashy, but consistently delivers a great party. Good at reading the room and adjusting the vibe. Strong referral network with local venues. Mid-range pricing with willingness to negotiate on extras.",
+  "negotiation_style": {
+    "flexibility": "moderate",
+    "discount_ceiling_pct": 10,
+    "preferred_tactics": ["add_extras_not_discount", "off_season_discount", "friday_sunday_discount", "bundle_ceremony_reception"]
+  },
+  "contact": {
+    "email": "info@bostonbeatdjs.com",
+    "phone": "617-555-0701"
+  }
+}

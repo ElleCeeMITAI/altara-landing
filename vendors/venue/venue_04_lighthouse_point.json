@@ -1,0 +1,53 @@
+{
+  "id": "venue_04",
+  "name": "Lighthouse Point Pavilion",
+  "category": "venue",
+  "region": "Rhode Island",
+  "location": "Newport, RI",
+  "description": "A modern seaside pavilion in Newport with floor-to-ceiling ocean views and a rooftop terrace.",
+  "lgbtq_welcoming": true,
+  "capacity": { "min": 75, "max": 300 },
+  "pricing": {
+    "base_rental": 8000,
+    "per_head_food_min": 100,
+    "plated": 165,
+    "buffet": 120,
+    "family_style": 140,
+    "stations": 150,
+    "cocktail_reception": 95
+  },
+  "price_floor_per_head": 100,
+  "peak_surcharge": 0.20,
+  "max_discount_peak": 0.05,
+  "max_discount_offpeak": 0.10,
+  "preferred_deposit_pct": 50,
+  "min_deposit_pct": 35,
+  "lead_time_days": 365,
+  "hold_days": 7,
+  "blackout_dates": ["2027-06-19", "2027-06-20", "2027-09-05", "2027-09-06"],
+  "peak_months": [6, 7, 8, 9],
+  "catering_policy": "in_house_only",
+  "catering_notes": "All food and beverage must be handled by our exclusive catering team. No outside food or drink is permitted.",
+  "amenities": ["rooftop terrace", "ocean-view ceremony", "grand staircase entrance", "valet parking"],
+  "cuisine_specialties": ["New England", "Mediterranean", "Asian Fusion"],
+  "sweeteners": ["champagne toast on rooftop", "custom lighting package", "late-night dessert bar"],
+  "deposit_and_cancellation": {
+    "deposit_pct": 50,
+    "deposit_refundable": false,
+    "balance_due": "30 days before event",
+    "cancellation_policy": {
+      "12_plus_months": "Deposit forfeited",
+      "6_to_12_months": "Deposit forfeited",
+      "under_6_months": "Full payment required"
+    },
+    "requires_liability_insurance": true,
+    "insurance_due": "30 days before event"
+  },
+  "ratings": {
+    "average": 4.9,
+    "review_count": 221,
+    "highlights": ["jaw-dropping ocean views", "luxury from start to finish", "grand staircase photos"],
+    "source": "aggregate"
+  },
+  "personality": "luxury positioning, confident pricing, targets high-budget weddings, rarely discounts"
+}

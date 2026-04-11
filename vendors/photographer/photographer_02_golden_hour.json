@@ -1,0 +1,104 @@
+{
+  "id": "photographer_02",
+  "name": "Golden Hour Photography",
+  "category": "photographer",
+  "region": "Greater Boston",
+  "description": "Romantic and editorial wedding photography with a signature warm, golden aesthetic. We specialize in creating dreamy, magazine-worthy images that highlight the emotion and beauty of your day.",
+  "lgbtq_welcoming": true,
+  "packages": {
+    "elopement": {
+      "hours": 3,
+      "price": 1200,
+      "includes": [
+        "1 lead photographer",
+        "Online gallery with 120+ edited images",
+        "Light retouching on all delivered images",
+        "Print release for personal use"
+      ]
+    },
+    "half_day": {
+      "hours": 5,
+      "price": 2800,
+      "includes": [
+        "1 lead photographer",
+        "1 second shooter",
+        "Online gallery with 300+ edited images",
+        "Engagement session (45 min)",
+        "Print release for personal use",
+        "Custom color grading to match your palette",
+        "Sneak peek within 72 hours"
+      ]
+    },
+    "full_day": {
+      "hours": 9,
+      "price": 4500,
+      "includes": [
+        "1 lead photographer",
+        "1 second shooter",
+        "Online gallery with 500+ edited images",
+        "Engagement session (1 hour)",
+        "Print release for personal use",
+        "Custom color grading to match your palette",
+        "Sneak peek within 48 hours",
+        "Flush-mount photo album (20 pages)",
+        "Rehearsal dinner coverage (1 hour)"
+      ]
+    }
+  },
+  "price_floor": 1200,
+  "lead_time_days": 180,
+  "hold_days": 14,
+  "max_events_per_weekend": 2,
+  "travel_radius_miles": 60,
+  "travel_fee_beyond_radius": 100,
+  "second_shooter_rate_per_hour": 60,
+  "turnaround_weeks": 5,
+  "style": ["romantic", "editorial"],
+  "videography_addon": {
+    "available": true,
+    "highlight_film_3min": 1000,
+    "full_ceremony_edit": 1500,
+    "full_day_cinematic": 2500,
+    "note": "Our in-house videographer shoots alongside the photographer for a cohesive look. Same warm, golden editing style applied to video."
+  },
+  "album_and_print_addons": {
+    "flush_mount_album_20page": 350,
+    "flush_mount_album_30page": 500,
+    "parent_album_20page": 200,
+    "canvas_print_16x24": 150,
+    "canvas_print_24x36": 275,
+    "print_package_25_4x6": 60,
+    "wall_art_gallery_set": 400,
+    "note": "Full-day package includes a 20-page flush-mount album. 15% discount on all prints for booked clients."
+  },
+  "deposit_and_cancellation": {
+    "retainer_pct": 50,
+    "retainer_refundable": false,
+    "retainer_note": "Non-refundable retainer secures your date.",
+    "balance_due": "14 days before event",
+    "cancellation_policy": {
+      "any_time": "Retainer forfeited",
+      "under_90_days": "Full payment required"
+    },
+    "engagement_session_timing": "3-6 months before wedding"
+  },
+  "ratings": {
+    "average": 4.7,
+    "review_count": 198,
+    "highlights": ["dreamy golden-hour shots", "so fun to work with", "beautiful album"],
+    "source": "aggregate"
+  },
+  "sweeteners": [
+    "Free mini engagement session for bookings confirmed within 2 weeks",
+    "Complimentary rehearsal dinner coverage for full-day packages",
+    "Album upgrade (20 to 30 pages) for off-season weddings",
+    "15% discount on prints and wall art for booked clients"
+  ],
+  "personality": {
+    "tone": "friendly, enthusiastic, approachable",
+    "negotiation_style": "mid-premium",
+    "flexibility": "moderate",
+    "eagerness": "enthusiastic",
+    "notes": "Loves connecting with couples. Will negotiate on extras but rarely drops base price. Very responsive and quick to follow up. Strong social media presence drives referrals."
+  }
+}

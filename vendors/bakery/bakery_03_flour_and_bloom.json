@@ -1,0 +1,110 @@
+{
+  "id": "bakery_03",
+  "name": "Flour & Bloom",
+  "category": "bakery",
+  "region": "Southern NH",
+  "description": "A farm-to-table bakery nestled in the New Hampshire countryside, specializing in organic ingredients and dietary-inclusive wedding desserts. Every recipe is developed in-house using locally sourced flour, eggs, and seasonal produce.",
+  "lgbtq_welcoming": true,
+  "pricing": {
+    "tiered_cake_per_serving": { "min": 7, "max": 10 },
+    "cupcakes_per_dozen": { "min": 30, "max": 42 },
+    "dessert_table_per_head": 8,
+    "cake_tasting_fee": 0,
+    "tasting_fee_note": "Free with booking confirmation"
+  },
+  "price_floor": 300,
+  "max_events_per_weekend": 4,
+  "lead_time_days": 28,
+  "hold_days": 21,
+  "dessert_alternatives": {
+    "cupcake_tower": true,
+    "dessert_table": true,
+    "donuts": true,
+    "cookie_bar": true,
+    "pie_bar": true,
+    "note": "We love dessert tables! Our seasonal fruit pie bar is a customer favorite. All alternatives available in vegan and gluten-free. We can do a small cutting cake + dessert bar combo."
+  },
+  "specialties": [
+    "vegan",
+    "gluten-free",
+    "organic",
+    "rustic naked cakes",
+    "wildflower decoration",
+    "seasonal fruit fillings",
+    "nut-free options",
+    "refined-sugar-free alternatives",
+    "pie bars",
+    "seasonal fruit tarts"
+  ],
+  "dietary_options": {
+    "gluten_free": true,
+    "vegan": true,
+    "nut_free": true,
+    "dairy_free": true,
+    "kosher": false,
+    "sugar_free": true,
+    "organic": true,
+    "note": "Dietary inclusivity is our core mission. All items can be made gluten-free, vegan, nut-free, or refined-sugar-free at no additional charge. We bake in a dedicated allergen-aware kitchen."
+  },
+  "eco_friendly": {
+    "available": true,
+    "options": ["compostable_boxes", "beeswax_wraps", "reusable_wooden_displays", "zero_waste_packaging"],
+    "upcharge": 0,
+    "note": "100% eco-friendly by default. All packaging is compostable or reusable. We return deposit on wooden display stands."
+  },
+  "tasting_process": {
+    "flow": "consult_then_taste_then_deposit",
+    "tasting_fee": 0,
+    "fee_credited_on_booking": false,
+    "tasting_includes": "Unlimited flavors for the couple. We bake a small sample box tailored to any dietary needs.",
+    "note": "Free tastings — always. We want every couple to fall in love with the flavors before committing. No deposit required to taste."
+  },
+  "deposit_and_cancellation": {
+    "deposit_pct": 50,
+    "deposit_refundable": false,
+    "balance_due": "7 days before event",
+    "final_design_confirmation": "4 weeks before event",
+    "cancellation_policy": {
+      "6_plus_months": "Full deposit refunded minus $50 processing fee",
+      "30_days_to_6_months": "Deposit forfeited",
+      "under_30_days": "Full payment required"
+    },
+    "note": "We understand plans change. We're happy to reschedule instead of cancel."
+  },
+  "ratings": {
+    "average": 4.9,
+    "review_count": 89,
+    "highlights": ["amazing vegan cake", "so inclusive", "farm-fresh flavors", "best GF cake we've ever had"],
+    "source": "aggregate"
+  },
+  "service_area": {
+    "radius_miles": 30,
+    "base_location": "Hollis, NH",
+    "beyond_radius": "surcharge",
+    "surcharge_flat": 75,
+    "max_radius_miles": 60,
+    "will_not_service_beyond_max": false,
+    "note": "$50 delivery within 30 miles (free over $600). $75 for 30-60 miles. Beyond 60 miles, call us — we'll try to make it work."
+  },
+  "delivery_included": false,
+  "delivery_fee": 50,
+  "delivery_fee_note": "Free delivery on orders over $600",
+  "sweeteners": [
+    "Free tasting session — always, no deposit required",
+    "Complimentary dessert bar signage (hand-lettered)",
+    "Free delivery on orders over $600",
+    "Will create a custom allergen-safe option for any guest at no extra charge",
+    "Seasonal wildflower cake decoration sourced from our own garden"
+  ],
+  "personality": {
+    "style": "earthy and accommodating",
+    "tone": "gentle, warm, genuinely passionate about inclusive baking",
+    "negotiation_approach": "Very flexible on dietary accommodations and willing to adjust pricing for simpler designs. Prioritizes making every guest feel included over maximizing order value.",
+    "quirks": [
+      "Asks about every guest dietary need upfront",
+      "Sources ingredients from three specific local farms by name",
+      "Describes flavors in terms of seasons rather than ingredients",
+      "Will happily bake a small test cake for any allergen concern"
+    ]
+  }
+}

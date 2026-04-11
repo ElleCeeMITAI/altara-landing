@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "total_vendors": 30,
+  "categories": {
+    "venue": {
+      "count": 5,
+      "prompt_template": "prompts/venue.txt",
+      "vendors": [
+        { "id": "venue_01", "name": "Grand Meridian Ballroom", "region": "Greater Boston", "file": "vendors/venue/venue_01_grand_meridian.json" },
+        { "id": "venue_02", "name": "Harbor View Estate", "region": "Cape Cod", "file": "vendors/venue/venue_02_harbor_view.json" },
+        { "id": "venue_03", "name": "Rosewood Manor", "region": "Greater Boston", "file": "vendors/venue/venue_03_rosewood_manor.json" },
+        { "id": "venue_04", "name": "Lighthouse Point Pavilion", "region": "Rhode Island", "file": "vendors/venue/venue_04_lighthouse_point.json" },
+        { "id": "venue_05", "name": "Garden Terrace Inn", "region": "Southern NH", "file": "vendors/venue/venue_05_garden_terrace.json" }
+      ]
+    },
+    "catering": {
+      "count": 5,
+      "prompt_template": "prompts/catering.txt",
+      "vendors": [
+        { "id": "catering_01", "name": "Grand Meridian Ballroom Catering", "region": "Greater Boston", "file": "vendors/catering/catering_01_grand_meridian.json" },
+        { "id": "catering_02", "name": "Beacon Hill Kitchen", "region": "Greater Boston", "file": "vendors/catering/catering_02_beacon_hill.json" },
+        { "id": "catering_03", "name": "Harbor Provisions Co.", "region": "Cape Cod", "file": "vendors/catering/catering_03_harbor_provisions.json" },
+        { "id": "catering_04", "name": "The Cambridge Table", "region": "Greater Boston", "file": "vendors/catering/catering_04_cambridge_table.json" },
+        { "id": "catering_05", "name": "Seaport Event Catering", "region": "Greater Boston", "file": "vendors/catering/catering_05_seaport_catering.json" }
+      ]
+    },
+    "florist": {
+      "count": 5,
+      "prompt_template": "prompts/florist.txt",
+      "vendors": [
+        { "id": "florist_01", "name": "Bloom & Vine Studio", "region": "Greater Boston", "file": "vendors/florist/florist_01_bloom_studio.json" },
+        { "id": "florist_02", "name": "Petal & Press", "region": "Greater Boston", "file": "vendors/florist/florist_02_petal_press.json" },
+        { "id": "florist_03", "name": "Wildflower Collective", "region": "Southern NH", "file": "vendors/florist/florist_03_wildflower.json" },
+        { "id": "florist_04", "name": "Luxe Petals Boston", "region": "Greater Boston", "file": "vendors/florist/florist_04_luxe_petals.json" },
+        { "id": "florist_05", "name": "Seaside Blooms", "region": "Cape Cod", "file": "vendors/florist/florist_05_seaside_blooms.json" }
+      ]
+    },
+    "photographer": {
+      "count": 5,
+      "prompt_template": "prompts/photographer.txt",
+      "vendors": [
+        { "id": "photographer_01", "name": "Lens & Light Studio", "region": "Greater Boston", "file": "vendors/photographer/photographer_01_lens_and_light.json" },
+        { "id": "photographer_02", "name": "Golden Hour Photography", "region": "Greater Boston", "file": "vendors/photographer/photographer_02_golden_hour.json" },
+        { "id": "photographer_03", "name": "Candid Moments Co.", "region": "Greater Boston", "file": "vendors/photographer/photographer_03_candid_moments.json" },
+        { "id": "photographer_04", "name": "Nova Visual", "region": "Greater Boston", "file": "vendors/photographer/photographer_04_nova_visual.json" },
+        { "id": "photographer_05", "name": "Snapshot Studios", "region": "Southern NH", "file": "vendors/photographer/photographer_05_snapshot_studios.json" }
+      ]
+    },
+    "dj": {
+      "count": 5,
+      "prompt_template": "prompts/dj.txt",
+      "vendors": [
+        { "id": "dj_01", "name": "Boston Beat DJs", "region": "Greater Boston", "file": "vendors/dj/dj_01_boston_beat.json" },
+        { "id": "dj_02", "name": "Electric Groove Entertainment", "region": "Greater Boston", "file": "vendors/dj/dj_02_electric_groove.json" },
+        { "id": "dj_03", "name": "The Charles River Jazz Ensemble", "region": "Greater Boston", "file": "vendors/dj/dj_03_jazz_ensemble.json" },
+        { "id": "dj_04", "name": "Vinyl Vibes DJ Co.", "region": "Cape Cod", "file": "vendors/dj/dj_04_vinyl_vibes.json" },
+        { "id": "dj_05", "name": "Soundwave Productions", "region": "Rhode Island", "file": "vendors/dj/dj_05_soundwave.json" }
+      ]
+    },
+    "bakery": {
+      "count": 3,
+      "prompt_template": "prompts/bakery.txt",
+      "vendors": [
+        { "id": "bakery_01", "name": "Sugar & Slate Bakery", "region": "Greater Boston", "file": "vendors/bakery/bakery_01_sugar_and_slate.json" },
+        { "id": "bakery_02", "name": "Sweet Layers", "region": "Greater Boston", "file": "vendors/bakery/bakery_02_sweet_layers.json" },
+        { "id": "bakery_03", "name": "Flour & Bloom", "region": "Southern NH", "file": "vendors/bakery/bakery_03_flour_and_bloom.json" }
+      ]
+    },
+    "transport": {
+      "count": 2,
+      "prompt_template": "prompts/transport.txt",
+      "vendors": [
+        { "id": "transport_01", "name": "Elegance Rides", "region": "Greater Boston", "file": "vendors/transport/transport_01_elegance_rides.json" },
+        { "id": "transport_02", "name": "Coastal Carriages", "region": "Cape Cod", "file": "vendors/transport/transport_02_coastal_carriages.json" }
+      ]
+    }
+  }
+}

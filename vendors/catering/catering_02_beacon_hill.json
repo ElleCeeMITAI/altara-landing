@@ -1,0 +1,92 @@
+{
+  "id": "catering_02",
+  "name": "Beacon Hill Kitchen",
+  "category": "catering",
+  "region": "Greater Boston",
+  "description": "An upscale catering house rooted in French technique and American contemporary cuisine. Beacon Hill Kitchen is the choice for couples who want a refined, Michelin-inspired dining experience at their wedding.",
+  "lgbtq_welcoming": true,
+  "pricing": {
+    "price_floor_per_head": 95,
+    "plated_per_head": 150,
+    "buffet_per_head": 110,
+    "family_style_per_head": 130,
+    "cocktail_reception_per_head": 85,
+    "bar_packages": {
+      "open_bar_premium": 75,
+      "open_bar_standard": 58,
+      "beer_wine_only": 40,
+      "non_alcoholic": 18
+    },
+    "peak_surcharge_pct": 15,
+    "peak_months": [5, 6, 9, 10],
+    "cake_cutting_fee": 0,
+    "tasting_fee": 250,
+    "tasting_fee_waived_on_booking": true
+  },
+  "capacity": {
+    "min_guests": 40,
+    "max_guests": 180
+  },
+  "service_area": {
+    "radius_miles": 30,
+    "base_location": "Boston, MA",
+    "beyond_radius": "surcharge",
+    "surcharge_per_mile": 5,
+    "max_radius_miles": 60,
+    "will_not_service_beyond_max": true,
+    "note": "We serve Greater Boston and surrounding areas. Beyond 30 miles, a $5/mile travel fee applies. We do not travel beyond 60 miles."
+  },
+  "catering_type": "full_service_offsite",
+  "venue_exclusive": null,
+  "service_styles": ["plated", "buffet", "family_style", "cocktail_reception", "chef_stations"],
+  "serviceware": {
+    "included": ["premium_china", "crystal_glassware", "silver_flatware", "linen_napkins", "tablecloths"],
+    "upgrade_options": ["gold_rimmed_china", "vintage_glassware", "custom_monogrammed_napkins"],
+    "eco_friendly_available": false,
+    "eco_note": "We specialize in fine dining presentation with traditional serviceware."
+  },
+  "bar_service": {
+    "included": true,
+    "note": "Full bar service with professional bartenders included. We bring all glassware and bar equipment."
+  },
+  "specialties": ["French", "American Contemporary", "Farm-to-Table"],
+  "dietary_accommodations": ["vegetarian", "vegan", "gluten-free", "dairy-free", "nut-free", "halal", "kosher-style"],
+  "sweeteners": [
+    "Complimentary amuse-bouche course for plated dinners over 120 guests",
+    "Signature cocktail development included at no charge",
+    "Upgraded linen and tableware for full-service bookings",
+    "Private chef's table tasting for the couple and up to 4 guests"
+  ],
+  "deposit_and_cancellation": {
+    "deposit_pct": 30,
+    "deposit_refundable": false,
+    "second_payment_pct": 30,
+    "second_payment_due": "90 days before event",
+    "balance_due": "14 days before event",
+    "final_guest_count_due": "14 days before event",
+    "cancellation_policy": {
+      "6_plus_months": "Deposit forfeited",
+      "3_to_6_months": "50% of total owed",
+      "under_3_months": "Full payment required"
+    }
+  },
+  "ratings": {
+    "average": 4.9,
+    "review_count": 134,
+    "highlights": ["Michelin-level food", "guests couldn't stop talking about dinner", "tasting was extraordinary"],
+    "source": "aggregate"
+  },
+  "personality": "Refined and exclusive. Beacon Hill Kitchen sees every wedding as a culinary event. They are proud of their craft and prefer clients who appreciate fine dining. Not the most flexible on price, but will add value through elevated touches rather than discounts.",
+  "negotiation_style": {
+    "flexibility": "low",
+    "discount_ceiling_pct": 5,
+    "preferred_tactics": ["add_value_not_discount", "exclusive_menu_items", "reputation_leverage"],
+    "walkaway_below_per_head": 92
+  },
+  "lead_time_days": 120,
+  "hold_days": 10,
+  "contact": {
+    "email": "weddings@beaconhillkitchen.com",
+    "phone": "617-555-0202"
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "id": "transport_01",
+  "name": "Elegance Rides",
+  "category": "transport",
+  "region": "Greater Boston",
+  "description": "A premium wedding transportation company operating a meticulously maintained luxury fleet. Known for military-grade punctuality and white-glove service from pickup to send-off. Every detail is planned — from the route to the red carpet.",
+  "lgbtq_welcoming": true,
+  "base_location": "Boston, MA",
+  "website": "https://www.elegancerides.com",
+  "vehicles": [
+    {
+      "type": "Stretch Limousine",
+      "capacity": 10,
+      "price_per_hour": 175,
+      "minimum_hours": 3,
+      "features": ["champagne service", "fiber optic lighting", "premium sound system"],
+      "eco_friendly": false
+    },
+    {
+      "type": "Vintage Rolls Royce Silver Cloud",
+      "name": "Eleanor",
+      "capacity": 3,
+      "price_per_hour": 250,
+      "minimum_hours": 2,
+      "features": ["uniformed chauffeur", "ribbon and floral decoration", "red carpet rollout"],
+      "eco_friendly": false
+    },
+    {
+      "type": "Party Bus",
+      "capacity": 25,
+      "price_per_hour": 225,
+      "minimum_hours": 3,
+      "features": ["LED dance floor", "bar area", "Bluetooth audio", "tinted privacy windows"],
+      "eco_friendly": false
+    },
+    {
+      "type": "Executive Sedan",
+      "capacity": 3,
+      "price_per_hour": 95,
+      "minimum_hours": 2,
+      "features": ["leather interior", "complimentary water and mints", "phone chargers"],
+      "eco_friendly": false
+    },
+    {
+      "type": "Tesla Model S (Electric)",
+      "capacity": 3,
+      "price_per_hour": 120,
+      "minimum_hours": 2,
+      "features": ["zero emissions", "leather interior", "phone chargers", "quiet ride"],
+      "eco_friendly": true,
+      "eco_note": "Fully electric — zero emissions for the environmentally conscious couple"
+    }
+  ],
+  "packages": {
+    "couple_only": {
+      "description": "Transportation for the couple only — ceremony to reception, or hotel to venue and back",
+      "price_range": { "min": 350, "max": 750 },
+      "typical_vehicles": ["Vintage Rolls Royce", "Executive Sedan", "Tesla Model S"],
+      "includes": ["Chauffeur", "vehicle decoration", "complimentary champagne toast", "red carpet (Rolls Royce)"]
+    },
+    "bridal_party": {
+      "description": "Couple vehicle + bridal party vehicle for the full event",
+      "price_range": { "min": 800, "max": 1800 },
+      "typical_vehicles": ["Vintage Rolls Royce + Stretch Limo", "Executive Sedan + Party Bus"],
+      "includes": ["2 chauffeurs", "vehicle decoration", "champagne service", "coordination with venue"]
+    },
+    "full_fleet": {
+      "description": "Couple, bridal party, and guest shuttle service",
+      "price_range": { "min": 1500, "max": 3500 },
+      "typical_vehicles": ["Vintage Rolls Royce + Party Bus + Executive Sedan shuttle"],
+      "includes": ["3+ chauffeurs", "full vehicle decoration", "champagne service", "guest shuttle coordination", "day-of transportation coordinator"]
+    }
+  },
+  "overtime_rate_per_hour": 150,
+  "price_floor": 350,
+  "multi_vehicle_discount": "10% off when booking 2+ vehicles for the same event",
+  "service_area": {
+    "radius_miles": 30,
+    "base_location": "Boston, MA",
+    "beyond_radius_fee": 100,
+    "max_service_miles": 55,
+    "will_not_service_beyond_max": true
+  },
+  "lead_time_days": 60,
+  "hold_days": 14,
+  "max_events_per_day": 2,
+  "venue_partnerships": {
+    "preferred_venues": ["venue_01", "venue_03"],
+    "partnership_type": "tried_and_true",
+    "discount_for_partner_venues": false,
+    "note": "Regular provider at The Grand Meridian and Rosewood Manor. Knows the loading zones, valet coordination, and timing."
+  },
+  "vehicle_consultation": {
+    "included": true,
+    "vehicle_viewing_available": true,
+    "viewing_location": "Our garage in South Boston — by appointment",
+    "process": "Free consultation to discuss logistics, vehicle selection, and route planning. Couples are welcome to visit our garage to see vehicles in person and take photos. We send a detailed route and timeline document 48 hours before the event.",
+    "route_planning": true,
+    "day_of_coordinator": "Available for full fleet bookings",
+    "consultation_timing": "Any time after booking — vehicle viewing recommended 4-6 weeks before event"
+  },
+  "eco_friendly": {
+    "available": true,
+    "options": ["Tesla Model S (fully electric)"],
+    "upcharge": 0,
+    "note": "Our Tesla Model S offers a premium, zero-emission option at a competitive rate. Same white-glove service, just quieter."
+  },
+  "deposit_and_cancellation": {
+    "deposit_pct": 30,
+    "deposit_type": "retainer",
+    "deposit_refundable": false,
+    "balance_due": "7 days before event",
+    "cancellation_policy": {
+      "6_plus_months": "Retainer refunded minus $75 admin fee",
+      "30_days_to_6_months": "Retainer forfeited",
+      "under_30_days": "Full payment required — vehicles reserved and staff scheduled"
+    }
+  },
+  "ratings": {
+    "platform_average": null,
+    "platform_review_count": 0,
+    "external_average": 4.8,
+    "external_review_count": 156,
+    "external_sources": ["google", "the_knot", "weddingwire"],
+    "composite_score": 4.8,
+    "highlights": ["arrived 20 minutes early — not a second of stress", "the Rolls Royce was a showstopper", "chauffeur was so professional and kind"],
+    "verified_bookings": 0
+  },
+  "sweeteners": [
+    "Complimentary 'Just Married' sign and window decals",
+    "Free 15-minute photo stop at any location along the route",
+    "Champagne toast included with Rolls Royce booking",
+    "10% off when booking 2+ vehicles for the same event",
+    "Free red carpet rollout for all vintage vehicle bookings"
+  ],
+  "personality": "Polished, punctual, and quietly confident. Elegance Rides runs like a luxury concierge service. Arrives 20 minutes early without exception. Chauffeurs wear matching gloves and cap. Refers to vehicles by name (the Rolls is 'Eleanor'). Rarely discounts hourly rates but flexible on minimum hours for multi-vehicle bookings. Prefers to add value through complimentary upgrades.",
+  "negotiation_style": {
+    "flexibility": "low",
+    "discount_ceiling_pct": 8,
+    "preferred_tactics": ["add_value_not_discount", "multi_vehicle_bundle", "minimum_hour_flexibility", "upgrade_vehicle"]
+  },
+  "contact": {
+    "email": "bookings@elegancerides.com",
+    "phone": "617-555-0801"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "id": "florist_05",
+  "name": "Seaside Blooms",
+  "category": "florist",
+  "region": "Cape Cod",
+  "description": "A coastal-inspired floral design company based on Cape Cod, creating natural, airy arrangements that complement waterfront and beach weddings. Seaside Blooms uses a mix of garden flowers, grasses, and coastal greenery for an effortlessly elegant look.",
+  "lgbtq_welcoming": true,
+  "pricing": {
+    "bridal_bouquet": { "min": 180, "max": 320 },
+    "bridesmaid_bouquet": { "min": 80, "max": 150 },
+    "boutonniere": { "min": 12, "max": 25 },
+    "corsage": { "min": 25, "max": 45 },
+    "centerpiece_low": { "min": 55, "max": 140 },
+    "centerpiece_tall": { "min": 120, "max": 280 },
+    "ceremony_arch": { "min": 500, "max": 1600 },
+    "aisle_markers": { "min": 28, "max": 75, "note": "per marker" },
+    "cake_flowers": { "min": 45, "max": 130 },
+    "flower_girl_basket": { "min": 25, "max": 55 },
+    "delivery_and_setup": { "flat_fee": 150 }
+  },
+  "price_floor": 1000,
+  "lead_time_days": 45,
+  "hold_days": 14,
+  "max_events_per_weekend": 2,
+  "delivery_radius_miles": 45,
+  "beyond_radius_fee": 75,
+  "max_delivery_miles": 70,
+  "will_not_service_beyond_max": true,
+  "base_location": "Falmouth, MA",
+  "packages": {
+    "essential": {
+      "price_range": { "min": 1000, "max": 1600 },
+      "includes": ["bridal bouquet", "2 bridesmaid bouquets", "4 boutonnieres", "6 low centerpieces with driftwood accents", "cake flowers", "delivery"]
+    },
+    "classic": {
+      "price_range": { "min": 2000, "max": 3200 },
+      "includes": ["bridal bouquet", "4 bridesmaid bouquets", "6 boutonnieres", "3 corsages", "10 centerpieces", "ceremony arch (greenery and coastal)", "cocktail table bud vases", "cake flowers", "delivery and setup"]
+    },
+    "grand": {
+      "price_range": { "min": 3500, "max": 5500 },
+      "includes": ["bridal bouquet", "6 bridesmaid bouquets", "8 boutonnieres", "4 corsages", "12 centerpieces", "ceremony arch", "aisle markers with sea glass", "head table garland", "cocktail arrangements", "welcome sign swag", "cake flowers", "delivery and full setup"]
+    }
+  },
+  "floral_scope_options": {
+    "personal_flowers": {
+      "available": true,
+      "items": ["bridal_bouquet", "bridesmaid_bouquets", "boutonnieres", "corsages", "flower_girl_basket", "ring_bearer_boutonniere", "pet_floral_collar"],
+      "note": "Bouquets and wearable flowers for the wedding party"
+    },
+    "ceremony_decor": {
+      "available": true,
+      "items": ["ceremony_arch", "chuppah", "aisle_markers", "pew_flowers", "unity_ceremony_flowers"],
+      "note": "Floral installations and decor for the ceremony space"
+    },
+    "reception_decor": {
+      "available": true,
+      "items": ["centerpieces_low", "centerpieces_tall", "head_table_garland", "cocktail_arrangements", "cake_flowers", "welcome_sign_swag", "restroom_flowers"],
+      "note": "Table florals, garlands, and decorative arrangements for the reception"
+    },
+    "extras": {
+      "available": true,
+      "items": ["driftwood_arrangements", "succulent_favors", "welcome_sign_swag"],
+      "note": "Coastal-inspired extras featuring natural driftwood, succulents, and seaside elements"
+    }
+  },
+  "specialties": ["coastal", "natural", "beachy", "nautical", "garden", "greenery-forward", "driftwood arrangements"],
+  "preferred_flowers": ["hydrangeas", "garden roses", "stock", "lisianthus", "sea holly", "dusty miller", "eucalyptus", "ornamental grasses", "succulents"],
+  "seasonal_availability_notes": "Best selection June-September. Hydrangeas peak in July-August. Winter weddings lean on greenery, succulents, and imported blooms.",
+  "eco_friendly": {
+    "available": true,
+    "options": ["locally_grown_seasonal", "foam_free", "driftwood_and_natural_elements", "succulent_favors_living_plants"],
+    "upcharge": 0,
+    "flower_donation_after_event": true,
+    "donation_partner": "Cape Cod Senior Center — ceremony flowers repurposed as arrangements for residents",
+    "note": "We use natural driftwood, sea glass, and locally foraged coastal elements. Succulents as favors are living plants that keep growing!"
+  },
+  "consultation_process": {
+    "initial_consultation_free": true,
+    "mood_board_included": true,
+    "site_visit_included": true,
+    "sample_arrangement_fee": 100,
+    "sample_fee_credited_on_booking": true,
+    "flow": "consult_then_site_visit_then_mood_board_then_deposit",
+    "note": "Free consultation and ceremony site visit. We love seeing the venue in person to design around the natural landscape."
+  },
+  "deposit_and_cancellation": {
+    "deposit_pct": 50,
+    "deposit_refundable": false,
+    "balance_due": "14 days before event",
+    "final_design_confirmation": "4 weeks before event",
+    "cancellation_policy": {
+      "6_plus_months": "Deposit forfeited",
+      "30_days_to_6_months": "Deposit forfeited",
+      "under_30_days": "Full payment required"
+    }
+  },
+  "ratings": {
+    "average": 4.7,
+    "review_count": 113,
+    "highlights": ["coastal vibes were perfect", "succulents as favors were a hit", "ceremony flowers repurposed beautifully"],
+    "source": "aggregate"
+  },
+  "sweeteners": [
+    "Complimentary welcome sign floral swag for full packages",
+    "Free succulent favors (up to 75) for orders over $2500",
+    "15% off for shoulder-season weddings (April-May, October)",
+    "Complimentary ceremony site visit and design consultation",
+    "Free repurposing of ceremony flowers to reception"
+  ],
+  "personality": "Relaxed, creative, and deeply connected to the Cape Cod landscape. Seaside Blooms brings the feeling of a seaside garden to every wedding. They are friendly, responsive, and love working with couples who appreciate natural beauty. Mid-range pricing with good flexibility.",
+  "negotiation_style": {
+    "flexibility": "high",
+    "discount_ceiling_pct": 15,
+    "preferred_tactics": ["seasonal_swaps", "greenery_focus", "shoulder_season_discount", "ceremony_to_reception_repurposing"]
+  },
+  "contact": {
+    "email": "weddings@seasideblooms.com",
+    "phone": "508-555-0605"
+  }
+}

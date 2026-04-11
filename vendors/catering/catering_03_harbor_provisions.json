@@ -1,0 +1,93 @@
+{
+  "id": "catering_03",
+  "name": "Harbor Provisions Co.",
+  "category": "catering",
+  "region": "Cape Cod",
+  "description": "A seafood-forward catering company based on Cape Cod, specializing in coastal New England fare and farm-to-table seasonal menus. Perfect for waterfront weddings, clambakes, and relaxed celebrations with a nautical charm.",
+  "lgbtq_welcoming": true,
+  "pricing": {
+    "price_floor_per_head": 80,
+    "plated_per_head": 125,
+    "buffet_per_head": 88,
+    "family_style_per_head": 105,
+    "cocktail_reception_per_head": 70,
+    "clambake_per_head": 95,
+    "bar_packages": {
+      "open_bar_premium": 60,
+      "open_bar_standard": 45,
+      "beer_wine_only": 32,
+      "non_alcoholic": 14
+    },
+    "peak_surcharge_pct": 20,
+    "peak_months": [6, 7, 8],
+    "cake_cutting_fee": 2,
+    "tasting_fee": 100,
+    "tasting_fee_waived_on_booking": true
+  },
+  "capacity": {
+    "min_guests": 30,
+    "max_guests": 250
+  },
+  "service_area": {
+    "radius_miles": 40,
+    "base_location": "Hyannis, MA",
+    "beyond_radius": "surcharge",
+    "surcharge_flat": 250,
+    "max_radius_miles": 75,
+    "will_not_service_beyond_max": true,
+    "note": "We serve all of Cape Cod, the Islands, and South Shore. Flat $250 travel fee for events beyond 40 miles. We do not travel to Boston or north of Route 2."
+  },
+  "catering_type": "full_service_offsite",
+  "venue_exclusive": null,
+  "service_styles": ["plated", "buffet", "family_style", "clambake", "cocktail_reception", "stations"],
+  "serviceware": {
+    "included": ["standard_dinnerware", "glassware", "stainless_flatware"],
+    "upgrade_options": ["premium_china", "linen_napkins"],
+    "eco_friendly_available": true,
+    "eco_options": ["bamboo_plates", "compostable_cups", "wooden_utensils", "recycled_paper_napkins"],
+    "eco_note": "We love doing eco-friendly! Our clambake packages default to compostable serviceware. Available for all service styles at no extra charge."
+  },
+  "bar_service": {
+    "included": false,
+    "note": "We can provide beer, wine, and non-alcoholic beverages. For full bar service, we recommend partnering with a dedicated bar vendor. We can coordinate."
+  },
+  "specialties": ["New England Seafood", "Farm-to-Table", "Coastal Cuisine", "Clambakes"],
+  "dietary_accommodations": ["vegetarian", "vegan", "gluten-free", "dairy-free", "shellfish-free", "nut-free"],
+  "sweeteners": [
+    "Complimentary raw bar station for events over 150 guests",
+    "Free lobster upgrade on buffet packages booked before March",
+    "Locally sourced welcome drink for all guests included",
+    "Complimentary s'mores station for evening receptions"
+  ],
+  "deposit_and_cancellation": {
+    "deposit_pct": 25,
+    "deposit_refundable": false,
+    "balance_due": "7 days before event",
+    "final_guest_count_due": "10 days before event",
+    "cancellation_policy": {
+      "6_plus_months": "Deposit forfeited",
+      "3_to_6_months": "50% of total owed",
+      "under_3_months": "Full payment required"
+    },
+    "note": "For clambake packages, 50% deposit required due to advance sourcing."
+  },
+  "ratings": {
+    "average": 4.7,
+    "review_count": 176,
+    "highlights": ["clambake was unforgettable", "freshest seafood ever", "guests still talk about the lobster"],
+    "source": "aggregate"
+  },
+  "personality": "Casual, coastal, and deeply connected to the local food scene. Harbor Provisions is passionate about sourcing from Cape Cod fishermen and local farms. They bring a laid-back energy and love creating menus that feel like a New England summer. Flexible and easygoing in negotiations.",
+  "negotiation_style": {
+    "flexibility": "high",
+    "discount_ceiling_pct": 15,
+    "preferred_tactics": ["off_peak_discount", "seasonal_menu_savings", "volume_pricing", "early_booking_discount"],
+    "walkaway_below_per_head": 72
+  },
+  "lead_time_days": 60,
+  "hold_days": 14,
+  "contact": {
+    "email": "hello@harborprovisions.com",
+    "phone": "508-555-0303"
+  }
+}

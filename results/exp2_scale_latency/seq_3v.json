@@ -1,0 +1,414 @@
+{
+  "summary": {
+    "mode": "rfp",
+    "model": "claude-sonnet-4-20250514",
+    "vendor_count": 3,
+    "elapsed_ms": 50746,
+    "elapsed_sec": 50.7,
+    "accepted_count": 3,
+    "rejected_count": 0,
+    "failed_count": 0,
+    "grand_total_wedding_cost": 42850,
+    "budget": 25000,
+    "flex_budget": 3000,
+    "within_budget": false,
+    "within_flex": false,
+    "total_api_cost_usd": 0.068139,
+    "total_tokens": 13277,
+    "results": [
+      {
+        "vendor_id": "venue_01",
+        "vendor_name": "Grand Meridian Ballroom",
+        "category": "venue",
+        "outcome": "accepted",
+        "total_price": 21950,
+        "turns": 3,
+        "cost_usd": 0.017361,
+        "is_backup": false
+      },
+      {
+        "vendor_id": "catering_01",
+        "vendor_name": "Grand Meridian Ballroom Catering",
+        "category": "catering",
+        "outcome": "accepted",
+        "total_price": 17400,
+        "turns": 5,
+        "cost_usd": 0.033561,
+        "is_backup": false
+      },
+      {
+        "vendor_id": "florist_01",
+        "vendor_name": "Bloom & Vine Studio",
+        "category": "florist",
+        "outcome": "accepted",
+        "total_price": 3500,
+        "turns": 3,
+        "cost_usd": 0.017217,
+        "is_backup": false
+      }
+    ]
+  },
+  "results": [
+    {
+      "vendor_id": "venue_01",
+      "vendor_name": "Grand Meridian Ballroom",
+      "category": "venue",
+      "outcome": "accepted",
+      "final_terms": {
+        "total_price": 21950,
+        "date": "2027-06-12",
+        "guest_count": 120,
+        "notes": "Accepting all proposed terms including 50% deposit, 14-day hold period, and all included amenities"
+      },
+      "turns": 3,
+      "messages": [
+        {
+          "turn": 1,
+          "agent": "planner_agent",
+          "vendor_id": "venue_01",
+          "vendor_name": "Grand Meridian Ballroom",
+          "category": "venue",
+          "timestamp": "2026-04-11T18:28:52.009Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "venue_01",
+            "message_type": "rfp",
+            "content": "We are requesting a proposal for a wedding reception on June 12, 2027 for 120 guests with plated dinner service. Our couple has a total budget of $25,000 and is flexible on any Saturday in June 2027 if the preferred date isn't available.",
+            "proposed_terms": {
+              "total_price": null,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Plated dinner service preferred, flexible on any Saturday in June 2027, total budget $25,000"
+            }
+          },
+          "input_tokens": 285,
+          "output_tokens": 178,
+          "cost_usd": 0.003525
+        },
+        {
+          "turn": 2,
+          "agent": "venue_01",
+          "vendor_id": "venue_01",
+          "vendor_name": "Grand Meridian Ballroom",
+          "category": "venue",
+          "timestamp": "2026-04-11T18:28:58.217Z",
+          "parsed": {
+            "from": "venue_01",
+            "to": "planner_agent",
+            "message_type": "offer",
+            "content": "Thank you for considering Grand Meridian Ballroom for your June wedding! I'm delighted to propose our elegant ballroom with stunning chandeliers for your 120-guest celebration. June 12th is available, and I can offer our premium plated dinner service with several package options to work within your vision.",
+            "proposed_terms": {
+              "price_per_head": 135,
+              "total_price": 21950,
+              "venue_rental": 5750,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "service_style": "plated",
+              "deposit_percent": 50,
+              "hold_days": 14,
+              "includes": [
+                "in-house catering",
+                "bridal suite",
+                "valet parking",
+                "AV system",
+                "elegant ballroom with chandeliers",
+                "professional coordination"
+              ],
+              "notes": "Peak month pricing applied. Alternative June Saturdays: 6/5, 6/19, 6/26 available with same terms. I'll hold your preferred date for 14 days while we finalize details."
+            }
+          },
+          "input_tokens": 1334,
+          "output_tokens": 302,
+          "cost_usd": 0.008532
+        },
+        {
+          "turn": 3,
+          "agent": "planner_agent",
+          "vendor_id": "venue_01",
+          "vendor_name": "Grand Meridian Ballroom",
+          "category": "venue",
+          "timestamp": "2026-04-11T18:29:02.371Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "venue_01",
+            "message_type": "accept",
+            "content": "We are thrilled to accept your proposal for June 12, 2027! The total price of $21,950 fits perfectly within our couple's budget and the included amenities like the bridal suite, valet parking, and professional coordination provide excellent value. We're excited to move forward with booking Grand Meridian Ballroom for this special celebration.",
+            "proposed_terms": {
+              "total_price": 21950,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Accepting all proposed terms including 50% deposit, 14-day hold period, and all included amenities"
+            }
+          },
+          "input_tokens": 803,
+          "output_tokens": 193,
+          "cost_usd": 0.005304
+        }
+      ],
+      "total_input_tokens": 2422,
+      "total_output_tokens": 673,
+      "total_cost_usd": 0.017361
+    },
+    {
+      "vendor_id": "catering_01",
+      "vendor_name": "Grand Meridian Ballroom Catering",
+      "category": "catering",
+      "outcome": "accepted",
+      "final_terms": {
+        "total_price": 17400,
+        "date": "2027-06-12",
+        "guest_count": 120,
+        "notes": "Accepting the complete package at $145 per head including Standard Open Bar and all listed services. Please proceed with booking and tasting scheduling."
+      },
+      "turns": 5,
+      "messages": [
+        {
+          "turn": 1,
+          "agent": "planner_agent",
+          "vendor_id": "catering_01",
+          "vendor_name": "Grand Meridian Ballroom Catering",
+          "category": "catering",
+          "timestamp": "2026-04-11T18:29:05.302Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "catering_01",
+            "message_type": "rfp",
+            "content": "We are planning a wedding for 120 guests on June 12, 2027, and would like to request pricing for plated dinner service. The couple has flexibility for any Saturday in June 2027 if needed.",
+            "proposed_terms": {
+              "total_price": null,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Plated dinner service preferred, flexible on any Saturday in June 2027"
+            }
+          },
+          "input_tokens": 294,
+          "output_tokens": 158,
+          "cost_usd": 0.003252
+        },
+        {
+          "turn": 2,
+          "agent": "catering_01",
+          "vendor_id": "catering_01",
+          "vendor_name": "Grand Meridian Ballroom Catering",
+          "category": "catering",
+          "timestamp": "2026-04-11T18:29:11.359Z",
+          "parsed": {
+            "from": "catering_01",
+            "to": "planner_agent",
+            "message_type": "offer",
+            "content": "Thank you for considering Grand Meridian Ballroom Catering for this special wedding! For 120 guests with our elegant plated dinner service in June, I'm pleased to offer our premium wedding package with seamless venue coordination.",
+            "proposed_terms": {
+              "price_per_head": 155.25,
+              "total_price": 18630,
+              "guest_count": 120,
+              "service_style": "plated",
+              "bar_package": null,
+              "deposit_percent": 30,
+              "hold_days": 14,
+              "includes": [
+                "plated dinner service",
+                "Italian/Mediterranean/New England menu options",
+                "professional service staff",
+                "venue coordination",
+                "linens and place settings",
+                "complimentary champagne toast (120+ guests)",
+                "cake cutting service"
+              ],
+              "notes": "Peak season pricing for June. Complimentary tasting available ($150 value, waived upon booking). Bar packages available separately - Premium Open Bar $65/head, Standard $50/head, Beer & Wine $35/head. Final guest count due 10 days before event."
+            }
+          },
+          "input_tokens": 1412,
+          "output_tokens": 300,
+          "cost_usd": 0.008736
+        },
+        {
+          "turn": 3,
+          "agent": "planner_agent",
+          "vendor_id": "catering_01",
+          "vendor_name": "Grand Meridian Ballroom Catering",
+          "category": "catering",
+          "timestamp": "2026-04-11T18:29:15.791Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "catering_01",
+            "message_type": "counter_offer",
+            "content": "Thank you for the comprehensive proposal! The package looks excellent, but we'd like to discuss pricing to better fit the couple's budget. Would you be able to work with us on the per-head rate while maintaining the quality service?",
+            "proposed_terms": {
+              "total_price": 16800,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Requesting $140 per head rate ($16,800 total) to better align with budget while keeping all included services"
+            }
+          },
+          "input_tokens": 795,
+          "output_tokens": 171,
+          "cost_usd": 0.00495
+        },
+        {
+          "turn": 4,
+          "agent": "catering_01",
+          "vendor_id": "catering_01",
+          "vendor_name": "Grand Meridian Ballroom Catering",
+          "category": "catering",
+          "timestamp": "2026-04-11T18:29:21.814Z",
+          "parsed": {
+            "from": "catering_01",
+            "to": "planner_agent",
+            "message_type": "counter_offer",
+            "content": "I understand budget is important for the couple, and I'd love to work with you! Let me offer a compelling package that includes our Standard Open Bar to add tremendous value while meeting closer to your target.",
+            "proposed_terms": {
+              "price_per_head": 145,
+              "total_price": 17400,
+              "guest_count": 120,
+              "service_style": "plated",
+              "bar_package": "Standard Open Bar",
+              "deposit_percent": 30,
+              "hold_days": 14,
+              "includes": [
+                "plated dinner service",
+                "Standard Open Bar package",
+                "Italian/Mediterranean/New England menu options",
+                "professional service staff",
+                "venue coordination",
+                "linens and place settings",
+                "complimentary champagne toast",
+                "cake cutting service",
+                "complimentary tasting"
+              ],
+              "notes": "This bundled package saves $600 compared to separate pricing ($145/head vs $155.25 food + $50 bar). Peak season rate but exceptional value with full bar service included. Can schedule tasting within 2 weeks to secure this rate."
+            }
+          },
+          "input_tokens": 1902,
+          "output_tokens": 298,
+          "cost_usd": 0.010176
+        },
+        {
+          "turn": 5,
+          "agent": "planner_agent",
+          "vendor_id": "catering_01",
+          "vendor_name": "Grand Meridian Ballroom Catering",
+          "category": "catering",
+          "timestamp": "2026-04-11T18:29:25.545Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "catering_01",
+            "message_type": "accept",
+            "content": "This is an excellent package that provides tremendous value for the couple! The bundled pricing with full bar service at $17,400 fits well within their budget and includes everything they need for their special day.",
+            "proposed_terms": {
+              "total_price": 17400,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Accepting the complete package at $145 per head including Standard Open Bar and all listed services. Please proceed with booking and tasting scheduling."
+            }
+          },
+          "input_tokens": 1319,
+          "output_tokens": 166,
+          "cost_usd": 0.006447
+        }
+      ],
+      "total_input_tokens": 5722,
+      "total_output_tokens": 1093,
+      "total_cost_usd": 0.033561
+    },
+    {
+      "vendor_id": "florist_01",
+      "vendor_name": "Bloom & Vine Studio",
+      "category": "florist",
+      "outcome": "accepted",
+      "final_terms": {
+        "total_price": 3500,
+        "date": "2027-06-12",
+        "guest_count": 120,
+        "notes": "Accepting Classic package with all included items. Will schedule initial consultation within the next two weeks to finalize details and create mood board."
+      },
+      "turns": 3,
+      "messages": [
+        {
+          "turn": 1,
+          "agent": "planner_agent",
+          "vendor_id": "florist_01",
+          "vendor_name": "Bloom & Vine Studio",
+          "category": "florist",
+          "timestamp": "2026-04-11T18:29:29.052Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "florist_01",
+            "message_type": "rfp",
+            "content": "We are planning a beautiful wedding for 120 guests on June 12, 2027 with plated service style. We would love to discuss floral arrangements including bridal bouquet, ceremony decorations, and centerpieces within our overall wedding budget.",
+            "proposed_terms": {
+              "total_price": null,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Requesting comprehensive floral package quote for ceremony and reception"
+            }
+          },
+          "input_tokens": 286,
+          "output_tokens": 160,
+          "cost_usd": 0.003258
+        },
+        {
+          "turn": 2,
+          "agent": "florist_01",
+          "vendor_id": "florist_01",
+          "vendor_name": "Bloom & Vine Studio",
+          "category": "florist",
+          "timestamp": "2026-04-11T18:29:34.830Z",
+          "parsed": {
+            "from": "florist_01",
+            "to": "planner_agent",
+            "message_type": "offer",
+            "content": "What a perfect June wedding date for our signature garden-style florals! For your 120-guest celebration, I'd recommend our Classic package which beautifully covers ceremony and reception with romantic seasonal blooms like peonies and garden roses that are at their peak in June.",
+            "proposed_terms": {
+              "package": "Classic",
+              "total_price": 3500,
+              "deposit_percent": 50,
+              "hold_days": 14,
+              "includes": [
+                "bridal bouquet",
+                "4 bridesmaid bouquets",
+                "8 boutonnieres",
+                "4 corsages",
+                "10 low centerpieces",
+                "ceremony arch",
+                "cocktail table arrangements",
+                "cake flowers",
+                "delivery and setup"
+              ],
+              "notes": "Includes free initial consultation with digital mood board creation. June is perfect for peonies and garden roses! Sample arrangement available for $150 (credited upon booking). Lead time of 90 days required."
+            }
+          },
+          "input_tokens": 1737,
+          "output_tokens": 262,
+          "cost_usd": 0.009141
+        },
+        {
+          "turn": 3,
+          "agent": "planner_agent",
+          "vendor_id": "florist_01",
+          "vendor_name": "Bloom & Vine Studio",
+          "category": "florist",
+          "timestamp": "2026-04-11T18:29:38.709Z",
+          "parsed": {
+            "from": "planner_agent",
+            "to": "florist_01",
+            "message_type": "accept",
+            "content": "Your Classic package sounds absolutely perfect for our couple's vision and fits beautifully within their floral budget! The comprehensive coverage from ceremony to reception with seasonal June blooms like peonies and garden roses is exactly what they're hoping for.",
+            "proposed_terms": {
+              "total_price": 3500,
+              "date": "2027-06-12",
+              "guest_count": 120,
+              "notes": "Accepting Classic package with all included items. Will schedule initial consultation within the next two weeks to finalize details and create mood board."
+            }
+          },
+          "input_tokens": 751,
+          "output_tokens": 171,
+          "cost_usd": 0.004818
+        }
+      ],
+      "total_input_tokens": 2774,
+      "total_output_tokens": 593,
+      "total_cost_usd": 0.017217
+    }
+  ],
+  "logPath": "/Users/gpmacbookpro3/Desktop/altara-landing/logs/multi_rfp_3v_2026-04-11T18-29-38-710Z.json"
+}

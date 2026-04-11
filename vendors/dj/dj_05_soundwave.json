@@ -1,0 +1,150 @@
+{
+  "id": "dj_05",
+  "name": "Soundwave Productions",
+  "category": "dj",
+  "region": "Rhode Island",
+  "description": "A unique hybrid entertainment experience blending live musicians with professional DJ production. We pair a string duo for your ceremony with a high-energy DJ for the reception, giving you the best of both worlds without booking two separate vendors.",
+  "lgbtq_welcoming": true,
+  "base_location": "Providence, RI",
+  "website": "https://www.soundwaveproductions.com",
+  "entertainment_type": "hybrid",
+  "vocalist_available": true,
+  "vocalist_addon_price": 450,
+  "live_musicians_available": true,
+  "ensemble_options": ["string duo (violin + cello)", "string trio (add viola)", "saxophone", "vocalist"],
+  "genre_specialties": ["pop", "R&B", "classical", "jazz", "dance", "classical crossover"],
+  "will_play_genres": ["pop", "R&B", "classical", "jazz", "dance", "hip-hop", "rock", "Latin", "Top 40", "classical crossover", "swing", "Motown", "indie", "soul"],
+  "packages": {
+    "ceremony_only": {
+      "hours": 2,
+      "price": 700,
+      "includes": [
+        "String duo (violin and cello) for ceremony",
+        "Custom ceremony song arrangements (up to 4 songs)",
+        "Pre-ceremony ambient music (30 min)",
+        "Processional, interlude, and recessional performances",
+        "Amplification for outdoor ceremonies",
+        "Consultation on song selection"
+      ]
+    },
+    "reception_only": {
+      "hours": 5,
+      "price": 2500,
+      "includes": [
+        "Professional DJ and MC",
+        "Premium sound system",
+        "Dance floor lighting package",
+        "Wireless mics for speeches (2)",
+        "Custom playlist curation",
+        "Live saxophone player for cocktail hour (1 hour)",
+        "Online planning portal",
+        "Do-not-play list support"
+      ]
+    },
+    "full_event": {
+      "hours": 8,
+      "price": 3800,
+      "includes": [
+        "String duo for ceremony",
+        "Professional DJ and MC for reception",
+        "Live saxophone player for cocktail hour",
+        "Premium sound system with subwoofers",
+        "Dance floor lighting and uplighting (12 fixtures)",
+        "Custom ceremony arrangements (up to 4 songs)",
+        "Custom reception playlist curation",
+        "Wireless mics for officiant and speeches (3)",
+        "Online planning portal",
+        "Fog machine for first dance",
+        "Seamless transition from live to DJ",
+        "Day-of coordination with venue and vendors"
+      ]
+    }
+  },
+  "overtime_rate_per_hour": 400,
+  "price_floor": 700,
+  "max_guests_supported": 300,
+  "additional_musicians": {
+    "saxophone_cocktail_hour": { "price": 400, "note": "Included in full_event, add-on for reception_only" },
+    "string_trio_upgrade": { "price": 300, "note": "Add viola to string duo" },
+    "vocalist": { "price": 450 }
+  },
+  "equipment_included": [
+    "Premium PA system (up to 300 guests)",
+    "Subwoofer",
+    "LED uplighting (12 fixtures)",
+    "Dance floor intelligent lighting",
+    "Fog/haze machine",
+    "Wireless microphones (3)",
+    "DJ controller with backup system",
+    "String duo instruments and amplification",
+    "Saxophone and amplification"
+  ],
+  "service_area": {
+    "radius_miles": 45,
+    "base_location": "Providence, RI",
+    "beyond_radius_fee": 100,
+    "max_service_miles": 80,
+    "will_not_service_beyond_max": false,
+    "note": "Regularly travels to South Coast MA, Cape Cod, and Greater Boston for the right events."
+  },
+  "lead_time_days": 75,
+  "hold_days": 14,
+  "max_events_per_weekend": 1,
+  "venue_partnerships": {
+    "preferred_venues": [],
+    "partnership_type": "independent",
+    "discount_for_partner_venues": false,
+    "note": "New to the Massachusetts market. Strong relationships with RI and South Coast MA venues. Expanding into Greater Boston and Cape Cod."
+  },
+  "playlist_consultation": {
+    "included": true,
+    "process": "Online planning portal opens upon booking for song requests and do-not-play lists. Video consultation 4-5 weeks before the wedding to finalize timeline, ceremony arrangements, cocktail hour setlist, and reception flow. Separate consultation with string duo for ceremony music if custom arrangements are requested.",
+    "timeline_planning": true,
+    "do_not_play_list": true,
+    "must_play_list": true,
+    "custom_arrangements": true,
+    "consultation_timing": "4-5 weeks before event"
+  },
+  "eco_friendly": {
+    "available": false,
+    "note": "Not applicable to entertainment services."
+  },
+  "deposit_and_cancellation": {
+    "deposit_pct": 35,
+    "deposit_type": "retainer",
+    "deposit_refundable": false,
+    "balance_due": "14 days before event",
+    "cancellation_policy": {
+      "6_plus_months": "Retainer forfeited",
+      "30_days_to_6_months": "Retainer forfeited",
+      "under_30_days": "Full payment required — musicians booked and arrangements in progress"
+    }
+  },
+  "ratings": {
+    "platform_average": null,
+    "platform_review_count": 0,
+    "external_average": 4.7,
+    "external_review_count": 78,
+    "external_sources": ["google", "the_knot", "weddingwire"],
+    "composite_score": 4.7,
+    "highlights": ["string duo for the ceremony was breathtaking", "best of both worlds — live music AND a great DJ", "seamless transition from elegant to party"],
+    "verified_bookings": 0
+  },
+  "sweeteners": [
+    "Free saxophone cocktail hour add-on for full-event bookings in off-season",
+    "Complimentary uplighting color match to wedding palette",
+    "Upgrade to string trio (add viola) at no cost for Sunday weddings",
+    "Free ceremony rehearsal run-through for full-event clients",
+    "10% discount for Rhode Island venue partners"
+  ],
+  "personality": "Versatile, polished, and collaborative. Soundwave's unique hybrid model appeals to couples who want live music and a party DJ without managing two vendors. Excellent at coordinating the transition from ceremony elegance to reception energy. Willing to customize musician lineups. Strong relationships with RI and South Coast MA venues.",
+  "negotiation_style": {
+    "flexibility": "moderate",
+    "discount_ceiling_pct": 10,
+    "preferred_tactics": ["hybrid_value_proposition", "musician_lineup_customization", "venue_partnership_discount", "off_season_perks"]
+  },
+  "contact": {
+    "email": "events@soundwaveproductions.com",
+    "phone": "401-555-0705"
+  }
+}

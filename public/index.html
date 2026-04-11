@@ -256,7 +256,7 @@
 
     .steps {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 2.5rem;
       margin-top: 3rem;
     }
@@ -342,54 +342,11 @@
       line-height: 1.6;
     }
 
-    /* VENDOR TIERS */
+    /* VENDOR SECTION */
     .vendor-section { background: var(--warm-white); }
 
-    .tiers {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .tier {
-      padding: 2.5rem 2rem;
-      border-radius: 16px;
+    .vendor-section .feature-card {
       background: var(--cream);
-      border: 1px solid rgba(0,0,0,0.04);
-      position: relative;
-    }
-
-    .tier-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--rose);
-      margin-bottom: 0.75rem;
-    }
-
-    .tier h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      color: var(--charcoal);
-    }
-
-    .tier p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .tier-arrow {
-      position: absolute;
-      right: -1.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--sand);
-      font-size: 1.5rem;
-      font-weight: 300;
     }
 
     /* CTA SECTION */
@@ -417,6 +374,51 @@
 
     .cta-section .btn-primary:hover { background: var(--blush-light); color: var(--charcoal); }
 
+    .cta-couples-line {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .cta-couples-line a {
+      color: var(--blush-light);
+      text-decoration: none;
+    }
+
+    .cta-couples-line a:hover { text-decoration: underline; }
+
+    /* CATEGORIES */
+    .categories-section { background: var(--cream); }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .category-card {
+      padding: 2rem 1.5rem;
+      border-radius: 16px;
+      background: var(--warm-white);
+      border: 1px solid rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .category-card:hover { transform: translateY(-4px); }
+
+    .category-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .category-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
     /* FOOTER */
     footer {
       padding: 3rem 2rem;
@@ -435,18 +437,29 @@
       filter: brightness(0) invert(1);
     }
 
+    .footer-powered {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.25rem;
+    }
+
     footer p {
       font-size: 0.8rem;
       color: rgba(255,255,255,0.35);
     }
 
     /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .categories-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .steps, .tiers { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: 1fr; }
+      .categories-grid { grid-template-columns: repeat(2, 1fr); }
       .stats { gap: 2rem; }
-      .tier-arrow { display: none; }
       section { padding: 4rem 1.5rem; }
     }
 
@@ -477,12 +490,13 @@
 
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-badge">AI-Powered Wedding Planning</div>
-      <h1>Your AI wedding planner<br>doesn't just plan &mdash; it <em>shops</em>.</h1>
-      <p>Altara connects couples with vendors through intelligent agents that source, negotiate, and schedule &mdash; so you can focus on the moments that matter.</p>
+      <div class="hero-badge">AI-Powered Wedding Marketplace</div>
+      <h1>Your AI wedding planner<br>doesn't just plan &mdash; it <em>negotiates</em>.</h1>
+      <p>Altara powers The Big Day &mdash; an AI marketplace where your planner agent negotiates with vendor agents across 7 categories simultaneously. You get 3 curated packages. You pick one. Done.</p>
       <div class="hero-buttons">
         <a href="#contact" class="btn-primary">Get in Touch</a>
         <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+        <a href="/simulate.html" class="btn-secondary">Try the Demo</a>
       </div>
     </div>
   </section>
@@ -493,16 +507,16 @@
       <div class="stat-label">U.S. wedding industry, largely unautomated</div>
     </div>
     <div class="stat fade-in">
-      <div class="stat-number">250+</div>
-      <div class="stat-label">Hours couples spend on vendor logistics</div>
+      <div class="stat-number">400+</div>
+      <div class="stat-label">Hours saved per vendor per year with AI negotiation</div>
     </div>
     <div class="stat fade-in">
-      <div class="stat-number">14+</div>
-      <div class="stat-label">Vendor categories to research, compare &amp; book</div>
+      <div class="stat-number">7</div>
+      <div class="stat-label">Vendor categories negotiated simultaneously</div>
     </div>
     <div class="stat fade-in">
-      <div class="stat-number">2.5M</div>
-      <div class="stat-label">Weddings per year in the United States</div>
+      <div class="stat-number">30 min</div>
+      <div class="stat-label">Average vendor setup time &mdash; then their agent works forever</div>
     </div>
   </div>
 
@@ -510,23 +524,28 @@
     <div class="section-inner">
       <div class="section-label">How It Works</div>
       <div class="section-title">Agent-to-agent protocol meets wedding planning</div>
-      <div class="section-subtitle">Your AI planner agent communicates directly with vendor agents to find availability, negotiate pricing, and resolve scheduling conflicts &mdash; all with your approval.</div>
+      <div class="section-subtitle">Your AI planner agent negotiates with vendor agents across venues, catering, photography, florals, entertainment, bakeries, and transportation &mdash; simultaneously.</div>
 
       <div class="steps">
         <div class="step fade-in">
           <div class="step-number">1</div>
-          <h3>Share Your Vision</h3>
-          <p>Tell Altara your date, guest count, budget, and style preferences. Your planner agent takes it from there.</p>
+          <h3>Tell Your Planner</h3>
+          <p>Share your date, budget, guest count, style, and preferences in a natural conversation. Your AI planner listens like a trusted advisor.</p>
         </div>
         <div class="step fade-in">
           <div class="step-number">2</div>
-          <h3>Agents Negotiate</h3>
-          <p>Your planner agent queries vendor agents in parallel &mdash; checking availability, comparing quotes, and resolving conflicts across the full vendor chain.</p>
+          <h3>Agents Match &amp; Filter</h3>
+          <p>Your planner finds vendors across 7 categories &mdash; filtered by budget, location, ratings, availability, and style. Only real fits make the cut.</p>
         </div>
         <div class="step fade-in">
           <div class="step-number">3</div>
-          <h3>You Decide</h3>
-          <p>Review curated packages with transparent pricing. Approve, adjust, or ask your agent to keep looking. You're always in control.</p>
+          <h3>Agents Negotiate</h3>
+          <p>Vendor agents present packages, counter offers, and offer sweeteners &mdash; all within each vendor's rules. Your planner tracks the budget across every category.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-number">4</div>
+          <h3>You Choose</h3>
+          <p>Review 3 curated packages (Budget, Recommended, Premium) with transparent pricing. Approve, adjust, or ask for alternatives. Holds protect your dates.</p>
         </div>
       </div>
     </div>
@@ -541,23 +560,23 @@
       <div class="features-grid">
         <div class="feature-card fade-in">
           <div class="feature-icon icon-sage">&#x1f4ac;</div>
-          <h3>Smart Vendor Matching</h3>
-          <p>AI agents find vendors that fit your budget, style, and availability &mdash; no more endless scrolling and emailing.</p>
+          <h3>Conversational Planning</h3>
+          <p>No forms. Tell your planner what you want naturally &mdash; budget, aesthetic, dietary needs, music taste, floral scope. It asks follow-up questions just like a human planner.</p>
         </div>
         <div class="feature-card fade-in">
           <div class="feature-icon icon-blush">&#x1f4b0;</div>
-          <h3>Real Price Discovery</h3>
-          <p>Negotiation mechanisms like RFPs and reverse auctions surface the best pricing &mdash; transparently and fairly.</p>
+          <h3>Budget-Aware Negotiation</h3>
+          <p>Your planner tracks spend across all 7 categories in real time. Savings from one category redistribute to others. Every dollar is optimized.</p>
         </div>
         <div class="feature-card fade-in">
-          <div class="feature-icon icon-gold">&#x1f4c5;</div>
-          <h3>Conflict Resolution</h3>
-          <p>When the florist's availability conflicts with the venue date, your agent resolves the dependency chain automatically.</p>
+          <div class="feature-icon icon-gold">&#x1f4e6;</div>
+          <h3>3 Curated Packages</h3>
+          <p>Get Budget, Recommended, and Premium options &mdash; each fully negotiated across all vendors. Compare side-by-side with transparent pricing and hold deadlines.</p>
         </div>
         <div class="feature-card fade-in">
-          <div class="feature-icon icon-sand">&#x2b50;</div>
-          <h3>Vendor Trust Scores</h3>
-          <p>Every transaction builds delivery performance data, so you can book with confidence based on real outcomes.</p>
+          <div class="feature-icon icon-sand">&#x1f3e0;</div>
+          <h3>Venue-Anchored Matching</h3>
+          <p>Once you pick a venue, all other vendors are filtered by proximity and venue partnerships. "Tried &amp; True Venue Partners" who know your space get priority.</p>
         </div>
       </div>
     </div>
@@ -566,26 +585,68 @@
   <section class="vendor-section" id="vendors">
     <div class="section-inner">
       <div class="section-label">For Vendors</div>
-      <div class="section-title">Meet them where they are</div>
-      <div class="section-subtitle">Vendors don't need their own AI agent. Altara offers a path for every level of technical readiness.</div>
+      <div class="section-title">Your agent sells while you create</div>
+      <div class="section-subtitle">Set up your AI vendor agent in 30 minutes. It handles unlimited inquiries, negotiates within your rules, and sends you only ready-to-book couples.</div>
 
-      <div class="tiers">
-        <div class="tier fade-in">
-          <div class="tier-label">Tier 1</div>
-          <h3>Static Listing</h3>
-          <p>Fill out a profile. Altara's proxy agent handles all A2A communication on your behalf.</p>
-          <span class="tier-arrow">&rarr;</span>
+      <div class="features-grid">
+        <div class="feature-card fade-in">
+          <div class="feature-icon icon-sage">&#x1f4b8;</div>
+          <h3>Free to List, Pay on Booking</h3>
+          <p>No monthly fees. No listing costs. Pay 5-8% commission only when you actually book. Founding vendors get 0% for 6 months.</p>
         </div>
-        <div class="tier fade-in">
-          <div class="tier-label">Tier 2</div>
-          <h3>Smart Rules</h3>
-          <p>Set auto-quote rules, availability calendars, and approval thresholds. Your business logic, automated.</p>
-          <span class="tier-arrow">&rarr;</span>
+        <div class="feature-card fade-in">
+          <div class="feature-icon icon-blush">&#x1f916;</div>
+          <h3>24/7 AI Negotiation</h3>
+          <p>Your agent responds instantly to every matched inquiry. It presents your packages, counters offers, and protects your price floors &mdash; all while you sleep.</p>
         </div>
-        <div class="tier fade-in">
-          <div class="tier-label">Tier 3</div>
-          <h3>Direct A2A</h3>
-          <p>Run your own agent. Altara becomes your discovery and routing layer in the wedding marketplace.</p>
+        <div class="feature-card fade-in">
+          <div class="feature-icon icon-gold">&#x1f50d;</div>
+          <h3>Smart Pre-Screening</h3>
+          <p>Only couples who match your budget range, service area, availability, and style preferences reach your agent. No more tire-kickers.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon icon-sand">&#x1f4ca;</div>
+          <h3>Market Intelligence</h3>
+          <p>See anonymized competitive pricing, demand trends, and which sweeteners close the most deals. Premium analytics help you price with confidence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories-section" id="categories">
+    <div class="section-inner">
+      <div class="section-label">Launching in Boston</div>
+      <div class="section-title">7 categories. 30+ vendors. One negotiation.</div>
+      <div class="section-subtitle">Greater Boston metro area (30-mile radius) &mdash; our founding market.</div>
+
+      <div class="categories-grid">
+        <div class="category-card fade-in">
+          <div class="category-icon">&#x1f3e9;</div>
+          <div class="category-name">Venues</div>
+        </div>
+        <div class="category-card fade-in">
+          <div class="category-icon">&#x1f37d;</div>
+          <div class="category-name">Catering</div>
+        </div>
+        <div class="category-card fade-in">
+          <div class="category-icon">&#x1f4f7;</div>
+          <div class="category-name">Photography</div>
+        </div>
+        <div class="category-card fade-in">
+          <div class="category-icon">&#x1f490;</div>
+          <div class="category-name">Florals</div>
+        </div>
+        <div class="category-card fade-in">
+          <div class="category-icon">&#x1f3b6;</div>
+          <div class="category-name">DJ &amp; Live Music</div>
+        </div>
+        <div class="category-card fade-in">
+          <div class="category-icon">&#x1f382;</div>
+          <div class="category-name">Bakeries</div>
+        </div>
+        <div class="category-card fade-in">
+          <div class="category-icon">&#x1f697;</div>
+          <div class="category-name">Transportation</div>
         </div>
       </div>
     </div>
@@ -594,14 +655,16 @@
   <section class="cta-section" id="contact">
     <div class="section-inner">
       <div class="section-label">Get Started</div>
-      <div class="section-title">The marketplace where AI agents plan weddings.</div>
-      <div class="section-subtitle">Altara is building the future of wedding planning. Whether you're a couple or a vendor, we'd love to hear from you.</div>
-      <a href="mailto:hello@altara.ai" class="btn-primary">Get in Touch</a>
+      <div class="section-title">Join the founding vendor waitlist.</div>
+      <div class="section-subtitle">First 50 vendors per category in Boston get 0% commission for 6 months, a permanent Founding Vendor badge, and free premium analytics for a year.</div>
+      <a href="mailto:vendors@thebigdayapp.com" class="btn-primary">vendors@thebigdayapp.com</a>
+      <p class="cta-couples-line">Couples: <a href="mailto:hello@altara.ai">hello@altara.ai</a></p>
     </div>
   </section>
 
   <footer>
     <div class="footer-logo"><img src="/logo.svg" alt="Altara"></div>
+    <p class="footer-powered">Powered by Altara</p>
     <p>&copy; 2026 Altara. All rights reserved.</p>
   </footer>
 

@@ -1,0 +1,117 @@
+{
+  "id": "florist_04",
+  "name": "Luxe Petals Boston",
+  "category": "florist",
+  "region": "Greater Boston",
+  "description": "Boston's premier luxury floral house, specializing in dramatic, large-scale installations and opulent arrangements. Luxe Petals is the go-to for high-budget weddings that demand a jaw-dropping floral presence. Featured in Vogue Weddings and Martha Stewart.",
+  "lgbtq_welcoming": true,
+  "pricing": {
+    "bridal_bouquet": { "min": 400, "max": 700 },
+    "bridesmaid_bouquet": { "min": 180, "max": 320 },
+    "boutonniere": { "min": 30, "max": 55 },
+    "corsage": { "min": 55, "max": 95 },
+    "centerpiece_low": { "min": 150, "max": 400 },
+    "centerpiece_tall": { "min": 350, "max": 800 },
+    "ceremony_arch": { "min": 2000, "max": 6000 },
+    "aisle_markers": { "min": 85, "max": 250, "note": "per marker" },
+    "hanging_installation": { "min": 1500, "max": 5000 },
+    "cake_flowers": { "min": 120, "max": 350 },
+    "flower_girl_basket": { "min": 60, "max": 120 },
+    "delivery_and_setup": { "flat_fee": 500 }
+  },
+  "price_floor": 3000,
+  "lead_time_days": 120,
+  "hold_days": 7,
+  "max_events_per_weekend": 1,
+  "delivery_radius_miles": 40,
+  "beyond_radius_fee": 250,
+  "max_delivery_miles": 75,
+  "will_not_service_beyond_max": true,
+  "base_location": "Boston, MA",
+  "packages": {
+    "classic": {
+      "price_range": { "min": 3000, "max": 5000 },
+      "includes": ["couture bridal bouquet", "4 bridesmaid bouquets", "8 boutonnieres", "4 corsages", "10 premium centerpieces", "ceremony arch", "cake flowers", "delivery and full setup"]
+    },
+    "grand": {
+      "price_range": { "min": 6000, "max": 12000 },
+      "includes": ["couture bridal bouquet", "6 bridesmaid bouquets", "10 boutonnieres", "6 corsages", "14 premium centerpieces (mix)", "full ceremony installation", "aisle markers", "cocktail arrangements", "suspended installation", "cake flowers", "bridal suite arrangement", "delivery and full setup with team"]
+    },
+    "editorial": {
+      "price_range": { "min": 12000, "max": 25000 },
+      "includes": ["all items from Grand package", "floral wall backdrop", "hanging floral chandelier", "staircase garland", "custom floral art pieces", "next-day bridal bouquet preservation", "dedicated floral design team on-site all day"],
+      "note": "Our signature experience. Designed for weddings that want to be featured in publications."
+    }
+  },
+  "floral_scope_options": {
+    "personal_flowers": {
+      "available": true,
+      "items": ["bridal_bouquet", "bridesmaid_bouquets", "boutonnieres", "corsages", "flower_girl_basket", "ring_bearer_boutonniere", "pet_floral_collar"],
+      "note": "Bouquets and wearable flowers for the wedding party"
+    },
+    "ceremony_decor": {
+      "available": true,
+      "items": ["ceremony_arch", "chuppah", "aisle_markers", "pew_flowers", "unity_ceremony_flowers"],
+      "note": "Floral installations and decor for the ceremony space"
+    },
+    "reception_decor": {
+      "available": true,
+      "items": ["centerpieces_low", "centerpieces_tall", "head_table_garland", "cocktail_arrangements", "cake_flowers", "welcome_sign_swag", "restroom_flowers"],
+      "note": "Table florals, garlands, and decorative arrangements for the reception"
+    },
+    "extras": {
+      "available": true,
+      "items": ["floral_wall_backdrop", "hanging_floral_chandelier", "staircase_garland", "custom_floral_art_pieces", "bridal_suite_arrangement"],
+      "note": "Full-scale luxury installations — floral walls, chandeliers, staircase garlands, and bespoke art pieces for the most dramatic weddings"
+    }
+  },
+  "specialties": ["luxury", "dramatic", "large-scale installations", "suspended florals", "floral walls", "couture bouquets", "editorial"],
+  "preferred_flowers": ["imported roses", "orchids", "peonies", "gardenias", "lily of the valley", "ranunculus", "hellebores", "Japanese cherry blossoms"],
+  "seasonal_availability_notes": "Sources globally to ensure any flower is available year-round. Premium import fees apply for off-season specialty blooms.",
+  "eco_friendly": {
+    "available": false,
+    "note": "We source globally to deliver the most exquisite blooms regardless of season. Sustainability is not our primary focus — beauty is."
+  },
+  "consultation_process": {
+    "initial_consultation_free": true,
+    "mood_board_included": true,
+    "sample_arrangement_fee": 350,
+    "sample_fee_credited_on_booking": true,
+    "flow": "consult_then_mood_board_then_sample_then_deposit",
+    "note": "By-appointment-only consultation at our studio. We create a full design presentation with mood boards and sample arrangements."
+  },
+  "deposit_and_cancellation": {
+    "deposit_pct": 50,
+    "deposit_refundable": false,
+    "balance_due": "14 days before event",
+    "final_design_confirmation": "6 weeks before event",
+    "cancellation_policy": {
+      "6_plus_months": "Deposit forfeited",
+      "30_days_to_6_months": "Deposit forfeited",
+      "under_30_days": "Full payment required — flowers sourced internationally with long lead times"
+    }
+  },
+  "ratings": {
+    "average": 4.9,
+    "review_count": 64,
+    "highlights": ["beyond anything we imagined", "floral wall was the talk of the night", "true artists"],
+    "source": "aggregate"
+  },
+  "sweeteners": [
+    "Complimentary floral wall backdrop for receptions over $8000",
+    "Free bridal suite arrangement with full wedding packages",
+    "Exclusive access to rare imported varietals",
+    "Complimentary next-day bridal bouquet preservation and shadow box"
+  ],
+  "personality": "Confident, dramatic, and unapologetically luxurious. Luxe Petals sees florals as the centerpiece of a wedding, not an afterthought. They work exclusively with high-budget clients and deliver extraordinary results. Limited availability means they are selective about which weddings they take on.",
+  "negotiation_style": {
+    "flexibility": "very_low",
+    "discount_ceiling_pct": 3,
+    "preferred_tactics": ["exclusivity_appeal", "reputation_leverage", "add_premium_touches"],
+    "walkaway_below_total": 2800
+  },
+  "contact": {
+    "email": "studio@luxepetals.com",
+    "phone": "617-555-0604"
+  }
+}

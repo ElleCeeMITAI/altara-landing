@@ -1,0 +1,116 @@
+{
+  "id": "florist_02",
+  "name": "Petal & Press",
+  "category": "florist",
+  "region": "Greater Boston",
+  "description": "A modern floral design studio in Somerville specializing in clean, minimalist arrangements with architectural flair. Petal & Press blends botanical art with contemporary design for couples who want understated elegance.",
+  "lgbtq_welcoming": true,
+  "pricing": {
+    "bridal_bouquet": { "min": 200, "max": 350 },
+    "bridesmaid_bouquet": { "min": 95, "max": 165 },
+    "boutonniere": { "min": 15, "max": 28 },
+    "corsage": { "min": 28, "max": 50 },
+    "centerpiece_low": { "min": 65, "max": 150 },
+    "centerpiece_tall": { "min": 140, "max": 320 },
+    "ceremony_arch": { "min": 600, "max": 1800 },
+    "aisle_markers": { "min": 35, "max": 90, "note": "per marker" },
+    "cake_flowers": { "min": 55, "max": 150 },
+    "flower_girl_basket": { "min": 30, "max": 55 },
+    "delivery_and_setup": { "flat_fee": 175 }
+  },
+  "price_floor": 1200,
+  "lead_time_days": 60,
+  "hold_days": 14,
+  "max_events_per_weekend": 3,
+  "delivery_radius_miles": 30,
+  "beyond_radius_fee": 75,
+  "max_delivery_miles": 50,
+  "will_not_service_beyond_max": true,
+  "base_location": "Somerville, MA",
+  "packages": {
+    "essential": {
+      "price_range": { "min": 1200, "max": 1800 },
+      "includes": ["bridal bouquet", "2 bridesmaid bouquets", "4 boutonnieres", "6 low centerpieces", "cake flowers", "delivery and setup"]
+    },
+    "classic": {
+      "price_range": { "min": 2200, "max": 3500 },
+      "includes": ["bridal bouquet", "4 bridesmaid bouquets", "6 boutonnieres", "3 corsages", "10 centerpieces (mix low/tall)", "ceremony arch", "cocktail bud vases", "cake flowers", "delivery and setup"]
+    },
+    "grand": {
+      "price_range": { "min": 4000, "max": 6500 },
+      "includes": ["bridal bouquet", "6 bridesmaid bouquets", "8 boutonnieres", "4 corsages", "12 centerpieces", "ceremony arch", "aisle markers", "cocktail bud vases", "suspended dried installation", "cake flowers", "delivery and setup"]
+    }
+  },
+  "floral_scope_options": {
+    "personal_flowers": {
+      "available": true,
+      "items": ["bridal_bouquet", "bridesmaid_bouquets", "boutonnieres", "corsages", "flower_girl_basket", "ring_bearer_boutonniere", "pet_floral_collar"],
+      "note": "Bouquets and wearable flowers for the wedding party — pet floral collars available for furry ring bearers"
+    },
+    "ceremony_decor": {
+      "available": true,
+      "items": ["ceremony_arch", "chuppah", "aisle_markers", "pew_flowers", "unity_ceremony_flowers"],
+      "note": "Floral installations and decor for the ceremony space"
+    },
+    "reception_decor": {
+      "available": true,
+      "items": ["centerpieces_low", "centerpieces_tall", "head_table_garland", "cocktail_arrangements", "cake_flowers", "welcome_sign_swag", "restroom_flowers"],
+      "note": "Table florals, garlands, and decorative arrangements for the reception"
+    },
+    "extras": {
+      "available": true,
+      "items": ["suspended_dried_installation", "pressed_flower_keepsake"],
+      "note": "Specialty dried and architectural installations with a modern, minimalist aesthetic"
+    }
+  },
+  "specialties": ["modern", "minimalist", "architectural", "monochromatic", "dried flowers", "ikebana-inspired"],
+  "preferred_flowers": ["orchids", "calla lilies", "tulips", "anthuriums", "protea", "dried palms", "pampas grass"],
+  "seasonal_availability_notes": "Many preferred flowers available year-round. Tulips best January-April. Dried elements always in stock.",
+  "eco_friendly": {
+    "available": true,
+    "options": ["dried_and_preserved_arrangements", "foam_free_mechanics", "reusable_vessels", "minimal_waste_design"],
+    "upcharge": 0,
+    "flower_donation_after_event": false,
+    "note": "Our dried and preserved arrangements are inherently sustainable — they last months, reducing waste. All mechanics are foam-free by default."
+  },
+  "consultation_process": {
+    "initial_consultation_free": true,
+    "mood_board_included": true,
+    "sample_arrangement_fee": 0,
+    "flow": "consult_then_mood_board_then_deposit",
+    "note": "Free consultation and digital mood board. We move quickly — most couples book within one meeting."
+  },
+  "deposit_and_cancellation": {
+    "deposit_pct": 50,
+    "deposit_refundable": false,
+    "balance_due": "14 days before event",
+    "final_design_confirmation": "4 weeks before event",
+    "cancellation_policy": {
+      "6_plus_months": "Deposit forfeited",
+      "30_days_to_6_months": "Deposit forfeited",
+      "under_30_days": "Full payment required"
+    }
+  },
+  "ratings": {
+    "average": 4.6,
+    "review_count": 98,
+    "highlights": ["so modern and chic", "dried pampas was stunning", "fast turnaround on proposal"],
+    "source": "aggregate"
+  },
+  "sweeteners": [
+    "Free pressed-flower keepsake bookmark for the couple",
+    "Complimentary bud vases for cocktail tables with full packages",
+    "10% off for winter weddings (November-February)",
+    "Free consultation and digital mood board"
+  ],
+  "personality": "Cool, creative, and design-forward. Petal & Press draws inspiration from architecture, fashion, and modern art. They appeal to couples who want something striking but not fussy. Friendly and professional, with a quick turnaround on proposals.",
+  "negotiation_style": {
+    "flexibility": "moderate",
+    "discount_ceiling_pct": 12,
+    "preferred_tactics": ["seasonal_discounts", "simplified_arrangements", "fewer_varieties_same_impact"]
+  },
+  "contact": {
+    "email": "info@petalandpress.com",
+    "phone": "617-555-0602"
+  }
+}

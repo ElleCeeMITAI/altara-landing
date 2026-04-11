@@ -1,0 +1,93 @@
+{
+  "id": "catering_04",
+  "name": "The Cambridge Table",
+  "category": "catering",
+  "region": "Greater Boston",
+  "description": "A community-minded, farm-to-table catering company based in Cambridge. Known for creative seasonal menus, strong vegan and plant-forward options, and a collaborative approach to menu design. Ideal for couples who want a unique, locally sourced dining experience.",
+  "lgbtq_welcoming": true,
+  "pricing": {
+    "price_floor_per_head": 70,
+    "plated_per_head": 110,
+    "buffet_per_head": 78,
+    "family_style_per_head": 92,
+    "cocktail_reception_per_head": 60,
+    "bar_packages": {
+      "open_bar_premium": 55,
+      "open_bar_standard": 42,
+      "beer_wine_only": 28,
+      "non_alcoholic": 12
+    },
+    "peak_surcharge_pct": 10,
+    "peak_months": [6, 9, 10],
+    "cake_cutting_fee": 0,
+    "tasting_fee": 75,
+    "tasting_fee_waived_on_booking": true
+  },
+  "capacity": {
+    "min_guests": 20,
+    "max_guests": 150
+  },
+  "service_area": {
+    "radius_miles": 25,
+    "base_location": "Cambridge, MA",
+    "beyond_radius": "surcharge",
+    "surcharge_per_mile": 4,
+    "max_radius_miles": 50,
+    "will_not_service_beyond_max": true,
+    "note": "We serve Greater Boston and MetroWest. Travel fee of $4/mile beyond 25 miles. We do not travel to Cape Cod or Rhode Island."
+  },
+  "catering_type": "full_service_offsite",
+  "venue_exclusive": null,
+  "service_styles": ["plated", "buffet", "family_style", "cocktail_reception", "grazing_tables", "stations"],
+  "serviceware": {
+    "included": ["standard_dinnerware", "glassware", "stainless_flatware"],
+    "upgrade_options": ["handmade_ceramic_plates", "vintage_mix_match"],
+    "eco_friendly_available": true,
+    "eco_options": ["bamboo_plates", "compostable_cups", "wooden_utensils", "palm_leaf_plates", "beeswax_wraps"],
+    "eco_note": "Sustainability is core to our mission. Eco-friendly serviceware is our default for buffet and family style — upgrade to ceramic at no charge for plated. All food waste is composted."
+  },
+  "bar_service": {
+    "included": true,
+    "note": "We offer wine and beer service with food packages. Full cocktail bar available as an add-on. We feature local craft breweries and organic wines."
+  },
+  "specialties": ["Farm-to-Table", "Mediterranean", "Vegan", "Plant-Forward", "Global Fusion"],
+  "dietary_accommodations": ["vegetarian", "vegan", "gluten-free", "dairy-free", "nut-free", "soy-free", "raw", "macrobiotic"],
+  "sweeteners": [
+    "Free custom menu design consultation with the head chef",
+    "Complimentary grazing table for cocktail hour on full-service bookings",
+    "10% discount for fully plant-based menus",
+    "Donation to local food bank in the couple's name with every booking",
+    "Complimentary dessert bar for midweek weddings"
+  ],
+  "deposit_and_cancellation": {
+    "deposit_pct": 25,
+    "deposit_refundable": false,
+    "balance_due": "7 days before event",
+    "final_guest_count_due": "10 days before event",
+    "cancellation_policy": {
+      "6_plus_months": "Deposit forfeited minus $100 credit toward future event",
+      "3_to_6_months": "Deposit forfeited",
+      "under_3_months": "75% of total owed"
+    },
+    "note": "We try to be flexible. If you need to reschedule, we'll work with you."
+  },
+  "ratings": {
+    "average": 4.8,
+    "review_count": 108,
+    "highlights": ["best vegan food we've ever had", "custom menu was a dream", "so creative and collaborative"],
+    "source": "aggregate"
+  },
+  "personality": "Community-minded, creative, and genuinely excited about food. The Cambridge Table loves collaborating with couples to build one-of-a-kind menus. They are the most flexible caterer in the area on pricing and are especially enthusiastic about dietary creativity. They see every wedding as a chance to tell a story through food.",
+  "negotiation_style": {
+    "flexibility": "very_high",
+    "discount_ceiling_pct": 20,
+    "preferred_tactics": ["creative_menu_swaps", "seasonal_ingredient_savings", "off_peak_discount", "smaller_portion_tasting_menus", "community_partnership"],
+    "walkaway_below_per_head": 60
+  },
+  "lead_time_days": 45,
+  "hold_days": 21,
+  "contact": {
+    "email": "events@thecambridgetable.com",
+    "phone": "617-555-0404"
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "id": "dj_02",
+  "name": "Electric Groove Entertainment",
+  "category": "dj",
+  "region": "Greater Boston",
+  "description": "High-energy DJ and MC team that turns your reception into an unforgettable party. We bring the LED dance floor, the hype, and the non-stop energy. If you want your guests talking about the dance floor for years, we're your crew.",
+  "lgbtq_welcoming": true,
+  "base_location": "Cambridge, MA",
+  "website": "https://www.electricgrooveentertainment.com",
+  "entertainment_type": "dj",
+  "vocalist_available": false,
+  "live_musicians_available": false,
+  "genre_specialties": ["pop", "dance", "EDM", "hip-hop", "R&B", "Latin", "reggaeton", "Top 40", "mashups"],
+  "will_play_genres": ["pop", "dance", "EDM", "hip-hop", "R&B", "Latin", "reggaeton", "Top 40", "mashups", "house", "techno", "rock", "Motown"],
+  "packages": {
+    "ceremony_only": {
+      "hours": 2,
+      "price": 600,
+      "includes": [
+        "Professional DJ for ceremony",
+        "Premium sound system",
+        "Wireless officiant mic",
+        "Custom ceremony playlist",
+        "Pre-ceremony ambient music (45 min)",
+        "Sound check with venue coordinator"
+      ]
+    },
+    "reception_only": {
+      "hours": 5,
+      "price": 1800,
+      "includes": [
+        "Professional DJ and dedicated MC",
+        "Premium sound system",
+        "LED dance floor panels (12x12 ft)",
+        "Intelligent lighting package",
+        "Wireless mic for speeches",
+        "Custom playlist with do-not-play list",
+        "Online song request portal for guests",
+        "Fog machine for first dance"
+      ]
+    },
+    "full_event": {
+      "hours": 8,
+      "price": 2800,
+      "includes": [
+        "Professional DJ and dedicated MC",
+        "Premium sound system with subwoofers",
+        "LED dance floor panels (16x16 ft)",
+        "Intelligent lighting and moving heads",
+        "Wireless officiant mic",
+        "Wireless mics for speeches (2)",
+        "Custom playlist with do-not-play list",
+        "Online song request portal for guests",
+        "Fog machine for first dance",
+        "Cocktail hour music",
+        "Photo booth add-on (2 hours)",
+        "Day-of vendor coordination"
+      ]
+    }
+  },
+  "overtime_rate_per_hour": 350,
+  "price_floor": 600,
+  "max_guests_supported": 400,
+  "equipment_included": [
+    "Premium PA system (up to 400 guests)",
+    "Dual subwoofers",
+    "LED dance floor panels",
+    "Intelligent moving head lights",
+    "LED uplighting (16 fixtures, color-matched)",
+    "Fog/haze machine",
+    "Wireless microphones (3)",
+    "DJ controller with redundant laptop setup"
+  ],
+  "service_area": {
+    "radius_miles": 40,
+    "base_location": "Cambridge, MA",
+    "beyond_radius_fee": 100,
+    "max_service_miles": 70,
+    "will_not_service_beyond_max": true
+  },
+  "lead_time_days": 90,
+  "hold_days": 10,
+  "max_events_per_weekend": 2,
+  "venue_partnerships": {
+    "preferred_venues": ["venue_02"],
+    "partnership_type": "tried_and_true",
+    "discount_for_partner_venues": false,
+    "note": "Has worked The Harborview multiple times. Knows the ballroom acoustics and power setup."
+  },
+  "playlist_consultation": {
+    "included": true,
+    "process": "Online planning portal with song request system for couples and guests. Dedicated playlist curation meeting (video or in-person) 3-4 weeks before the wedding. We review must-play, do-not-play, and create a custom energy flow for the night.",
+    "timeline_planning": true,
+    "do_not_play_list": true,
+    "must_play_list": true,
+    "guest_request_portal": true,
+    "consultation_timing": "3-4 weeks before event"
+  },
+  "eco_friendly": {
+    "available": false,
+    "note": "Not applicable to DJ services."
+  },
+  "deposit_and_cancellation": {
+    "deposit_pct": 40,
+    "deposit_type": "retainer",
+    "deposit_refundable": false,
+    "balance_due": "14 days before event",
+    "cancellation_policy": {
+      "6_plus_months": "Retainer forfeited",
+      "30_days_to_6_months": "Retainer forfeited",
+      "under_30_days": "Full payment required"
+    }
+  },
+  "ratings": {
+    "platform_average": null,
+    "platform_review_count": 0,
+    "external_average": 4.7,
+    "external_review_count": 89,
+    "external_sources": ["google", "the_knot", "yelp"],
+    "composite_score": 4.7,
+    "highlights": ["LED dance floor was incredible", "best party we've ever been to", "MC kept the energy up all night"],
+    "verified_bookings": 0
+  },
+  "sweeteners": [
+    "Free photo booth upgrade (2 to 3 hours) for bookings 6+ months out",
+    "Complimentary LED dance floor upgrade (12x12 to 16x16) for full-event packages",
+    "Free custom monogram gobo projection for the dance floor",
+    "Cold sparkler machines for grand entrance (2 units) with full-event booking"
+  ],
+  "personality": "Energetic, confident, and production-focused. Electric Groove sees themselves as entertainment producers, not just DJs. High production value with LED floors, intelligent lighting, and photo booth. Strong Instagram and TikTok presence. Will add production extras rather than discount base price.",
+  "negotiation_style": {
+    "flexibility": "moderate",
+    "discount_ceiling_pct": 8,
+    "preferred_tactics": ["add_production_extras", "upgrade_not_discount", "social_media_partnership", "early_booking_perks"]
+  },
+  "contact": {
+    "email": "events@electricgroove.com",
+    "phone": "617-555-0702"
+  }
+}

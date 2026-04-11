@@ -1,0 +1,112 @@
+{
+  "id": "photographer_04",
+  "name": "Nova Visual",
+  "category": "photographer",
+  "region": "Greater Boston",
+  "description": "Modern, editorial wedding photography and cinematic drone coverage. We blend cutting-edge technology with artistic vision to create a visual experience that is bold, sleek, and unforgettable.",
+  "lgbtq_welcoming": true,
+  "packages": {
+    "elopement": {
+      "hours": 3,
+      "price": 2200,
+      "includes": [
+        "1 lead photographer",
+        "Drone aerial photography (weather permitting)",
+        "Online gallery with 150+ edited images",
+        "Highlight reel of drone footage (2 min)",
+        "Print release for personal use",
+        "Creative direction consultation"
+      ]
+    },
+    "half_day": {
+      "hours": 6,
+      "price": 4000,
+      "includes": [
+        "1 lead photographer",
+        "1 second shooter",
+        "Drone aerial photography and video",
+        "Online gallery with 400+ edited images",
+        "Highlight reel of drone footage (3 min)",
+        "Engagement session (1 hour)",
+        "Print release for personal use",
+        "Same-day social media sneak peek"
+      ]
+    },
+    "full_day": {
+      "hours": 12,
+      "price": 6500,
+      "includes": [
+        "1 lead photographer",
+        "1 second shooter",
+        "Licensed drone operator for aerial coverage",
+        "Online gallery with 700+ edited images",
+        "Cinematic drone highlight film (5 min)",
+        "Engagement session (1.5 hours)",
+        "Print release for personal use",
+        "Same-day social media sneak peek",
+        "Premium lay-flat album (40 pages)",
+        "Large format canvas print (24x36)",
+        "Next-day preview edits"
+      ]
+    }
+  },
+  "price_floor": 2200,
+  "lead_time_days": 365,
+  "hold_days": 7,
+  "max_events_per_weekend": 1,
+  "travel_radius_miles": 75,
+  "travel_fee_beyond_radius": 200,
+  "second_shooter_rate_per_hour": 85,
+  "turnaround_weeks": 4,
+  "style": ["modern", "editorial", "drone", "cinematic"],
+  "videography_addon": {
+    "available": true,
+    "included_in_packages": true,
+    "highlight_film_3min": "included_in_half_day_and_full_day",
+    "full_ceremony_edit": 800,
+    "full_day_cinematic_film_8min": 2000,
+    "drone_highlight_reel": "included_in_all_packages",
+    "same_day_edit": 1500,
+    "note": "Video is core to our offering. All packages include drone footage. Half-day and full-day include a cinematic highlight film. Full cinematic wedding film and same-day edit available as upgrades."
+  },
+  "album_and_print_addons": {
+    "premium_layflat_album_40page": 800,
+    "premium_layflat_album_60page": 1100,
+    "parent_album_20page": 350,
+    "canvas_print_16x24": 200,
+    "canvas_print_24x36": 375,
+    "large_format_metal_print": 450,
+    "fine_art_print_collection": 600,
+    "note": "Full-day package includes 40-page premium lay-flat album and 24x36 canvas. We use archival-quality materials exclusively."
+  },
+  "deposit_and_cancellation": {
+    "retainer_pct": 50,
+    "retainer_refundable": false,
+    "retainer_note": "Non-refundable retainer secures your date and production crew.",
+    "balance_due": "30 days before event",
+    "cancellation_policy": {
+      "any_time": "Retainer forfeited",
+      "under_90_days": "Full payment required"
+    },
+    "engagement_session_timing": "3-6 months before wedding"
+  },
+  "ratings": {
+    "average": 4.8,
+    "review_count": 94,
+    "highlights": ["drone shots were incredible", "felt like a movie", "next-level production quality"],
+    "source": "aggregate"
+  },
+  "sweeteners": [
+    "Free drone add-on for half-day bookings in November-March",
+    "Complimentary canvas print upgrade for early bookings (6+ months out)",
+    "Exclusive behind-the-scenes mini film for full-day clients",
+    "Priority editing with 2-week turnaround for premium package"
+  ],
+  "personality": {
+    "tone": "confident, tech-savvy, visionary",
+    "negotiation_style": "luxury",
+    "flexibility": "low",
+    "eagerness": "selective",
+    "notes": "Positions as a premium, tech-forward brand. Rarely discounts but will add high-value extras for ideal clients. FAA-licensed drone pilot. Strong portfolio of venue aerials. Attracts couples who want a cinematic, modern look."
+  }
+}

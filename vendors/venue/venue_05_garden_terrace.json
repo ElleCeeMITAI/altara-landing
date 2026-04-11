@@ -1,0 +1,55 @@
+{
+  "id": "venue_05",
+  "name": "Garden Terrace Inn",
+  "category": "venue",
+  "region": "Southern NH",
+  "location": "Hollis, NH",
+  "description": "A charming country inn in southern New Hampshire with wildflower gardens, a rustic barn, and mountain views.",
+  "lgbtq_welcoming": true,
+  "capacity": { "min": 30, "max": 175 },
+  "pricing": {
+    "base_rental": 2800,
+    "per_head_food_min": 65,
+    "plated": 100,
+    "buffet": 72,
+    "family_style": 85,
+    "stations": 90,
+    "cocktail_reception": 55
+  },
+  "price_floor_per_head": 65,
+  "peak_surcharge": 0.10,
+  "max_discount_peak": 0.12,
+  "max_discount_offpeak": 0.25,
+  "preferred_deposit_pct": 35,
+  "min_deposit_pct": 20,
+  "lead_time_days": 60,
+  "hold_days": 21,
+  "blackout_dates": ["2027-10-04", "2027-10-05", "2027-10-11", "2027-10-12"],
+  "peak_months": [6, 9, 10],
+  "catering_policy": "outside_allowed",
+  "catering_notes": "We have a small in-house menu available but happily welcome outside caterers at no extra fee. Our barn kitchen has basic prep facilities for outside vendors.",
+  "amenities": ["barn reception", "bonfire area", "bridal cabin", "farm animals for photos"],
+  "cuisine_specialties": ["Farm-to-Table", "American Contemporary", "New England"],
+  "sweeteners": ["free rehearsal dinner space", "s'mores bar", "complimentary bridal cabin overnight"],
+  "deposit_and_cancellation": {
+    "deposit_pct": 35,
+    "deposit_refundable": false,
+    "balance_due": "14 days before event",
+    "cancellation_policy": {
+      "12_plus_months": "Full deposit refunded minus $100 processing fee",
+      "6_to_12_months": "50% of deposit refunded",
+      "under_6_months": "Deposit forfeited"
+    },
+    "requires_liability_insurance": false,
+    "note": "We're flexible on cancellations — we'd rather work with you to reschedule than lose you."
+  },
+  "ratings": {
+    "average": 4.4,
+    "review_count": 68,
+    "highlights": ["rustic charm", "amazing value", "bonfire was a hit", "farm animals stole the show"],
+    "source": "aggregate",
+    "new_vendor_discount": true,
+    "new_vendor_note": "Newer wedding venue — offering 15% off for couples who leave a review"
+  },
+  "personality": "warm and folksy, budget-friendly, eager to fill dates, very willing to negotiate"
+}

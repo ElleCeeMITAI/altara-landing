@@ -1,0 +1,119 @@
+{
+  "id": "florist_01",
+  "name": "Bloom & Vine Studio",
+  "category": "florist",
+  "region": "Greater Boston",
+  "description": "A premium floral design studio in Boston's Back Bay, known for lush romantic arrangements and garden-inspired installations. Bloom & Vine creates breathtaking floral experiences with an emphasis on seasonal blooms and European-inspired design.",
+  "lgbtq_welcoming": true,
+  "pricing": {
+    "bridal_bouquet": { "min": 250, "max": 450 },
+    "bridesmaid_bouquet": { "min": 120, "max": 200 },
+    "boutonniere": { "min": 18, "max": 35 },
+    "corsage": { "min": 35, "max": 65 },
+    "centerpiece_low": { "min": 85, "max": 200 },
+    "centerpiece_tall": { "min": 175, "max": 400 },
+    "ceremony_arch": { "min": 800, "max": 2500 },
+    "aisle_markers": { "min": 45, "max": 120, "note": "per marker" },
+    "cake_flowers": { "min": 75, "max": 200 },
+    "flower_girl_basket": { "min": 40, "max": 75 },
+    "delivery_and_setup": { "flat_fee": 250 }
+  },
+  "price_floor": 1500,
+  "lead_time_days": 90,
+  "hold_days": 14,
+  "max_events_per_weekend": 2,
+  "delivery_radius_miles": 35,
+  "beyond_radius_fee": 100,
+  "max_delivery_miles": 60,
+  "will_not_service_beyond_max": true,
+  "base_location": "Back Bay, Boston, MA",
+  "packages": {
+    "essential": {
+      "price_range": { "min": 1500, "max": 2200 },
+      "includes": ["bridal bouquet", "2 bridesmaid bouquets", "5 boutonnieres", "3 corsages", "6 low centerpieces", "cake flowers", "delivery and setup"]
+    },
+    "classic": {
+      "price_range": { "min": 2800, "max": 4200 },
+      "includes": ["bridal bouquet", "4 bridesmaid bouquets", "8 boutonnieres", "4 corsages", "10 low centerpieces", "ceremony arch", "cocktail table arrangements", "cake flowers", "delivery and setup"]
+    },
+    "grand": {
+      "price_range": { "min": 5000, "max": 8500 },
+      "includes": ["bridal bouquet", "6 bridesmaid bouquets", "10 boutonnieres", "6 corsages", "12 mixed centerpieces (low and tall)", "ceremony arch with full floral", "aisle markers", "cocktail table arrangements", "cake flowers", "flower girl basket", "floral installation piece", "delivery and setup"]
+    }
+  },
+  "floral_scope_options": {
+    "personal_flowers": {
+      "available": true,
+      "items": ["bridal_bouquet", "bridesmaid_bouquets", "boutonnieres", "corsages", "flower_girl_basket", "ring_bearer_boutonniere", "pet_floral_collar"],
+      "note": "Bouquets and wearable flowers for the wedding party"
+    },
+    "ceremony_decor": {
+      "available": true,
+      "items": ["ceremony_arch", "chuppah", "aisle_markers", "pew_flowers", "unity_ceremony_flowers"],
+      "note": "Floral installations and decor for the ceremony space"
+    },
+    "reception_decor": {
+      "available": true,
+      "items": ["centerpieces_low", "centerpieces_tall", "head_table_garland", "cocktail_arrangements", "cake_flowers", "welcome_sign_swag", "restroom_flowers"],
+      "note": "Table florals, garlands, and decorative arrangements for the reception"
+    },
+    "extras": {
+      "available": true,
+      "items": ["getaway_car_flowers", "floral_installation_piece", "toss_bouquet"],
+      "note": "Known for breathtaking floral installations and statement pieces"
+    }
+  },
+  "specialties": ["romantic", "garden", "European classic", "cascading bouquets", "floral installations"],
+  "preferred_flowers": ["garden roses", "peonies", "ranunculus", "anemones", "sweet peas", "dahlias", "hydrangeas"],
+  "seasonal_availability_notes": "Peonies available May-June only. Dahlias August-October. Garden roses year-round but premium pricing in winter.",
+  "eco_friendly": {
+    "available": true,
+    "options": ["foam_free_arrangements", "locally_sourced_seasonal", "reusable_vessels"],
+    "upcharge": 0,
+    "flower_donation_after_event": true,
+    "donation_partner": "Petals for Hope — we donate reception flowers to local hospitals and nursing homes",
+    "note": "We use foam-free mechanics on request. Locally sourced seasonal flowers are our default in spring and summer."
+  },
+  "consultation_process": {
+    "initial_consultation_free": true,
+    "mood_board_included": true,
+    "sample_arrangement_fee": 150,
+    "sample_fee_credited_on_booking": true,
+    "flow": "consult_then_mood_board_then_sample_then_deposit",
+    "note": "We start with a free consultation and build a digital mood board. Sample arrangement available before deposit."
+  },
+  "deposit_and_cancellation": {
+    "deposit_pct": 50,
+    "deposit_refundable": false,
+    "balance_due": "14 days before event",
+    "final_design_confirmation": "6 weeks before event",
+    "cancellation_policy": {
+      "6_plus_months": "Deposit forfeited",
+      "30_days_to_6_months": "Deposit forfeited",
+      "under_30_days": "Full payment required — flowers already ordered from growers"
+    }
+  },
+  "ratings": {
+    "average": 4.8,
+    "review_count": 143,
+    "highlights": ["breathtaking arrangements", "mood board was so helpful", "peonies were perfection"],
+    "source": "aggregate"
+  },
+  "sweeteners": [
+    "Complimentary toss bouquet with bridal bouquet order",
+    "Free flower crown for the bride with orders over $3000",
+    "Complimentary boutonniere upgrade to garden rose for full wedding packages",
+    "10% off when booking floral and ceremony decor together",
+    "Free post-wedding flower donation to Petals for Hope"
+  ],
+  "personality": "Artistic, detail-obsessed, and deeply romantic. Bloom & Vine approaches every wedding as a work of art. They invest significant time in consultations and mood boards. Premium pricing reflects their quality, but they are warm and collaborative throughout the process.",
+  "negotiation_style": {
+    "flexibility": "moderate",
+    "discount_ceiling_pct": 8,
+    "preferred_tactics": ["add_value_not_discount", "seasonal_flower_swaps", "bundle_pricing"]
+  },
+  "contact": {
+    "email": "hello@bloomandvine.com",
+    "phone": "617-555-0601"
+  }
+}

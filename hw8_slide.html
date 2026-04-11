@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Altara — A2A Wedding Marketplace | MAS.664</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #e8e8e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    width: 1280px;
+    height: 720px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+    padding: 48px 60px 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Accent bar at top */
+  .slide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: #C4636E;
+  }
+  .header {
+    margin-bottom: 28px;
+  }
+  .title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #C4636E;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    color: #555;
+  }
+  .author {
+    font-size: 14px;
+    color: #888;
+    margin-top: 6px;
+  }
+  .points {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .point {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .point-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #C4636E;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-top: 2px;
+  }
+  .point-text {
+    flex: 1;
+  }
+  .point-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #C4636E;
+    margin-bottom: 3px;
+  }
+  .point-desc {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.45;
+  }
+  .point-desc strong {
+    color: #222;
+  }
+  .footer {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .demo-link {
+    font-size: 14px;
+    color: #666;
+  }
+  .demo-link span {
+    color: #C4636E;
+    font-weight: 600;
+  }
+  .demo-url {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: #C4636E;
+    background: #fdf0f1;
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+  .stats-bar {
+    display: flex;
+    gap: 24px;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: #C4636E;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: #999;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="header">
+    <div class="title">Altara &mdash; A2A Wedding Marketplace</div>
+    <div class="subtitle">Agent-to-Agent Negotiation for Multi-Vendor Wedding Planning</div>
+    <div class="author">Lisa Caruso &nbsp;|&nbsp; MAS.664 &nbsp;|&nbsp; April 2026</div>
+  </div>
+
+  <div class="points">
+    <div class="point">
+      <div class="point-icon">&#x1F4CB;</div>
+      <div class="point-text">
+        <div class="point-label">What it does</div>
+        <div class="point-desc">A Planner agent negotiates with <strong>30 Vendor agents</strong> across <strong>7 categories</strong> (venue, catering, photography, florals, DJ, bakery, transport) to assemble complete wedding packages.</div>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-icon">&#x1F4CA;</div>
+      <div class="point-text">
+        <div class="point-label">Key findings</div>
+        <div class="point-desc">Auction saves <strong>17.8% on venues</strong>; parallel execution is <strong>4.3x faster AND 28% cheaper</strong> at scale; <strong>100% failure recovery</strong> rate.</div>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-icon">&#x26A1;</div>
+      <div class="point-text">
+        <div class="point-label">Scale</div>
+        <div class="point-desc"><strong>30 agents</strong>, <strong>7 categories</strong>, ~2 min negotiation time, <strong>&lt;$1 API cost</strong> per wedding.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="demo-link"><span>Live demo:</span> <span class="demo-url">altara-landing.up.railway.app/simulate.html</span></div>
+    <div class="stats-bar">
+      <div class="stat"><div class="stat-num">30</div><div class="stat-label">Agents</div></div>
+      <div class="stat"><div class="stat-num">7</div><div class="stat-label">Categories</div></div>
+      <div class="stat"><div class="stat-num">~2 min</div><div class="stat-label">Negotiation</div></div>
+      <div class="stat"><div class="stat-num">&lt;$1</div><div class="stat-label">API Cost</div></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

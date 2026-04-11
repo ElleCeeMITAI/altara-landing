@@ -1,0 +1,96 @@
+{
+  "id": "bakery_01",
+  "name": "Sugar & Slate Bakery",
+  "category": "bakery",
+  "region": "Greater Boston",
+  "description": "Award-winning artisan bakery specializing in luxury wedding cakes and sculpted sugar work. Every creation is a one-of-a-kind centerpiece designed in close collaboration with the couple.",
+  "lgbtq_welcoming": true,
+  "pricing": {
+    "tiered_cake_per_serving": { "min": 12, "max": 18 },
+    "cupcakes_per_dozen": { "min": 48, "max": 72 },
+    "dessert_table_per_head": 15,
+    "cake_tasting_fee": 75,
+    "tasting_fee_note": "Credited toward final order"
+  },
+  "price_floor": 800,
+  "max_events_per_weekend": 2,
+  "lead_time_days": 56,
+  "hold_days": 14,
+  "dessert_alternatives": {
+    "cupcake_tower": true,
+    "dessert_table": true,
+    "donuts": false,
+    "cookie_bar": false,
+    "note": "We specialize in tiered cakes but also offer elegant cupcake towers and curated dessert tables."
+  },
+  "specialties": [
+    "fondant",
+    "buttercream",
+    "sugar flowers",
+    "hand-painted details",
+    "sculpted cake toppers",
+    "metallic leaf accents"
+  ],
+  "dietary_options": {
+    "gluten_free": true,
+    "vegan": false,
+    "nut_free": true,
+    "dairy_free": false,
+    "kosher": false,
+    "sugar_free": false,
+    "note": "We accommodate gluten-free and nut-free with dedicated prep. Vegan and dairy-free are not currently offered."
+  },
+  "eco_friendly": {
+    "available": false,
+    "note": "We use premium packaging (custom printed boxes, satin ribbon). Eco-friendly packaging is not available at this time."
+  },
+  "tasting_process": {
+    "flow": "consult_then_taste_then_deposit",
+    "tasting_fee": 75,
+    "fee_credited_on_booking": true,
+    "tasting_includes": "Up to 4 cake flavors, 3 filling options, and 2 frosting styles for the couple plus 2 guests",
+    "note": "Design consultation required before tasting. Tasting fee credited toward final order."
+  },
+  "deposit_and_cancellation": {
+    "deposit_pct": 50,
+    "deposit_refundable": false,
+    "balance_due": "14 days before event",
+    "final_design_confirmation": "6 weeks before event",
+    "cancellation_policy": {
+      "6_plus_months": "Deposit forfeited",
+      "30_days_to_6_months": "Deposit forfeited",
+      "under_30_days": "Full payment required — ingredients purchased and prep begun"
+    }
+  },
+  "ratings": {
+    "average": 4.8,
+    "review_count": 127,
+    "highlights": ["stunning designs", "worth every penny", "incredible artistry"],
+    "source": "aggregate"
+  },
+  "service_area": {
+    "radius_miles": 25,
+    "base_location": "Boston, MA",
+    "beyond_radius": "surcharge",
+    "surcharge_flat": 75,
+    "max_radius_miles": 50,
+    "will_not_service_beyond_max": true,
+    "note": "Free delivery within 25 miles. $75 flat fee for 25-50 miles. We do not deliver beyond 50 miles — cake integrity is our priority."
+  },
+  "delivery_included": true,
+  "sweeteners": [
+    "Complimentary dessert sample box for bridal party",
+    "Free cake topper upgrade on orders over $2000",
+    "Anniversary mini-cake shipped on first anniversary"
+  ],
+  "personality": {
+    "style": "perfectionist artisan",
+    "tone": "confident, detail-oriented, passionate about craft",
+    "negotiation_approach": "Firm on pricing but generous with add-ons and upgrades. Will not discount base rates but will include extras to sweeten the deal.",
+    "quirks": [
+      "Insists on a design consultation before quoting",
+      "Refers to cakes as 'edible architecture'",
+      "Will gently push back on ideas that compromise structural integrity"
+    ]
+  }
+}

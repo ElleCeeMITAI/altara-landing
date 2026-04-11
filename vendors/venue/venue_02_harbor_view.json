@@ -1,0 +1,53 @@
+{
+  "id": "venue_02",
+  "name": "Harbor View Estate",
+  "category": "venue",
+  "region": "Cape Cod",
+  "location": "Chatham, MA",
+  "description": "A waterfront estate on Cape Cod with panoramic harbor views, outdoor ceremony space, and a glass-walled reception pavilion.",
+  "lgbtq_welcoming": true,
+  "capacity": { "min": 30, "max": 150 },
+  "pricing": {
+    "base_rental": 7500,
+    "per_head_food_min": 95,
+    "plated": 155,
+    "buffet": 110,
+    "family_style": 130,
+    "stations": 140,
+    "cocktail_reception": 90
+  },
+  "price_floor_per_head": 95,
+  "peak_surcharge": 0.20,
+  "max_discount_peak": 0.05,
+  "max_discount_offpeak": 0.12,
+  "preferred_deposit_pct": 50,
+  "min_deposit_pct": 30,
+  "lead_time_days": 270,
+  "hold_days": 10,
+  "blackout_dates": ["2027-07-04", "2027-07-05", "2027-08-15", "2027-08-16"],
+  "peak_months": [6, 7, 8, 9],
+  "catering_policy": "in_house_preferred",
+  "catering_notes": "We have an in-house catering team but allow approved outside caterers for an additional $1,500 kitchen fee.",
+  "amenities": ["outdoor ceremony lawn", "bridal cottage", "boat dock", "sunset terrace"],
+  "cuisine_specialties": ["New England", "Farm-to-Table", "Mediterranean"],
+  "sweeteners": ["complimentary sparkling wine toast", "bonfire pit access", "rehearsal dinner space"],
+  "deposit_and_cancellation": {
+    "deposit_pct": 50,
+    "deposit_refundable": false,
+    "balance_due": "30 days before event",
+    "cancellation_policy": {
+      "12_plus_months": "Deposit forfeited minus $500 admin fee",
+      "6_to_12_months": "Deposit forfeited",
+      "under_6_months": "Full payment required"
+    },
+    "requires_liability_insurance": true,
+    "insurance_due": "30 days before event"
+  },
+  "ratings": {
+    "average": 4.9,
+    "review_count": 187,
+    "highlights": ["breathtaking views", "magical sunset ceremony", "worth every penny"],
+    "source": "aggregate"
+  },
+  "personality": "relaxed coastal charm, premium positioning, less willing to discount"
+}

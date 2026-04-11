@@ -1,0 +1,53 @@
+{
+  "id": "venue_03",
+  "name": "Rosewood Manor",
+  "category": "venue",
+  "region": "Greater Boston",
+  "location": "Brookline, MA",
+  "description": "An intimate Victorian mansion in Brookline with manicured gardens, perfect for weddings under 100 guests.",
+  "lgbtq_welcoming": true,
+  "capacity": { "min": 20, "max": 100 },
+  "pricing": {
+    "base_rental": 3500,
+    "per_head_food_min": 75,
+    "plated": 115,
+    "buffet": 80,
+    "family_style": 95,
+    "stations": 100,
+    "cocktail_reception": 65
+  },
+  "price_floor_per_head": 75,
+  "peak_surcharge": 0.10,
+  "max_discount_peak": 0.10,
+  "max_discount_offpeak": 0.20,
+  "preferred_deposit_pct": 40,
+  "min_deposit_pct": 20,
+  "lead_time_days": 120,
+  "hold_days": 14,
+  "blackout_dates": ["2027-05-24", "2027-05-25", "2027-10-11", "2027-10-12"],
+  "peak_months": [5, 6, 9, 10],
+  "catering_policy": "outside_only",
+  "catering_notes": "We do not have an in-house kitchen. Couples must hire their own caterer. We have a list of preferred vendors but accept any licensed caterer.",
+  "amenities": ["garden ceremony", "parlor rooms", "vintage photo spots", "on-site coordinator"],
+  "cuisine_specialties": ["Farm-to-Table", "American Contemporary", "Italian-American"],
+  "sweeteners": ["complimentary day-of coordinator", "garden ceremony setup", "late checkout for bridal suite"],
+  "deposit_and_cancellation": {
+    "deposit_pct": 40,
+    "deposit_refundable": false,
+    "balance_due": "30 days before event",
+    "cancellation_policy": {
+      "12_plus_months": "Deposit forfeited minus $250 admin fee",
+      "6_to_12_months": "Deposit forfeited",
+      "under_6_months": "Full payment required"
+    },
+    "requires_liability_insurance": true,
+    "insurance_due": "30 days before event"
+  },
+  "ratings": {
+    "average": 4.8,
+    "review_count": 94,
+    "highlights": ["intimate and charming", "coordinator was amazing", "felt like home"],
+    "source": "aggregate"
+  },
+  "personality": "boutique and personal, very flexible on pricing for smaller weddings, values relationships over margins"
+}

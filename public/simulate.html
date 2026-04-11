@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Altara — Live A2A Simulation</title>
+  <title>Altara — Multi-Category Wedding Negotiation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
@@ -24,6 +24,12 @@
       --pink-soft: #E8C5BE;
       --text: #333333;
       --text-muted: #6B6B6B;
+      --green: #4A9E6B;
+      --green-light: rgba(74, 158, 107, 0.1);
+      --amber: #C49335;
+      --amber-light: rgba(196, 147, 53, 0.1);
+      --red: #C44B4B;
+      --red-light: rgba(196, 75, 75, 0.1);
     }
 
     html { scroll-behavior: smooth; }
@@ -87,7 +93,7 @@
     }
 
     .container {
-      max-width: 960px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 2rem 1.5rem 4rem;
     }
@@ -109,7 +115,7 @@
     .page-header p {
       color: var(--text-muted);
       font-size: 1.05rem;
-      max-width: 560px;
+      max-width: 620px;
       margin: 0 auto;
     }
 
@@ -162,40 +168,16 @@
       font-weight: 400;
     }
 
-    .fixed-fields {
-      display: flex;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .fixed-field {
-      flex: 1;
-      min-width: 220px;
-      background: var(--cream);
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      border: 1px solid rgba(0,0,0,0.04);
-    }
-
-    .fixed-field .label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.25rem;
-    }
-
-    .fixed-field .value {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--charcoal);
-    }
-
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 1.25rem;
       margin-bottom: 2rem;
     }
@@ -286,6 +268,12 @@
       color: var(--charcoal);
     }
 
+    .form-divider {
+      border: none;
+      border-top: 1px solid var(--sand);
+      margin: 0.5rem 0 2rem;
+    }
+
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -305,19 +293,47 @@
       box-shadow: 0 2px 8px rgba(196, 99, 110, 0.25);
     }
 
-    .btn-primary:hover {
+    .btn-primary:hover:not(:disabled) {
       background: var(--rose-dark);
       transform: translateY(-1px);
       box-shadow: 0 4px 16px rgba(196, 99, 110, 0.3);
     }
 
-    .btn-primary:active {
+    .btn-primary:active:not(:disabled) {
       transform: translateY(0);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     .btn-primary svg {
       width: 18px;
       height: 18px;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.9rem 2rem;
+      background: transparent;
+      color: var(--rose);
+      border: 2px solid var(--rose);
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(196, 99, 110, 0.06);
+      transform: translateY(-1px);
     }
 
     /* SIMULATION VIEW */
@@ -329,106 +345,102 @@
       display: block;
     }
 
-    /* AGENT HEADER */
-    .agents-bar {
+    /* CATEGORY PROGRESS BAR */
+    .category-progress {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      gap: 1rem;
+      gap: 0.35rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
     }
 
-    .agent-card {
+    .cat-step {
       flex: 1;
+      min-width: 100px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.4rem;
+      padding: 0.75rem 0.5rem;
+      border-radius: 12px;
       background: var(--warm-white);
-      border-radius: 14px;
-      padding: 1rem 1.25rem;
+      border: 1.5px solid var(--sand);
+      transition: all 0.3s;
+    }
+
+    .cat-step.active {
+      border-color: var(--rose);
+      background: rgba(196, 99, 110, 0.05);
+      box-shadow: 0 2px 12px rgba(196, 99, 110, 0.15);
+    }
+
+    .cat-step.done {
+      border-color: var(--green);
+      background: var(--green-light);
+    }
+
+    .cat-step.failed {
+      border-color: var(--red);
+      background: var(--red-light);
+    }
+
+    .cat-step.skipped {
+      border-color: var(--sand);
+      background: rgba(232, 224, 212, 0.3);
+      opacity: 0.6;
+    }
+
+    .cat-icon {
+      font-size: 1.2rem;
+    }
+
+    .cat-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .cat-step.active .cat-label { color: var(--rose); }
+    .cat-step.done .cat-label { color: var(--green); }
+    .cat-step.failed .cat-label { color: var(--red); }
+
+    /* BUDGET TRACKER */
+    .budget-tracker {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      background: var(--warm-white);
+      border-radius: 16px;
+      padding: 1.25rem;
       border: 1px solid rgba(0,0,0,0.04);
       box-shadow: 0 1px 3px rgba(0,0,0,0.03);
     }
 
-    .agent-card.caterer {
-      flex-direction: row-reverse;
-      text-align: right;
+    .budget-cell {
+      text-align: center;
     }
 
-    .agent-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-
-    .agent-avatar.couple {
-      background: rgba(196, 99, 110, 0.1);
-    }
-
-    .agent-avatar.caterer {
-      background: rgba(232, 224, 212, 0.6);
-    }
-
-    .agent-name {
+    .budget-cell .bc-label {
+      font-size: 0.68rem;
       font-weight: 600;
-      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .budget-cell .bc-value {
+      font-size: 1.15rem;
+      font-weight: 700;
       color: var(--charcoal);
     }
 
-    .agent-role {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    .agents-connector {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .agents-connector svg {
-      width: 28px;
-      height: 28px;
-      color: var(--sand);
-    }
-
-    /* PROGRESS BAR */
-    .progress-container {
-      margin-bottom: 2rem;
-    }
-
-    .progress-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .progress-track {
-      width: 100%;
-      height: 6px;
-      background: var(--sand);
-      border-radius: 100px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--rose), var(--blush));
-      border-radius: 100px;
-      width: 0%;
-      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    .budget-cell .bc-value.rose { color: var(--rose); }
+    .budget-cell .bc-value.green { color: var(--green); }
+    .budget-cell .bc-value.amber { color: var(--amber); }
 
     /* TIMELINE */
     .timeline {
@@ -444,6 +456,71 @@
       bottom: 0;
       width: 2px;
       background: linear-gradient(to bottom, var(--sand), transparent);
+    }
+
+    /* CATEGORY HEADER in timeline */
+    .category-header {
+      position: relative;
+      margin-bottom: 1rem;
+      margin-top: 1.5rem;
+      padding-left: 50px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .category-header.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .category-header .timeline-dot {
+      position: absolute;
+      left: 14px;
+      top: 0.6rem;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--rose);
+      border: 3px solid var(--warm-white);
+      box-shadow: 0 0 0 2px var(--rose-light);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+    }
+
+    .category-header-card {
+      background: var(--warm-white);
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+      border: 1.5px solid var(--rose-light);
+      box-shadow: 0 2px 8px rgba(196, 99, 110, 0.08);
+    }
+
+    .category-header-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 0.25rem;
+    }
+
+    .category-header-card .cat-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .category-header-card .cat-budget {
+      display: inline-block;
+      margin-top: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--rose);
+      background: rgba(196, 99, 110, 0.08);
+      padding: 0.2rem 0.7rem;
+      border-radius: 100px;
     }
 
     /* MESSAGE CARD */
@@ -465,7 +542,7 @@
       padding-right: 60px;
     }
 
-    .msg-wrapper.from-caterer {
+    .msg-wrapper.from-vendor {
       padding-left: 60px;
       padding-right: 0;
     }
@@ -487,7 +564,7 @@
       box-shadow: 0 0 0 2px var(--rose-light);
     }
 
-    .from-caterer .timeline-dot {
+    .from-vendor .timeline-dot {
       background: var(--sand);
       box-shadow: 0 0 0 2px var(--sand);
     }
@@ -504,7 +581,7 @@
       border-left: 3px solid var(--rose-light);
     }
 
-    .from-caterer .msg-card {
+    .from-vendor .msg-card {
       background: var(--warm-white);
       border-right: 3px solid var(--sand);
     }
@@ -541,7 +618,7 @@
       color: var(--rose);
     }
 
-    .from-caterer .msg-step {
+    .from-vendor .msg-step {
       background: rgba(232, 224, 212, 0.5);
       color: var(--charcoal-light);
     }
@@ -615,32 +692,120 @@
     .json-viewer .json-null { color: #999; }
     .json-viewer .json-bracket { color: #888; }
 
-    /* RESULT CARD */
-    .result-card {
-      margin-top: 2rem;
-      background: var(--warm-white);
-      border-radius: 20px;
-      padding: 2.5rem;
-      border: 2px solid var(--rose-light);
-      box-shadow: 0 4px 24px rgba(196, 99, 110, 0.1);
+    /* CATEGORY RESULT CARD */
+    .cat-result-card {
+      position: relative;
+      margin: 1rem 0 1.5rem;
+      padding-left: 50px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .cat-result-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cat-result-inner {
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      border: 2px solid var(--green);
+      background: var(--green-light);
+    }
+
+    .cat-result-inner.rejected {
+      border-color: var(--red);
+      background: var(--red-light);
+    }
+
+    .cat-result-inner .cr-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      margin-bottom: 0.3rem;
+    }
+
+    .cat-result-inner .cr-detail {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .cat-result-inner .cr-price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-top: 0.3rem;
+    }
+
+    .cat-result-inner.rejected .cr-price {
+      color: var(--red);
+    }
+
+    /* NOTICE CARD (skip, no candidates, budget redistribution) */
+    .notice-card {
+      position: relative;
+      margin: 0.75rem 0;
+      padding-left: 50px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .notice-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .notice-inner {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      background: rgba(232, 224, 212, 0.4);
+      border: 1px solid var(--sand);
+    }
+
+    .notice-inner.amber {
+      background: var(--amber-light);
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    .notice-icon { font-size: 1rem; }
+
+    /* FINAL SUMMARY */
+    .final-summary {
+      margin-top: 2.5rem;
       opacity: 0;
       transform: translateY(16px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
-    .result-card.visible {
+    .final-summary.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .result-header {
+    .summary-card {
+      background: var(--warm-white);
+      border-radius: 20px;
+      padding: 2.5rem;
+      border: 2px solid var(--rose-light);
+      box-shadow: 0 4px 24px rgba(196, 99, 110, 0.1);
+    }
+
+    .summary-header {
       display: flex;
       align-items: center;
       gap: 0.75rem;
       margin-bottom: 1.5rem;
     }
 
-    .result-icon {
+    .summary-icon {
       width: 48px;
       height: 48px;
       background: rgba(196, 99, 110, 0.1);
@@ -651,193 +816,187 @@
       font-size: 1.5rem;
     }
 
-    .result-title {
+    .summary-title {
       font-family: 'DM Serif Display', serif;
       font-size: 1.4rem;
       color: var(--charcoal);
       font-weight: 400;
     }
 
-    .result-subtitle {
+    .summary-subtitle {
       font-size: 0.85rem;
       color: var(--text-muted);
     }
 
-    .result-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+    .package-tabs {
+      display: flex;
+      gap: 0.5rem;
       margin-bottom: 1.5rem;
     }
 
-    .result-item {
-      background: var(--cream);
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-    }
-
-    .result-item .ri-label {
-      font-size: 0.72rem;
+    .package-tab {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--sand);
+      border-radius: 10px;
+      background: var(--warm-white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
       font-weight: 600;
       color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.2rem;
-    }
-
-    .result-item .ri-value {
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--charcoal);
-    }
-
-    .result-item .ri-value.highlight {
-      color: var(--rose);
-    }
-
-    .result-menu {
-      background: var(--cream);
-      border-radius: 12px;
-      padding: 1.25rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .result-menu h4 {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--charcoal);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 0.75rem;
-    }
-
-    .menu-courses {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .menu-course {
-      display: flex;
-      align-items: baseline;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-    }
-
-    .menu-course .course-label {
-      font-weight: 600;
-      color: var(--rose);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      min-width: 80px;
-    }
-
-    .menu-course .course-desc {
-      color: var(--text);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      width: 100%;
-      padding: 0.9rem 2rem;
-      background: transparent;
-      color: var(--rose);
-      border: 2px solid var(--rose);
-      border-radius: 12px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
       cursor: pointer;
+      text-align: center;
       transition: all 0.2s;
     }
 
-    .btn-secondary:hover {
+    .package-tab.active {
+      border-color: var(--rose);
       background: rgba(196, 99, 110, 0.06);
-      transform: translateY(-1px);
+      color: var(--rose);
     }
 
-    /* LOADING STATE */
-    .loading-overlay {
+    .package-tab:hover:not(.active) {
+      border-color: var(--rose-light);
+    }
+
+    .package-content {
       display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      background: rgba(250, 247, 242, 0.85);
-      backdrop-filter: blur(8px);
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
     }
 
-    .loading-overlay.active {
+    .package-content.active {
+      display: block;
+    }
+
+    .vendor-row {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      background: var(--cream);
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
     }
 
-    .spinner {
-      width: 48px;
-      height: 48px;
-      border: 4px solid var(--sand);
+    .vendor-row .vr-cat {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+
+    .vendor-row .vr-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--charcoal);
+    }
+
+    .vendor-row .vr-price {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--rose);
+    }
+
+    .package-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      margin-top: 0.75rem;
+      background: rgba(196, 99, 110, 0.06);
+      border-radius: 12px;
+      border: 1.5px solid var(--rose-light);
+    }
+
+    .package-total .pt-label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--charcoal);
+    }
+
+    .package-total .pt-value {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--rose);
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-cell {
+      text-align: center;
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 0.75rem;
+    }
+
+    .stat-cell .sc-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .stat-cell .sc-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    /* SPINNER */
+    .spinner-inline {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--sand);
       border-top-color: var(--rose);
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
+      vertical-align: middle;
+      margin-right: 0.4rem;
     }
 
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
 
-    .loading-text {
-      font-size: 1rem;
-      color: var(--text-muted);
+    /* ERROR */
+    .error-card {
+      background: var(--red-light);
+      border: 1.5px solid var(--red);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      margin: 1rem 0;
+      color: var(--red);
       font-weight: 500;
     }
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.25rem; }
-
       .container { padding: 1.5rem 1rem 3rem; }
-
       .page-header h1 { font-size: 1.8rem; }
-
       #input-panel .card { padding: 1.75rem 1.5rem; }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .fixed-fields {
-        flex-direction: column;
-      }
-
-      .agents-bar {
-        flex-direction: column;
-      }
-
-      .agents-connector {
-        transform: rotate(90deg);
-      }
-
-      .agent-card.caterer {
-        flex-direction: row;
-        text-align: left;
-      }
-
+      .form-grid { grid-template-columns: 1fr; }
+      .form-grid-2 { grid-template-columns: 1fr; }
+      .category-progress { gap: 0.25rem; }
+      .cat-step { min-width: 60px; padding: 0.5rem 0.25rem; }
+      .cat-label { font-size: 0.6rem; }
+      .budget-tracker { grid-template-columns: repeat(2, 1fr); }
       .msg-wrapper.from-couple,
-      .msg-wrapper.from-caterer {
+      .msg-wrapper.from-vendor {
         padding-left: 50px;
         padding-right: 0;
       }
-
-      .result-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .result-card { padding: 1.75rem 1.5rem; }
+      .summary-card { padding: 1.75rem 1.5rem; }
+      .stats-row { grid-template-columns: 1fr; }
+      .package-tabs { flex-direction: column; }
     }
 
     @media (max-width: 480px) {
@@ -857,145 +1016,127 @@
     </a>
   </nav>
 
-  <!-- LOADING -->
-  <div class="loading-overlay" id="loading">
-    <div class="spinner"></div>
-    <div class="loading-text">Agents are negotiating...</div>
-  </div>
-
   <main>
     <div class="container">
 
       <!-- PAGE HEADER -->
       <div class="page-header">
         <div class="badge"><span class="dot"></span> Live Simulation</div>
-        <h1>A2A Agent Negotiation</h1>
-        <p>Watch two AI agents negotiate wedding catering in real time using the Agent-to-Agent protocol.</p>
+        <h1>Full Wedding Negotiation</h1>
+        <p>Watch AI agents negotiate across 7 vendor categories in real time -- venue first, then building your complete wedding package.</p>
       </div>
 
       <!-- INPUT PANEL -->
       <div id="input-panel">
         <div class="card">
-          <div class="form-section-title">Event Details</div>
-
-          <div class="fixed-fields">
-            <div class="fixed-field">
-              <div class="label">Wedding Date</div>
-              <div class="value">Saturday, June 12, 2027</div>
-            </div>
-            <div class="fixed-field">
-              <div class="label">Location</div>
-              <div class="value">Greater Boston</div>
-            </div>
-          </div>
+          <div class="form-section-title">Wedding Details</div>
 
           <form id="sim-form" autocomplete="off">
             <div class="form-grid">
               <div class="form-group">
-                <label for="budget">Budget</label>
-                <input type="number" id="budget" name="budget" value="10000" min="1000" step="500" placeholder="$10,000">
-              </div>
-              <div class="form-group">
-                <label for="flexBudget">Flex Budget</label>
-                <input type="number" id="flexBudget" name="flexBudget" value="1000" min="0" step="250" placeholder="$1,000">
-                <div style="font-size:0.7rem;color:var(--text-muted);margin-top:0.3rem;line-height:1.3">Max extra your agent can approve without asking</div>
+                <label for="budget">Total Budget</label>
+                <input type="number" id="budget" name="budget" value="50000" min="5000" step="1000" placeholder="$50,000">
               </div>
               <div class="form-group">
                 <label for="guestCount">Guest Count</label>
                 <input type="number" id="guestCount" name="guestCount" value="120" min="10" max="500" placeholder="120">
               </div>
               <div class="form-group">
-                <label for="serviceStyle">Service Style</label>
-                <select id="serviceStyle" name="serviceStyle">
-                  <option value="Plated">Plated</option>
-                  <option value="Buffet">Buffet</option>
-                  <option value="Family Style" selected>Family Style</option>
-                  <option value="Stations">Stations</option>
-                  <option value="Cocktail Reception">Cocktail Reception</option>
+                <label for="weddingDate">Wedding Date</label>
+                <input type="date" id="weddingDate" name="weddingDate" value="2027-06-12">
+              </div>
+              <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" value="Boston" placeholder="City or region">
+              </div>
+              <div class="form-group">
+                <label for="style">Wedding Style</label>
+                <select id="style" name="style">
+                  <option value="classic" selected>Classic</option>
+                  <option value="romantic">Romantic</option>
+                  <option value="modern">Modern</option>
+                  <option value="rustic">Rustic</option>
+                  <option value="bohemian">Bohemian</option>
+                  <option value="garden">Garden</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="cuisinePreference">Cuisine Preference</label>
-                <select id="cuisinePreference" name="cuisinePreference">
-                  <option value="">No Preference</option>
-                  <option value="Italian-American" selected>Italian-American</option>
-                  <option value="Mediterranean">Mediterranean</option>
-                  <option value="American Contemporary">American Contemporary</option>
-                  <option value="Asian Fusion">Asian Fusion</option>
-                  <option value="New England">New England</option>
-                  <option value="Farm-to-Table">Farm-to-Table</option>
+                <label for="serviceStyle">Service Style</label>
+                <select id="serviceStyle" name="serviceStyle">
+                  <option value="Plated" selected>Plated</option>
+                  <option value="Buffet">Buffet</option>
+                  <option value="Family Style">Family Style</option>
+                  <option value="Stations">Stations</option>
                 </select>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="cuisinePreference">Cuisine Preference</label>
+                <input type="text" id="cuisinePreference" name="cuisinePreference" placeholder="e.g. Italian, Mediterranean" value="">
+              </div>
+              <div class="form-group">
+                <label for="entertainmentType">Entertainment</label>
+                <select id="entertainmentType" name="entertainmentType">
+                  <option value="dj" selected>DJ</option>
+                  <option value="live_band">Live Band</option>
+                  <option value="hybrid">Hybrid</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="floralScope">Floral Scope</label>
+                <select id="floralScope" name="floralScope">
+                  <option value="bouquet_only">Bridal Bouquet Only</option>
+                  <option value="wedding_party">Wedding Party</option>
+                  <option value="ceremony_reception">Ceremony + Reception</option>
+                  <option value="full" selected>Full Florals</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="transportScope">Transport</label>
+                <select id="transportScope" name="transportScope">
+                  <option value="couple_only" selected>Couple Only</option>
+                  <option value="bridal_party">Bridal Party</option>
+                  <option value="full_fleet">Full Fleet</option>
+                </select>
+              </div>
+            </div>
+
+            <hr class="form-divider">
+
+            <div class="dietary-section">
+              <label class="section-label">Dietary Needs</label>
+              <div class="checkbox-grid">
+                <label class="checkbox-pill"><input type="checkbox" name="dietary" value="Vegetarian"><span>Vegetarian</span></label>
+                <label class="checkbox-pill"><input type="checkbox" name="dietary" value="Vegan"><span>Vegan</span></label>
+                <label class="checkbox-pill"><input type="checkbox" name="dietary" value="Gluten-Free"><span>Gluten-Free</span></label>
+                <label class="checkbox-pill"><input type="checkbox" name="dietary" value="Kosher"><span>Kosher</span></label>
+                <label class="checkbox-pill"><input type="checkbox" name="dietary" value="Halal"><span>Halal</span></label>
+                <label class="checkbox-pill"><input type="checkbox" name="dietary" value="Nut-Free"><span>Nut-Free</span></label>
               </div>
             </div>
 
             <div class="dietary-section">
-              <label class="section-label">Dietary Accommodations</label>
+              <label class="section-label">Genre Preferences</label>
               <div class="checkbox-grid">
-                <label class="checkbox-pill"><input type="checkbox" name="dietary" value="Vegetarian"><span>Vegetarian</span></label>
-                <label class="checkbox-pill"><input type="checkbox" name="dietary" value="Vegan"><span>Vegan</span></label>
-                <label class="checkbox-pill"><input type="checkbox" name="dietary" value="Gluten Free"><span>Gluten Free</span></label>
-                <label class="checkbox-pill"><input type="checkbox" name="dietary" value="Dairy Free"><span>Dairy Free</span></label>
-                <label class="checkbox-pill"><input type="checkbox" name="dietary" value="Nut Free"><span>Nut Free</span></label>
-                <label class="checkbox-pill"><input type="checkbox" name="dietary" value="Kosher"><span>Kosher</span></label>
-                <label class="checkbox-pill"><input type="checkbox" name="dietary" value="Halal"><span>Halal</span></label>
+                <label class="checkbox-pill"><input type="checkbox" name="genre" value="Pop/Top 40"><span>Pop / Top 40</span></label>
+                <label class="checkbox-pill"><input type="checkbox" name="genre" value="R&B/Soul"><span>R&B / Soul</span></label>
+                <label class="checkbox-pill"><input type="checkbox" name="genre" value="Jazz"><span>Jazz</span></label>
+                <label class="checkbox-pill"><input type="checkbox" name="genre" value="Rock"><span>Rock</span></label>
+                <label class="checkbox-pill"><input type="checkbox" name="genre" value="Classical"><span>Classical</span></label>
+                <label class="checkbox-pill"><input type="checkbox" name="genre" value="Latin"><span>Latin</span></label>
+                <label class="checkbox-pill"><input type="checkbox" name="genre" value="Country"><span>Country</span></label>
+                <label class="checkbox-pill"><input type="checkbox" name="genre" value="Electronic"><span>Electronic</span></label>
               </div>
             </div>
 
-            <!-- Agent Fallback Preferences -->
-            <div style="margin-bottom:2rem;padding:1.5rem;background:var(--cream);border-radius:14px;border:1px solid rgba(0,0,0,0.04)">
-              <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.25rem">
-                <span style="font-size:1.1rem">🤖</span>
-                <label class="section-label" style="margin-bottom:0">Agent Autonomy Settings</label>
-              </div>
-              <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:1.25rem;line-height:1.4">Pre-authorize your agent to try these alternatives if the first negotiation doesn't close — no real-time input needed.</div>
-
-              <div class="dietary-section" style="margin-bottom:1.25rem">
-                <label class="section-label">Acceptable Alternate Styles</label>
-                <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.5rem">If your preferred style is too expensive, your agent can propose these instead.</div>
-                <div class="checkbox-grid">
-                  <label class="checkbox-pill"><input type="checkbox" name="altStyle" value="Plated"><span>Plated</span></label>
-                  <label class="checkbox-pill"><input type="checkbox" name="altStyle" value="Buffet" checked><span>Buffet</span></label>
-                  <label class="checkbox-pill"><input type="checkbox" name="altStyle" value="Family Style"><span>Family Style</span></label>
-                  <label class="checkbox-pill"><input type="checkbox" name="altStyle" value="Stations"><span>Stations</span></label>
-                  <label class="checkbox-pill"><input type="checkbox" name="altStyle" value="Cocktail Reception"><span>Cocktail Reception</span></label>
-                </div>
-              </div>
-
-              <div class="form-grid" style="margin-bottom:1.25rem">
-                <div class="form-group">
-                  <label for="minGuestCount">Min Guest Count</label>
-                  <input type="number" id="minGuestCount" name="minGuestCount" value="100" min="10" max="500" placeholder="100">
-                  <div style="font-size:0.7rem;color:var(--text-muted);margin-top:0.3rem;line-height:1.3">Lowest headcount your agent can offer</div>
-                </div>
-                <div class="form-group">
-                  <label for="dateFlexibility">Date Flexibility</label>
-                  <select id="dateFlexibility" name="dateFlexibility">
-                    <option value="fixed">Fixed date only</option>
-                    <option value="week" selected>Flexible within 1 week</option>
-                    <option value="month">Any date in June</option>
-                    <option value="season">Any date May-Oct</option>
-                    <option value="offpeak">Will consider off-peak</option>
-                  </select>
-                  <div style="font-size:0.7rem;color:var(--text-muted);margin-top:0.3rem;line-height:1.3">Off-peak dates can save 10-15%</div>
-                </div>
-              </div>
-
-              <div class="dietary-section" style="margin-bottom:0">
-                <label class="section-label">Backup Venues</label>
-                <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.5rem">If Grand Meridian can't close, your agent will try these next.</div>
-                <div class="checkbox-grid">
-                  <label class="checkbox-pill"><input type="checkbox" name="altVenue" value="Harbor View Estate" checked><span>Harbor View Estate</span></label>
-                  <label class="checkbox-pill"><input type="checkbox" name="altVenue" value="The Brookline Hotel"><span>The Brookline Hotel</span></label>
-                  <label class="checkbox-pill"><input type="checkbox" name="altVenue" value="Cambridge Loft"><span>Cambridge Loft</span></label>
-                  <label class="checkbox-pill"><input type="checkbox" name="altVenue" value="Beacon Hill Club"><span>Beacon Hill Club</span></label>
-                  <label class="checkbox-pill"><input type="checkbox" name="altVenue" value="Seaport Kitchen"><span>Seaport Kitchen</span></label>
-                </div>
-              </div>
-            </div>
-
-            <button type="submit" class="btn-primary">
+            <button type="submit" id="start-btn" class="btn-primary">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 010 1.972l-11.54 6.347a1.125 1.125 0 01-1.667-.986V5.653z" /></svg>
-              Start Simulation
+              Start Negotiation
             </button>
           </form>
         </div>
@@ -1004,43 +1145,42 @@
       <!-- SIMULATION VIEW -->
       <div id="simulation-view">
 
-        <!-- Agent headers -->
-        <div class="agents-bar">
-          <div class="agent-card">
-            <div class="agent-avatar couple">💍</div>
-            <div>
-              <div class="agent-name">Couple Agent</div>
-              <div class="agent-role">Wedding Planner AI</div>
-            </div>
+        <!-- Category progress -->
+        <div class="category-progress" id="cat-progress">
+          <div class="cat-step" data-cat="venue"><div class="cat-icon">&#127970;</div><div class="cat-label">Venue</div></div>
+          <div class="cat-step" data-cat="catering"><div class="cat-icon">&#127860;</div><div class="cat-label">Catering</div></div>
+          <div class="cat-step" data-cat="photographer"><div class="cat-icon">&#128247;</div><div class="cat-label">Photo</div></div>
+          <div class="cat-step" data-cat="bakery"><div class="cat-icon">&#127874;</div><div class="cat-label">Bakery</div></div>
+          <div class="cat-step" data-cat="florist"><div class="cat-icon">&#127803;</div><div class="cat-label">Florist</div></div>
+          <div class="cat-step" data-cat="dj"><div class="cat-icon">&#127926;</div><div class="cat-label">DJ</div></div>
+          <div class="cat-step" data-cat="transport"><div class="cat-icon">&#128663;</div><div class="cat-label">Transport</div></div>
+        </div>
+
+        <!-- Budget tracker -->
+        <div class="budget-tracker" id="budget-tracker">
+          <div class="budget-cell">
+            <div class="bc-label">Total Budget</div>
+            <div class="bc-value" id="bt-total">$50,000</div>
           </div>
-          <div class="agents-connector">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>
+          <div class="budget-cell">
+            <div class="bc-label">Allocated</div>
+            <div class="bc-value amber" id="bt-allocated">$0</div>
           </div>
-          <div class="agent-card caterer">
-            <div class="agent-avatar caterer">🍴</div>
-            <div>
-              <div class="agent-name">Grand Meridian Ballroom</div>
-              <div class="agent-role">Venue Catering Agent</div>
-            </div>
+          <div class="budget-cell">
+            <div class="bc-label">Spent</div>
+            <div class="bc-value rose" id="bt-spent">$0</div>
+          </div>
+          <div class="budget-cell">
+            <div class="bc-label">Remaining</div>
+            <div class="bc-value green" id="bt-remaining">$50,000</div>
           </div>
         </div>
 
-        <!-- Progress -->
-        <div class="progress-container">
-          <div class="progress-label">
-            <span id="progress-step">Initializing...</span>
-            <span id="progress-count">0 / 0</span>
-          </div>
-          <div class="progress-track">
-            <div class="progress-fill" id="progress-fill"></div>
-          </div>
-        </div>
-
-        <!-- Message timeline -->
+        <!-- Timeline -->
         <div class="timeline" id="timeline"></div>
 
-        <!-- Result card (injected by JS) -->
-        <div id="result-area"></div>
+        <!-- Final summary -->
+        <div id="summary-area"></div>
 
       </div>
 
@@ -1048,21 +1188,49 @@
   </main>
 
   <script>
-    const form = document.getElementById('sim-form');
-    const inputPanel = document.getElementById('input-panel');
-    const simView = document.getElementById('simulation-view');
-    const timeline = document.getElementById('timeline');
-    const loading = document.getElementById('loading');
-    const progressFill = document.getElementById('progress-fill');
-    const progressStep = document.getElementById('progress-step');
-    const progressCount = document.getElementById('progress-count');
-    const resultArea = document.getElementById('result-area');
+    // ---- State ----
+    var totalBudget = 50000;
+    var spentSoFar = 0;
+    var allocatedSoFar = 0;
+    var isRunning = false;
 
-    // --- JSON syntax highlight ---
+    // ---- DOM refs ----
+    var form = document.getElementById('sim-form');
+    var inputPanel = document.getElementById('input-panel');
+    var simView = document.getElementById('simulation-view');
+    var timeline = document.getElementById('timeline');
+    var summaryArea = document.getElementById('summary-area');
+    var startBtn = document.getElementById('start-btn');
+
+    // ---- Helpers ----
+    function escapeHtml(s) {
+      if (typeof s !== 'string') return String(s);
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function fmtMoney(n) {
+      return '$' + Number(n || 0).toLocaleString();
+    }
+
+    function capitalize(s) {
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+
+    var CATEGORY_ICONS = {
+      venue: '&#127970;',
+      catering: '&#127860;',
+      photographer: '&#128247;',
+      bakery: '&#127874;',
+      florist: '&#127803;',
+      dj: '&#127926;',
+      transport: '&#128663;',
+    };
+
+    // ---- JSON syntax highlighting ----
     function highlightJSON(obj, indent) {
       indent = indent || 0;
-      const pad = '  '.repeat(indent);
-      const pad1 = '  '.repeat(indent + 1);
+      var pad = '  '.repeat(indent);
+      var pad1 = '  '.repeat(indent + 1);
 
       if (obj === null) return '<span class="json-null">null</span>';
       if (typeof obj === 'boolean') return '<span class="json-bool">' + obj + '</span>';
@@ -1071,773 +1239,382 @@
 
       if (Array.isArray(obj)) {
         if (obj.length === 0) return '<span class="json-bracket">[]</span>';
-        let items = obj.map(function(v) { return pad1 + highlightJSON(v, indent + 1); });
+        var items = obj.map(function(v) { return pad1 + highlightJSON(v, indent + 1); });
         return '<span class="json-bracket">[</span>\n' + items.join(',\n') + '\n' + pad + '<span class="json-bracket">]</span>';
       }
 
-      const keys = Object.keys(obj);
+      var keys = Object.keys(obj);
       if (keys.length === 0) return '<span class="json-bracket">{}</span>';
-      let entries = keys.map(function(k) {
+      var entries = keys.map(function(k) {
         return pad1 + '<span class="json-key">"' + escapeHtml(k) + '"</span>: ' + highlightJSON(obj[k], indent + 1);
       });
       return '<span class="json-bracket">{</span>\n' + entries.join(',\n') + '\n' + pad + '<span class="json-bracket">}</span>';
     }
 
-    function escapeHtml(s) {
-      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    // ---- Update budget display ----
+    function updateBudget(spent, allocated) {
+      if (typeof spent === 'number') spentSoFar = spent;
+      if (typeof allocated === 'number') allocatedSoFar = allocated;
+      document.getElementById('bt-total').textContent = fmtMoney(totalBudget);
+      document.getElementById('bt-allocated').textContent = fmtMoney(allocatedSoFar);
+      document.getElementById('bt-spent').textContent = fmtMoney(spentSoFar);
+      document.getElementById('bt-remaining').textContent = fmtMoney(totalBudget - spentSoFar);
     }
 
-    // --- Build message card ---
-    function buildMessageCard(step) {
-      const isCouple = step.from === 'couple';
-      const wrapper = document.createElement('div');
-      wrapper.className = 'msg-wrapper ' + (isCouple ? 'from-couple' : 'from-caterer');
+    // ---- Set category step status ----
+    function setCatStatus(cat, status) {
+      var el = document.querySelector('.cat-step[data-cat="' + cat + '"]');
+      if (!el) return;
+      el.className = 'cat-step ' + status;
+    }
 
-      const dot = document.createElement('div');
+    // ---- Animate in ----
+    function animateIn(el) {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          el.classList.add('visible');
+        });
+      });
+      el.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+
+    // ---- Add category header to timeline ----
+    function addCategoryHeader(category, message, budgetAllocated) {
+      var div = document.createElement('div');
+      div.className = 'category-header';
+      div.innerHTML =
+        '<div class="timeline-dot" style="font-size:0.65rem;display:flex;align-items:center;justify-content:center;"></div>' +
+        '<div class="category-header-card">' +
+          '<h3>' + capitalize(category) + '</h3>' +
+          '<div class="cat-meta">' + escapeHtml(message) + '</div>' +
+          (budgetAllocated ? '<div class="cat-budget">Budget: ' + fmtMoney(budgetAllocated) + '</div>' : '') +
+        '</div>';
+      timeline.appendChild(div);
+      animateIn(div);
+    }
+
+    // ---- Add message card ----
+    function addMessageCard(evt) {
+      var isCouple = evt.from === 'couple';
+      var wrapper = document.createElement('div');
+      wrapper.className = 'msg-wrapper ' + (isCouple ? 'from-couple' : 'from-vendor');
+
+      var dot = document.createElement('div');
       dot.className = 'timeline-dot';
       wrapper.appendChild(dot);
 
-      const card = document.createElement('div');
+      var card = document.createElement('div');
       card.className = 'msg-card';
 
-      const header = document.createElement('div');
+      var header = document.createElement('div');
       header.className = 'msg-header';
       header.innerHTML =
-        '<span class="msg-icon">' + (isCouple ? '💍' : '🍴') + '</span>' +
-        '<span class="msg-agent">' + (isCouple ? 'Couple Agent' : 'Grand Meridian') + '</span>' +
-        '<span class="msg-step">' + escapeHtml(step.label) + '</span>';
+        '<span class="msg-icon">' + (isCouple ? '&#128141;' : (CATEGORY_ICONS[evt.category] || '&#128188;')) + '</span>' +
+        '<span class="msg-agent">' + escapeHtml(isCouple ? 'Wedding Planner' : (evt.vendor_name || 'Vendor')) + '</span>' +
+        '<span class="msg-step">' + escapeHtml(evt.label || 'Message') + '</span>';
       card.appendChild(header);
 
-      const summary = document.createElement('div');
+      var summary = document.createElement('div');
       summary.className = 'msg-summary';
-      summary.textContent = step.summary;
+      summary.textContent = evt.summary || '';
       card.appendChild(summary);
 
       // JSON toggle
-      const toggleId = 'json-' + step.step;
-      const toggle = document.createElement('button');
-      toggle.className = 'json-toggle';
-      toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg> View A2A Message';
-      card.appendChild(toggle);
+      if (evt.data) {
+        var toggle = document.createElement('button');
+        toggle.className = 'json-toggle';
+        toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg> View A2A Message';
+        card.appendChild(toggle);
 
-      const viewer = document.createElement('div');
-      viewer.className = 'json-viewer';
-      viewer.innerHTML = '<pre>' + highlightJSON(step.data, 0) + '</pre>';
-      card.appendChild(viewer);
+        var viewer = document.createElement('div');
+        viewer.className = 'json-viewer';
+        viewer.innerHTML = '<pre>' + highlightJSON(evt.data, 0) + '</pre>';
+        card.appendChild(viewer);
 
-      toggle.addEventListener('click', function() {
-        const isOpen = viewer.classList.contains('open');
-        viewer.classList.toggle('open');
-        toggle.classList.toggle('open');
-        toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg> ' + (isOpen ? 'View A2A Message' : 'Hide A2A Message');
-      });
-
-      wrapper.appendChild(card);
-      return wrapper;
-    }
-
-    // --- Build result card ---
-    function buildResultCard(resultData) {
-      const d = resultData;
-      let menuHTML = '';
-      if (d.menu && d.menu.length) {
-        menuHTML = '<div class="result-menu"><h4>Confirmed Menu</h4><div class="menu-courses">' +
-          d.menu.map(function(c) {
-            return '<div class="menu-course"><span class="course-label">' + escapeHtml(c.course) + '</span><span class="course-desc">' + escapeHtml(c.description) + '</span></div>';
-          }).join('') +
-          '</div></div>';
+        toggle.addEventListener('click', function() {
+          var isOpen = viewer.classList.contains('open');
+          viewer.classList.toggle('open');
+          toggle.classList.toggle('open');
+          toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg> ' + (isOpen ? 'View A2A Message' : 'Hide A2A Message');
+        });
       }
 
-      var depositAmt = d.totalCost ? Math.round(d.totalCost * 0.25) : 0;
-
-      return '<div class="result-card" id="result-card">' +
-        '<div class="result-header">' +
-          '<div class="result-icon">📋</div>' +
-          '<div><div class="result-title">Confirmed — Pending Deposit</div><div class="result-subtitle">Both agents have reached agreement. The date is held for 7 days pending a 25% deposit of $' + depositAmt.toLocaleString() + '.</div></div>' +
-        '</div>' +
-        '<div class="result-grid">' +
-          '<div class="result-item"><div class="ri-label">Agreed Total</div><div class="ri-value highlight">$' + (d.totalCost || 0).toLocaleString() + '</div></div>' +
-          '<div class="result-item"><div class="ri-label">Per Guest</div><div class="ri-value">$' + (d.perGuest || 0).toFixed(2) + '</div></div>' +
-          '<div class="result-item"><div class="ri-label">Deposit Due</div><div class="ri-value highlight">$' + depositAmt.toLocaleString() + '</div></div>' +
-          '<div class="result-item"><div class="ri-label">Service Style</div><div class="ri-value">' + escapeHtml(d.serviceStyle || '') + '</div></div>' +
-          '<div class="result-item"><div class="ri-label">Cuisine</div><div class="ri-value">' + escapeHtml(d.cuisine || '') + '</div></div>' +
-          '<div class="result-item"><div class="ri-label">Event Date</div><div class="ri-value">' + escapeHtml(d.eventDate || '') + '</div></div>' +
-        '</div>' +
-        menuHTML +
-        '<button class="btn-secondary" onclick="resetSimulation()">' +
-          '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" /></svg>' +
-          'Run Again' +
-        '</button>' +
-      '</div>';
+      wrapper.appendChild(card);
+      timeline.appendChild(wrapper);
+      animateIn(wrapper);
     }
 
-    // --- Animate steps ---
-    function animateSteps(steps) {
-      const total = steps.length;
-      progressCount.textContent = '0 / ' + total;
+    // ---- Add category result ----
+    function addCategoryResult(evt) {
+      var accepted = !!evt.price;
+      var div = document.createElement('div');
+      div.className = 'cat-result-card';
+      div.innerHTML =
+        '<div class="cat-result-inner' + (accepted ? '' : ' rejected') + '">' +
+          '<div class="cr-title">' + (accepted ? 'Locked' : 'Failed') + ': ' + capitalize(evt.category) + '</div>' +
+          '<div class="cr-detail">' + escapeHtml(evt.message || evt.vendor_name || '') + '</div>' +
+          (evt.price ? '<div class="cr-price">' + fmtMoney(evt.price) + '</div>' : '<div class="cr-price">No deal</div>') +
+        '</div>';
+      timeline.appendChild(div);
+      animateIn(div);
+    }
 
-      steps.forEach(function(step, i) {
-        setTimeout(function() {
-          // Update progress
-          const pct = Math.round(((i + 1) / total) * 100);
-          progressFill.style.width = pct + '%';
-          progressStep.textContent = step.label;
-          progressCount.textContent = (i + 1) + ' / ' + total;
+    // ---- Add notice ----
+    function addNotice(icon, message, variant) {
+      var div = document.createElement('div');
+      div.className = 'notice-card';
+      div.innerHTML = '<div class="notice-inner' + (variant ? ' ' + variant : '') + '"><span class="notice-icon">' + icon + '</span> ' + escapeHtml(message) + '</div>';
+      timeline.appendChild(div);
+      animateIn(div);
+    }
 
-          // Add card
-          const card = buildMessageCard(step);
-          timeline.appendChild(card);
+    // ---- Build final summary ----
+    function buildFinalSummary(summary, packages) {
+      if (!summary) return;
 
-          // Trigger animation
-          requestAnimationFrame(function() {
-            requestAnimationFrame(function() {
-              card.classList.add('visible');
-            });
+      var html = '<div class="final-summary" id="final-summary"><div class="summary-card">';
+      html += '<div class="summary-header">' +
+        '<div class="summary-icon">&#128203;</div>' +
+        '<div><div class="summary-title">Negotiation Complete</div>' +
+        '<div class="summary-subtitle">' + (summary.categories_negotiated || 0) + ' categories negotiated in ' + (summary.elapsed_sec || 0) + 's</div></div></div>';
+
+      // Stats
+      html += '<div class="stats-row">' +
+        '<div class="stat-cell"><div class="sc-label">Total Spent</div><div class="sc-value">' + fmtMoney(summary.total_spent) + '</div></div>' +
+        '<div class="stat-cell"><div class="sc-label">Remaining</div><div class="sc-value">' + fmtMoney(summary.remaining) + '</div></div>' +
+        '<div class="stat-cell"><div class="sc-label">API Cost</div><div class="sc-value">$' + (summary.total_api_cost_usd || 0).toFixed(4) + '</div></div>' +
+        '</div>';
+
+      // Package tabs
+      if (packages) {
+        html += '<div class="package-tabs">';
+        var pkgNames = ['budget', 'recommended', 'premium'];
+        var pkgLabels = ['Budget', 'Recommended', 'Premium'];
+        for (var i = 0; i < pkgNames.length; i++) {
+          html += '<button class="package-tab' + (i === 1 ? ' active' : '') + '" data-pkg="' + pkgNames[i] + '">' + pkgLabels[i] + ' (' + fmtMoney(packages[pkgNames[i]]?.total) + ')</button>';
+        }
+        html += '</div>';
+
+        for (var i = 0; i < pkgNames.length; i++) {
+          var pkg = packages[pkgNames[i]];
+          html += '<div class="package-content' + (i === 1 ? ' active' : '') + '" data-pkg="' + pkgNames[i] + '">';
+          if (pkg && pkg.vendors) {
+            var cats = Object.keys(pkg.vendors);
+            for (var c = 0; c < cats.length; c++) {
+              var v = pkg.vendors[cats[c]];
+              html += '<div class="vendor-row">' +
+                '<div><div class="vr-cat">' + cats[c] + '</div><div class="vr-name">' + escapeHtml(v.vendor_name || v.name || 'Unknown') + '</div></div>' +
+                '<div class="vr-price">' + fmtMoney(v.price || v.total_price) + '</div></div>';
+            }
+          }
+          html += '<div class="package-total"><span class="pt-label">Package Total</span><span class="pt-value">' + fmtMoney(pkg?.total) + '</span></div>';
+          html += '</div>';
+        }
+      }
+
+      html += '<button class="btn-secondary" onclick="resetSimulation()" style="margin-top:1.5rem">' +
+        '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" /></svg>' +
+        'Run Again</button>';
+
+      html += '</div></div>';
+
+      summaryArea.innerHTML = html;
+
+      // Animate in
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          var el = document.getElementById('final-summary');
+          if (el) el.classList.add('visible');
+        });
+      });
+
+      // Package tab switching
+      var tabs = summaryArea.querySelectorAll('.package-tab');
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          tabs.forEach(function(t) { t.classList.remove('active'); });
+          tab.classList.add('active');
+          var pkgName = tab.getAttribute('data-pkg');
+          summaryArea.querySelectorAll('.package-content').forEach(function(pc) {
+            pc.classList.toggle('active', pc.getAttribute('data-pkg') === pkgName);
           });
-
-          // Scroll into view
-          card.scrollIntoView({ behavior: 'smooth', block: 'end' });
-
-          // Show result at end
-          if (i === total - 1) {
-            var bookingData = null;
-            // Mock data format
-            if (step.data && step.data.booking) {
-              bookingData = step.data.booking;
-            }
-            // API data format — build booking from step 6 response + earlier steps
-            else if (step.data && step.data.response && step.data.response.data) {
-              var rd = step.data.response.data;
-              // Find the menu step (step 4) for course info
-              var menuStep = steps.find(function(s) { return s.step === 4; });
-              var menuCourses = [];
-              if (menuStep && menuStep.data && menuStep.data.adapted_courses) {
-                var ac = menuStep.data.adapted_courses;
-                for (var courseName in ac) {
-                  if (ac.hasOwnProperty(courseName)) {
-                    var dishes = ac[courseName];
-                    if (Array.isArray(dishes)) {
-                      menuCourses.push({ course: courseName.replace(/_/g, ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); }), description: dishes.join(', ') });
-                    } else if (typeof dishes === 'string') {
-                      menuCourses.push({ course: courseName.replace(/_/g, ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); }), description: dishes });
-                    }
-                  }
-                }
-              }
-              // Find negotiation step (step 3) for cost
-              var negStep = steps.find(function(s) { return s.step === 3; });
-              var finalTotal = (negStep && negStep.data) ? negStep.data.final_total : 0;
-              var gCount = (step.data.request && step.data.request.menu_id) ? 0 : 0;
-              // Pull from RFP step (step 2) for per-head
-              var rfpStep = steps.find(function(s) { return s.step === 2; });
-              var perHead = (rfpStep && rfpStep.data && rfpStep.data.response && rfpStep.data.response.data && rfpStep.data.response.data.quote) ? rfpStep.data.response.data.quote.effective_per_head : 0;
-
-              // Pull cuisine from menu step
-              var cuisineLabel = (menuStep && menuStep.data && menuStep.data.cuisine) ? menuStep.data.cuisine : '';
-
-              bookingData = {
-                totalCost: finalTotal,
-                perGuest: perHead,
-                serviceStyle: (rfpStep && rfpStep.data && rfpStep.data.request && rfpStep.data.request.params) ? rfpStep.data.request.params.service_style : '',
-                cuisine: cuisineLabel,
-                eventDate: rd.event_date || '2027-06-12',
-                menu: menuCourses
-              };
-            }
-
-            if (bookingData) {
-              setTimeout(function() {
-                resultArea.innerHTML = buildResultCard(bookingData);
-                requestAnimationFrame(function() {
-                  requestAnimationFrame(function() {
-                    document.getElementById('result-card').classList.add('visible');
-                    document.getElementById('result-card').scrollIntoView({ behavior: 'smooth', block: 'end' });
-                  });
-                });
-              }, 600);
-            }
-          }
-        }, i * 800);
+        });
       });
     }
 
-    // --- Retry with increased budget ---
-    window.retryWithBudget = function(newBudget) {
-      // Reset the simulation view
-      timeline.innerHTML = '';
-      resultArea.innerHTML = '';
-      progressFill.style.width = '0%';
-      progressFill.style.background = '';
-      progressStep.textContent = 'Re-negotiating with updated budget...';
-      progressCount.textContent = '0 / 0';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      // Update the hidden budget field so it's captured
-      document.getElementById('budget').value = newBudget;
-
-      // Re-read current form values
-      var serviceStyle = document.getElementById('serviceStyle').value;
-      var cuisinePreference = document.getElementById('cuisinePreference').value;
-      var guestCount = parseInt(document.getElementById('guestCount').value, 10) || 120;
-      var dietaryChecked = document.querySelectorAll('input[name="dietary"]:checked');
-      var dietaryNeeds = Array.from(dietaryChecked).map(function(cb) { return cb.value; });
-
-      var flexBudgetVal = parseInt(document.getElementById('flexBudget').value, 10) || 0;
-
-      var params = new URLSearchParams({
-        budget: newBudget,
-        flexBudget: flexBudgetVal,
-        guestCount: guestCount,
-        serviceStyle: serviceStyle,
-        cuisinePreference: cuisinePreference,
-        dietaryNeeds: dietaryNeeds.join(',')
-      });
-
-      var evtSource = new EventSource('/api/simulate-live?' + params.toString());
-      var stepCount = 0;
-
-      evtSource.onmessage = function(event) {
-        if (event.data === '[DONE]') { evtSource.close(); return; }
-        var msg;
-        try { msg = JSON.parse(event.data); } catch(e) { return; }
-
-        if (msg.type === 'status') {
-          progressStep.textContent = msg.message;
-          if (msg.total) {
-            progressCount.textContent = (msg.step || 0) + ' / ' + msg.total;
-            progressFill.style.width = Math.round((msg.step / msg.total) * 100) + '%';
-          }
-          return;
-        }
-
-        if (msg.type === 'error') {
-          progressStep.textContent = 'Error: ' + msg.message;
-          progressFill.style.width = '100%';
-          progressFill.style.background = '#c0392b';
-          evtSource.close();
-          return;
-        }
-
-        if (msg.type === 'message') {
-          stepCount++;
-          var step = { step: stepCount, from: msg.from, label: msg.label, summary: msg.summary, data: msg.data };
-          var total = msg.total || 8;
-          progressFill.style.width = Math.round((stepCount / total) * 100) + '%';
-          progressStep.textContent = msg.label;
-          progressCount.textContent = stepCount + ' / ' + total;
-          var card = buildMessageCard(step);
-          timeline.appendChild(card);
-          requestAnimationFrame(function() { requestAnimationFrame(function() { card.classList.add('visible'); }); });
-          card.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        }
-
-        if (msg.type === 'done') {
-          var outcome = msg.outcome || msg.summary?.outcome || 'accepted';
-          var terms = msg.summary.final_terms || {};
-          var totalCost = terms.total_price || 0;
-          var perGuest = terms.price_per_head || 0;
-          var maxBudget = msg.summary.max_budget || (newBudget + flexBudgetVal);
-          var usedFlex = totalCost > newBudget && totalCost <= maxBudget;
-
-          progressFill.style.width = '100%';
-          if (outcome === 'accepted') {
-            progressStep.textContent = usedFlex ? 'Deal Reached (Flex Budget Used)' : 'Negotiation Complete';
-          } else {
-            progressStep.textContent = 'Negotiation Failed';
-            progressFill.style.background = '#c0392b';
-          }
-
-          setTimeout(function() {
-            if (outcome === 'rejected') {
-              resultArea.innerHTML = '<div class="result-card" id="result-card">' +
-                '<div class="result-header"><div class="result-icon">❌</div><div><div class="result-title">Deal Not Reached</div><div class="result-subtitle">The venue\'s best offer of $' + totalCost.toLocaleString() + ' still exceeds your max budget of $' + maxBudget.toLocaleString() + '.</div></div></div>' +
-                '<div style="margin-top:1rem;padding:1.25rem;background:var(--cream);border-radius:12px;border:1px solid var(--sand)">' +
-                  '<div style="font-size:0.9rem;color:var(--text-muted);line-height:1.7">' +
-                    '💡 <strong>Adjust preferences</strong> — try a different date, service style, or guest count<br>' +
-                    '🏛️ <strong>Try another vendor</strong> — your agent would contact the next matched venue' +
-                  '</div>' +
-                  '<button class="btn-secondary" onclick="resetSimulation()" style="margin-top:0.75rem">Back to Settings</button>' +
-                '</div></div>';
-            } else if (usedFlex) {
-              var flexUsed = totalCost - newBudget;
-              resultArea.innerHTML = '<div class="result-card" id="result-card">' +
-                '<div class="result-header"><div class="result-icon">✅</div><div><div class="result-title">Deal Reached — Flex Budget Used</div><div class="result-subtitle">Accepted $' + flexUsed.toLocaleString() + ' over base budget (within your flex allowance).</div></div></div>' +
-                '<div class="result-grid">' +
-                  '<div class="result-item"><div class="ri-label">Agreed Total</div><div class="ri-value highlight">$' + totalCost.toLocaleString() + '</div></div>' +
-                  '<div class="result-item"><div class="ri-label">Per Guest</div><div class="ri-value">$' + perGuest.toFixed(2) + '</div></div>' +
-                '</div>' +
-                '<button class="btn-secondary" onclick="resetSimulation()" style="margin-top:1rem">Run Again</button>' +
-              '</div>';
-            } else {
-              var bookingData = { totalCost: totalCost, perGuest: perGuest, serviceStyle: terms.service_style || serviceStyle, cuisine: cuisinePreference, eventDate: terms.date || 'June 12, 2027', menu: [] };
-              resultArea.innerHTML = buildResultCard(bookingData);
-            }
-            requestAnimationFrame(function() { requestAnimationFrame(function() {
-              var rc = document.getElementById('result-card');
-              if (rc) { rc.classList.add('visible'); rc.scrollIntoView({ behavior: 'smooth', block: 'end' }); }
-            }); });
-          }, 600);
-          evtSource.close();
-        }
-      };
-
-      evtSource.onerror = function() {
-        progressStep.textContent = 'Connection lost';
-        evtSource.close();
-      };
-    };
-
-    // --- Reset ---
-    window.resetSimulation = function() {
+    // ---- Reset ----
+    function resetSimulation() {
       simView.classList.remove('active');
       inputPanel.style.display = '';
       timeline.innerHTML = '';
-      resultArea.innerHTML = '';
-      progressFill.style.width = '0%';
-      progressFill.style.background = '';
-      progressStep.textContent = 'Initializing...';
-      progressCount.textContent = '0 / 0';
+      summaryArea.innerHTML = '';
+      spentSoFar = 0;
+      allocatedSoFar = 0;
+      isRunning = false;
+      startBtn.disabled = false;
+      startBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 010 1.972l-11.54 6.347a1.125 1.125 0 01-1.667-.986V5.653z" /></svg> Start Negotiation';
+      // Reset all cat steps
+      document.querySelectorAll('.cat-step').forEach(function(el) { el.className = 'cat-step'; });
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    // --- Mock data generator ---
-    function generateMockSteps(budget, guestCount, serviceStyle, dietaryNeeds) {
-      const perHead = Math.round((budget / guestCount) * 0.85);
-      const totalCost = perHead * guestCount;
-      const dietaryNote = dietaryNeeds.length > 0 ? ' Dietary accommodations requested: ' + dietaryNeeds.join(', ') + '.' : '';
-
-      return [
-        {
-          step: 1,
-          from: 'couple',
-          label: 'Discovery',
-          summary: 'The Couple Agent has selected Grand Meridian Ballroom as their venue for a ' + guestCount + '-guest wedding on June 12, 2027. Now reviewing the venue\'s catering packages. Budget is set at $' + budget.toLocaleString() + ' with a ' + serviceStyle.toLowerCase() + ' service preference.' + dietaryNote,
-          data: {
-            type: 'a2a.discovery',
-            agent: 'couple-agent',
-            action: 'search_vendors',
-            params: {
-              category: 'catering',
-              location: 'Greater Boston',
-              date: '2027-06-12',
-              guestCount: guestCount,
-              budget: budget,
-              serviceStyle: serviceStyle,
-              dietaryNeeds: dietaryNeeds
-            }
-          }
-        },
-        {
-          step: 2,
-          from: 'caterer',
-          label: 'Availability',
-          summary: 'Grand Meridian Ballroom confirms catering availability for June 12, 2027. Their in-house kitchen specializes in ' + serviceStyle.toLowerCase() + ' service and can accommodate ' + guestCount + ' guests. Base catering pricing starts at $' + (perHead - 8) + ' per person for the requested style.',
-          data: {
-            type: 'a2a.availability_response',
-            agent: 'grand-meridian-agent',
-            status: 'available',
-            vendorProfile: {
-              name: 'Grand Meridian Ballroom Catering',
-              rating: 4.9,
-              reviewCount: 187,
-              specialties: [serviceStyle, 'Italian-Inspired', 'Farm-to-Table'],
-              basePrice: perHead - 8,
-              priceUnit: 'per_person'
-            },
-            dateConfirmed: '2027-06-12',
-            maxCapacity: 300
-          }
-        },
-        {
-          step: 3,
-          from: 'couple',
-          label: 'RFP Submitted',
-          summary: 'The Couple Agent submits a formal catering Request for Proposal to Grand Meridian Ballroom with detailed requirements: ' + guestCount + ' guests, ' + serviceStyle.toLowerCase() + ' service, maximum budget of $' + budget.toLocaleString() + '.' + (dietaryNeeds.length > 0 ? ' Dietary needs include ' + dietaryNeeds.join(', ').toLowerCase() + '.' : '') + ' Requesting a three-course menu with cocktail hour appetizers.',
-          data: {
-            type: 'a2a.rfp',
-            agent: 'couple-agent',
-            action: 'submit_rfp',
-            rfp: {
-              eventDate: '2027-06-12',
-              eventType: 'wedding_reception',
-              guestCount: guestCount,
-              serviceStyle: serviceStyle,
-              maxBudget: budget,
-              requirements: {
-                courses: 3,
-                cocktailHour: true,
-                dietaryAccommodations: dietaryNeeds,
-                setupAndCleanup: true,
-                servingStaff: true,
-                linenAndTableware: false
-              }
-            }
-          }
-        },
-        {
-          step: 4,
-          from: 'caterer',
-          label: 'Initial Proposal',
-          summary: 'Grand Meridian Ballroom presents their initial catering proposal at $' + (perHead + 5) + ' per person ($' + ((perHead + 5) * guestCount).toLocaleString() + ' total). The venue\'s menu features a seasonal cocktail hour, followed by a three-course meal. All dietary needs will be accommodated by the venue\'s kitchen with dedicated preparation stations.',
-          data: {
-            type: 'a2a.proposal',
-            agent: 'grand-meridian-agent',
-            proposal: {
-              pricePerPerson: perHead + 5,
-              totalEstimate: (perHead + 5) * guestCount,
-              menu: {
-                cocktailHour: ['Bruschetta Trio', 'Arancini', 'Seasonal Crudites', 'Artisan Cheese Board'],
-                appetizer: 'Spring Garden Salad with citrus vinaigrette',
-                main: 'Herb-Crusted Atlantic Salmon with seasonal roasted vegetables',
-                dessert: 'Classic Tiramisu with espresso whipped cream',
-                dietaryOptions: dietaryNeeds.map(function(d) { return d + ' alternatives for all courses'; })
-              },
-              included: ['Setup & Cleanup', 'Service staff (1 per 15 guests)', 'China & flatware rental', 'Non-alcoholic beverages'],
-              validUntil: '2026-05-01'
-            }
-          }
-        },
-        {
-          step: 5,
-          from: 'couple',
-          label: 'Negotiation Round 1',
-          summary: 'The Couple Agent counters at $' + (perHead - 2) + ' per person ($' + ((perHead - 2) * guestCount).toLocaleString() + ' total) to stay within the $' + budget.toLocaleString() + ' budget. Requests the option to substitute the salmon with a dual protein choice and asks about a kids\' menu for 8 children among the guests.',
-          data: {
-            type: 'a2a.negotiate',
-            agent: 'couple-agent',
-            action: 'counter_offer',
-            counter: {
-              targetPricePerPerson: perHead - 2,
-              targetTotal: (perHead - 2) * guestCount,
-              budgetCeiling: budget,
-              modifications: [
-                'Dual protein option (salmon + chicken) for main course',
-                'Kids menu for 8 guests at reduced rate',
-                'Option to bring own wedding cake (no dessert for 40% of guests)'
-              ],
-              reasoning: 'Initial proposal exceeds stated budget by $' + (((perHead + 5) * guestCount) - budget).toLocaleString() + '. Seeking adjustments to align with budget while maintaining quality.'
-            }
-          }
-        },
-        {
-          step: 6,
-          from: 'caterer',
-          label: 'Negotiation Round 2',
-          summary: 'Grand Meridian accepts the dual protein option and offers a kids\' menu at $' + Math.round(perHead * 0.45) + '/child. They propose a compromise at $' + perHead + ' per person for adult guests. They can reduce the dessert portion for guests having wedding cake, saving $2 per person on those servings. Revised total comes to $' + totalCost.toLocaleString() + '.',
-          data: {
-            type: 'a2a.negotiate',
-            agent: 'grand-meridian-agent',
-            action: 'revised_offer',
-            offer: {
-              adultPricePerPerson: perHead,
-              adultGuests: guestCount - 8,
-              kidsPricePerPerson: Math.round(perHead * 0.45),
-              kidsGuests: 8,
-              cakeGuestDiscount: 2,
-              cakeGuests: Math.round(guestCount * 0.4),
-              revisedTotal: totalCost,
-              changes: [
-                'Added dual protein: salmon OR herb-roasted chicken',
-                'Kids menu: chicken tenders, pasta, seasonal fruit',
-                'Reduced dessert for own-cake guests (-$2/person)',
-                'Complimentary cake cutting service included'
-              ],
-              expiresIn: '48h'
-            }
-          }
-        },
-        {
-          step: 7,
-          from: 'couple',
-          label: 'Terms Accepted',
-          summary: 'The Couple Agent accepts Grand Meridian\'s revised catering offer of $' + totalCost.toLocaleString() + ' total. The agreement includes all service staff, setup and cleanup, dual protein option, kids\' menu, and complimentary cake cutting. The agent requests a formal contract and deposit schedule.',
-          data: {
-            type: 'a2a.accept',
-            agent: 'couple-agent',
-            action: 'accept_terms',
-            acceptance: {
-              agreedTotal: totalCost,
-              agreedPerPerson: perHead,
-              termsAccepted: true,
-              requestedDocuments: ['formal_contract', 'deposit_schedule', 'insurance_certificate'],
-              depositWillingness: '30% upon signing, 70% two weeks before event'
-            }
-          }
-        },
-        {
-          step: 8,
-          from: 'caterer',
-          label: 'Pending Deposit',
-          summary: 'Both agents have reached agreement! Grand Meridian Ballroom has sent the contract for June 12, 2027 (' + guestCount + ' guests). The date is held for 7 days pending the couple\'s 25% deposit of $' + Math.round(totalCost * 0.25).toLocaleString() + '. Once the deposit is received, the booking will be fully confirmed. The negotiation saved $' + (((perHead + 5) * guestCount) - totalCost).toLocaleString() + ' from the initial proposal.',
-          data: {
-            type: 'a2a.booking_confirmation',
-            agent: 'grand-meridian-agent',
-            status: 'confirmed',
-            contractId: 'GM-2027-0612',
-            booking: {
-              totalCost: totalCost,
-              perGuest: perHead,
-              serviceStyle: serviceStyle,
-              eventDate: 'June 12, 2027',
-              timeline: {
-                deposit: 'Due upon signing (30%: $' + Math.round(totalCost * 0.3).toLocaleString() + ')',
-                tasting: 'March 2027',
-                finalCount: 'May 28, 2027',
-                balance: 'May 31, 2027',
-                setup: '10:00 AM day-of'
-              },
-              menu: [
-                { course: 'Cocktails', description: 'Bruschetta Trio, Arancini, Seasonal Crudites, Artisan Cheese Board' },
-                { course: 'Starter', description: 'Spring Garden Salad with citrus vinaigrette' },
-                { course: 'Main', description: 'Herb-Crusted Salmon or Herb-Roasted Chicken with seasonal vegetables' },
-                { course: 'Dessert', description: 'Classic Tiramisu (or cake-cutting service)' },
-                { course: 'Kids', description: 'Chicken tenders, penne pasta, seasonal fruit' }
-              ]
-            },
-            savingsFromInitial: ((perHead + 5) * guestCount) - totalCost
-          }
-        }
-      ];
     }
 
-    // --- Form submit (SSE live negotiation) ---
+    // ---- Start negotiation ----
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+      if (isRunning) return;
+      isRunning = true;
 
-      const budget = parseInt(document.getElementById('budget').value, 10) || 10000;
-      const flexBudget = parseInt(document.getElementById('flexBudget').value, 10) || 0;
-      const guestCount = parseInt(document.getElementById('guestCount').value, 10) || 120;
-      const serviceStyle = document.getElementById('serviceStyle').value;
-      const cuisinePreference = document.getElementById('cuisinePreference').value;
-      const dietaryChecked = document.querySelectorAll('input[name="dietary"]:checked');
-      const dietaryNeeds = Array.from(dietaryChecked).map(function(cb) { return cb.value; });
+      // Gather form data
+      var budget = parseInt(document.getElementById('budget').value, 10) || 50000;
+      var guestCount = parseInt(document.getElementById('guestCount').value, 10) || 120;
+      var weddingDate = document.getElementById('weddingDate').value || '2027-06-12';
+      var location = document.getElementById('location').value || 'Boston';
+      var style = document.getElementById('style').value || 'classic';
+      var serviceStyle = document.getElementById('serviceStyle').value || 'Plated';
+      var cuisinePreference = document.getElementById('cuisinePreference').value || '';
+      var entertainmentType = document.getElementById('entertainmentType').value || 'dj';
+      var floralScope = document.getElementById('floralScope').value || 'full';
+      var transportScope = document.getElementById('transportScope').value || 'couple_only';
 
-      // Fallback preferences
-      const minGuestCount = parseInt(document.getElementById('minGuestCount').value, 10) || guestCount;
-      const dateFlexibility = document.getElementById('dateFlexibility').value;
-      const altStyleChecked = document.querySelectorAll('input[name="altStyle"]:checked');
-      const altStyles = Array.from(altStyleChecked).map(function(cb) { return cb.value; }).filter(function(s) { return s !== serviceStyle; });
-      const altVenueChecked = document.querySelectorAll('input[name="altVenue"]:checked');
-      const altVenues = Array.from(altVenueChecked).map(function(cb) { return cb.value; });
+      var dietaryChecked = document.querySelectorAll('input[name="dietary"]:checked');
+      var dietaryNeeds = [];
+      dietaryChecked.forEach(function(cb) { dietaryNeeds.push(cb.value); });
 
-      // Show simulation view
-      loading.classList.add('active');
-      setTimeout(function() {
-        loading.classList.remove('active');
-        inputPanel.style.display = 'none';
-        simView.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 600);
+      var genreChecked = document.querySelectorAll('input[name="genre"]:checked');
+      var genrePreferences = [];
+      genreChecked.forEach(function(cb) { genrePreferences.push(cb.value); });
 
-      // Build SSE URL with query params
-      const params = new URLSearchParams({
-        budget: budget,
-        flexBudget: flexBudget,
-        guestCount: guestCount,
-        serviceStyle: serviceStyle,
-        cuisinePreference: cuisinePreference,
-        dietaryNeeds: dietaryNeeds.join(','),
-        minGuestCount: minGuestCount,
-        dateFlexibility: dateFlexibility,
-        altStyles: altStyles.join(','),
-        altVenues: altVenues.join(',')
-      });
+      totalBudget = budget;
 
-      const evtSource = new EventSource('/api/simulate-live?' + params.toString());
-      let stepCount = 0;
+      // Build query string
+      var params = new URLSearchParams();
+      params.set('budget', budget);
+      params.set('guestCount', guestCount);
+      params.set('weddingDate', weddingDate);
+      params.set('location', location);
+      params.set('style', style);
+      params.set('serviceStyle', serviceStyle.replace(/ /g, '_'));
+      if (cuisinePreference) params.set('cuisinePreference', cuisinePreference);
+      if (dietaryNeeds.length) params.set('dietaryNeeds', dietaryNeeds.join(','));
+      params.set('entertainmentType', entertainmentType);
+      if (genrePreferences.length) params.set('genrePreferences', genrePreferences.join(','));
+      params.set('floralScope', floralScope);
+      params.set('transportScope', transportScope);
 
-      evtSource.onmessage = function(event) {
+      // Switch to simulation view
+      inputPanel.style.display = 'none';
+      simView.classList.add('active');
+      updateBudget(0, 0);
+
+      // Disable button
+      startBtn.disabled = true;
+      startBtn.innerHTML = '<span class="spinner-inline"></span> Negotiating...';
+
+      // Open SSE
+      var es = new EventSource('/api/simulate-multi?' + params.toString());
+
+      es.onmessage = function(event) {
         if (event.data === '[DONE]') {
-          evtSource.close();
+          es.close();
+          isRunning = false;
+          startBtn.disabled = false;
+          startBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 010 1.972l-11.54 6.347a1.125 1.125 0 01-1.667-.986V5.653z" /></svg> Start Negotiation';
           return;
         }
 
-        var msg;
-        try { msg = JSON.parse(event.data); } catch(e) { return; }
+        var data;
+        try { data = JSON.parse(event.data); } catch(e) { return; }
 
-        if (msg.type === 'status') {
-          progressStep.textContent = msg.message;
-          if (msg.total) {
-            progressCount.textContent = (msg.step || 0) + ' / ' + msg.total;
-            progressFill.style.width = Math.round((msg.step / msg.total) * 100) + '%';
-          }
-          return;
-        }
+        switch (data.type) {
+          case 'start':
+            addNotice('&#128640;', data.message || 'Starting negotiation...', '');
+            break;
 
-        if (msg.type === 'error') {
-          progressStep.textContent = 'Error: ' + msg.message;
-          progressFill.style.width = '100%';
-          progressFill.style.background = '#c0392b';
-          evtSource.close();
-          return;
-        }
-
-        if (msg.type === 'message') {
-          stepCount++;
-          var step = {
-            step: stepCount,
-            from: msg.from,
-            label: msg.label,
-            summary: msg.summary,
-            data: msg.data
-          };
-
-          // Update progress
-          var total = msg.total || 8;
-          var pct = Math.round((stepCount / total) * 100);
-          progressFill.style.width = pct + '%';
-          progressStep.textContent = msg.label;
-          progressCount.textContent = stepCount + ' / ' + total;
-
-          // Add card to timeline
-          var card = buildMessageCard(step);
-          timeline.appendChild(card);
-          requestAnimationFrame(function() {
-            requestAnimationFrame(function() {
-              card.classList.add('visible');
-            });
-          });
-          card.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        }
-
-        if (msg.type === 'done') {
-          var outcome = msg.outcome || msg.summary?.outcome || 'accepted';
-          var terms = msg.summary.final_terms || {};
-          var totalCost = terms.total_price || 0;
-          var perGuest = terms.price_per_head || 0;
-          var baseBudget = msg.summary.base_budget || budget;
-          var maxBudget = msg.summary.max_budget || (budget + flexBudget);
-          var usedFlex = totalCost > baseBudget && totalCost <= maxBudget;
-          var overMax = totalCost > maxBudget;
-
-          progressFill.style.width = '100%';
-
-          if (outcome === 'accepted') {
-            progressStep.textContent = usedFlex ? 'Deal Reached (Flex Budget Used)' : 'Negotiation Complete';
-          } else {
-            progressStep.textContent = 'Negotiation Failed';
-            progressFill.style.background = '#c0392b';
-          }
-
-          setTimeout(function() {
-            if (outcome === 'rejected') {
-              // Over max budget — show what was tried and next steps
-              var gap = totalCost - maxBudget;
-              var fallbacks = msg.summary.fallbacks || {};
-              var triedList = '';
-              if (fallbacks.date_flexibility && fallbacks.date_flexibility !== 'fixed') {
-                triedList += '<div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem"><span style="color:#c0392b">✗</span> <span>Alternate dates (' + fallbacks.date_flexibility + ' flexibility)</span></div>';
-              }
-              if (fallbacks.alt_styles && fallbacks.alt_styles.length > 0) {
-                triedList += '<div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem"><span style="color:#c0392b">✗</span> <span>Alternate styles (' + fallbacks.alt_styles.join(', ') + ')</span></div>';
-              }
-              if (fallbacks.min_guest_count && fallbacks.min_guest_count < guestCount) {
-                triedList += '<div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem"><span style="color:#c0392b">✗</span> <span>Reduced guest count (down to ' + fallbacks.min_guest_count + ')</span></div>';
-              }
-              triedList += '<div style="display:flex;align-items:center;gap:0.5rem"><span style="color:#c0392b">✗</span> <span>Flex budget ($' + flexBudget.toLocaleString() + ' extra authorized)</span></div>';
-
-              // Build backup venues section
-              var venueHtml = '';
-              if (fallbacks.alt_venues && fallbacks.alt_venues.length > 0) {
-                venueHtml = '<div style="margin-top:0.75rem;padding:1.25rem;background:var(--cream);border-radius:12px;border:1px solid var(--sand)">' +
-                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">Next: Your backup venues</div>' +
-                  '<div style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.75rem">Your agent would automatically negotiate with these venues next:</div>' +
-                  '<div style="display:flex;flex-wrap:wrap;gap:0.5rem">' +
-                  fallbacks.alt_venues.map(function(v, i) {
-                    return '<div style="display:flex;align-items:center;gap:0.4rem;padding:0.5rem 0.9rem;background:var(--warm-white);border:1px solid var(--sand);border-radius:8px;font-size:0.85rem">' +
-                      '<span style="font-weight:600;color:var(--rose)">' + (i+1) + '</span>' +
-                      '<span>' + escapeHtml(v) + '</span>' +
-                    '</div>';
-                  }).join('') +
-                  '</div>' +
-                '</div>';
-              }
-
-              resultArea.innerHTML = '<div class="result-card" id="result-card">' +
-                '<div class="result-header">' +
-                  '<div class="result-icon">❌</div>' +
-                  '<div><div class="result-title">Deal Not Reached — Grand Meridian</div>' +
-                  '<div class="result-subtitle">Your agent exhausted all pre-approved options. The venue\'s best offer of $' + totalCost.toLocaleString() + ' still exceeds your maximum of $' + maxBudget.toLocaleString() + ' by $' + gap.toLocaleString() + '.</div></div>' +
-                '</div>' +
-                '<div class="result-grid">' +
-                  '<div class="result-item"><div class="ri-label">Venue\'s Best Offer</div><div class="ri-value highlight">$' + totalCost.toLocaleString() + '</div></div>' +
-                  '<div class="result-item"><div class="ri-label">Per Guest</div><div class="ri-value">$' + perGuest.toFixed(2) + '</div></div>' +
-                  '<div class="result-item"><div class="ri-label">Base Budget</div><div class="ri-value">$' + baseBudget.toLocaleString() + '</div></div>' +
-                  '<div class="result-item"><div class="ri-label">Max (with Flex)</div><div class="ri-value">$' + maxBudget.toLocaleString() + '</div></div>' +
-                '</div>' +
-
-                /* What your agent tried */
-                '<div style="margin-top:1.5rem;padding:1.25rem;background:var(--cream);border-radius:12px;border:1px solid var(--sand)">' +
-                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">What your agent tried</div>' +
-                  '<div style="font-size:0.9rem;color:var(--text-muted)">' + triedList + '</div>' +
-                '</div>' +
-
-                /* Backup venues */
-                venueHtml +
-
-                /* Back to settings */
-                '<div style="margin-top:0.75rem;padding:1.25rem;background:var(--cream);border-radius:12px;border:1px solid var(--sand)">' +
-                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">Adjust your settings and try again</div>' +
-                  '<div style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.75rem">Add more fallback options, increase your flex budget, or change your core preferences.</div>' +
-                  '<button class="btn-secondary" onclick="resetSimulation()">' +
-                    '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" /></svg>' +
-                    'Back to Settings' +
-                  '</button>' +
-                '</div>' +
-              '</div>';
-            } else if (usedFlex) {
-              // Accepted using flex budget — show special card
-              var flexUsed = totalCost - baseBudget;
-              var depositAmt = Math.round(totalCost * 0.25);
-              resultArea.innerHTML = '<div class="result-card" id="result-card">' +
-                '<div class="result-header">' +
-                  '<div class="result-icon">✅</div>' +
-                  '<div><div class="result-title">Deal Reached — Flex Budget Used</div>' +
-                  '<div class="result-subtitle">Your agent negotiated hard but the best deal was $' + flexUsed.toLocaleString() + ' over your base budget. Since this is within your pre-approved flex of $' + flexBudget.toLocaleString() + ', your agent accepted automatically.</div></div>' +
-                '</div>' +
-                '<div class="result-grid">' +
-                  '<div class="result-item"><div class="ri-label">Agreed Total</div><div class="ri-value highlight">$' + totalCost.toLocaleString() + '</div></div>' +
-                  '<div class="result-item"><div class="ri-label">Per Guest</div><div class="ri-value">$' + perGuest.toFixed(2) + '</div></div>' +
-                  '<div class="result-item"><div class="ri-label">Base Budget</div><div class="ri-value">$' + baseBudget.toLocaleString() + '</div></div>' +
-                  '<div class="result-item"><div class="ri-label">Flex Used</div><div class="ri-value" style="color:var(--rose)">+$' + flexUsed.toLocaleString() + '</div></div>' +
-                  '<div class="result-item"><div class="ri-label">Deposit Due (25%)</div><div class="ri-value highlight">$' + depositAmt.toLocaleString() + '</div></div>' +
-                  '<div class="result-item"><div class="ri-label">Event Date</div><div class="ri-value">' + escapeHtml(terms.date || 'June 12, 2027') + '</div></div>' +
-                '</div>' +
-                '<button class="btn-secondary" onclick="resetSimulation()" style="margin-top:1rem">' +
-                  '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" /></svg>' +
-                  'Run Again' +
-                '</button>' +
-              '</div>';
-            } else {
-              // Accepted within base budget
-              var bookingData = {
-                totalCost: totalCost,
-                perGuest: perGuest,
-                serviceStyle: terms.service_style || serviceStyle,
-                cuisine: cuisinePreference,
-                eventDate: terms.date || 'June 12, 2027',
-                menu: []
-              };
-              resultArea.innerHTML = buildResultCard(bookingData);
+          case 'category_start':
+            setCatStatus(data.category, 'active');
+            addCategoryHeader(data.category, data.message, data.budget_allocated);
+            if (data.budget_allocated) {
+              allocatedSoFar += data.budget_allocated;
+              updateBudget(null, allocatedSoFar);
             }
-            requestAnimationFrame(function() {
-              requestAnimationFrame(function() {
-                var rc = document.getElementById('result-card');
-                if (rc) {
-                  rc.classList.add('visible');
-                  rc.scrollIntoView({ behavior: 'smooth', block: 'end' });
-                }
-              });
-            });
-          }, 600);
+            break;
 
-          evtSource.close();
+          case 'status':
+            // Intermediate status update (agent thinking) - show as a subtle notice
+            addNotice('&#9203;', data.message || 'Processing...', '');
+            break;
+
+          case 'message':
+            addMessageCard(data);
+            break;
+
+          case 'category_locked':
+            setCatStatus(data.category, 'done');
+            addCategoryResult(data);
+            if (data.price) {
+              spentSoFar += data.price;
+              updateBudget(spentSoFar, null);
+            }
+            break;
+
+          case 'category_failed':
+            setCatStatus(data.category, 'failed');
+            addCategoryResult(data);
+            break;
+
+          case 'skip':
+            setCatStatus(data.category, 'skipped');
+            addNotice('&#9197;', data.message || ('Skipping ' + data.category), '');
+            break;
+
+          case 'no_candidates':
+            setCatStatus(data.category, 'skipped');
+            addNotice('&#128683;', data.message || 'No candidates available', 'amber');
+            break;
+
+          case 'done':
+            buildFinalSummary(data.summary, data.packages);
+            break;
+
+          case 'complete':
+            if (data.result) {
+              buildFinalSummary(data.result.summary, data.result.packages);
+            }
+            break;
+
+          case 'error':
+            var errDiv = document.createElement('div');
+            errDiv.className = 'error-card';
+            errDiv.textContent = 'Error: ' + (data.message || 'Unknown error');
+            timeline.appendChild(errDiv);
+            break;
+
+          case 'failure':
+            addNotice('&#10060;', data.message || 'Vendor negotiation failed', 'amber');
+            break;
+
+          case 'recovery':
+            addNotice('&#128260;', data.message || 'Attempting recovery with backup vendor', '');
+            break;
+
+          default:
+            // Unknown event type — show as notice if it has a message
+            if (data.message) {
+              addNotice('&#128172;', data.message, '');
+            }
+            break;
         }
       };
 
-      evtSource.onerror = function() {
-        progressStep.textContent = 'Connection lost — negotiation may have ended';
-        evtSource.close();
+      es.onerror = function() {
+        es.close();
+        isRunning = false;
+        startBtn.disabled = false;
+        startBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 010 1.972l-11.54 6.347a1.125 1.125 0 01-1.667-.986V5.653z" /></svg> Start Negotiation';
+        var errDiv = document.createElement('div');
+        errDiv.className = 'error-card';
+        errDiv.textContent = 'Connection to server lost. Please try again.';
+        timeline.appendChild(errDiv);
       };
     });
   </script>

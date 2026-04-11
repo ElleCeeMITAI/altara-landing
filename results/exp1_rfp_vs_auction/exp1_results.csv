@@ -1,0 +1,13 @@
+mode,vendor_id,vendor_name,category,outcome,total_price,turns,api_cost
+rfp,venue_01,Grand Meridian Ballroom,venue,accepted,23600,3,0.017283
+rfp,catering_01,Grand Meridian Ballroom Catering,catering,accepted,24600,5,0.033846
+rfp,florist_01,Bloom & Vine Studio,florist,accepted,3600,5,0.036753
+rfp,photographer_01,Lens & Light Studio,photographer,accepted,5500,5,0.036027
+rfp,dj_01,Boston Beat DJs,dj,accepted,2200,3,0.017856
+rfp,bakery_01,Sugar & Slate Bakery,bakery,accepted,1440,5,0.034545
+auction,venue_01,Grand Meridian Ballroom,venue,accepted,19400,5,0.033171
+auction,catering_01,Grand Meridian Ballroom Catering,catering,accepted,24630,6,0.044817
+auction,florist_01,Bloom & Vine Studio,florist,accepted,3500,4,0.028863
+auction,photographer_01,Lens & Light Studio,photographer,accepted,6700,4,0.028218
+auction,dj_01,Boston Beat DJs,dj,accepted,2200,3,0.018174
+auction,bakery_01,Sugar & Slate Bakery,bakery,accepted,1800,3,0.017784

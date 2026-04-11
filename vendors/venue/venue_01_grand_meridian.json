@@ -1,0 +1,53 @@
+{
+  "id": "venue_01",
+  "name": "Grand Meridian Ballroom",
+  "category": "venue",
+  "region": "Greater Boston",
+  "location": "Downtown Boston, MA",
+  "description": "A premier historic ballroom in downtown Boston with elegant chandeliers and classic architecture.",
+  "lgbtq_welcoming": true,
+  "capacity": { "min": 50, "max": 200 },
+  "pricing": {
+    "base_rental": 5000,
+    "per_head_food_min": 85,
+    "plated": 135,
+    "buffet": 95,
+    "family_style": 115,
+    "stations": 120,
+    "cocktail_reception": 80
+  },
+  "price_floor_per_head": 85,
+  "peak_surcharge": 0.15,
+  "max_discount_peak": 0.08,
+  "max_discount_offpeak": 0.15,
+  "preferred_deposit_pct": 50,
+  "min_deposit_pct": 25,
+  "lead_time_days": 180,
+  "hold_days": 14,
+  "blackout_dates": ["2027-06-07", "2027-06-08", "2027-06-21", "2027-06-22"],
+  "peak_months": [5, 6, 9, 10],
+  "catering_policy": "in_house_only",
+  "catering_notes": "All catering must go through our in-house kitchen. We do not permit outside caterers.",
+  "amenities": ["in-house catering", "bridal suite", "valet parking", "AV system"],
+  "cuisine_specialties": ["Italian-American", "Mediterranean", "New England"],
+  "sweeteners": ["complimentary cake cutting", "pre-wedding tasting", "upgraded linens"],
+  "deposit_and_cancellation": {
+    "deposit_pct": 50,
+    "deposit_refundable": false,
+    "balance_due": "30 days before event",
+    "cancellation_policy": {
+      "12_plus_months": "Deposit forfeited minus $500 admin fee",
+      "6_to_12_months": "Deposit forfeited",
+      "under_6_months": "Full payment required"
+    },
+    "requires_liability_insurance": true,
+    "insurance_due": "30 days before event"
+  },
+  "ratings": {
+    "average": 4.7,
+    "review_count": 312,
+    "highlights": ["stunning ballroom", "seamless coordination", "classic elegance"],
+    "source": "aggregate"
+  },
+  "personality": "warm and professional, eager to close deals but firm on pricing floors"
+}

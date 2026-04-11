@@ -1,0 +1,88 @@
+{
+  "id": "catering_01",
+  "name": "Grand Meridian Ballroom Catering",
+  "category": "catering",
+  "region": "Greater Boston",
+  "description": "In-house catering from the Grand Meridian Ballroom, offering elegant plated dinners and lavish buffets with Italian, Mediterranean, and New England influences. Known for seamless coordination with the venue's event team.",
+  "lgbtq_welcoming": true,
+  "pricing": {
+    "price_floor_per_head": 85,
+    "plated_per_head": 135,
+    "buffet_per_head": 95,
+    "family_style_per_head": 115,
+    "cocktail_reception_per_head": 75,
+    "bar_packages": {
+      "open_bar_premium": 65,
+      "open_bar_standard": 50,
+      "beer_wine_only": 35,
+      "non_alcoholic": 15
+    },
+    "peak_surcharge_pct": 15,
+    "peak_months": [5, 6, 9, 10],
+    "cake_cutting_fee": 3,
+    "tasting_fee": 150,
+    "tasting_fee_waived_on_booking": true
+  },
+  "capacity": {
+    "min_guests": 50,
+    "max_guests": 200
+  },
+  "service_area": {
+    "radius_miles": null,
+    "note": "In-house only — we serve events at the Grand Meridian Ballroom exclusively."
+  },
+  "catering_type": "in_house_venue",
+  "venue_exclusive": "venue_01",
+  "venue_exclusive_note": "This catering team is exclusive to the Grand Meridian Ballroom and does not cater off-site events.",
+  "service_styles": ["plated", "buffet", "family_style", "cocktail_reception", "stations"],
+  "serviceware": {
+    "included": ["china_dinnerware", "crystal_glassware", "silver_flatware", "linen_napkins", "tablecloths"],
+    "upgrade_options": ["gold_charger_plates", "specialty_glassware"],
+    "eco_friendly_available": false,
+    "eco_note": "As a formal ballroom, we use our standard china and crystal serviceware."
+  },
+  "bar_service": {
+    "included": true,
+    "note": "Full bar service is included with all catering packages. Bartenders provided."
+  },
+  "specialties": ["Italian", "Mediterranean", "New England"],
+  "dietary_accommodations": ["vegetarian", "vegan", "gluten-free", "dairy-free", "nut-free", "kosher-style"],
+  "sweeteners": [
+    "Complimentary champagne toast for weddings over 150 guests",
+    "Free dessert table upgrade when booking plated dinner",
+    "Waive cake-cutting fee for full-service packages",
+    "Complimentary late-night snack station for Saturday bookings"
+  ],
+  "deposit_and_cancellation": {
+    "deposit_pct": 30,
+    "deposit_refundable": false,
+    "second_payment_pct": 30,
+    "second_payment_due": "90 days before event",
+    "balance_due": "14 days before event",
+    "final_guest_count_due": "10 days before event",
+    "cancellation_policy": {
+      "6_plus_months": "Deposit forfeited",
+      "3_to_6_months": "50% of total owed",
+      "under_3_months": "Full payment required"
+    }
+  },
+  "ratings": {
+    "average": 4.6,
+    "review_count": 245,
+    "highlights": ["impeccable service", "Italian menu was divine", "seamless with the venue"],
+    "source": "aggregate"
+  },
+  "personality": "Professional, warm, and detail-oriented. Prides itself on being part of the Grand Meridian family and ensuring every event feels cohesive with the venue. Prefers to work within established menus but will accommodate custom requests for larger events.",
+  "negotiation_style": {
+    "flexibility": "moderate",
+    "discount_ceiling_pct": 10,
+    "preferred_tactics": ["bundle_with_venue", "off_peak_discount", "volume_pricing"],
+    "walkaway_below_per_head": 80
+  },
+  "lead_time_days": 90,
+  "hold_days": 14,
+  "contact": {
+    "email": "events@grandmeridian.com",
+    "phone": "617-555-0101"
+  }
+}

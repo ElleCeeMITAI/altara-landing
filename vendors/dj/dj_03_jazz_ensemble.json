@@ -1,0 +1,145 @@
+{
+  "id": "dj_03",
+  "name": "The Charles River Jazz Ensemble",
+  "category": "dj",
+  "region": "Greater Boston",
+  "description": "A world-class 4-piece jazz ensemble bringing sophistication and soul to your wedding. From an elegant ceremony to a swinging reception, we create a live music experience that is warm, intimate, and undeniably classy. Berklee-trained musicians with decades of performance experience.",
+  "lgbtq_welcoming": true,
+  "base_location": "Boston, MA",
+  "website": "https://www.charlesriverjazz.com",
+  "entertainment_type": "live_band",
+  "vocalist_available": true,
+  "vocalist_included_in": ["full_event"],
+  "vocalist_addon_price": 500,
+  "live_musicians_available": true,
+  "ensemble_size": "4-piece (expandable to 6)",
+  "genre_specialties": ["jazz", "swing", "standards", "bossa nova", "Motown", "soul"],
+  "will_play_genres": ["jazz", "swing", "standards", "bossa nova", "Motown", "soul", "blues", "Great American Songbook", "classic pop", "R&B classics"],
+  "packages": {
+    "ceremony_only": {
+      "hours": 1.5,
+      "price": 800,
+      "includes": [
+        "4-piece jazz ensemble (piano, upright bass, drums, saxophone)",
+        "Acoustic and lightly amplified setup",
+        "Custom ceremony song arrangements (up to 3 songs)",
+        "Pre-ceremony ambient jazz (30 min)",
+        "Processional and recessional performances",
+        "Consultation on song selection"
+      ]
+    },
+    "reception_only": {
+      "hours": 4,
+      "price": 3500,
+      "includes": [
+        "4-piece jazz ensemble",
+        "Full amplified setup with PA",
+        "Vocalist add-on for reception sets",
+        "3 sets of live music with curated break music",
+        "Custom first dance arrangement",
+        "Client song request list (up to 15 songs)",
+        "MC services by bandleader",
+        "Cocktail hour background set"
+      ]
+    },
+    "full_event": {
+      "hours": 6,
+      "price": 5000,
+      "includes": [
+        "4-piece jazz ensemble with vocalist",
+        "Full amplified setup with PA and monitors",
+        "Acoustic ceremony performance",
+        "Cocktail hour set",
+        "4 sets of live reception music with curated break music",
+        "Custom first dance arrangement",
+        "Custom ceremony song arrangements (up to 5 songs)",
+        "Client song request list (up to 25 songs)",
+        "MC services by bandleader",
+        "Consultation and rehearsal run-through"
+      ]
+    }
+  },
+  "overtime_rate_per_hour": 600,
+  "price_floor": 800,
+  "max_guests_supported": 200,
+  "additional_musicians": {
+    "vocalist": { "price": 500, "note": "Included in full_event, add-on for other packages" },
+    "trumpet": { "price": 400 },
+    "guitar": { "price": 400 },
+    "viola_string_trio": { "price": 450 }
+  },
+  "equipment_included": [
+    "Full PA system with monitors",
+    "Acoustic upright piano (or premium keyboard)",
+    "Upright bass",
+    "Drum kit with brushes and sticks",
+    "Saxophone",
+    "Vocal microphone and stand",
+    "Ambient break music system (for set breaks)"
+  ],
+  "service_area": {
+    "radius_miles": 30,
+    "base_location": "Boston, MA",
+    "beyond_radius_fee": 150,
+    "max_service_miles": 55,
+    "will_not_service_beyond_max": true
+  },
+  "lead_time_days": 120,
+  "hold_days": 7,
+  "max_events_per_weekend": 1,
+  "venue_partnerships": {
+    "preferred_venues": ["venue_01"],
+    "partnership_type": "tried_and_true",
+    "discount_for_partner_venues": false,
+    "note": "Regular performers at The Grand Meridian for upscale events. Know the ballroom acoustics and stage setup intimately."
+  },
+  "playlist_consultation": {
+    "included": true,
+    "process": "In-person or video consultation to discuss musical preferences, special song requests, and custom arrangements. The bandleader works directly with the couple to curate the setlist and arrange any special songs (first dance, parent dances). Final setlist confirmed 3 weeks before the event.",
+    "timeline_planning": true,
+    "custom_arrangements": true,
+    "song_request_limit": "Up to 25 songs for full event, 15 for reception only",
+    "consultation_timing": "6-8 weeks before event, final setlist 3 weeks before"
+  },
+  "eco_friendly": {
+    "available": false,
+    "note": "Not applicable to live music services."
+  },
+  "deposit_and_cancellation": {
+    "deposit_pct": 50,
+    "deposit_type": "retainer",
+    "deposit_refundable": false,
+    "balance_due": "14 days before event",
+    "cancellation_policy": {
+      "6_plus_months": "Retainer forfeited",
+      "30_days_to_6_months": "Retainer forfeited",
+      "under_30_days": "Full payment required — musicians already booked and arrangements prepared"
+    }
+  },
+  "ratings": {
+    "platform_average": null,
+    "platform_review_count": 0,
+    "external_average": 4.9,
+    "external_review_count": 47,
+    "external_sources": ["google", "the_knot"],
+    "composite_score": 4.9,
+    "highlights": ["absolutely magical first dance arrangement", "pure class and elegance", "cocktail hour jazz was the perfect touch"],
+    "verified_bookings": 0
+  },
+  "sweeteners": [
+    "Complimentary vocalist add-on for full-event bookings in off-season",
+    "Free custom first dance arrangement for any package",
+    "Additional musician (trumpet or guitar) at no charge for weekday events",
+    "Complimentary 30-minute cocktail hour extension for early bookings"
+  ],
+  "personality": "Refined, gracious, and deeply passionate about the craft. The Charles River Jazz Ensemble values artistic quality and the right fit over volume. Berklee-trained musicians with decades of experience. Will not discount base rates but may add musicians or extend sets for the right event. Selective about bookings — ideal for couples who want timeless elegance.",
+  "negotiation_style": {
+    "flexibility": "very_low",
+    "discount_ceiling_pct": 3,
+    "preferred_tactics": ["add_musicians_not_discount", "exclusivity_appeal", "reputation_leverage", "artistic_value"]
+  },
+  "contact": {
+    "email": "bookings@charlesriverjazz.com",
+    "phone": "617-555-0703"
+  }
+}

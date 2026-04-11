@@ -1,0 +1,3 @@
+mode,vendor_count,accepted,rejected,grand_total,elapsed_sec,api_cost
+rfp,6,6,0,60940,119.7,0.17631
+auction,6,6,0,58230,110.3,0.171027

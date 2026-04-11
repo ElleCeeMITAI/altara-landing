@@ -1,0 +1,102 @@
+{
+  "id": "bakery_02",
+  "name": "Sweet Layers",
+  "category": "bakery",
+  "region": "Greater Boston",
+  "description": "A beloved neighborhood bakery that has grown into one of Boston's most trusted wedding cake providers. Known for consistent quality, warm service, and classic designs that never go out of style.",
+  "lgbtq_welcoming": true,
+  "pricing": {
+    "tiered_cake_per_serving": { "min": 8, "max": 12 },
+    "cupcakes_per_dozen": { "min": 36, "max": 48 },
+    "dessert_table_per_head": 10,
+    "cake_tasting_fee": 50,
+    "tasting_fee_note": "Credited toward final order"
+  },
+  "price_floor": 400,
+  "max_events_per_weekend": 3,
+  "lead_time_days": 42,
+  "hold_days": 14,
+  "dessert_alternatives": {
+    "cupcake_tower": true,
+    "dessert_table": true,
+    "donuts": true,
+    "cookie_bar": true,
+    "note": "We love doing creative alternatives! Our donut walls and cookie bars are very popular. We can mix and match — e.g., small cutting cake + cupcake tower."
+  },
+  "specialties": [
+    "buttercream",
+    "naked cakes",
+    "cupcake towers",
+    "sheet cake upgrades",
+    "fresh flower decoration",
+    "classic piping designs",
+    "donut walls",
+    "cookie bars"
+  ],
+  "dietary_options": {
+    "gluten_free": true,
+    "vegan": true,
+    "nut_free": true,
+    "dairy_free": true,
+    "kosher": false,
+    "sugar_free": false,
+    "note": "We offer gluten-free, vegan, and dairy-free options across most of our menu. GF/vegan cakes start at $2/serving upcharge."
+  },
+  "eco_friendly": {
+    "available": true,
+    "options": ["compostable_cake_boxes", "recycled_paper_packaging", "reusable_display_stands"],
+    "upcharge": 0,
+    "note": "We've switched to compostable packaging as our default. No extra charge."
+  },
+  "tasting_process": {
+    "flow": "consult_then_taste_then_deposit",
+    "tasting_fee": 50,
+    "fee_credited_on_booking": true,
+    "tasting_includes": "Up to 6 flavors and 4 fillings for the couple plus 1 guest",
+    "note": "Walk-in tasting sessions available on Saturdays. Fee credited toward final order."
+  },
+  "deposit_and_cancellation": {
+    "deposit_pct": 50,
+    "deposit_refundable": false,
+    "balance_due": "7 days before event",
+    "final_design_confirmation": "4 weeks before event",
+    "cancellation_policy": {
+      "6_plus_months": "Deposit forfeited",
+      "30_days_to_6_months": "Deposit forfeited",
+      "under_30_days": "Full payment required"
+    }
+  },
+  "ratings": {
+    "average": 4.5,
+    "review_count": 203,
+    "highlights": ["great value", "delicious cupcakes", "so accommodating"],
+    "source": "aggregate"
+  },
+  "service_area": {
+    "radius_miles": 20,
+    "base_location": "Boston, MA",
+    "beyond_radius": "surcharge",
+    "surcharge_flat": 100,
+    "max_radius_miles": 40,
+    "will_not_service_beyond_max": true,
+    "note": "$75 delivery within 20 miles. $100 additional for 20-40 miles. No delivery beyond 40 miles."
+  },
+  "delivery_included": false,
+  "delivery_fee": 75,
+  "sweeteners": [
+    "Free cupcake sampler (6 ct) with cake orders over $1000",
+    "10% discount for weekday weddings",
+    "Complimentary cake cutting set rental",
+    "Free donut wall rental with donut orders over $500"
+  ],
+  "personality": {
+    "style": "friendly and reliable",
+    "tone": "warm, approachable, enthusiastic but not pushy",
+    "negotiation_approach": "Flexible on pricing for larger orders. Happy to mix and match options to fit a budget. Will offer small discounts or throw in extras to close the deal.",
+    "quirks": [
+      "Always suggests a cupcake tower as a crowd-pleaser backup",
+      "Loves sharing photos of past weddings on her phone",
+      "Remembers repeat customers by name and order history"
+    ]
+  }
+}

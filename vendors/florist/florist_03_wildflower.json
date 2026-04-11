@@ -1,0 +1,125 @@
+{
+  "id": "florist_03",
+  "name": "Wildflower Collective",
+  "category": "florist",
+  "region": "Southern NH",
+  "description": "A rustic, boho-inspired floral studio based in southern New Hampshire. Wildflower Collective specializes in loose, organic arrangements using locally grown and foraged blooms. Budget-friendly and perfect for barn weddings, outdoor celebrations, and free-spirited couples.",
+  "lgbtq_welcoming": true,
+  "pricing": {
+    "bridal_bouquet": { "min": 150, "max": 280 },
+    "bridesmaid_bouquet": { "min": 65, "max": 130 },
+    "boutonniere": { "min": 10, "max": 22 },
+    "corsage": { "min": 20, "max": 40 },
+    "centerpiece_low": { "min": 45, "max": 120 },
+    "centerpiece_tall": { "min": 95, "max": 240 },
+    "ceremony_arch": { "min": 400, "max": 1200 },
+    "aisle_markers": { "min": 20, "max": 65, "note": "per marker" },
+    "cake_flowers": { "min": 35, "max": 100 },
+    "flower_girl_basket": { "min": 20, "max": 45 },
+    "delivery_and_setup": { "flat_fee": 125 }
+  },
+  "price_floor": 800,
+  "lead_time_days": 30,
+  "hold_days": 21,
+  "max_events_per_weekend": 3,
+  "delivery_radius_miles": 50,
+  "beyond_radius_fee": 50,
+  "max_delivery_miles": 80,
+  "will_not_service_beyond_max": false,
+  "base_location": "Hollis, NH",
+  "packages": {
+    "essential": {
+      "price_range": { "min": 800, "max": 1200 },
+      "includes": ["bridal bouquet", "2 bridesmaid bouquets", "4 boutonnieres", "6 mason jar centerpieces", "cake greenery", "delivery"]
+    },
+    "classic": {
+      "price_range": { "min": 1500, "max": 2500 },
+      "includes": ["bridal bouquet", "4 bridesmaid bouquets", "6 boutonnieres", "3 corsages", "10 centerpieces", "ceremony arch (greenery-heavy)", "head table garland", "cake flowers", "delivery and setup"]
+    },
+    "grand": {
+      "price_range": { "min": 2800, "max": 4500 },
+      "includes": ["bridal bouquet", "6 bridesmaid bouquets", "8 boutonnieres", "4 corsages", "12 centerpieces", "full ceremony arch", "aisle markers", "head table garland", "cocktail arrangements", "cake flowers", "flower bar station", "delivery and setup"]
+    },
+    "diy_hybrid": {
+      "price_range": { "min": 400, "max": 800 },
+      "includes": ["bulk flowers and greenery delivered day-before", "design guide and instructions", "bridal bouquet (made by us)", "loaner vases"],
+      "note": "For couples who want to arrange their own flowers with our guidance and materials."
+    }
+  },
+  "floral_scope_options": {
+    "personal_flowers": {
+      "available": true,
+      "items": ["bridal_bouquet", "bridesmaid_bouquets", "boutonnieres", "corsages", "flower_girl_basket", "ring_bearer_boutonniere", "pet_floral_collar"],
+      "note": "Bouquets and wearable flowers for the wedding party — we love pets at weddings and are happy to create floral collars for your furry family members"
+    },
+    "ceremony_decor": {
+      "available": true,
+      "items": ["ceremony_arch", "chuppah", "aisle_markers", "pew_flowers", "unity_ceremony_flowers"],
+      "note": "Floral installations and decor for the ceremony space"
+    },
+    "reception_decor": {
+      "available": true,
+      "items": ["centerpieces_low", "centerpieces_tall", "head_table_garland", "cocktail_arrangements", "cake_flowers", "welcome_sign_swag", "restroom_flowers"],
+      "note": "Table florals, garlands, and decorative arrangements for the reception"
+    },
+    "extras": {
+      "available": true,
+      "items": ["flower_bar_station", "wildflower_seed_favors", "dried_bouquet_preservation"],
+      "note": "The flower bar is a popular cocktail hour activity where guests create their own mini arrangements"
+    }
+  },
+  "specialties": ["rustic", "boho", "wildflower", "organic", "foraged", "dried arrangements", "meadow-style"],
+  "preferred_flowers": ["wildflowers", "sunflowers", "chamomile", "lavender", "dahlias", "zinnias", "eucalyptus", "ferns", "dried grasses"],
+  "seasonal_availability_notes": "Heavily seasonal and locally sourced. Summer and early fall offer the widest selection. Winter weddings use more dried elements and greenery.",
+  "eco_friendly": {
+    "available": true,
+    "options": ["100_pct_locally_grown", "foam_free", "compostable_materials", "foraged_elements", "reusable_vessels"],
+    "upcharge": 0,
+    "flower_donation_after_event": true,
+    "donation_partner": "Local nursing homes and hospice centers",
+    "composting": true,
+    "note": "Sustainability is in our DNA. All flowers are locally grown or foraged. Zero floral foam. All materials are compostable. We donate or compost everything after the event."
+  },
+  "consultation_process": {
+    "initial_consultation_free": true,
+    "mood_board_included": true,
+    "sample_arrangement_fee": 0,
+    "flow": "consult_then_mood_board_then_deposit",
+    "note": "Free consultation — we'll meet you at the venue or over video chat. We love brainstorming creative ideas together."
+  },
+  "deposit_and_cancellation": {
+    "deposit_pct": 40,
+    "deposit_refundable": false,
+    "balance_due": "7 days before event",
+    "final_design_confirmation": "3 weeks before event",
+    "cancellation_policy": {
+      "6_plus_months": "Deposit refunded minus $50 processing fee",
+      "30_days_to_6_months": "Deposit forfeited",
+      "under_30_days": "75% of total owed"
+    },
+    "note": "We're small and flexible. If plans change, talk to us — we'll try to work something out."
+  },
+  "ratings": {
+    "average": 4.7,
+    "review_count": 72,
+    "highlights": ["wildflowers were magical", "DIY package saved us so much", "so creative within our budget"],
+    "source": "aggregate"
+  },
+  "sweeteners": [
+    "Free wildflower seed packets as wedding favors (up to 100)",
+    "Complimentary greenery garland for the head table",
+    "15% off for weekday weddings",
+    "Free flower bar activity station for cocktail hour with orders over $2000",
+    "Complimentary dried bouquet preservation for the bride"
+  ],
+  "personality": "Warm, earthy, and very flexible. Wildflower Collective is run by a small team that genuinely loves what they do. They are the most budget-friendly florist in the area and will work creatively within almost any price range. They love nontraditional weddings and are happy to forage custom elements for a personal touch.",
+  "negotiation_style": {
+    "flexibility": "very_high",
+    "discount_ceiling_pct": 20,
+    "preferred_tactics": ["seasonal_swaps", "greenery_heavy_savings", "diy_hybrid_packages", "foraged_elements"]
+  },
+  "contact": {
+    "email": "flowers@wildflowercollective.com",
+    "phone": "603-555-0603"
+  }
+}

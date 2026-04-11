@@ -1,0 +1,145 @@
+{
+  "id": "transport_02",
+  "name": "Coastal Carriages",
+  "category": "transport",
+  "region": "Cape Cod",
+  "description": "A charming vintage transportation service on Cape Cod offering romantic and whimsical rides for couples who want their wedding day travel to be part of the story. From horse-drawn carriages along the shore to a beloved 1967 VW bus, every ride is a memory.",
+  "lgbtq_welcoming": true,
+  "base_location": "Chatham, MA",
+  "website": "https://www.coastalcarriages.com",
+  "vehicles": [
+    {
+      "type": "Vintage Convertible",
+      "name": "The Pearl",
+      "capacity": 2,
+      "price_per_hour": 200,
+      "minimum_hours": 2,
+      "features": ["1959 Mercedes-Benz 190SL", "white ribbon decoration", "picnic basket add-on available"],
+      "eco_friendly": false
+    },
+    {
+      "type": "Horse-Drawn Carriage",
+      "capacity": 2,
+      "price_per_hour": 350,
+      "minimum_hours": 1,
+      "features": ["white Percheron horses", "floral garland harness", "lantern-lit evening option", "coachman in period attire"],
+      "eco_friendly": true,
+      "eco_note": "Zero emissions — just horsepower (literally). Hay-fed, locally stabled."
+    },
+    {
+      "type": "Vintage VW Bus",
+      "name": "Breezy",
+      "capacity": 8,
+      "price_per_hour": 150,
+      "minimum_hours": 2,
+      "features": ["1967 split-window in seafoam green", "Bluetooth speaker", "surfboard roof rack photo prop", "flower crown for the bus"],
+      "eco_friendly": false
+    },
+    {
+      "type": "Classic Town Car",
+      "capacity": 4,
+      "price_per_hour": 85,
+      "minimum_hours": 2,
+      "features": ["1972 Lincoln Continental", "leather bench seats", "complimentary sparkling cider"],
+      "eco_friendly": false
+    }
+  ],
+  "packages": {
+    "couple_only": {
+      "description": "One vehicle for the couple — ceremony arrival, photo tour, or send-off",
+      "price_range": { "min": 300, "max": 700 },
+      "typical_vehicles": ["Vintage Convertible", "Horse-Drawn Carriage", "Classic Town Car"],
+      "includes": ["Chauffeur or coachman", "vehicle/carriage decoration", "complimentary sparkling cider"]
+    },
+    "bridal_party": {
+      "description": "Couple vehicle + bridal party vehicle",
+      "price_range": { "min": 600, "max": 1400 },
+      "typical_vehicles": ["Vintage Convertible + VW Bus", "Carriage + Classic Town Car"],
+      "includes": ["2 drivers", "all vehicle decoration", "coordinated arrival timing"]
+    },
+    "experience": {
+      "description": "Extended vintage experience with photo tour along Cape Cod scenic routes",
+      "price_range": { "min": 500, "max": 1200 },
+      "typical_vehicles": ["Any vehicle + scenic route"],
+      "includes": ["Extended 30-min photo stop", "scenic Cape Cod route", "picnic basket (convertible)", "driver doubles as local guide"],
+      "note": "Our signature offering — let the ride be part of the wedding story"
+    }
+  },
+  "overtime_rate_per_hour": 100,
+  "price_floor": 300,
+  "multi_vehicle_discount": "15% off when booking 2+ vehicles",
+  "service_area": {
+    "radius_miles": 25,
+    "base_location": "Chatham, MA",
+    "beyond_radius_fee": 75,
+    "max_service_miles": 45,
+    "will_not_service_beyond_max": true,
+    "note": "Horse-drawn carriage limited to 10-mile radius due to horse welfare. Vehicles can go farther."
+  },
+  "carriage_radius_limit_miles": 10,
+  "lead_time_days": 45,
+  "hold_days": 21,
+  "max_events_per_day": 2,
+  "venue_partnerships": {
+    "preferred_venues": ["venue_04"],
+    "partnership_type": "tried_and_true",
+    "discount_for_partner_venues": true,
+    "note": "Regular provider for Cape Cod Inn weddings. The carriage route along the shore to the venue is iconic."
+  },
+  "vehicle_consultation": {
+    "included": true,
+    "vehicle_viewing_available": true,
+    "viewing_location": "Our barn and garage in Chatham — couples can meet the horses too!",
+    "process": "Free consultation to pick vehicles and plan the route. We encourage couples to visit, see the vehicles, meet the horses (Snowflake and Pearl), and do a test photo with their favorite vehicle. We suggest scenic routes the couple might not know about.",
+    "route_planning": true,
+    "horse_meet_and_greet": true,
+    "consultation_timing": "Any time — we love having couples visit. Route finalized 2 weeks before event."
+  },
+  "eco_friendly": {
+    "available": true,
+    "options": ["Horse-drawn carriage (zero emissions)"],
+    "upcharge": 0,
+    "note": "Our carriage is the original eco-friendly transport. Horses are locally stabled, hay-fed, and well cared for. We also offset fuel for our vintage vehicles through a local tree-planting partnership."
+  },
+  "deposit_and_cancellation": {
+    "deposit_pct": 25,
+    "deposit_type": "retainer",
+    "deposit_refundable": false,
+    "balance_due": "7 days before event",
+    "cancellation_policy": {
+      "6_plus_months": "Retainer refunded minus $50 processing fee",
+      "30_days_to_6_months": "Retainer forfeited",
+      "under_30_days": "Full payment required"
+    },
+    "weather_policy": "Horse-drawn carriage bookings include a free backup vehicle (VW Bus or Town Car) in case of severe weather. No additional charge.",
+    "note": "We're flexible — if plans change, just talk to us."
+  },
+  "ratings": {
+    "platform_average": null,
+    "platform_review_count": 0,
+    "external_average": 4.9,
+    "external_review_count": 91,
+    "external_sources": ["google", "the_knot", "yelp"],
+    "composite_score": 4.9,
+    "highlights": ["the carriage ride was the most magical moment of the day", "the VW bus was so fun for photos", "they knew every scenic spot on the Cape"],
+    "verified_bookings": 0
+  },
+  "sweeteners": [
+    "Free 30-minute golden-hour photo session with any vintage vehicle",
+    "Complimentary flower garland decoration on all vehicles",
+    "Handwritten 'love note' from the driver tucked into the vehicle",
+    "Free sparkler send-off kit with carriage bookings",
+    "15% off when booking 2+ vehicles",
+    "Free backup vehicle for carriage bookings in case of weather"
+  ],
+  "personality": "Romantic, whimsical, and genuinely delighted by love stories. Coastal Carriages keeps a scrapbook of every wedding they've served. Names every horse and introduces them to the couple. Suggests scenic detour routes the couple might not know about. Plays era-appropriate music in each vintage vehicle. Very flexible on pricing, especially off-season and weekday. Loves bundling vehicles for a themed experience.",
+  "negotiation_style": {
+    "flexibility": "very_high",
+    "discount_ceiling_pct": 20,
+    "preferred_tactics": ["bundle_vehicles", "off_season_discount", "weekday_discount", "creative_alternatives", "experience_upsell"]
+  },
+  "contact": {
+    "email": "love@coastalcarriages.com",
+    "phone": "508-555-0802"
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "id": "photographer_03",
+  "name": "Candid Moments Co.",
+  "category": "photographer",
+  "region": "Greater Boston",
+  "description": "Photojournalistic wedding photography that tells your story as it unfolds. We stay in the background and capture the real laughs, tears, and joy. No stiff poses, no forced smiles -- just you being you.",
+  "lgbtq_welcoming": true,
+  "packages": {
+    "elopement": {
+      "hours": 2,
+      "price": 900,
+      "includes": [
+        "1 photographer",
+        "Online gallery with 80+ edited images",
+        "Print release for personal use",
+        "Phone consultation to plan the day"
+      ]
+    },
+    "half_day": {
+      "hours": 5,
+      "price": 2000,
+      "includes": [
+        "1 lead photographer",
+        "Online gallery with 250+ edited images",
+        "Engagement session (30 min)",
+        "Print release for personal use",
+        "Day-of timeline assistance",
+        "Sneak peek within 1 week"
+      ]
+    },
+    "full_day": {
+      "hours": 8,
+      "price": 3200,
+      "includes": [
+        "1 lead photographer",
+        "1 second shooter",
+        "Online gallery with 450+ edited images",
+        "Engagement session (45 min)",
+        "Print release for personal use",
+        "Day-of timeline assistance",
+        "Sneak peek within 1 week",
+        "USB drive with all images",
+        "Thank-you card photo set (10 images)"
+      ]
+    }
+  },
+  "price_floor": 900,
+  "lead_time_days": 90,
+  "hold_days": 14,
+  "max_events_per_weekend": 2,
+  "travel_radius_miles": 45,
+  "travel_fee_beyond_radius": 75,
+  "second_shooter_rate_per_hour": 50,
+  "turnaround_weeks": 4,
+  "style": ["photojournalistic", "candid"],
+  "videography_addon": {
+    "available": false,
+    "note": "We focus exclusively on photography. We can recommend trusted videographer partners in the area if needed."
+  },
+  "album_and_print_addons": {
+    "softcover_album_20page": 200,
+    "hardcover_album_30page": 400,
+    "parent_album_15page": 150,
+    "print_package_25_4x6": 50,
+    "usb_drive_all_images": 75,
+    "thank_you_cards_set_25": 60,
+    "note": "Full-day package includes USB drive. Albums available as add-ons."
+  },
+  "deposit_and_cancellation": {
+    "retainer_pct": 35,
+    "retainer_refundable": false,
+    "retainer_note": "Non-refundable retainer to hold the date. Lower retainer because we want to be accessible.",
+    "balance_due": "14 days before event",
+    "cancellation_policy": {
+      "6_plus_months": "Retainer forfeited, can be credited toward rescheduled date",
+      "under_6_months": "Retainer forfeited",
+      "under_90_days": "Full payment required"
+    },
+    "engagement_session_timing": "2-4 months before wedding"
+  },
+  "ratings": {
+    "average": 4.6,
+    "review_count": 142,
+    "highlights": ["captured the real moments", "so relaxed and easygoing", "great with kids"],
+    "source": "aggregate"
+  },
+  "sweeteners": [
+    "Free second shooter upgrade for Saturday weddings over 6 hours",
+    "Complimentary engagement session for any full-day booking",
+    "10% referral discount if you send another couple our way",
+    "Free USB drive with all images for bookings over $2500"
+  ],
+  "personality": {
+    "tone": "casual, warm, down-to-earth",
+    "negotiation_style": "mid-range",
+    "flexibility": "high",
+    "eagerness": "very approachable",
+    "notes": "Easy to work with and responsive. Genuinely cares about making couples comfortable. Willing to customize packages and adjust pricing for the right fit. Great for couples who want a relaxed, low-pressure experience."
+  }
+}

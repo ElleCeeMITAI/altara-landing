@@ -1,0 +1,96 @@
+{
+  "id": "catering_05",
+  "name": "Seaport Event Catering",
+  "category": "catering",
+  "region": "Greater Boston",
+  "description": "A large-scale, budget-friendly catering company based in Boston's Seaport district. Specializes in high-volume events with efficient service and reliable quality. Great for couples who want solid food and professional service without breaking the bank.",
+  "lgbtq_welcoming": true,
+  "pricing": {
+    "price_floor_per_head": 60,
+    "plated_per_head": 95,
+    "buffet_per_head": 68,
+    "family_style_per_head": 82,
+    "cocktail_reception_per_head": 52,
+    "bar_packages": {
+      "open_bar_premium": 50,
+      "open_bar_standard": 38,
+      "beer_wine_only": 25,
+      "non_alcoholic": 10
+    },
+    "peak_surcharge_pct": 12,
+    "peak_months": [5, 6, 9, 10],
+    "cake_cutting_fee": 2,
+    "tasting_fee": 50,
+    "tasting_fee_waived_on_booking": true
+  },
+  "capacity": {
+    "min_guests": 75,
+    "max_guests": 500
+  },
+  "service_area": {
+    "radius_miles": 50,
+    "base_location": "Boston, MA",
+    "beyond_radius": "surcharge",
+    "surcharge_flat": 300,
+    "max_radius_miles": 100,
+    "will_not_service_beyond_max": true,
+    "note": "We have the fleet and staff to go anywhere in New England. Flat $300 fee beyond 50 miles. We regularly serve Cape Cod, NH, and RI."
+  },
+  "catering_type": "full_service_offsite",
+  "venue_exclusive": null,
+  "food_truck_available": true,
+  "service_styles": ["plated", "buffet", "family_style", "cocktail_reception", "stations", "food_trucks"],
+  "serviceware": {
+    "included": ["standard_dinnerware", "glassware", "stainless_flatware"],
+    "upgrade_options": ["premium_china", "linen_napkins", "charger_plates"],
+    "eco_friendly_available": true,
+    "eco_options": ["compostable_plates", "compostable_cups", "bamboo_utensils"],
+    "eco_note": "Eco-friendly serviceware available at $2/head upcharge. Our food truck packages use compostable packaging by default.",
+    "eco_upcharge_per_head": 2
+  },
+  "bar_service": {
+    "included": true,
+    "note": "Full bar service available with all packages. Bartenders included for events over 100 guests. Below 100, bartender fee is $250."
+  },
+  "specialties": ["American Contemporary", "Asian Fusion", "BBQ", "Comfort Food"],
+  "dietary_accommodations": ["vegetarian", "vegan", "gluten-free", "dairy-free", "nut-free", "halal"],
+  "sweeteners": [
+    "Free appetizer course for events over 200 guests",
+    "Complimentary coffee and tea service included with all packages",
+    "10% discount for Sunday weddings",
+    "Free setup and breakdown for buffet service",
+    "Late-night slider station at no extra cost for 300+ guest events"
+  ],
+  "deposit_and_cancellation": {
+    "deposit_pct": 25,
+    "deposit_refundable": false,
+    "balance_due": "7 days before event",
+    "final_guest_count_due": "14 days before event",
+    "cancellation_policy": {
+      "6_plus_months": "Deposit forfeited",
+      "3_to_6_months": "50% of total owed",
+      "under_3_months": "Full payment required"
+    }
+  },
+  "ratings": {
+    "average": 4.2,
+    "review_count": 289,
+    "highlights": ["great value for large events", "on-time and professional", "food truck was a crowd favorite"],
+    "source": "aggregate",
+    "new_vendor_discount": true,
+    "new_vendor_note": "Running a 10% off promotion for new wedding clients to build their wedding-specific portfolio"
+  },
+  "personality": "Efficient, reliable, and volume-oriented. Seaport Event Catering runs like a well-oiled machine. They are upfront about pricing, move fast on quotes, and excel at large events where logistics matter. Not the most creative menu, but consistently delivers good food at a fair price.",
+  "negotiation_style": {
+    "flexibility": "high",
+    "discount_ceiling_pct": 18,
+    "preferred_tactics": ["volume_pricing", "off_peak_discount", "simplified_menu_savings", "bundled_services"],
+    "walkaway_below_per_head": 52
+  },
+  "lead_time_days": 30,
+  "hold_days": 21,
+  "contact": {
+    "email": "bookings@seaportcatering.com",
+    "phone": "617-555-0505"
+  }
+}

@@ -1,0 +1,4 @@
+scenario,vendor_count,accepted,failed,recovered,grand_total,elapsed_sec,api_cost
+baseline,6,6,0,0,51150,120.9,0.173592
+venue_failure,6,6,1,1,58720,102.4,0.148761
+catering_failure,6,6,1,1,50715,110.6,0.164514

@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const { runSimulation, CatererAgent, CONFIG } = require("./agents");
 const { runLiveNegotiation } = require("./negotiate");
+const { runFullWeddingNegotiation } = require("./negotiate-multi");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -199,6 +200,48 @@ app.get("/api/simulate-live", async (req, res) => {
 
   try {
     await runLiveNegotiation(formData, sendEvent);
+  } catch (err) {
+    sendEvent({ type: "error", message: err.message });
+  }
+
+  res.write("data: [DONE]\n\n");
+  res.end();
+});
+
+// GET /api/simulate-multi — SSE endpoint for multi-category negotiation
+app.get("/api/simulate-multi", async (req, res) => {
+  res.writeHead(200, {
+    "Content-Type": "text/event-stream",
+    "Cache-Control": "no-cache",
+    Connection: "keep-alive",
+  });
+
+  const formData = {
+    budget: parseInt(req.query.budget, 10) || 50000,
+    guestCount: parseInt(req.query.guestCount, 10) || 120,
+    serviceStyle: (req.query.serviceStyle || "Plated").replace(/_/g, " "),
+    cuisinePreference: req.query.cuisinePreference || "",
+    dietaryNeeds: req.query.dietaryNeeds ? req.query.dietaryNeeds.split(",").filter(Boolean) : [],
+    weddingDate: req.query.weddingDate || "2027-06-12",
+    location: req.query.location || "",
+    style: req.query.style || "classic",
+    entertainmentType: req.query.entertainmentType || "dj",
+    genrePreferences: req.query.genrePreferences ? req.query.genrePreferences.split(",").filter(Boolean) : [],
+    floralScope: req.query.floralScope || "full",
+    transportScope: req.query.transportScope || "couple_only",
+  };
+
+  function sendEvent(data) {
+    res.write(`data: ${JSON.stringify(data)}\n\n`);
+  }
+
+  try {
+    const result = await runFullWeddingNegotiation(formData, {
+      model: "claude-sonnet-4-20250514",
+      sendEvent,
+      vendorsPerCategory: 2,
+    });
+    sendEvent({ type: "complete", result });
   } catch (err) {
     sendEvent({ type: "error", message: err.message });
   }
