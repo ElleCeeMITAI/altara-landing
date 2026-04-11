@@ -387,6 +387,47 @@
 
     .cta-couples-line a:hover { text-decoration: underline; }
 
+    .cta-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      max-width: 900px;
+      margin: 2rem auto 0;
+      text-align: center;
+    }
+
+    .cta-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+    }
+
+    .cta-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: white;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-card p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-card .btn-primary {
+      display: inline-block;
+      font-size: 0.95rem;
+      padding: 0.85rem 2rem;
+    }
+
+    @media (max-width: 700px) {
+      .cta-split { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+
     /* CATEGORIES */
     .categories-section { background: var(--cream); }
 
@@ -491,8 +532,9 @@
   <section class="hero">
     <div class="hero-content">
       <div class="hero-badge">AI-Powered Wedding Marketplace</div>
-      <h1>Meet Belle. She doesn't<br>just plan &mdash; she <em>negotiates</em>.</h1>
-      <p>Altara is the A2A wedding marketplace where Belle, your AI wedding planner, negotiates with vendor agents across 7 categories simultaneously. You get 3 curated packages. You pick one. Done.</p>
+      <div style="margin-bottom: 1.25rem;"><img src="/belle-intro.png" alt="Hi, I'm Belle." style="max-width: 280px; width: 60%; height: auto;"></div>
+      <h1>She doesn't just plan &mdash;<br>she <em>negotiates</em>.</h1>
+      <p>Altara is the A2A wedding marketplace where Belle, your AI wedding planner, negotiates with vendor agents across multiple categories simultaneously. You get 3 curated packages. You pick one. Done.</p>
       <div class="hero-buttons">
         <a href="#contact" class="btn-primary">Get in Touch</a>
         <a href="#how-it-works" class="btn-secondary">See How It Works</a>
@@ -529,18 +571,18 @@
       <div class="steps">
         <div class="step fade-in">
           <div class="step-number">1</div>
-          <h3>Tell Your Planner</h3>
-          <p>Share your date, budget, guest count, style, and preferences in a natural conversation. Your AI planner listens like a trusted advisor.</p>
+          <h3>Tell Belle</h3>
+          <p>Share your date, budget, guest count, style, and preferences in a natural conversation. Belle listens like a trusted advisor.</p>
         </div>
         <div class="step fade-in">
           <div class="step-number">2</div>
           <h3>Agents Match &amp; Filter</h3>
-          <p>Your planner finds vendors across 7 categories &mdash; filtered by budget, location, ratings, availability, and style. Only real fits make the cut.</p>
+          <p>Belle finds vendors across multiple categories &mdash; filtered by budget, location, ratings, availability, and style. Only real fits make the cut.</p>
         </div>
         <div class="step fade-in">
           <div class="step-number">3</div>
           <h3>Agents Negotiate</h3>
-          <p>Vendor agents present packages, counter offers, and offer sweeteners &mdash; all within each vendor's rules. Your planner tracks the budget across every category.</p>
+          <p>Vendor agents present packages, counter offers, and offer sweeteners &mdash; all within each vendor's rules. Belle tracks the budget across every category.</p>
         </div>
         <div class="step fade-in">
           <div class="step-number">4</div>
@@ -566,7 +608,7 @@
         <div class="feature-card fade-in">
           <div class="feature-icon icon-blush">&#x1f4b0;</div>
           <h3>Budget-Aware Negotiation</h3>
-          <p>Your planner tracks spend across all 7 categories in real time. Savings from one category redistribute to others. Every dollar is optimized.</p>
+          <p>Belle tracks spend across all categories in real time. Savings from one category redistribute to others. Every dollar is optimized.</p>
         </div>
         <div class="feature-card fade-in">
           <div class="feature-icon icon-gold">&#x1f4e6;</div>
@@ -655,10 +697,20 @@
   <section class="cta-section" id="contact">
     <div class="section-inner">
       <div class="section-label">Get Started</div>
-      <div class="section-title">Join the founding vendor waitlist.</div>
-      <div class="section-subtitle">First 50 vendors per category in Boston get 0% commission for 6 months, a permanent Founding Vendor badge, and free premium analytics for a year.</div>
-      <a href="mailto:vendors@thebigdayapp.com" class="btn-primary">vendors@thebigdayapp.com</a>
-      <p class="cta-couples-line">Couples: <a href="mailto:hello@altara.ai">hello@altara.ai</a></p>
+      <div class="section-title">Join the waitlist.</div>
+
+      <div class="cta-split">
+        <div class="cta-card">
+          <h3>Join the Founding Vendor Waitlist</h3>
+          <p>First 50 vendors per category in Boston get commission-free bookings for 6 months, a permanent Founding Vendor badge, and free premium analytics for a year.</p>
+          <a href="mailto:vendors@thebigdayapp.com" class="btn-primary">Join the Vendor Waitlist</a>
+        </div>
+        <div class="cta-card">
+          <h3>Want Belle to plan your wedding?</h3>
+          <p>Be the first to try Belle &mdash; your AI wedding planner who negotiates with vendors, tracks your budget, and delivers curated packages. Launching in Boston.</p>
+          <a href="mailto:hello@altara.ai" class="btn-primary">Join the Couples Waitlist</a>
+        </div>
+      </div>
     </div>
   </section>
 
