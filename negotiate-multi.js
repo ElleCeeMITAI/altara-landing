@@ -1070,6 +1070,21 @@ async function runFullWeddingNegotiation(formData, options = {}) {
       if (sendEvent) {
         sendEvent({ type: "no_candidates", category, message: `No ${category} vendors available (filtered out by lead time, rating, or service area)` });
       }
+      // If no venue candidates at all, stop — can't proceed without a venue
+      if (category === "venue") {
+        plannerState.log("STOPPING: No venue candidates passed pre-screening. Cannot proceed.");
+        if (sendEvent) {
+          sendEvent({
+            type: "venue_failed_abort",
+            category: "venue",
+            from: "couple",
+            label: "Belle — Negotiation Paused",
+            summary: "Belle couldn't find any venues that match your criteria (date, location, guest count, budget). Without a venue, she can't negotiate any other vendors. Please try adjusting your guest count, date, or budget.",
+            message: "Negotiation stopped — no venue candidates available.",
+          });
+        }
+        break;
+      }
       continue;
     }
 
@@ -1137,6 +1152,23 @@ async function runFullWeddingNegotiation(formData, options = {}) {
           category,
           message: `Could not secure a ${category} vendor within budget`,
         });
+      }
+
+      // If venue failed, stop the entire negotiation — all other categories depend on it
+      if (category === "venue") {
+        const venueAlloc = plannerState.allocations.venue || 0;
+        plannerState.log("STOPPING: Cannot proceed without a venue — all other categories depend on venue location, capacity, and partnerships.");
+        if (sendEvent) {
+          sendEvent({
+            type: "venue_failed_abort",
+            category: "venue",
+            from: "couple",
+            label: "Belle — Negotiation Paused",
+            summary: `Belle couldn't secure a venue within the $${venueAlloc.toLocaleString()} venue budget. Without a venue, she can't negotiate catering, photography, or any other category — vendor availability, service areas, and partnerships all depend on the venue. Please consider increasing your total budget, adjusting your guest count, or choosing a different date for more availability.`,
+            message: "Negotiation stopped — no venue secured. Belle needs a venue before she can continue.",
+          });
+        }
+        break;
       }
     }
   }
