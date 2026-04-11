@@ -3,7 +3,7 @@
 Altara Caterer Agent — Demo Scenario
 =====================================
 Simulates a full A2A conversation between the Planner Agent and
-the Bella Tavola Catering vendor agent.
+the Grand Meridian Ballroom Catering vendor agent.
 
 Scenario: A couple wants a June 14, 2026 wedding for 120 guests
 with a $40K total budget (~$130/head for catering).
@@ -29,7 +29,7 @@ def main():
 
     print("\n" + "~"*60)
     print("  ALTARA — Caterer Agent Demo")
-    print("  Bella Tavola Catering × Planner Agent")
+    print("  Grand Meridian Ballroom Catering × Planner Agent")
     print("~"*60)
 
     # ── Step 1: Discovery ─────────────────────────────────────────

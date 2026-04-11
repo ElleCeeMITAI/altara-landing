@@ -219,7 +219,7 @@ def confirm_booking(
         "your_contact": {
             "name": "Maria Russo",
             "role": "Event Coordinator",
-            "email": "maria@bellatavola.com",
+            "email": "maria@grandmeridian.com",
             "phone": "(617) 555-0142",
         },
     }

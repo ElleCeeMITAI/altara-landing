@@ -1,5 +1,5 @@
 """
-Bella Tavola Catering — Private Business Configuration
+Grand Meridian Ballroom Catering — Private Business Configuration
 =======================================================
 This represents the vendor's PRIVATE state that is never exposed publicly.
 The agent uses this to make decisions, generate quotes, and negotiate.
@@ -8,8 +8,8 @@ The agent uses this to make decisions, generate quotes, and negotiate.
 from datetime import date, timedelta
 
 # ── Identity ──────────────────────────────────────────────────────────
-VENDOR_NAME = "Bella Tavola Catering"
-VENDOR_ID = "bella-tavola-catering"
+VENDOR_NAME = "Grand Meridian Ballroom Catering"
+VENDOR_ID = "grand-meridian-ballroom-catering"
 
 # ── Service Regions ───────────────────────────────────────────────────
 SERVICE_REGIONS = ["Greater Boston", "Cape Cod", "Rhode Island", "Southern NH"]

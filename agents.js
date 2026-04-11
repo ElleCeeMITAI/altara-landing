@@ -1,7 +1,7 @@
 /**
  * Altara A2A Wedding Agent Simulation
  * ====================================
- * JavaScript port of the Bella Tavola Catering agent with full business logic
+ * JavaScript port of the Grand Meridian Ballroom Catering agent with full business logic
  * from config.py + all skills (pricing, negotiation, availability, menus,
  * dietary, booking). Also includes a CoupleAgent (planner) that orchestrates
  * the 6-step wedding vendor flow.
@@ -12,8 +12,8 @@
 // ============================================================================
 
 const CONFIG = {
-  VENDOR_NAME: "Bella Tavola Catering",
-  VENDOR_ID: "bella-tavola-catering",
+  VENDOR_NAME: "Grand Meridian Ballroom Catering",
+  VENDOR_ID: "grand-meridian-ballroom-catering",
 
   // Service Regions
   SERVICE_REGIONS: ["Greater Boston", "Cape Cod", "Rhode Island", "Southern NH"],
@@ -200,6 +200,37 @@ const CONFIG = {
     "Macarons (GF)":                { tags: ["eggs", "nuts"], label: "Macarons (GF)" },
     "Herb-Roasted Chicken (Halal)": { tags: ["poultry"], label: "Herb-Roasted Chicken (Halal)" },
     "Grilled Lamb Kofta (Halal)":   { tags: ["meat"], label: "Grilled Lamb Kofta (Halal)" },
+
+    // Asian Fusion
+    "Tuna Tartare on Wonton Crisps": { tags: ["fish", "gluten"], label: "Tuna Tartare on Wonton Crisps" },
+    "Pork Belly Bao Buns":         { tags: ["pork", "gluten"], label: "Pork Belly Bao Buns" },
+    "Edamame & Seaweed Salad":     { tags: [], label: "Edamame & Seaweed Salad" },
+    "Miso-Glazed Chilean Sea Bass": { tags: ["fish", "gluten"], label: "Miso-Glazed Chilean Sea Bass" },
+    "Korean BBQ Short Ribs":       { tags: ["meat", "gluten"], label: "Korean BBQ Short Ribs" },
+    "Teriyaki Chicken with Bok Choy": { tags: ["poultry", "gluten"], label: "Teriyaki Chicken with Bok Choy" },
+    "Crispy Tofu with Thai Basil Sauce": { tags: [], label: "Crispy Tofu with Thai Basil Sauce" },
+    "Coconut Jasmine Rice":        { tags: [], label: "Coconut Jasmine Rice" },
+    "Stir-Fried Asian Vegetables": { tags: [], label: "Stir-Fried Asian Vegetables" },
+    "Sesame Noodles":              { tags: ["gluten"], label: "Sesame Noodles" },
+    "Matcha Panna Cotta":          { tags: ["dairy"], label: "Matcha Panna Cotta" },
+    "Mochi Ice Cream Assortment":  { tags: ["dairy", "eggs"], label: "Mochi Ice Cream Assortment" },
+    "Yuzu Tart":                   { tags: ["gluten", "dairy", "eggs"], label: "Yuzu Tart" },
+
+    // American Contemporary
+    "Shrimp & Grits Shooters":     { tags: ["shellfish", "dairy"], label: "Shrimp & Grits Shooters" },
+    "Beef Carpaccio with Arugula": { tags: ["meat", "dairy"], label: "Beef Carpaccio with Arugula" },
+    "Wedge Salad with Blue Cheese": { tags: ["dairy", "pork"], label: "Wedge Salad with Blue Cheese" },
+    "Baby Kale Caesar":            { tags: ["dairy", "eggs", "fish"], label: "Baby Kale Caesar" },
+    "Pan-Seared Duck Breast with Cherry Reduction": { tags: ["poultry", "alcohol"], label: "Pan-Seared Duck Breast with Cherry Reduction" },
+    "Grilled NY Strip with Truffle Butter": { tags: ["meat", "dairy"], label: "Grilled NY Strip with Truffle Butter" },
+    "Pistachio-Crusted Rack of Lamb": { tags: ["meat", "nuts"], label: "Pistachio-Crusted Rack of Lamb" },
+    "Seared Scallops with Cauliflower Puree": { tags: ["shellfish", "dairy"], label: "Seared Scallops with Cauliflower Puree" },
+    "Truffle Mac & Cheese":        { tags: ["dairy", "gluten", "eggs"], label: "Truffle Mac & Cheese" },
+    "Roasted Fingerling Potatoes":  { tags: [], label: "Roasted Fingerling Potatoes" },
+    "Charred Broccolini":          { tags: [], label: "Charred Broccolini" },
+    "New York Cheesecake":         { tags: ["dairy", "gluten", "eggs"], label: "New York Cheesecake" },
+    "Crème Brûlée":                { tags: ["dairy", "eggs"], label: "Crème Brûlée" },
+    "Molten Chocolate Lava Cake":  { tags: ["dairy", "gluten", "eggs"], label: "Molten Chocolate Lava Cake" },
   },
 
   // ── Dietary filter rules: which tags to exclude ──────────────────
@@ -211,7 +242,7 @@ const CONFIG = {
   // kosher: no shellfish, no pork (simplified)
   // halal: no pork, no alcohol
   DIETARY_EXCLUSIONS: {
-    vegetarian: ["meat", "poultry", "fish", "shellfish", "pork"],
+    vegetarian: ["meat", "poultry", "fish", "shellfish", "pork", "dairy", "eggs"],
     vegan: ["meat", "poultry", "fish", "shellfish", "dairy", "eggs", "pork"],
     gluten_free: ["gluten"],
     dairy_free: ["dairy"],
@@ -335,6 +366,40 @@ const CONFIG = {
       },
       tier: "standard",
     },
+    asian_fusion: {
+      name: "Asian Fusion",
+      cuisine: "Asian Fusion",
+      courses: {
+        appetizer: ["Tuna Tartare on Wonton Crisps", "Pork Belly Bao Buns"],
+        salad: ["Edamame & Seaweed Salad"],
+        entree: [
+          "Miso-Glazed Chilean Sea Bass",
+          "Korean BBQ Short Ribs",
+          "Teriyaki Chicken with Bok Choy",
+          "Crispy Tofu with Thai Basil Sauce",
+        ],
+        side: ["Coconut Jasmine Rice", "Stir-Fried Asian Vegetables", "Sesame Noodles"],
+        dessert: ["Matcha Panna Cotta", "Mochi Ice Cream Assortment", "Yuzu Tart"],
+      },
+      tier: "premium",
+    },
+    american_contemporary: {
+      name: "American Contemporary",
+      cuisine: "American Contemporary",
+      courses: {
+        appetizer: ["Shrimp & Grits Shooters", "Beef Carpaccio with Arugula"],
+        salad: ["Wedge Salad with Blue Cheese", "Baby Kale Caesar"],
+        entree: [
+          "Pan-Seared Duck Breast with Cherry Reduction",
+          "Grilled NY Strip with Truffle Butter",
+          "Pistachio-Crusted Rack of Lamb",
+          "Seared Scallops with Cauliflower Puree",
+        ],
+        side: ["Truffle Mac & Cheese", "Roasted Fingerling Potatoes", "Charred Broccolini"],
+        dessert: ["New York Cheesecake", "Crème Brûlée", "Molten Chocolate Lava Cake"],
+      },
+      tier: "luxury",
+    },
   },
 
   // Blackout Dates
@@ -382,10 +447,10 @@ const CONFIG = {
 
   // Agent Card (public-facing)
   AGENT_CARD: {
-    name: "Bella Tavola Catering",
+    name: "Grand Meridian Ballroom Catering",
     description:
-      "Full-service wedding caterer offering plated, buffet, and family-style dining for 20-500 guests. Specializing in Italian-American and seasonal farm-to-table menus with extensive dietary accommodation.",
-    url: "https://agents.altara.ai/vendors/bella-tavola-catering",
+      "Full-service venue catering at Grand Meridian Ballroom, offering plated, buffet, and family-style dining for 20-500 guests. Specializing in seasonal farm-to-table menus with extensive dietary accommodation.",
+    url: "https://agents.altara.ai/vendors/grand-meridian-ballroom-catering",
     version: "1.0.0",
     protocol: "a2a/1.0",
     capabilities: {
@@ -409,7 +474,7 @@ const CONFIG = {
       max_guest_count: 500,
       service_regions: ["Greater Boston", "Cape Cod", "Rhode Island", "Southern NH"],
       advance_booking_days_min: 30,
-      cuisine_types: ["Italian-American", "New England", "Farm-to-Table", "Mediterranean"],
+      cuisine_types: ["Italian-American", "New England", "Farm-to-Table", "Mediterranean", "Asian Fusion", "American Contemporary"],
       service_styles: ["plated", "buffet", "family_style", "stations", "cocktail_reception"],
     },
     trust: {
@@ -1325,7 +1390,7 @@ function confirmBooking({
     your_contact: {
       name: "Maria Russo",
       role: "Event Coordinator",
-      email: "maria@bellatavola.com",
+      email: "maria@grandmeridian.com",
       phone: "(617) 555-0142",
     },
   };
@@ -1438,6 +1503,7 @@ class CatererAgent {
     const serviceStyle = params.service_style || "plated";
     const budgetPerHead = params.budget_per_head;
     const dietaryNeeds = params.dietary_needs;
+    const cuisinePreference = params.cuisine_preference || "";
 
     // Step 1: Check availability
     const avail = checkAvailability(eventDate, guestCount, region, serviceStyle);
@@ -1460,15 +1526,46 @@ class CatererAgent {
       }
     }
 
-    // Step 3: Get matching menus
-    const menus = getMenus({ tier: recommendedTier, dietaryNeeds });
+    // Step 3: Get matching menus — if cuisine is specified, show all tiers for
+    //         that cuisine so the couple can see the full range of options
+    let menus = cuisinePreference
+      ? getMenus({ cuisine: cuisinePreference, dietaryNeeds })
+      : getMenus({ tier: recommendedTier, dietaryNeeds });
 
-    // Step 4: Generate quote
+    // If cuisine filter returned nothing, fall back to all menus at recommended tier
+    if (menus.menus.length === 0) {
+      menus = getMenus({ tier: recommendedTier, dietaryNeeds });
+    }
+
+    // If a cuisine preference matched a menu, quote at the best-fitting tier
+    // for that cuisine. Pick the highest tier the budget can afford; if none
+    // fit, pick the cheapest available (which will trigger negotiation).
+    let quoteTier = recommendedTier;
+    if (cuisinePreference && menus.menus.length > 0) {
+      const tierOrder = ["standard", "premium", "luxury"];
+      const cuisineMenus = menus.menus.slice().sort(
+        (a, b) => tierOrder.indexOf(a.tier) - tierOrder.indexOf(b.tier)
+      );
+
+      // Find the highest tier that fits the budget
+      let bestFit = null;
+      for (const m of cuisineMenus) {
+        const tierPrice = (CONFIG.BASE_PRICING[serviceStyle] || {})[m.tier] || 0;
+        if (budgetPerHead && tierPrice <= budgetPerHead) {
+          bestFit = m.tier;
+        }
+      }
+
+      // If no tier fits, use the lowest available tier (cheapest) for that cuisine
+      quoteTier = bestFit || cuisineMenus[0].tier;
+    }
+
+    // Step 4: Generate quote at the menu's actual tier
     const quote = generateQuote({
       eventDate,
       guestCount,
       serviceStyle,
-      tier: recommendedTier,
+      tier: quoteTier,
       region,
       dietaryBreakdown: params.dietary_breakdown,
       kidsCount: params.kids_count || 0,
@@ -1500,7 +1597,7 @@ class CatererAgent {
     return {
       rfp_status: "proposal_ready",
       availability: avail,
-      recommended_tier: recommendedTier,
+      recommended_tier: quoteTier,
       menus: menus.menus.slice(0, 3),
       quote: publicQuote,
       budget_fit: budgetFit,
@@ -1593,23 +1690,32 @@ class CoupleAgent {
       budget,
       guestCount,
       serviceStyle = "plated",
+      cuisinePreference = "",
       dietaryNeeds = [],
       addOns = [],
     } = this.preferences;
 
     const budgetPerHead = Math.round((budget / guestCount) * 100) / 100;
 
-    // ── STEP 1: Discover Vendor Capabilities ──────────────────────
+    // ── STEP 1: Discover Venue & Cuisine Options ─────────────────
     const discoverResponse = caterer.handleMessage({
       intent: "discover",
       params: {},
     });
 
+    // Collect available cuisines from menu templates
+    const availableCuisines = [...new Set(
+      Object.values(CONFIG.MENU_TEMPLATES).map(t => t.cuisine)
+    )];
+    const cuisineNote = cuisinePreference
+      ? ` The couple prefers ${cuisinePreference} cuisine.`
+      : ` The venue offers: ${availableCuisines.join(", ")}.`;
+
     steps.push({
       step: 1,
       from: "couple",
-      label: "Discover Vendor",
-      summary: `The couple's planner agent discovers ${CONFIG.VENDOR_NAME} on the Altara marketplace and requests its capabilities.`,
+      label: "Discover Venue",
+      summary: `The couple's planner agent discovers ${CONFIG.VENDOR_NAME} on the Altara marketplace and requests its catering capabilities.${cuisineNote}`,
       data: {
         request: { intent: "discover" },
         response: discoverResponse,
@@ -1633,6 +1739,7 @@ class CoupleAgent {
       guest_count: guestCount,
       region: this.region,
       service_style: serviceStyle,
+      cuisine_preference: cuisinePreference || undefined,
       budget_per_head: budgetPerHead,
       dietary_needs: dietaryNeeds,
       dietary_breakdown: Object.keys(dietaryBreakdown).length > 0 ? dietaryBreakdown : undefined,
@@ -1761,17 +1868,37 @@ class CoupleAgent {
       },
     });
 
-    // ── STEP 4: Select Menu Based on Dietary Needs ────────────────
+    // ── STEP 4: Select Menu Based on Cuisine & Dietary Needs ─────
     const availableMenus = rfpResponse.data?.menus || [];
-    // Pick the first menu that has good dietary compatibility, or fallback to first
-    selectedMenuId = availableMenus.length > 0 ? availableMenus[0].id : "italian_classic";
 
-    // If there are dietary needs, pick the menu with best compatibility
-    if (dietaryNeeds.length > 0 && availableMenus.length > 1) {
+    // Score each menu: cuisine match is highest priority, then dietary compatibility
+    selectedMenuId = availableMenus.length > 0 ? availableMenus[0].id : "italian_classic";
+    {
       let bestScore = -1;
       for (const menu of availableMenus) {
-        const compat = menu.dietary_compatibility || {};
-        const score = Object.values(compat).filter((c) => c.supported).length;
+        let score = 0;
+
+        // Cuisine match: strong preference (100 points)
+        if (cuisinePreference) {
+          if (menu.cuisine && menu.cuisine.toLowerCase() === cuisinePreference.toLowerCase()) {
+            score += 100;
+          } else if (menu.cuisine && menu.cuisine.toLowerCase().includes(cuisinePreference.toLowerCase())) {
+            score += 50;
+          }
+        }
+
+        // Dietary compatibility bonus
+        if (dietaryNeeds.length > 0) {
+          const compat = menu.dietary_compatibility || {};
+          score += Object.values(compat).filter((c) => c.supported).length * 5;
+        }
+
+        // Tier preference: prefer premium over standard when no cuisine preference
+        if (!cuisinePreference) {
+          if (menu.tier === "premium") score += 10;
+          else if (menu.tier === "luxury") score += 8;
+        }
+
         if (score > bestScore) {
           bestScore = score;
           selectedMenuId = menu.id;
@@ -1780,6 +1907,7 @@ class CoupleAgent {
     }
 
     const selectedMenuTemplate = CONFIG.MENU_TEMPLATES[selectedMenuId] || availableMenus[0];
+    const selectedCuisine = selectedMenuTemplate.cuisine || "House";
 
     // Apply dietary filtering to the selected menu
     const menuFilterResult = filterMenuForDietary(
@@ -1805,20 +1933,28 @@ class CoupleAgent {
       menuAdaptNote = ` ${remCount} dish(es) removed and ${subCount} substitution(s) made to comply with dietary restrictions.`;
     }
 
+    const cuisineSummary = cuisinePreference
+      ? (selectedCuisine.toLowerCase() === cuisinePreference.toLowerCase()
+          ? `matching their ${cuisinePreference} cuisine preference`
+          : `closest match to their ${cuisinePreference} preference (venue offers: ${selectedCuisine})`)
+      : `featuring ${selectedCuisine} cuisine`;
+
     steps.push({
       step: 4,
       from: "couple",
       label: "Select Menu",
       summary:
-        `The couple selects the "${filteredMenu?.name || selectedMenuId}" menu` +
+        `The couple selects the "${filteredMenu?.name || selectedMenuId}" menu, ${cuisineSummary}` +
         (dietaryNeeds.length > 0
-          ? ` with ${dietaryNeeds.join(", ")} accommodations.${menuAdaptNote} ` +
+          ? `, with ${dietaryNeeds.join(", ")} accommodations.${menuAdaptNote} ` +
             (dietaryResult.feasible
               ? `All dietary needs are feasible${dietaryResult.total_dietary_upcharge > 0 ? ` (upcharge: $${dietaryResult.total_dietary_upcharge})` : ""}.`
               : `Warning: some dietary needs cannot be fully accommodated.`)
           : "."),
       data: {
         selected_menu_id: selectedMenuId,
+        cuisine: selectedCuisine,
+        cuisine_preference: cuisinePreference || "none",
         selected_menu: filteredMenu,
         original_courses: selectedMenuTemplate.courses,
         adapted_courses: menuFilterResult.courses,
@@ -1861,7 +1997,10 @@ class CoupleAgent {
       },
     });
 
-    // ── STEP 6: Confirm Booking ───────────────────────────────────
+    // ── STEP 6: Confirm Booking (Pending Deposit) ──────────────────
+    // Both agents have agreed on terms. The venue sends a contract and
+    // deposit instructions. The date is held pending the couple's 25% deposit.
+    const depositAmount = Math.round((negotiatedTotal || rfpTotal) * 0.25);
     const confirmResponse = caterer.handleMessage({
       intent: "confirm_booking",
       params: {
@@ -1870,7 +2009,7 @@ class CoupleAgent {
         final_guest_count: guestCount,
         menu_id: selectedMenuId,
         service_style: serviceStyle,
-        deposit_received: true,
+        deposit_received: false,
         contract_signed: true,
         special_notes: dietaryNeeds.length > 0
           ? `Dietary accommodations required: ${dietaryNeeds.join(", ")}`
@@ -1881,12 +2020,12 @@ class CoupleAgent {
     steps.push({
       step: 6,
       from: "caterer",
-      label: "Confirm Booking",
+      label: "Pending Deposit",
       summary:
-        confirmResponse.data?.status === "confirmed"
-          ? `Booking confirmed! ${CONFIG.VENDOR_NAME} is locked in for ${this.eventDate} with ${guestCount} guests. ` +
-            `Booking ID: ${confirmResponse.data?.booking_id}. Contact: ${confirmResponse.data?.your_contact?.name} (${confirmResponse.data?.your_contact?.email}).`
-          : `Booking confirmation status: ${confirmResponse.data?.status || "unknown"}. ${confirmResponse.data?.message || ""}`,
+        `Both agents have reached agreement! ${CONFIG.VENDOR_NAME} has sent the contract for ${this.eventDate} (${guestCount} guests). ` +
+        `The date is held for 7 days pending the couple's 25% deposit of $${depositAmount.toLocaleString("en-US")}. ` +
+        `Once the deposit is received, the booking will be fully confirmed. ` +
+        `Contact: ${confirmResponse.data?.your_contact?.name || "Event Coordinator"} (${confirmResponse.data?.your_contact?.email || "events@grandmeridian.com"}).`,
       data: {
         request: {
           intent: "confirm_booking",

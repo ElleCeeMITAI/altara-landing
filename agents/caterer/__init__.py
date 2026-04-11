@@ -1,1 +1,1 @@
-# Bella Tavola Catering — Altara Vendor Agent
+# Grand Meridian Ballroom Catering — Altara Vendor Agent

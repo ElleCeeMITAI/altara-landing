@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const { runSimulation } = require("./agents");
+const { runSimulation, CatererAgent, CONFIG } = require("./agents");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,6 +23,7 @@ app.post("/api/simulate", (req, res) => {
       budget = 15000,
       guestCount = 120,
       serviceStyle = "plated",
+      cuisinePreference = "",
       dietaryNeeds = [],
       addOns = [],
     } = req.body;
@@ -35,11 +36,22 @@ app.post("/api/simulate", (req, res) => {
       return res.status(400).json({ error: "guestCount must be a positive number" });
     }
 
+    // Normalize serviceStyle to lowercase with underscores (e.g. "Family Style" → "family_style")
+    const normalizedStyle = serviceStyle
+      .toLowerCase()
+      .replace(/\s+/g, "_");
+
+    // Normalize dietary needs to lowercase with underscores (e.g. "Gluten Free" → "gluten_free")
+    const normalizedDietary = dietaryNeeds.map(d =>
+      d.toLowerCase().replace(/\s+/g, "_").replace(/-/g, "_")
+    );
+
     const steps = runSimulation({
       budget,
       guestCount,
-      serviceStyle,
-      dietaryNeeds,
+      serviceStyle: normalizedStyle,
+      cuisinePreference,
+      dietaryNeeds: normalizedDietary,
       addOns,
     });
 
@@ -47,13 +59,97 @@ app.post("/api/simulate", (req, res) => {
       simulation: {
         event_date: "2027-06-14",
         region: "Greater Boston",
-        preferences: { budget, guestCount, serviceStyle, dietaryNeeds, addOns },
+        preferences: { budget, guestCount, serviceStyle, cuisinePreference, dietaryNeeds, addOns },
       },
       steps,
     });
   } catch (err) {
     console.error("Simulation error:", err);
     res.status(500).json({ error: "Simulation failed", details: err.message });
+  }
+});
+
+// ============================================================================
+// A2A PROTOCOL ENDPOINTS — for classmates' couple agents
+// ============================================================================
+
+// GET /.well-known/agent.json — A2A Agent Card (discovery)
+app.get("/.well-known/agent.json", (req, res) => {
+  const card = {
+    ...CONFIG.AGENT_CARD,
+    url: `${req.protocol}://${req.get("host")}`,
+    endpoints: {
+      agent_message: `${req.protocol}://${req.get("host")}/api/agent`,
+      simulate: `${req.protocol}://${req.get("host")}/api/simulate`,
+      skills_doc: `${req.protocol}://${req.get("host")}/skills.md`,
+    },
+  };
+  res.json(card);
+});
+
+// GET /skills.md — serve skills documentation
+app.get("/skills.md", (req, res) => {
+  res.sendFile(path.join(__dirname, "skills.md"));
+});
+
+// POST /api/agent — A2A message handler (stateless per-request)
+// Each request creates a fresh agent instance. For multi-turn negotiation,
+// the caller must include context (e.g. quote_id) from previous responses.
+app.post("/api/agent", (req, res) => {
+  try {
+    const { intent, params = {}, context = {} } = req.body;
+
+    if (!intent) {
+      return res.status(400).json({
+        error: "Missing 'intent' field",
+        supported_intents: [
+          "discover",
+          "check_availability",
+          "get_menus",
+          "accommodate_dietary",
+          "rfp",
+          "negotiate",
+          "hold_date",
+          "confirm_booking",
+        ],
+        example: {
+          intent: "discover",
+          params: {},
+        },
+      });
+    }
+
+    const agent = new CatererAgent();
+
+    // If there's a quote_id from a previous RFP, restore it into the agent's state
+    // so negotiation can reference it
+    if (context.quote_id && context.quote_snapshot) {
+      agent.activeQuotes[context.quote_id] = context.quote_snapshot;
+      agent.negotiationState[context.quote_id] = context.negotiation_round || 0;
+    }
+
+    const response = agent.handleMessage({ intent, params, context });
+
+    // Include state hints so the caller can continue multi-turn conversations
+    const stateHints = {};
+    if (response.data?.quote?.quote_id) {
+      stateHints.quote_id = response.data.quote.quote_id;
+      stateHints.quote_snapshot = agent.activeQuotes[response.data.quote.quote_id];
+      stateHints.negotiation_round = 0;
+    }
+    if (context.quote_id) {
+      stateHints.quote_id = context.quote_id;
+      stateHints.negotiation_round = agent.negotiationState[context.quote_id] || 0;
+      stateHints.quote_snapshot = agent.activeQuotes[context.quote_id];
+    }
+
+    res.json({
+      ...response,
+      _state: Object.keys(stateHints).length > 0 ? stateHints : undefined,
+    });
+  } catch (err) {
+    console.error("Agent message error:", err);
+    res.status(500).json({ error: "Agent error", details: err.message });
   }
 });
 

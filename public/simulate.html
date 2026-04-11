@@ -909,6 +909,18 @@
                   <option value="Cocktail Reception">Cocktail Reception</option>
                 </select>
               </div>
+              <div class="form-group">
+                <label for="cuisinePreference">Cuisine Preference</label>
+                <select id="cuisinePreference" name="cuisinePreference">
+                  <option value="">No Preference</option>
+                  <option value="Italian-American" selected>Italian-American</option>
+                  <option value="Mediterranean">Mediterranean</option>
+                  <option value="American Contemporary">American Contemporary</option>
+                  <option value="Asian Fusion">Asian Fusion</option>
+                  <option value="New England">New England</option>
+                  <option value="Farm-to-Table">Farm-to-Table</option>
+                </select>
+              </div>
             </div>
 
             <div class="dietary-section">
@@ -948,10 +960,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>
           </div>
           <div class="agent-card caterer">
-            <div class="agent-avatar caterer">👨‍🍳</div>
+            <div class="agent-avatar caterer">🍴</div>
             <div>
-              <div class="agent-name">Bella Tavola Catering</div>
-              <div class="agent-role">Vendor Agent</div>
+              <div class="agent-name">Grand Meridian Ballroom</div>
+              <div class="agent-role">Venue Catering Agent</div>
             </div>
           </div>
         </div>
@@ -1034,8 +1046,8 @@
       const header = document.createElement('div');
       header.className = 'msg-header';
       header.innerHTML =
-        '<span class="msg-icon">' + (isCouple ? '💍' : '👨‍🍳') + '</span>' +
-        '<span class="msg-agent">' + (isCouple ? 'Couple Agent' : 'Bella Tavola Catering') + '</span>' +
+        '<span class="msg-icon">' + (isCouple ? '💍' : '🍴') + '</span>' +
+        '<span class="msg-agent">' + (isCouple ? 'Couple Agent' : 'Grand Meridian') + '</span>' +
         '<span class="msg-step">' + escapeHtml(step.label) + '</span>';
       card.appendChild(header);
 
@@ -1079,15 +1091,19 @@
           '</div></div>';
       }
 
+      var depositAmt = d.totalCost ? Math.round(d.totalCost * 0.25) : 0;
+
       return '<div class="result-card" id="result-card">' +
         '<div class="result-header">' +
-          '<div class="result-icon">✅</div>' +
-          '<div><div class="result-title">Booking Confirmed</div><div class="result-subtitle">Both agents have reached agreement</div></div>' +
+          '<div class="result-icon">📋</div>' +
+          '<div><div class="result-title">Confirmed — Pending Deposit</div><div class="result-subtitle">Both agents have reached agreement. The date is held for 7 days pending a 25% deposit of $' + depositAmt.toLocaleString() + '.</div></div>' +
         '</div>' +
         '<div class="result-grid">' +
-          '<div class="result-item"><div class="ri-label">Total Cost</div><div class="ri-value highlight">$' + (d.totalCost || 0).toLocaleString() + '</div></div>' +
+          '<div class="result-item"><div class="ri-label">Agreed Total</div><div class="ri-value highlight">$' + (d.totalCost || 0).toLocaleString() + '</div></div>' +
           '<div class="result-item"><div class="ri-label">Per Guest</div><div class="ri-value">$' + (d.perGuest || 0).toFixed(2) + '</div></div>' +
+          '<div class="result-item"><div class="ri-label">Deposit Due</div><div class="ri-value highlight">$' + depositAmt.toLocaleString() + '</div></div>' +
           '<div class="result-item"><div class="ri-label">Service Style</div><div class="ri-value">' + escapeHtml(d.serviceStyle || '') + '</div></div>' +
+          '<div class="result-item"><div class="ri-label">Cuisine</div><div class="ri-value">' + escapeHtml(d.cuisine || '') + '</div></div>' +
           '<div class="result-item"><div class="ri-label">Event Date</div><div class="ri-value">' + escapeHtml(d.eventDate || '') + '</div></div>' +
         '</div>' +
         menuHTML +
@@ -1126,16 +1142,63 @@
           card.scrollIntoView({ behavior: 'smooth', block: 'end' });
 
           // Show result at end
-          if (i === total - 1 && step.data && step.data.booking) {
-            setTimeout(function() {
-              resultArea.innerHTML = buildResultCard(step.data.booking);
-              requestAnimationFrame(function() {
+          if (i === total - 1) {
+            var bookingData = null;
+            // Mock data format
+            if (step.data && step.data.booking) {
+              bookingData = step.data.booking;
+            }
+            // API data format — build booking from step 6 response + earlier steps
+            else if (step.data && step.data.response && step.data.response.data) {
+              var rd = step.data.response.data;
+              // Find the menu step (step 4) for course info
+              var menuStep = steps.find(function(s) { return s.step === 4; });
+              var menuCourses = [];
+              if (menuStep && menuStep.data && menuStep.data.adapted_courses) {
+                var ac = menuStep.data.adapted_courses;
+                for (var courseName in ac) {
+                  if (ac.hasOwnProperty(courseName)) {
+                    var dishes = ac[courseName];
+                    if (Array.isArray(dishes)) {
+                      menuCourses.push({ course: courseName.replace(/_/g, ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); }), description: dishes.join(', ') });
+                    } else if (typeof dishes === 'string') {
+                      menuCourses.push({ course: courseName.replace(/_/g, ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); }), description: dishes });
+                    }
+                  }
+                }
+              }
+              // Find negotiation step (step 3) for cost
+              var negStep = steps.find(function(s) { return s.step === 3; });
+              var finalTotal = (negStep && negStep.data) ? negStep.data.final_total : 0;
+              var gCount = (step.data.request && step.data.request.menu_id) ? 0 : 0;
+              // Pull from RFP step (step 2) for per-head
+              var rfpStep = steps.find(function(s) { return s.step === 2; });
+              var perHead = (rfpStep && rfpStep.data && rfpStep.data.response && rfpStep.data.response.data && rfpStep.data.response.data.quote) ? rfpStep.data.response.data.quote.effective_per_head : 0;
+
+              // Pull cuisine from menu step
+              var cuisineLabel = (menuStep && menuStep.data && menuStep.data.cuisine) ? menuStep.data.cuisine : '';
+
+              bookingData = {
+                totalCost: finalTotal,
+                perGuest: perHead,
+                serviceStyle: (rfpStep && rfpStep.data && rfpStep.data.request && rfpStep.data.request.params) ? rfpStep.data.request.params.service_style : '',
+                cuisine: cuisineLabel,
+                eventDate: rd.event_date || '2027-06-14',
+                menu: menuCourses
+              };
+            }
+
+            if (bookingData) {
+              setTimeout(function() {
+                resultArea.innerHTML = buildResultCard(bookingData);
                 requestAnimationFrame(function() {
-                  document.getElementById('result-card').classList.add('visible');
-                  document.getElementById('result-card').scrollIntoView({ behavior: 'smooth', block: 'end' });
+                  requestAnimationFrame(function() {
+                    document.getElementById('result-card').classList.add('visible');
+                    document.getElementById('result-card').scrollIntoView({ behavior: 'smooth', block: 'end' });
+                  });
                 });
-              });
-            }, 600);
+              }, 600);
+            }
           }
         }, i * 800);
       });
@@ -1164,7 +1227,7 @@
           step: 1,
           from: 'couple',
           label: 'Discovery',
-          summary: 'The Couple Agent is searching for available caterers in Greater Boston for a ' + guestCount + '-guest wedding on June 14, 2027. Budget is set at $' + budget.toLocaleString() + ' with a ' + serviceStyle.toLowerCase() + ' service preference.' + dietaryNote,
+          summary: 'The Couple Agent has selected Grand Meridian Ballroom as their venue for a ' + guestCount + '-guest wedding on June 14, 2027. Now reviewing the venue\'s catering packages. Budget is set at $' + budget.toLocaleString() + ' with a ' + serviceStyle.toLowerCase() + ' service preference.' + dietaryNote,
           data: {
             type: 'a2a.discovery',
             agent: 'couple-agent',
@@ -1184,13 +1247,13 @@
           step: 2,
           from: 'caterer',
           label: 'Availability',
-          summary: 'Bella Tavola Catering confirms availability for June 14, 2027. They specialize in ' + serviceStyle.toLowerCase() + ' service and can accommodate ' + guestCount + ' guests. Their base pricing starts at $' + (perHead - 8) + ' per person for the requested style.',
+          summary: 'Grand Meridian Ballroom confirms catering availability for June 14, 2027. Their in-house kitchen specializes in ' + serviceStyle.toLowerCase() + ' service and can accommodate ' + guestCount + ' guests. Base catering pricing starts at $' + (perHead - 8) + ' per person for the requested style.',
           data: {
             type: 'a2a.availability_response',
-            agent: 'bella-tavola-agent',
+            agent: 'grand-meridian-agent',
             status: 'available',
             vendorProfile: {
-              name: 'Bella Tavola Catering',
+              name: 'Grand Meridian Ballroom Catering',
               rating: 4.9,
               reviewCount: 187,
               specialties: [serviceStyle, 'Italian-Inspired', 'Farm-to-Table'],
@@ -1205,7 +1268,7 @@
           step: 3,
           from: 'couple',
           label: 'RFP Submitted',
-          summary: 'The Couple Agent submits a formal Request for Proposal with detailed requirements: ' + guestCount + ' guests, ' + serviceStyle.toLowerCase() + ' service, maximum budget of $' + budget.toLocaleString() + '.' + (dietaryNeeds.length > 0 ? ' Dietary needs include ' + dietaryNeeds.join(', ').toLowerCase() + '.' : '') + ' Requesting a three-course menu with cocktail hour appetizers.',
+          summary: 'The Couple Agent submits a formal catering Request for Proposal to Grand Meridian Ballroom with detailed requirements: ' + guestCount + ' guests, ' + serviceStyle.toLowerCase() + ' service, maximum budget of $' + budget.toLocaleString() + '.' + (dietaryNeeds.length > 0 ? ' Dietary needs include ' + dietaryNeeds.join(', ').toLowerCase() + '.' : '') + ' Requesting a three-course menu with cocktail hour appetizers.',
           data: {
             type: 'a2a.rfp',
             agent: 'couple-agent',
@@ -1231,10 +1294,10 @@
           step: 4,
           from: 'caterer',
           label: 'Initial Proposal',
-          summary: 'Bella Tavola presents their initial proposal at $' + (perHead + 5) + ' per person ($' + ((perHead + 5) * guestCount).toLocaleString() + ' total). The menu features a seasonal cocktail hour, followed by a three-course meal: spring garden salad, herb-crusted salmon with roasted vegetables, and tiramisu. All dietary needs will be accommodated with dedicated preparation stations.',
+          summary: 'Grand Meridian Ballroom presents their initial catering proposal at $' + (perHead + 5) + ' per person ($' + ((perHead + 5) * guestCount).toLocaleString() + ' total). The venue\'s menu features a seasonal cocktail hour, followed by a three-course meal. All dietary needs will be accommodated by the venue\'s kitchen with dedicated preparation stations.',
           data: {
             type: 'a2a.proposal',
-            agent: 'bella-tavola-agent',
+            agent: 'grand-meridian-agent',
             proposal: {
               pricePerPerson: perHead + 5,
               totalEstimate: (perHead + 5) * guestCount,
@@ -1276,10 +1339,10 @@
           step: 6,
           from: 'caterer',
           label: 'Negotiation Round 2',
-          summary: 'Bella Tavola accepts the dual protein option and offers a kids\' menu at $' + Math.round(perHead * 0.45) + '/child. They propose a compromise at $' + perHead + ' per person for adult guests. They can reduce the dessert portion for guests having wedding cake, saving $2 per person on those servings. Revised total comes to $' + totalCost.toLocaleString() + '.',
+          summary: 'Grand Meridian accepts the dual protein option and offers a kids\' menu at $' + Math.round(perHead * 0.45) + '/child. They propose a compromise at $' + perHead + ' per person for adult guests. They can reduce the dessert portion for guests having wedding cake, saving $2 per person on those servings. Revised total comes to $' + totalCost.toLocaleString() + '.',
           data: {
             type: 'a2a.negotiate',
-            agent: 'bella-tavola-agent',
+            agent: 'grand-meridian-agent',
             action: 'revised_offer',
             offer: {
               adultPricePerPerson: perHead,
@@ -1303,7 +1366,7 @@
           step: 7,
           from: 'couple',
           label: 'Terms Accepted',
-          summary: 'The Couple Agent accepts Bella Tavola\'s revised offer of $' + totalCost.toLocaleString() + ' total. The agreement includes all service staff, setup and cleanup, dual protein option, kids\' menu, and complimentary cake cutting. The agent requests a formal contract and deposit schedule.',
+          summary: 'The Couple Agent accepts Grand Meridian\'s revised catering offer of $' + totalCost.toLocaleString() + ' total. The agreement includes all service staff, setup and cleanup, dual protein option, kids\' menu, and complimentary cake cutting. The agent requests a formal contract and deposit schedule.',
           data: {
             type: 'a2a.accept',
             agent: 'couple-agent',
@@ -1320,13 +1383,13 @@
         {
           step: 8,
           from: 'caterer',
-          label: 'Booking Confirmed',
-          summary: 'Bella Tavola Catering has confirmed the booking. Contract ID #BT-2027-0614 is generated. A 30% deposit of $' + Math.round(totalCost * 0.3).toLocaleString() + ' secures the date, with the remaining balance due by May 31, 2027. Tasting session is scheduled for March 2027. The negotiation saved $' + (((perHead + 5) * guestCount) - totalCost).toLocaleString() + ' from the initial proposal.',
+          label: 'Pending Deposit',
+          summary: 'Both agents have reached agreement! Grand Meridian Ballroom has sent the contract for June 14, 2027 (' + guestCount + ' guests). The date is held for 7 days pending the couple\'s 25% deposit of $' + Math.round(totalCost * 0.25).toLocaleString() + '. Once the deposit is received, the booking will be fully confirmed. The negotiation saved $' + (((perHead + 5) * guestCount) - totalCost).toLocaleString() + ' from the initial proposal.',
           data: {
             type: 'a2a.booking_confirmation',
-            agent: 'bella-tavola-agent',
+            agent: 'grand-meridian-agent',
             status: 'confirmed',
-            contractId: 'BT-2027-0614',
+            contractId: 'GM-2027-0614',
             booking: {
               totalCost: totalCost,
               perGuest: perHead,
@@ -1360,10 +1423,11 @@
       const budget = parseInt(document.getElementById('budget').value, 10) || 10000;
       const guestCount = parseInt(document.getElementById('guestCount').value, 10) || 120;
       const serviceStyle = document.getElementById('serviceStyle').value;
+      const cuisinePreference = document.getElementById('cuisinePreference').value;
       const dietaryChecked = document.querySelectorAll('input[name="dietary"]:checked');
       const dietaryNeeds = Array.from(dietaryChecked).map(function(cb) { return cb.value; });
 
-      const payload = { budget, guestCount, serviceStyle, dietaryNeeds };
+      const payload = { budget, guestCount, serviceStyle, cuisinePreference, dietaryNeeds };
 
       // Show loading
       loading.classList.add('active');
@@ -1377,10 +1441,11 @@
           body: JSON.stringify(payload)
         });
         if (res.ok) {
-          steps = await res.json();
+          const data = await res.json();
+          steps = data.steps || data;
         }
       } catch (err) {
-        // API not available, use mock data
+        console.warn('API not available, using mock data:', err);
       }
 
       if (!steps || !Array.isArray(steps) || steps.length === 0) {

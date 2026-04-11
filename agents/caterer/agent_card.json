@@ -1,7 +1,7 @@
 {
-  "name": "Bella Tavola Catering",
-  "description": "Full-service wedding caterer offering plated, buffet, and family-style dining for 20–500 guests. Specializing in Italian-American and seasonal farm-to-table menus with extensive dietary accommodation.",
-  "url": "https://agents.altara.ai/vendors/bella-tavola-catering",
+  "name": "Grand Meridian Ballroom Catering",
+  "description": "Full-service venue catering at Grand Meridian Ballroom, offering plated, buffet, and family-style dining for 20–500 guests. Specializing in seasonal farm-to-table menus with extensive dietary accommodation.",
+  "url": "https://agents.altara.ai/vendors/grand-meridian-ballroom-catering",
   "version": "1.0.0",
   "protocol": "a2a/1.0",
   "capabilities": {

@@ -1,5 +1,5 @@
 """
-Bella Tavola Catering — Vendor Agent
+Grand Meridian Ballroom Catering — Vendor Agent
 =====================================
 The main agent that receives A2A messages from the Altara Planner Agent,
 interprets intent, invokes the appropriate skills, and returns structured
@@ -30,7 +30,7 @@ from .skills.booking import hold_date, confirm_booking
 
 class CatererAgent:
     """
-    Autonomous vendor agent for Bella Tavola Catering.
+    Autonomous vendor agent for Grand Meridian Ballroom Catering.
 
     Processes structured A2A messages and returns structured responses.
     Maintains negotiation state across conversation turns.
