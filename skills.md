@@ -2,7 +2,7 @@
 
 **Agent:** Grand Meridian Ballroom Catering
 **Protocol:** A2A (Agent-to-Agent) v1.0
-**Base URL:** `https://talented-luck-production-e8a7.up.railway.app`
+**Base URL:** `https://altara-landing.up.railway.app`
 
 ---
 
@@ -10,19 +10,19 @@
 
 ### 1. Discover the agent
 ```bash
-curl https://talented-luck-production-e8a7.up.railway.app/.well-known/agent.json
+curl https://altara-landing.up.railway.app/.well-known/agent.json
 ```
 
 ### 2. Send a message
 ```bash
-curl -X POST https://talented-luck-production-e8a7.up.railway.app/api/agent \
+curl -X POST https://altara-landing.up.railway.app/api/agent \
   -H "Content-Type: application/json" \
   -d '{"intent": "discover"}'
 ```
 
 ### 3. Run a full simulation (automated 6-step flow)
 ```bash
-curl -X POST https://talented-luck-production-e8a7.up.railway.app/api/simulate \
+curl -X POST https://altara-landing.up.railway.app/api/simulate \
   -H "Content-Type: application/json" \
   -d '{
     "budget": 10000,
@@ -93,7 +93,7 @@ Check if the venue is available for a specific date, guest count, and region.
 {
   "intent": "check_availability",
   "params": {
-    "event_date": "2027-06-14",
+    "event_date": "2027-06-12",
     "guest_count": 100,
     "region": "Greater Boston",
     "service_style": "plated"
@@ -173,7 +173,7 @@ Submit a full RFP. The agent returns matching menus, an itemized quote, and a bu
 {
   "intent": "rfp",
   "params": {
-    "event_date": "2027-06-14",
+    "event_date": "2027-06-12",
     "guest_count": 120,
     "region": "Greater Boston",
     "service_style": "plated",
@@ -223,11 +223,11 @@ Counter-offer on a previous quote. Supports up to 4 rounds.
 {
   "intent": "negotiate",
   "params": {
-    "quote_id": "Q-20270614-120-plated",
+    "quote_id": "Q-20270612-120-plated",
     "requested_total": 10000
   },
   "context": {
-    "quote_id": "Q-20270614-120-plated",
+    "quote_id": "Q-20270612-120-plated",
     "quote_snapshot": { "...from _state..." },
     "negotiation_round": 0
   }
@@ -293,9 +293,9 @@ Place a temporary hold on a date (7 days by default).
 {
   "intent": "hold_date",
   "params": {
-    "event_date": "2027-06-14",
+    "event_date": "2027-06-12",
     "guest_count": 120,
-    "quote_id": "Q-20270614-120-plated",
+    "quote_id": "Q-20270612-120-plated",
     "planner_agent_id": "my-couple-agent",
     "hold_days": 7
   }
@@ -319,8 +319,8 @@ Confirm a booking from a held date.
 {
   "intent": "confirm_booking",
   "params": {
-    "hold_id": "HOLD-20270614-120",
-    "quote_id": "Q-20270614-120-plated",
+    "hold_id": "HOLD-20270612-120",
+    "quote_id": "Q-20270612-120-plated",
     "final_guest_count": 120,
     "menu_id": "asian_fusion",
     "service_style": "plated",
@@ -347,7 +347,7 @@ Here's how a couple agent would run a complete negotiation:
 ```python
 import requests
 
-BASE = "https://talented-luck-production-e8a7.up.railway.app/api/agent"
+BASE = "https://altara-landing.up.railway.app/api/agent"
 
 # Step 1: Discover
 r = requests.post(BASE, json={"intent": "discover"})
@@ -357,7 +357,7 @@ agent_card = r.json()
 r = requests.post(BASE, json={
     "intent": "rfp",
     "params": {
-        "event_date": "2027-06-14",
+        "event_date": "2027-06-12",
         "guest_count": 100,
         "region": "Greater Boston",
         "service_style": "plated",
@@ -388,7 +388,7 @@ if rfp["data"]["budget_fit"] == "over_budget":
 r = requests.post(BASE, json={
     "intent": "hold_date",
     "params": {
-        "event_date": "2027-06-14",
+        "event_date": "2027-06-12",
         "guest_count": 100,
         "quote_id": quote_id,
         "planner_agent_id": "my-couple-agent",
@@ -453,10 +453,40 @@ When dietary restrictions are specified, incompatible dishes are automatically r
 
 ---
 
-## Interactive Demo
+## Live A2A Negotiation (SSE)
 
-Try the visual simulation at:
-**https://talented-luck-production-e8a7.up.railway.app/simulate**
+Watch two Claude-powered agents negotiate in real time. The Planner Agent represents the couple; the Venue Agent has private business constraints.
+
+**Interactive UI:**
+**https://altara-landing.up.railway.app/simulate**
+
+**SSE Endpoint (for programmatic access):**
+```
+GET /api/simulate-live?budget=10000&flexBudget=1000&guestCount=120&serviceStyle=Family+Style&cuisinePreference=Italian-American&dietaryNeeds=Vegetarian&minGuestCount=100&dateFlexibility=week&altStyles=Buffet&altVenues=Harbor+View+Estate
+```
+
+Returns a Server-Sent Events stream with messages:
+- `type: "status"` — agent is thinking
+- `type: "message"` — agent sent a structured A2A message (RFP, offer, counter_offer, accept, reject)
+- `type: "done"` — negotiation complete with final terms, token counts, and API cost
+- `type: "error"` — something went wrong
+
+---
+
+## Try Your Agent Against Ours
+
+Want to test your couple/planner agent against Grand Meridian's venue agent? Two options:
+
+### Option 1: Use the A2A API directly
+Point your agent at `https://altara-landing.up.railway.app/api/agent` and follow the conversation flow above.
+
+### Option 2: Watch the live negotiation
+Visit **https://altara-landing.up.railway.app/simulate**, fill in your couple's preferences, and click "Start Simulation" to watch two AI agents negotiate live.
+
+### Option 3: Fork and customize
+1. Fork the repo: `https://github.com/ElleCeeMITAI/altara-landing`
+2. `npm install` and create a `.env` with your `ANTHROPIC_API_KEY`
+3. `npm start` and visit `http://localhost:3000/simulate`
 
 ---
 
