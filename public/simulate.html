@@ -896,6 +896,11 @@
                 <input type="number" id="budget" name="budget" value="10000" min="1000" step="500" placeholder="$10,000">
               </div>
               <div class="form-group">
+                <label for="flexBudget">Flex Budget</label>
+                <input type="number" id="flexBudget" name="flexBudget" value="1000" min="0" step="250" placeholder="$1,000">
+                <div style="font-size:0.7rem;color:var(--text-muted);margin-top:0.3rem;line-height:1.3">Max extra your agent can approve without asking</div>
+              </div>
+              <div class="form-group">
                 <label for="guestCount">Guest Count</label>
                 <input type="number" id="guestCount" name="guestCount" value="120" min="10" max="500" placeholder="120">
               </div>
@@ -1225,8 +1230,11 @@
       var dietaryChecked = document.querySelectorAll('input[name="dietary"]:checked');
       var dietaryNeeds = Array.from(dietaryChecked).map(function(cb) { return cb.value; });
 
+      var flexBudgetVal = parseInt(document.getElementById('flexBudget').value, 10) || 0;
+
       var params = new URLSearchParams({
         budget: newBudget,
+        flexBudget: flexBudgetVal,
         guestCount: guestCount,
         serviceStyle: serviceStyle,
         cuisinePreference: cuisinePreference,
@@ -1272,29 +1280,42 @@
         }
 
         if (msg.type === 'done') {
-          // Reuse the same done handler logic — trigger the form submit handler's done block
           var outcome = msg.outcome || msg.summary?.outcome || 'accepted';
-          progressStep.textContent = outcome === 'rejected' ? 'Negotiation Failed' : 'Negotiation Complete';
-          progressFill.style.width = '100%';
-          if (outcome === 'rejected') progressFill.style.background = '#c0392b';
-
           var terms = msg.summary.final_terms || {};
           var totalCost = terms.total_price || 0;
           var perGuest = terms.price_per_head || 0;
-          var budget = newBudget;
+          var maxBudget = msg.summary.max_budget || (newBudget + flexBudgetVal);
+          var usedFlex = totalCost > newBudget && totalCost <= maxBudget;
+
+          progressFill.style.width = '100%';
+          if (outcome === 'accepted') {
+            progressStep.textContent = usedFlex ? 'Deal Reached (Flex Budget Used)' : 'Negotiation Complete';
+          } else {
+            progressStep.textContent = 'Negotiation Failed';
+            progressFill.style.background = '#c0392b';
+          }
 
           setTimeout(function() {
             if (outcome === 'rejected') {
-              var gap = totalCost - budget;
-              var minIncrease = Math.ceil(gap / 500) * 500;
-              var midIncrease = minIncrease + 500;
-              var comfortIncrease = minIncrease + 1500;
               resultArea.innerHTML = '<div class="result-card" id="result-card">' +
-                '<div class="result-header"><div class="result-icon">❌</div><div><div class="result-title">Deal Not Reached</div><div class="result-subtitle">The venue\'s best offer was $' + totalCost.toLocaleString() + ' — still $' + gap.toLocaleString() + ' over your updated $' + budget.toLocaleString() + ' budget.</div></div></div>' +
-                '<div style="margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap">' +
-                  '<button class="btn-budget-option" onclick="retryWithBudget(' + (budget + minIncrease) + ')" style="padding:0.6rem 1.2rem;border:1.5px solid var(--rose);background:rgba(196,99,110,0.08);color:var(--rose);border-radius:10px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer">+$' + minIncrease.toLocaleString() + ' → $' + (budget + minIncrease).toLocaleString() + '</button>' +
-                  '<button class="btn-secondary" onclick="resetSimulation()" style="margin-top:0">Back to Settings</button>' +
+                '<div class="result-header"><div class="result-icon">❌</div><div><div class="result-title">Deal Not Reached</div><div class="result-subtitle">The venue\'s best offer of $' + totalCost.toLocaleString() + ' still exceeds your max budget of $' + maxBudget.toLocaleString() + '.</div></div></div>' +
+                '<div style="margin-top:1rem;padding:1.25rem;background:var(--cream);border-radius:12px;border:1px solid var(--sand)">' +
+                  '<div style="font-size:0.9rem;color:var(--text-muted);line-height:1.7">' +
+                    '💡 <strong>Adjust preferences</strong> — try a different date, service style, or guest count<br>' +
+                    '🏛️ <strong>Try another vendor</strong> — your agent would contact the next matched venue' +
+                  '</div>' +
+                  '<button class="btn-secondary" onclick="resetSimulation()" style="margin-top:0.75rem">Back to Settings</button>' +
                 '</div></div>';
+            } else if (usedFlex) {
+              var flexUsed = totalCost - newBudget;
+              resultArea.innerHTML = '<div class="result-card" id="result-card">' +
+                '<div class="result-header"><div class="result-icon">✅</div><div><div class="result-title">Deal Reached — Flex Budget Used</div><div class="result-subtitle">Accepted $' + flexUsed.toLocaleString() + ' over base budget (within your flex allowance).</div></div></div>' +
+                '<div class="result-grid">' +
+                  '<div class="result-item"><div class="ri-label">Agreed Total</div><div class="ri-value highlight">$' + totalCost.toLocaleString() + '</div></div>' +
+                  '<div class="result-item"><div class="ri-label">Per Guest</div><div class="ri-value">$' + perGuest.toFixed(2) + '</div></div>' +
+                '</div>' +
+                '<button class="btn-secondary" onclick="resetSimulation()" style="margin-top:1rem">Run Again</button>' +
+              '</div>';
             } else {
               var bookingData = { totalCost: totalCost, perGuest: perGuest, serviceStyle: terms.service_style || serviceStyle, cuisine: cuisinePreference, eventDate: terms.date || 'June 14, 2027', menu: [] };
               resultArea.innerHTML = buildResultCard(bookingData);
@@ -1532,6 +1553,7 @@
       e.preventDefault();
 
       const budget = parseInt(document.getElementById('budget').value, 10) || 10000;
+      const flexBudget = parseInt(document.getElementById('flexBudget').value, 10) || 0;
       const guestCount = parseInt(document.getElementById('guestCount').value, 10) || 120;
       const serviceStyle = document.getElementById('serviceStyle').value;
       const cuisinePreference = document.getElementById('cuisinePreference').value;
@@ -1550,6 +1572,7 @@
       // Build SSE URL with query params
       const params = new URLSearchParams({
         budget: budget,
+        flexBudget: flexBudget,
         guestCount: guestCount,
         serviceStyle: serviceStyle,
         cuisinePreference: cuisinePreference,
@@ -1615,49 +1638,43 @@
 
         if (msg.type === 'done') {
           var outcome = msg.outcome || msg.summary?.outcome || 'accepted';
-          progressStep.textContent = outcome === 'rejected' ? 'Negotiation Failed' : 'Negotiation Complete';
-          progressFill.style.width = '100%';
-          if (outcome === 'rejected') progressFill.style.background = '#c0392b';
-
           var terms = msg.summary.final_terms || {};
           var totalCost = terms.total_price || 0;
           var perGuest = terms.price_per_head || 0;
+          var baseBudget = msg.summary.base_budget || budget;
+          var maxBudget = msg.summary.max_budget || (budget + flexBudget);
+          var usedFlex = totalCost > baseBudget && totalCost <= maxBudget;
+          var overMax = totalCost > maxBudget;
+
+          progressFill.style.width = '100%';
+
+          if (outcome === 'accepted') {
+            progressStep.textContent = usedFlex ? 'Deal Reached (Flex Budget Used)' : 'Negotiation Complete';
+          } else {
+            progressStep.textContent = 'Negotiation Failed';
+            progressFill.style.background = '#c0392b';
+          }
 
           setTimeout(function() {
             if (outcome === 'rejected') {
-              var gap = totalCost - budget;
-              // Round up to nearest $500 for budget increase options
-              var minIncrease = Math.ceil(gap / 500) * 500;
-              var midIncrease = minIncrease + 500;
-              var comfortIncrease = minIncrease + 1500;
-
+              // Over max budget — show options 1 (adjust) and 2 (other vendors) only
+              var gap = totalCost - maxBudget;
               resultArea.innerHTML = '<div class="result-card" id="result-card">' +
                 '<div class="result-header">' +
                   '<div class="result-icon">❌</div>' +
                   '<div><div class="result-title">Deal Not Reached</div>' +
-                  '<div class="result-subtitle">The venue\'s best offer was $' + (totalCost || 0).toLocaleString() + ' ($' + (perGuest || 0) + '/head) — that\'s $' + gap.toLocaleString() + ' over your $' + budget.toLocaleString() + ' budget. Here are your options:</div></div>' +
+                  '<div class="result-subtitle">The venue\'s best offer of $' + totalCost.toLocaleString() + ' ($' + perGuest + '/head) exceeds even your flex budget of $' + maxBudget.toLocaleString() + ' by $' + gap.toLocaleString() + '. Your agent tried its best.</div></div>' +
                 '</div>' +
                 '<div class="result-grid">' +
-                  '<div class="result-item"><div class="ri-label">Venue\'s Best Offer</div><div class="ri-value highlight">$' + (totalCost || 0).toLocaleString() + '</div></div>' +
-                  '<div class="result-item"><div class="ri-label">Per Guest</div><div class="ri-value">$' + (perGuest || 0).toFixed(2) + '</div></div>' +
-                  '<div class="result-item"><div class="ri-label">Your Budget</div><div class="ri-value">$' + budget.toLocaleString() + '</div></div>' +
-                  '<div class="result-item"><div class="ri-label">Gap</div><div class="ri-value" style="color:#c0392b">+$' + gap.toLocaleString() + '</div></div>' +
+                  '<div class="result-item"><div class="ri-label">Venue\'s Best Offer</div><div class="ri-value highlight">$' + totalCost.toLocaleString() + '</div></div>' +
+                  '<div class="result-item"><div class="ri-label">Per Guest</div><div class="ri-value">$' + perGuest.toFixed(2) + '</div></div>' +
+                  '<div class="result-item"><div class="ri-label">Base Budget</div><div class="ri-value">$' + baseBudget.toLocaleString() + '</div></div>' +
+                  '<div class="result-item"><div class="ri-label">Max (with Flex)</div><div class="ri-value">$' + maxBudget.toLocaleString() + '</div></div>' +
                 '</div>' +
 
-                /* Option 1: Increase budget */
+                /* Option 1: Adjust preferences */
                 '<div style="margin-top:1.5rem;padding:1.25rem;background:var(--cream);border-radius:12px;border:1px solid var(--sand)">' +
-                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">Option 1: Increase your budget</div>' +
-                  '<div style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.75rem">You\'re only $' + gap.toLocaleString() + ' away. Would you like to raise your budget and re-negotiate?</div>' +
-                  '<div style="display:flex;gap:0.5rem;flex-wrap:wrap">' +
-                    '<button class="btn-budget-option" onclick="retryWithBudget(' + (budget + minIncrease) + ')" style="padding:0.6rem 1.2rem;border:1.5px solid var(--rose);background:rgba(196,99,110,0.08);color:var(--rose);border-radius:10px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s">+$' + minIncrease.toLocaleString() + ' → $' + (budget + minIncrease).toLocaleString() + '</button>' +
-                    '<button class="btn-budget-option" onclick="retryWithBudget(' + (budget + midIncrease) + ')" style="padding:0.6rem 1.2rem;border:1.5px solid var(--rose);background:rgba(196,99,110,0.08);color:var(--rose);border-radius:10px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s">+$' + midIncrease.toLocaleString() + ' → $' + (budget + midIncrease).toLocaleString() + '</button>' +
-                    '<button class="btn-budget-option" onclick="retryWithBudget(' + (budget + comfortIncrease) + ')" style="padding:0.6rem 1.2rem;border:1.5px solid var(--rose);background:rgba(196,99,110,0.08);color:var(--rose);border-radius:10px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s">+$' + comfortIncrease.toLocaleString() + ' → $' + (budget + comfortIncrease).toLocaleString() + '</button>' +
-                  '</div>' +
-                '</div>' +
-
-                /* Option 2: Change settings */
-                '<div style="margin-top:0.75rem;padding:1.25rem;background:var(--cream);border-radius:12px;border:1px solid var(--sand)">' +
-                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">Option 2: Adjust your preferences</div>' +
+                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">Option 1: Adjust your preferences</div>' +
                   '<div style="font-size:0.9rem;color:var(--text-muted);line-height:1.7">' +
                     '💡 <strong>Try a different date</strong> — off-peak and weekday dates unlock up to 15% lower pricing<br>' +
                     '🔄 <strong>Switch service style</strong> — buffet can be 20-30% cheaper than plated or family style<br>' +
@@ -1669,13 +1686,37 @@
                   '</button>' +
                 '</div>' +
 
-                /* Option 3: Other vendors */
+                /* Option 2: Other vendors */
                 '<div style="margin-top:0.75rem;padding:1.25rem;background:var(--cream);border-radius:12px;border:1px solid var(--sand)">' +
-                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">Option 3: Try another vendor</div>' +
+                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">Option 2: Try another vendor</div>' +
                   '<div style="font-size:0.9rem;color:var(--text-muted)">In the full Altara marketplace, your Planner Agent would automatically contact the next best-matched venue and negotiate on your behalf.</div>' +
                 '</div>' +
               '</div>';
+            } else if (usedFlex) {
+              // Accepted using flex budget — show special card
+              var flexUsed = totalCost - baseBudget;
+              var depositAmt = Math.round(totalCost * 0.25);
+              resultArea.innerHTML = '<div class="result-card" id="result-card">' +
+                '<div class="result-header">' +
+                  '<div class="result-icon">✅</div>' +
+                  '<div><div class="result-title">Deal Reached — Flex Budget Used</div>' +
+                  '<div class="result-subtitle">Your agent negotiated hard but the best deal was $' + flexUsed.toLocaleString() + ' over your base budget. Since this is within your pre-approved flex of $' + flexBudget.toLocaleString() + ', your agent accepted automatically.</div></div>' +
+                '</div>' +
+                '<div class="result-grid">' +
+                  '<div class="result-item"><div class="ri-label">Agreed Total</div><div class="ri-value highlight">$' + totalCost.toLocaleString() + '</div></div>' +
+                  '<div class="result-item"><div class="ri-label">Per Guest</div><div class="ri-value">$' + perGuest.toFixed(2) + '</div></div>' +
+                  '<div class="result-item"><div class="ri-label">Base Budget</div><div class="ri-value">$' + baseBudget.toLocaleString() + '</div></div>' +
+                  '<div class="result-item"><div class="ri-label">Flex Used</div><div class="ri-value" style="color:var(--rose)">+$' + flexUsed.toLocaleString() + '</div></div>' +
+                  '<div class="result-item"><div class="ri-label">Deposit Due (25%)</div><div class="ri-value highlight">$' + depositAmt.toLocaleString() + '</div></div>' +
+                  '<div class="result-item"><div class="ri-label">Event Date</div><div class="ri-value">' + escapeHtml(terms.date || 'June 14, 2027') + '</div></div>' +
+                '</div>' +
+                '<button class="btn-secondary" onclick="resetSimulation()" style="margin-top:1rem">' +
+                  '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" /></svg>' +
+                  'Run Again' +
+                '</button>' +
+              '</div>';
             } else {
+              // Accepted within base budget
               var bookingData = {
                 totalCost: totalCost,
                 perGuest: perGuest,

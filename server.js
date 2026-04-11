@@ -166,6 +166,7 @@ app.get("/api/simulate-live", async (req, res) => {
 
   const formData = {
     budget: parseInt(req.query.budget, 10) || 10000,
+    flexBudget: parseInt(req.query.flexBudget, 10) || 0,
     guestCount: parseInt(req.query.guestCount, 10) || 120,
     serviceStyle: (req.query.serviceStyle || "Plated").replace(/_/g, " "),
     cuisinePreference: req.query.cuisinePreference || "",

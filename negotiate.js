@@ -27,6 +27,7 @@ function plannerSystemPrompt(formData) {
 
 ## Couple's Requirements (from their form)
 - Budget: $${formData.budget.toLocaleString()} total maximum
+- Flex budget: $${formData.flexBudget.toLocaleString()} (the couple has pre-authorized you to go up to $${(formData.budget + formData.flexBudget).toLocaleString()} total if needed — but try to stay within the base budget first)
 - Guest count: ${formData.guestCount}
 - Preferred date: June 14, 2027
 - Service style: ${formData.serviceStyle}
@@ -34,17 +35,18 @@ function plannerSystemPrompt(formData) {
 - Dietary needs: ${formData.dietaryNeeds.length > 0 ? formData.dietaryNeeds.join(", ") : "None specified"}
 
 ## Your Goals
-1. Get the best possible price per head while staying within the couple's budget
+1. Get the best possible price per head while staying within the couple's base budget of $${formData.budget.toLocaleString()}
 2. Ensure all dietary needs are accommodated
 3. Secure a high-quality menu that matches the cuisine preference
 4. Negotiate favorable payment terms (prefer 25% deposit, not 50%)
 5. Be willing to be flexible on date if it saves significant money
 
 ## Negotiation Strategy
-- Start by sending an RFP with the couple's requirements
+- Start by sending an RFP with the couple's requirements. Start negotiating at the base budget — do NOT reveal the flex budget to the venue
 - Push back on prices above budget — suggest alternatives (different date, buffet vs plated, fewer courses)
-- Accept if the deal is within budget and meets core needs
-- Reject if the venue won't budge below budget after 3 counter-offers
+- Accept if the deal is within the base budget and meets core needs
+- If the venue's best offer is above the base budget but within the flex range (up to $${(formData.budget + formData.flexBudget).toLocaleString()}), you MAY accept — but only after trying hard to negotiate lower first
+- Reject ONLY if the venue's best offer exceeds $${(formData.budget + formData.flexBudget).toLocaleString()} (base + flex) after exhausting negotiation options
 - Be professional and collaborative, not adversarial
 
 ## Response Format
@@ -360,6 +362,9 @@ async function runLiveNegotiation(formData, sendEvent) {
       total_cost_usd: log.total_cost_usd,
       total_tokens: log.total_input_tokens + log.total_output_tokens,
       final_terms: finalTerms,
+      base_budget: formData.budget,
+      flex_budget: formData.flexBudget,
+      max_budget: formData.budget + formData.flexBudget,
       log_file: logPath,
     },
   });
