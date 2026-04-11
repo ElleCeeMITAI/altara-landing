@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Altara — Multi-Category Wedding Negotiation</title>
+  <title>The Big Day — Meet Belle, Your AI Wedding Planner</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
@@ -1009,7 +1009,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="/" class="nav-logo"><img src="/logo.svg" alt="Altara"></a>
+    <a href="/" class="nav-logo"><img src="/thebigday-logo.png" alt="The Big Day" style="height: 48px;"></a>
     <a href="/" class="nav-back">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
       Back to Home
@@ -1021,15 +1021,18 @@
 
       <!-- PAGE HEADER -->
       <div class="page-header">
+        <div style="margin-bottom: 1.5rem;">
+          <img src="/belle-intro.png" alt="Hi, I'm Belle." style="max-width: 360px; width: 100%; height: auto;">
+        </div>
         <div class="badge"><span class="dot"></span> Live Simulation</div>
-        <h1>Full Wedding Negotiation</h1>
-        <p>Watch AI agents negotiate across 7 vendor categories in real time -- venue first, then building your complete wedding package.</p>
+        <h1>Your AI Wedding Planner</h1>
+        <p>Tell Belle about your dream wedding and watch her negotiate with vendors across 7 categories in real time — venue first, then building your complete package.</p>
       </div>
 
       <!-- INPUT PANEL -->
       <div id="input-panel">
         <div class="card">
-          <div class="form-section-title">Wedding Details</div>
+          <div class="form-section-title">Tell Belle About Your Wedding</div>
 
           <form id="sim-form" autocomplete="off">
             <div class="form-grid">
@@ -1138,7 +1141,7 @@
 
             <button type="submit" id="start-btn" class="btn-primary">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 010 1.972l-11.54 6.347a1.125 1.125 0 01-1.667-.986V5.653z" /></svg>
-              Start Negotiation
+              Let Belle Plan It
             </button>
           </form>
         </div>
@@ -1188,6 +1191,14 @@
 
     </div>
   </main>
+
+  <footer style="text-align: center; padding: 2rem 1rem 3rem; color: var(--text-muted); font-size: 0.85rem;">
+    <div style="margin-bottom: 0.75rem;">
+      <img src="/altara-logo.png" alt="Altara" style="height: 32px; opacity: 0.6;">
+    </div>
+    Powered by <strong style="color: var(--rose);">Altara</strong> — Agent-to-Agent Marketplace<br>
+    <span style="font-size: 0.75rem;">&copy; 2026 The Big Day Inc. &middot; MIT MAS.664 Demo</span>
+  </footer>
 
   <script>
     // ---- State ----
@@ -1312,7 +1323,7 @@
       header.className = 'msg-header';
       header.innerHTML =
         '<span class="msg-icon">' + (isCouple ? '&#128141;' : (CATEGORY_ICONS[evt.category] || '&#128188;')) + '</span>' +
-        '<span class="msg-agent">' + escapeHtml(isCouple ? 'Wedding Planner' : (evt.vendor_name || 'Vendor')) + '</span>' +
+        '<span class="msg-agent">' + escapeHtml(isCouple ? 'Belle' : (evt.vendor_name || 'Vendor')) + '</span>' +
         '<span class="msg-step">' + escapeHtml(evt.label || 'Message') + '</span>';
       card.appendChild(header);
 
