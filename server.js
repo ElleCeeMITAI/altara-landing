@@ -173,6 +173,15 @@ app.get("/api/simulate-live", async (req, res) => {
     dietaryNeeds: req.query.dietaryNeeds
       ? req.query.dietaryNeeds.split(",").filter(Boolean)
       : [],
+    // Fallback preferences
+    minGuestCount: parseInt(req.query.minGuestCount, 10) || 0,
+    dateFlexibility: req.query.dateFlexibility || "fixed",
+    altStyles: req.query.altStyles
+      ? req.query.altStyles.split(",").filter(Boolean)
+      : [],
+    altVenues: req.query.altVenues
+      ? req.query.altVenues.split(",").filter(Boolean)
+      : [],
   };
 
   // Validate guest count against venue capacity

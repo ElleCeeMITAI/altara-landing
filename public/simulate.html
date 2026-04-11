@@ -941,6 +941,58 @@
               </div>
             </div>
 
+            <!-- Agent Fallback Preferences -->
+            <div style="margin-bottom:2rem;padding:1.5rem;background:var(--cream);border-radius:14px;border:1px solid rgba(0,0,0,0.04)">
+              <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.25rem">
+                <span style="font-size:1.1rem">🤖</span>
+                <label class="section-label" style="margin-bottom:0">Agent Autonomy Settings</label>
+              </div>
+              <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:1.25rem;line-height:1.4">Pre-authorize your agent to try these alternatives if the first negotiation doesn't close — no real-time input needed.</div>
+
+              <div class="dietary-section" style="margin-bottom:1.25rem">
+                <label class="section-label">Acceptable Alternate Styles</label>
+                <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.5rem">If your preferred style is too expensive, your agent can propose these instead.</div>
+                <div class="checkbox-grid">
+                  <label class="checkbox-pill"><input type="checkbox" name="altStyle" value="Plated"><span>Plated</span></label>
+                  <label class="checkbox-pill"><input type="checkbox" name="altStyle" value="Buffet" checked><span>Buffet</span></label>
+                  <label class="checkbox-pill"><input type="checkbox" name="altStyle" value="Family Style"><span>Family Style</span></label>
+                  <label class="checkbox-pill"><input type="checkbox" name="altStyle" value="Stations"><span>Stations</span></label>
+                  <label class="checkbox-pill"><input type="checkbox" name="altStyle" value="Cocktail Reception"><span>Cocktail Reception</span></label>
+                </div>
+              </div>
+
+              <div class="form-grid" style="margin-bottom:1.25rem">
+                <div class="form-group">
+                  <label for="minGuestCount">Min Guest Count</label>
+                  <input type="number" id="minGuestCount" name="minGuestCount" value="100" min="10" max="500" placeholder="100">
+                  <div style="font-size:0.7rem;color:var(--text-muted);margin-top:0.3rem;line-height:1.3">Lowest headcount your agent can offer</div>
+                </div>
+                <div class="form-group">
+                  <label for="dateFlexibility">Date Flexibility</label>
+                  <select id="dateFlexibility" name="dateFlexibility">
+                    <option value="fixed">Fixed date only</option>
+                    <option value="week" selected>Flexible within 1 week</option>
+                    <option value="month">Any date in June</option>
+                    <option value="season">Any date May-Oct</option>
+                    <option value="offpeak">Will consider off-peak</option>
+                  </select>
+                  <div style="font-size:0.7rem;color:var(--text-muted);margin-top:0.3rem;line-height:1.3">Off-peak dates can save 10-15%</div>
+                </div>
+              </div>
+
+              <div class="dietary-section" style="margin-bottom:0">
+                <label class="section-label">Backup Venues</label>
+                <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.5rem">If Grand Meridian can't close, your agent will try these next.</div>
+                <div class="checkbox-grid">
+                  <label class="checkbox-pill"><input type="checkbox" name="altVenue" value="Harbor View Estate" checked><span>Harbor View Estate</span></label>
+                  <label class="checkbox-pill"><input type="checkbox" name="altVenue" value="The Brookline Hotel"><span>The Brookline Hotel</span></label>
+                  <label class="checkbox-pill"><input type="checkbox" name="altVenue" value="Cambridge Loft"><span>Cambridge Loft</span></label>
+                  <label class="checkbox-pill"><input type="checkbox" name="altVenue" value="Beacon Hill Club"><span>Beacon Hill Club</span></label>
+                  <label class="checkbox-pill"><input type="checkbox" name="altVenue" value="Seaport Kitchen"><span>Seaport Kitchen</span></label>
+                </div>
+              </div>
+            </div>
+
             <button type="submit" class="btn-primary">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 010 1.972l-11.54 6.347a1.125 1.125 0 01-1.667-.986V5.653z" /></svg>
               Start Simulation
@@ -1560,6 +1612,14 @@
       const dietaryChecked = document.querySelectorAll('input[name="dietary"]:checked');
       const dietaryNeeds = Array.from(dietaryChecked).map(function(cb) { return cb.value; });
 
+      // Fallback preferences
+      const minGuestCount = parseInt(document.getElementById('minGuestCount').value, 10) || guestCount;
+      const dateFlexibility = document.getElementById('dateFlexibility').value;
+      const altStyleChecked = document.querySelectorAll('input[name="altStyle"]:checked');
+      const altStyles = Array.from(altStyleChecked).map(function(cb) { return cb.value; }).filter(function(s) { return s !== serviceStyle; });
+      const altVenueChecked = document.querySelectorAll('input[name="altVenue"]:checked');
+      const altVenues = Array.from(altVenueChecked).map(function(cb) { return cb.value; });
+
       // Show simulation view
       loading.classList.add('active');
       setTimeout(function() {
@@ -1576,7 +1636,11 @@
         guestCount: guestCount,
         serviceStyle: serviceStyle,
         cuisinePreference: cuisinePreference,
-        dietaryNeeds: dietaryNeeds.join(',')
+        dietaryNeeds: dietaryNeeds.join(','),
+        minGuestCount: minGuestCount,
+        dateFlexibility: dateFlexibility,
+        altStyles: altStyles.join(','),
+        altVenues: altVenues.join(',')
       });
 
       const evtSource = new EventSource('/api/simulate-live?' + params.toString());
@@ -1657,13 +1721,43 @@
 
           setTimeout(function() {
             if (outcome === 'rejected') {
-              // Over max budget — show options 1 (adjust) and 2 (other vendors) only
+              // Over max budget — show what was tried and next steps
               var gap = totalCost - maxBudget;
+              var fallbacks = msg.summary.fallbacks || {};
+              var triedList = '';
+              if (fallbacks.date_flexibility && fallbacks.date_flexibility !== 'fixed') {
+                triedList += '<div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem"><span style="color:#c0392b">✗</span> <span>Alternate dates (' + fallbacks.date_flexibility + ' flexibility)</span></div>';
+              }
+              if (fallbacks.alt_styles && fallbacks.alt_styles.length > 0) {
+                triedList += '<div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem"><span style="color:#c0392b">✗</span> <span>Alternate styles (' + fallbacks.alt_styles.join(', ') + ')</span></div>';
+              }
+              if (fallbacks.min_guest_count && fallbacks.min_guest_count < guestCount) {
+                triedList += '<div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem"><span style="color:#c0392b">✗</span> <span>Reduced guest count (down to ' + fallbacks.min_guest_count + ')</span></div>';
+              }
+              triedList += '<div style="display:flex;align-items:center;gap:0.5rem"><span style="color:#c0392b">✗</span> <span>Flex budget ($' + flexBudget.toLocaleString() + ' extra authorized)</span></div>';
+
+              // Build backup venues section
+              var venueHtml = '';
+              if (fallbacks.alt_venues && fallbacks.alt_venues.length > 0) {
+                venueHtml = '<div style="margin-top:0.75rem;padding:1.25rem;background:var(--cream);border-radius:12px;border:1px solid var(--sand)">' +
+                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">Next: Your backup venues</div>' +
+                  '<div style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.75rem">Your agent would automatically negotiate with these venues next:</div>' +
+                  '<div style="display:flex;flex-wrap:wrap;gap:0.5rem">' +
+                  fallbacks.alt_venues.map(function(v, i) {
+                    return '<div style="display:flex;align-items:center;gap:0.4rem;padding:0.5rem 0.9rem;background:var(--warm-white);border:1px solid var(--sand);border-radius:8px;font-size:0.85rem">' +
+                      '<span style="font-weight:600;color:var(--rose)">' + (i+1) + '</span>' +
+                      '<span>' + escapeHtml(v) + '</span>' +
+                    '</div>';
+                  }).join('') +
+                  '</div>' +
+                '</div>';
+              }
+
               resultArea.innerHTML = '<div class="result-card" id="result-card">' +
                 '<div class="result-header">' +
                   '<div class="result-icon">❌</div>' +
-                  '<div><div class="result-title">Deal Not Reached</div>' +
-                  '<div class="result-subtitle">The venue\'s best offer of $' + totalCost.toLocaleString() + ' ($' + perGuest + '/head) exceeds even your flex budget of $' + maxBudget.toLocaleString() + ' by $' + gap.toLocaleString() + '. Your agent tried its best.</div></div>' +
+                  '<div><div class="result-title">Deal Not Reached — Grand Meridian</div>' +
+                  '<div class="result-subtitle">Your agent exhausted all pre-approved options. The venue\'s best offer of $' + totalCost.toLocaleString() + ' still exceeds your maximum of $' + maxBudget.toLocaleString() + ' by $' + gap.toLocaleString() + '.</div></div>' +
                 '</div>' +
                 '<div class="result-grid">' +
                   '<div class="result-item"><div class="ri-label">Venue\'s Best Offer</div><div class="ri-value highlight">$' + totalCost.toLocaleString() + '</div></div>' +
@@ -1672,24 +1766,23 @@
                   '<div class="result-item"><div class="ri-label">Max (with Flex)</div><div class="ri-value">$' + maxBudget.toLocaleString() + '</div></div>' +
                 '</div>' +
 
-                /* Option 1: Adjust preferences */
+                /* What your agent tried */
                 '<div style="margin-top:1.5rem;padding:1.25rem;background:var(--cream);border-radius:12px;border:1px solid var(--sand)">' +
-                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">Option 1: Adjust your preferences</div>' +
-                  '<div style="font-size:0.9rem;color:var(--text-muted);line-height:1.7">' +
-                    '💡 <strong>Try a different date</strong> — off-peak and weekday dates unlock up to 15% lower pricing<br>' +
-                    '🔄 <strong>Switch service style</strong> — buffet can be 20-30% cheaper than plated or family style<br>' +
-                    '👥 <strong>Reduce guest count</strong> — fewer guests means lower total even at the same per-head price' +
-                  '</div>' +
-                  '<button class="btn-secondary" onclick="resetSimulation()" style="margin-top:0.75rem">' +
+                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">What your agent tried</div>' +
+                  '<div style="font-size:0.9rem;color:var(--text-muted)">' + triedList + '</div>' +
+                '</div>' +
+
+                /* Backup venues */
+                venueHtml +
+
+                /* Back to settings */
+                '<div style="margin-top:0.75rem;padding:1.25rem;background:var(--cream);border-radius:12px;border:1px solid var(--sand)">' +
+                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">Adjust your settings and try again</div>' +
+                  '<div style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.75rem">Add more fallback options, increase your flex budget, or change your core preferences.</div>' +
+                  '<button class="btn-secondary" onclick="resetSimulation()">' +
                     '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" /></svg>' +
                     'Back to Settings' +
                   '</button>' +
-                '</div>' +
-
-                /* Option 2: Other vendors */
-                '<div style="margin-top:0.75rem;padding:1.25rem;background:var(--cream);border-radius:12px;border:1px solid var(--sand)">' +
-                  '<div style="font-weight:600;margin-bottom:0.5rem;color:var(--charcoal)">Option 2: Try another vendor</div>' +
-                  '<div style="font-size:0.9rem;color:var(--text-muted)">In the full Altara marketplace, your Planner Agent would automatically contact the next best-matched venue and negotiate on your behalf.</div>' +
                 '</div>' +
               '</div>';
             } else if (usedFlex) {
