@@ -25,8 +25,8 @@ const OUTPUT_COST_PER_M = 15.0;
 function plannerSystemPrompt(formData) {
   // Build date flexibility description
   const dateFlexMap = {
-    fixed: "The couple's date is FIXED — June 14, 2027 only. Do not offer alternate dates.",
-    week: "The couple is flexible within 1 week of June 14 (June 7-21, 2027). You may propose nearby dates if it saves money.",
+    fixed: "The couple's date is FIXED — June 12, 2027 only. Do not offer alternate dates.",
+    week: "The couple is flexible within 1 week of June 12 (June 5-19, 2027). You may propose nearby dates if it saves money.",
     month: "The couple is flexible on any Saturday in June 2027. Propose alternate June dates if it helps pricing.",
     season: "The couple is flexible on any date May-October 2027. Propose off-peak or weekday dates to unlock discounts.",
     offpeak: "The couple will consider off-peak dates (Jan-Mar, Nov-Dec 2027) if it significantly reduces cost. Propose these if the venue offers off-peak discounts.",
@@ -49,7 +49,7 @@ function plannerSystemPrompt(formData) {
 - Budget: $${formData.budget.toLocaleString()} total maximum
 - Flex budget: $${formData.flexBudget.toLocaleString()} (the couple has pre-authorized you to go up to $${(formData.budget + formData.flexBudget).toLocaleString()} total if needed — but try to stay within the base budget first)
 - Guest count: ${formData.guestCount} (preferred)
-- Preferred date: June 14, 2027
+- Preferred date: June 12, 2027
 - Service style: ${formData.serviceStyle} (preferred)
 - Cuisine preference: ${formData.cuisinePreference || "No preference"}
 - Dietary needs: ${formData.dietaryNeeds.length > 0 ? formData.dietaryNeeds.join(", ") : "None specified"}
@@ -91,7 +91,7 @@ You MUST respond with ONLY valid JSON in this exact format:
   "proposed_terms": {
     "price_per_head": <number or null>,
     "total_price": <number or null>,
-    "date": "2027-06-14",
+    "date": "2027-06-12",
     "guest_count": ${formData.guestCount},
     "service_style": "${formData.serviceStyle}",
     "notes": "any additional terms or requests"
@@ -109,7 +109,7 @@ function venueSystemPrompt() {
 - List prices: Plated $135/head, Buffet $95/head, Family Style $115/head, Stations $120/head
 - Maximum capacity: 200 guests
 - Blackout dates: June 7-8, June 21-22, 2027 (already booked)
-- June 14 IS available but it's peak season (normally +15% surcharge)
+- June 12 IS available but it's peak season (normally +15% surcharge)
 - You can waive the peak surcharge if they book by end of month
 - Maximum discount: 15% off list price for flexible dates (non-Saturday, non-peak)
 - For Saturday peak dates, max discount is 8% off list price
@@ -143,7 +143,7 @@ You MUST respond with ONLY valid JSON in this exact format:
   "proposed_terms": {
     "price_per_head": <number>,
     "total_price": <number>,
-    "date": "2027-06-14",
+    "date": "2027-06-12",
     "guest_count": <number>,
     "service_style": "<style>",
     "deposit_percent": <number>,

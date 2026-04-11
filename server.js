@@ -59,7 +59,7 @@ app.post("/api/simulate", (req, res) => {
 
     res.json({
       simulation: {
-        event_date: "2027-06-14",
+        event_date: "2027-06-12",
         region: "Greater Boston",
         preferences: { budget, guestCount, serviceStyle, cuisinePreference, dietaryNeeds, addOns },
       },

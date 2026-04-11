@@ -881,7 +881,7 @@
           <div class="fixed-fields">
             <div class="fixed-field">
               <div class="label">Wedding Date</div>
-              <div class="value">Saturday, June 14, 2027</div>
+              <div class="value">Saturday, June 12, 2027</div>
             </div>
             <div class="fixed-field">
               <div class="label">Location</div>
@@ -1240,7 +1240,7 @@
                 perGuest: perHead,
                 serviceStyle: (rfpStep && rfpStep.data && rfpStep.data.request && rfpStep.data.request.params) ? rfpStep.data.request.params.service_style : '',
                 cuisine: cuisineLabel,
-                eventDate: rd.event_date || '2027-06-14',
+                eventDate: rd.event_date || '2027-06-12',
                 menu: menuCourses
               };
             }
@@ -1369,7 +1369,7 @@
                 '<button class="btn-secondary" onclick="resetSimulation()" style="margin-top:1rem">Run Again</button>' +
               '</div>';
             } else {
-              var bookingData = { totalCost: totalCost, perGuest: perGuest, serviceStyle: terms.service_style || serviceStyle, cuisine: cuisinePreference, eventDate: terms.date || 'June 14, 2027', menu: [] };
+              var bookingData = { totalCost: totalCost, perGuest: perGuest, serviceStyle: terms.service_style || serviceStyle, cuisine: cuisinePreference, eventDate: terms.date || 'June 12, 2027', menu: [] };
               resultArea.innerHTML = buildResultCard(bookingData);
             }
             requestAnimationFrame(function() { requestAnimationFrame(function() {
@@ -1411,7 +1411,7 @@
           step: 1,
           from: 'couple',
           label: 'Discovery',
-          summary: 'The Couple Agent has selected Grand Meridian Ballroom as their venue for a ' + guestCount + '-guest wedding on June 14, 2027. Now reviewing the venue\'s catering packages. Budget is set at $' + budget.toLocaleString() + ' with a ' + serviceStyle.toLowerCase() + ' service preference.' + dietaryNote,
+          summary: 'The Couple Agent has selected Grand Meridian Ballroom as their venue for a ' + guestCount + '-guest wedding on June 12, 2027. Now reviewing the venue\'s catering packages. Budget is set at $' + budget.toLocaleString() + ' with a ' + serviceStyle.toLowerCase() + ' service preference.' + dietaryNote,
           data: {
             type: 'a2a.discovery',
             agent: 'couple-agent',
@@ -1419,7 +1419,7 @@
             params: {
               category: 'catering',
               location: 'Greater Boston',
-              date: '2027-06-14',
+              date: '2027-06-12',
               guestCount: guestCount,
               budget: budget,
               serviceStyle: serviceStyle,
@@ -1431,7 +1431,7 @@
           step: 2,
           from: 'caterer',
           label: 'Availability',
-          summary: 'Grand Meridian Ballroom confirms catering availability for June 14, 2027. Their in-house kitchen specializes in ' + serviceStyle.toLowerCase() + ' service and can accommodate ' + guestCount + ' guests. Base catering pricing starts at $' + (perHead - 8) + ' per person for the requested style.',
+          summary: 'Grand Meridian Ballroom confirms catering availability for June 12, 2027. Their in-house kitchen specializes in ' + serviceStyle.toLowerCase() + ' service and can accommodate ' + guestCount + ' guests. Base catering pricing starts at $' + (perHead - 8) + ' per person for the requested style.',
           data: {
             type: 'a2a.availability_response',
             agent: 'grand-meridian-agent',
@@ -1444,7 +1444,7 @@
               basePrice: perHead - 8,
               priceUnit: 'per_person'
             },
-            dateConfirmed: '2027-06-14',
+            dateConfirmed: '2027-06-12',
             maxCapacity: 300
           }
         },
@@ -1458,7 +1458,7 @@
             agent: 'couple-agent',
             action: 'submit_rfp',
             rfp: {
-              eventDate: '2027-06-14',
+              eventDate: '2027-06-12',
               eventType: 'wedding_reception',
               guestCount: guestCount,
               serviceStyle: serviceStyle,
@@ -1568,17 +1568,17 @@
           step: 8,
           from: 'caterer',
           label: 'Pending Deposit',
-          summary: 'Both agents have reached agreement! Grand Meridian Ballroom has sent the contract for June 14, 2027 (' + guestCount + ' guests). The date is held for 7 days pending the couple\'s 25% deposit of $' + Math.round(totalCost * 0.25).toLocaleString() + '. Once the deposit is received, the booking will be fully confirmed. The negotiation saved $' + (((perHead + 5) * guestCount) - totalCost).toLocaleString() + ' from the initial proposal.',
+          summary: 'Both agents have reached agreement! Grand Meridian Ballroom has sent the contract for June 12, 2027 (' + guestCount + ' guests). The date is held for 7 days pending the couple\'s 25% deposit of $' + Math.round(totalCost * 0.25).toLocaleString() + '. Once the deposit is received, the booking will be fully confirmed. The negotiation saved $' + (((perHead + 5) * guestCount) - totalCost).toLocaleString() + ' from the initial proposal.',
           data: {
             type: 'a2a.booking_confirmation',
             agent: 'grand-meridian-agent',
             status: 'confirmed',
-            contractId: 'GM-2027-0614',
+            contractId: 'GM-2027-0612',
             booking: {
               totalCost: totalCost,
               perGuest: perHead,
               serviceStyle: serviceStyle,
-              eventDate: 'June 14, 2027',
+              eventDate: 'June 12, 2027',
               timeline: {
                 deposit: 'Due upon signing (30%: $' + Math.round(totalCost * 0.3).toLocaleString() + ')',
                 tasting: 'March 2027',
@@ -1801,7 +1801,7 @@
                   '<div class="result-item"><div class="ri-label">Base Budget</div><div class="ri-value">$' + baseBudget.toLocaleString() + '</div></div>' +
                   '<div class="result-item"><div class="ri-label">Flex Used</div><div class="ri-value" style="color:var(--rose)">+$' + flexUsed.toLocaleString() + '</div></div>' +
                   '<div class="result-item"><div class="ri-label">Deposit Due (25%)</div><div class="ri-value highlight">$' + depositAmt.toLocaleString() + '</div></div>' +
-                  '<div class="result-item"><div class="ri-label">Event Date</div><div class="ri-value">' + escapeHtml(terms.date || 'June 14, 2027') + '</div></div>' +
+                  '<div class="result-item"><div class="ri-label">Event Date</div><div class="ri-value">' + escapeHtml(terms.date || 'June 12, 2027') + '</div></div>' +
                 '</div>' +
                 '<button class="btn-secondary" onclick="resetSimulation()" style="margin-top:1rem">' +
                   '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" /></svg>' +
@@ -1815,7 +1815,7 @@
                 perGuest: perGuest,
                 serviceStyle: terms.service_style || serviceStyle,
                 cuisine: cuisinePreference,
-                eventDate: terms.date || 'June 14, 2027',
+                eventDate: terms.date || 'June 12, 2027',
                 menu: []
               };
               resultArea.innerHTML = buildResultCard(bookingData);
