@@ -26,9 +26,11 @@ if (!apiKey) {
 }
 const anthropic = new Anthropic({ apiKey });
 
-// Models — using Sonnet for both (Haiku deprecated/unavailable on this API key)
-const MODEL_LIVE = "claude-sonnet-4-20250514";
-const MODEL_EXPERIMENT = "claude-sonnet-4-20250514";
+// Models — Haiku for testing (~10x cheaper), switch to Sonnet for investor demos
+const MODEL_LIVE = "claude-haiku-3-5-20241022";
+const MODEL_EXPERIMENT = "claude-haiku-3-5-20241022";
+// const MODEL_LIVE = "claude-sonnet-4-20250514";       // ← uncomment for investor demos
+// const MODEL_EXPERIMENT = "claude-sonnet-4-20250514";  // ← uncomment for investor demos
 
 // Cost per million tokens
 const COSTS = {
