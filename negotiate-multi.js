@@ -1072,14 +1072,14 @@ async function runFullWeddingNegotiation(formData, options = {}) {
       }
       // If no venue candidates at all, stop — can't proceed without a venue
       if (category === "venue") {
-        plannerState.log("STOPPING: No venue candidates passed pre-screening. Cannot proceed.");
+        plannerState.log("STOPPING: No venue candidates passed pre-screening. Cannot proceed even with flex budget — no venues match date, location, or capacity requirements.");
         if (sendEvent) {
           sendEvent({
             type: "venue_failed_abort",
             category: "venue",
             from: "couple",
             label: "Belle — Negotiation Paused",
-            summary: "Belle couldn't find any venues that match your criteria (date, location, guest count, budget). Without a venue, she can't negotiate any other vendors. Please try adjusting your guest count, date, or budget.",
+            summary: "Belle couldn't find any venues that match your criteria (date, location, guest count). This isn't a budget issue — no venues in the area are available for your requirements. Please try adjusting your guest count, date, or location.",
             message: "Negotiation stopped — no venue candidates available.",
           });
         }
@@ -1154,9 +1154,75 @@ async function runFullWeddingNegotiation(formData, options = {}) {
         });
       }
 
-      // If venue failed, stop the entire negotiation — all other categories depend on it
+      // If venue failed, try again with flex budget before giving up
       if (category === "venue") {
         const venueAlloc = plannerState.allocations.venue || 0;
+        const flexAvailable = plannerState.flexBudget || 0;
+
+        if (flexAvailable > 0 && !plannerState._venueRetried) {
+          // RETRY: Boost venue allocation with flex budget
+          plannerState._venueRetried = true;
+          const boostedAlloc = venueAlloc + flexAvailable;
+          plannerState.allocations.venue = boostedAlloc;
+          plannerState.log(`VENUE RETRY: Initial venue budget of $${venueAlloc.toLocaleString()} wasn't enough. Belle is using the $${flexAvailable.toLocaleString()} flex budget — new venue ceiling: $${boostedAlloc.toLocaleString()}`);
+
+          if (sendEvent) {
+            sendEvent({
+              type: "venue_retry",
+              category: "venue",
+              from: "couple",
+              label: "Belle — Using Flexibility Budget",
+              summary: `Belle couldn't secure a venue within the initial $${venueAlloc.toLocaleString()} allocation. She's now tapping into your $${flexAvailable.toLocaleString()} flexibility budget — new venue ceiling: $${boostedAlloc.toLocaleString()}. Re-negotiating...`,
+              message: `Retrying venue negotiation with boosted budget: $${boostedAlloc.toLocaleString()}`,
+            });
+          }
+
+          // Re-negotiate with the same vendors at the higher ceiling
+          const retryResults = [];
+          for (const vendorConfig of toNegotiate) {
+            const result = await negotiateWithVendor(
+              formData, vendorConfig, model, sendEvent, stepCounter,
+              plannerState, toNegotiate
+            );
+            retryResults.push(result);
+            plannerState.allResults.push(result);
+            stepCounter += result.turns;
+          }
+
+          const retryAccepted = retryResults.filter(r => r.outcome === "accepted");
+          if (retryAccepted.length > 0) {
+            retryAccepted.sort((a, b) => {
+              const aPrice = a.final_terms?.total_price || Infinity;
+              const bPrice = b.final_terms?.total_price || Infinity;
+              const target = plannerState.allocations.venue || 0;
+              return Math.abs(aPrice - target) - Math.abs(bPrice - target);
+            });
+
+            const best = retryAccepted[0];
+            const bestConfig = toNegotiate.find(v => v.id === best.vendor_id);
+            plannerState.lockVenue(best, bestConfig);
+
+            if (sendEvent) {
+              sendEvent({
+                type: "category_locked",
+                category: "venue",
+                vendor_name: best.vendor_name,
+                price: best.final_terms?.total_price,
+                message: `Locked venue (with flex budget): ${best.vendor_name} at $${best.final_terms?.total_price}`,
+              });
+            }
+            // Venue secured with flex — reduce flex budget by the overage
+            const overage = (best.final_terms?.total_price || 0) - venueAlloc;
+            if (overage > 0) {
+              plannerState.flexBudget = Math.max(0, flexAvailable - overage);
+              plannerState.log(`Flex budget used for venue overage: $${overage.toLocaleString()}. Remaining flex: $${plannerState.flexBudget.toLocaleString()}`);
+            }
+            continue; // Venue secured, move to next category
+          }
+        }
+
+        // Venue truly failed — even with flex budget
+        const finalAlloc = plannerState.allocations.venue || 0;
         plannerState.log("STOPPING: Cannot proceed without a venue — all other categories depend on venue location, capacity, and partnerships.");
         if (sendEvent) {
           sendEvent({
@@ -1164,7 +1230,7 @@ async function runFullWeddingNegotiation(formData, options = {}) {
             category: "venue",
             from: "couple",
             label: "Belle — Negotiation Paused",
-            summary: `Belle couldn't secure a venue within the $${venueAlloc.toLocaleString()} venue budget. Without a venue, she can't negotiate catering, photography, or any other category — vendor availability, service areas, and partnerships all depend on the venue. Please consider increasing your total budget, adjusting your guest count, or choosing a different date for more availability.`,
+            summary: `Belle couldn't secure a venue even with your flexibility budget (ceiling was $${finalAlloc.toLocaleString()}). Without a venue, she can't negotiate catering, photography, or any other category — vendor availability, service areas, and partnerships all depend on the venue. Please consider increasing your total budget, adjusting your guest count, or choosing a different date for more availability.`,
             message: "Negotiation stopped — no venue secured. Belle needs a venue before she can continue.",
           });
         }

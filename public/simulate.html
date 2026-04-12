@@ -1040,6 +1040,17 @@
                 <input type="number" id="budget" name="budget" value="50000" min="5000" step="1000" placeholder="$50,000">
               </div>
               <div class="form-group">
+                <label for="flexBudget">Flexibility (willing to stretch)</label>
+                <select id="flexBudget" name="flexBudget">
+                  <option value="0">No flexibility</option>
+                  <option value="5000" selected>Up to $5,000</option>
+                  <option value="10000">Up to $10,000</option>
+                  <option value="15000">Up to $15,000</option>
+                  <option value="20000">Up to $20,000</option>
+                </select>
+                <span style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem; display: block;">Extra Belle can use if the perfect venue needs it</span>
+              </div>
+              <div class="form-group">
                 <label for="guestCount">Guest Count</label>
                 <input type="number" id="guestCount" name="guestCount" value="120" min="10" max="500" placeholder="120">
               </div>
@@ -1185,6 +1196,10 @@
           <div class="budget-cell">
             <div class="bc-label">Remaining</div>
             <div class="bc-value green" id="bt-remaining">$50,000</div>
+          </div>
+          <div class="budget-cell">
+            <div class="bc-label">Flexibility</div>
+            <div class="bc-value" id="bt-flex" style="color: var(--blush);">$0</div>
           </div>
         </div>
 
@@ -1485,6 +1500,7 @@
 
       // Gather form data
       var budget = parseInt(document.getElementById('budget').value, 10) || 50000;
+      var flexBudget = parseInt(document.getElementById('flexBudget').value, 10) || 0;
       var guestCount = parseInt(document.getElementById('guestCount').value, 10) || 120;
       var weddingDate = document.getElementById('weddingDate').value || '2027-06-12';
       var location = document.getElementById('location').value || 'Boston';
@@ -1505,9 +1521,15 @@
 
       totalBudget = budget;
 
+      // Update budget tracker with flex
+      document.getElementById('bt-total').textContent = '$' + budget.toLocaleString();
+      document.getElementById('bt-flex').textContent = flexBudget > 0 ? '+$' + flexBudget.toLocaleString() : '$0';
+      document.getElementById('bt-remaining').textContent = '$' + budget.toLocaleString();
+
       // Build query string
       var params = new URLSearchParams();
       params.set('budget', budget);
+      params.set('flexBudget', flexBudget);
       params.set('guestCount', guestCount);
       params.set('weddingDate', weddingDate);
       params.set('location', location);
@@ -1589,6 +1611,22 @@
           case 'no_candidates':
             setCatStatus(data.category, 'skipped');
             addNotice('&#128683;', data.message || 'No candidates available', 'amber');
+            break;
+
+          case 'venue_retry':
+            addMessageCard(data);
+            break;
+
+          case 'venue_failed_abort':
+            setCatStatus('venue', 'failed');
+            addMessageCard(data);
+            // Mark remaining categories as skipped
+            ['catering','photographer','bakery','florist','dj','transport'].forEach(function(c) {
+              var step = document.querySelector('.cat-step[data-cat="' + c + '"]');
+              if (step && !step.classList.contains('done') && !step.classList.contains('failed')) {
+                setCatStatus(c, 'skipped');
+              }
+            });
             break;
 
           case 'done':
