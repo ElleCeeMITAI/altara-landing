@@ -217,7 +217,12 @@ app.get("/api/simulate-multi", async (req, res) => {
   });
 
   const formData = {
-    budget: Math.min(100000, Math.max(20000, parseInt(req.query.budget, 10) || 50000)),
+    budget: (function() {
+      var g = Math.min(75, Math.max(20, parseInt(req.query.guestCount, 10) || 50));
+      var floors = { 20: 20000, 30: 25000, 40: 30000, 50: 35000, 60: 40000, 75: 50000 };
+      var floor = g <= 20 ? 20000 : g <= 30 ? 25000 : g <= 40 ? 30000 : g <= 50 ? 35000 : g <= 60 ? 40000 : 50000;
+      return Math.min(100000, Math.max(floor, parseInt(req.query.budget, 10) || 50000));
+    })(),
     flexBudget: parseInt(req.query.flexBudget, 10) || 0,
     guestCount: Math.min(75, Math.max(20, parseInt(req.query.guestCount, 10) || 50)),
     serviceStyle: (req.query.serviceStyle || "Plated").replace(/_/g, " "),

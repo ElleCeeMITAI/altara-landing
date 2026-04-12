@@ -1036,8 +1036,14 @@
           <form id="sim-form" autocomplete="off">
             <div class="form-grid">
               <div class="form-group">
+                <label for="guestCount">Guest Count</label>
+                <input type="number" id="guestCount" name="guestCount" value="50" min="20" max="75" step="5" placeholder="50">
+                <span style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem; display: block;">Demo range: 20–75 guests</span>
+              </div>
+              <div class="form-group">
                 <label for="budget">Total Budget</label>
-                <input type="number" id="budget" name="budget" value="50000" min="20000" max="100000" step="1000" placeholder="$50,000">
+                <input type="number" id="budget" name="budget" value="50000" min="35000" max="100000" step="5000" placeholder="$50,000">
+                <span id="budget-hint" style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem; display: block;">Min $35,000 for 50 guests</span>
               </div>
               <div class="form-group">
                 <label for="flexBudget">Flexibility (willing to stretch)</label>
@@ -1049,11 +1055,6 @@
                   <option value="20000">Up to $20,000</option>
                 </select>
                 <span style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem; display: block;">Extra Belle can use if the perfect venue needs it</span>
-              </div>
-              <div class="form-group">
-                <label for="guestCount">Guest Count</label>
-                <input type="number" id="guestCount" name="guestCount" value="50" min="20" max="75" placeholder="50">
-                <span style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem; display: block;">Demo range: 20–75 guests</span>
               </div>
               <div class="form-group">
                 <label for="weddingDate">Wedding Date</label>
@@ -1236,6 +1237,37 @@
     var timeline = document.getElementById('timeline');
     var summaryArea = document.getElementById('summary-area');
     var startBtn = document.getElementById('start-btn');
+
+    // ---- Dynamic budget floor based on guest count ----
+    function getBudgetFloor(guests) {
+      // Roughly $500/guest + $10K base for venue + other vendors
+      if (guests <= 20) return 20000;
+      if (guests <= 30) return 25000;
+      if (guests <= 40) return 30000;
+      if (guests <= 50) return 35000;
+      if (guests <= 60) return 40000;
+      return 50000; // 61-75
+    }
+
+    var guestInput = document.getElementById('guestCount');
+    var budgetInput = document.getElementById('budget');
+    var budgetHint = document.getElementById('budget-hint');
+
+    function updateBudgetFloor() {
+      var guests = parseInt(guestInput.value, 10) || 50;
+      var floor = getBudgetFloor(guests);
+      budgetInput.min = floor;
+      budgetHint.textContent = 'Min $' + floor.toLocaleString() + ' for ' + guests + ' guests';
+      // If current budget is below new floor, bump it up
+      var currentBudget = parseInt(budgetInput.value, 10) || 50000;
+      if (currentBudget < floor) {
+        budgetInput.value = floor;
+      }
+    }
+
+    guestInput.addEventListener('input', updateBudgetFloor);
+    guestInput.addEventListener('change', updateBudgetFloor);
+    updateBudgetFloor(); // Set initial state
 
     // ---- Helpers ----
     function escapeHtml(s) {
