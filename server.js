@@ -217,9 +217,9 @@ app.get("/api/simulate-multi", async (req, res) => {
   });
 
   const formData = {
-    budget: parseInt(req.query.budget, 10) || 50000,
+    budget: Math.min(100000, Math.max(20000, parseInt(req.query.budget, 10) || 50000)),
     flexBudget: parseInt(req.query.flexBudget, 10) || 0,
-    guestCount: parseInt(req.query.guestCount, 10) || 120,
+    guestCount: Math.min(75, Math.max(20, parseInt(req.query.guestCount, 10) || 50)),
     serviceStyle: (req.query.serviceStyle || "Plated").replace(/_/g, " "),
     cuisinePreference: req.query.cuisinePreference || "",
     dietaryNeeds: req.query.dietaryNeeds ? req.query.dietaryNeeds.split(",").filter(Boolean) : [],
