@@ -1525,11 +1525,34 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // ---- Rate limiting (3 simulations per visitor per day) ----
+    var DAILY_LIMIT = 3;
+    function getSimCount() {
+      var data = JSON.parse(localStorage.getItem('belle_sims') || '{}');
+      var today = new Date().toISOString().slice(0, 10);
+      if (data.date !== today) return 0;
+      return data.count || 0;
+    }
+    function incrementSimCount() {
+      var today = new Date().toISOString().slice(0, 10);
+      var count = getSimCount() + 1;
+      localStorage.setItem('belle_sims', JSON.stringify({ date: today, count: count }));
+      return count;
+    }
+
     // ---- Start negotiation ----
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       if (isRunning) return;
+
+      // Check daily limit
+      if (getSimCount() >= DAILY_LIMIT) {
+        alert('You\u2019ve reached the daily limit of ' + DAILY_LIMIT + ' simulations. Come back tomorrow to try again!');
+        return;
+      }
+
       isRunning = true;
+      incrementSimCount();
 
       // Gather form data
       var budget = parseInt(document.getElementById('budget').value, 10) || 50000;
