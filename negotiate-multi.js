@@ -595,7 +595,7 @@ function buildPlannerPrompt(plannerState, vendorConfig, candidateVendors) {
   } else if (vendorConfig.category === "florist") {
     categoryPrefs = `
 ## Floral Preferences
-- Scope: ${prefs.floralScope.join(", ")}
+- Scope: ${Array.isArray(prefs.floralScope) ? prefs.floralScope.join(", ") : prefs.floralScope}
 - Style preference: ${prefs.floralStyle || "Open to suggestions"}
 - Pet in wedding: ${prefs.hasPetInWedding ? "Yes — needs pet floral collar" : "No"}
 - Eco-friendly preferred: ${prefs.ecoPreferred ? "Yes" : "Not required"}`;
