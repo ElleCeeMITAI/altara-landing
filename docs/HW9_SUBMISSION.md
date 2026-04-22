@@ -12,7 +12,7 @@ Altara is an agent-to-agent (A2A) wedding marketplace. Belle, an AI wedding plan
 |---|---|
 | **Public GitHub repo** (with README, architecture, protocol spec, testing guide, HW7/HW8 results) | https://github.com/ElleCeeMITAI/altara-landing |
 | **Deployed website / docs** (live negotiation simulator + docs served from the repo) | https://altara-landing.up.railway.app · [simulate](https://altara-landing.up.railway.app/simulate.html) |
-| **Lightweight launch post** | https://github.com/ElleCeeMITAI/altara-landing/discussions *(link to specific post after posting)* |
+| **Lightweight launch post** | https://github.com/ElleCeeMITAI/altara-landing/discussions/1 |
 | **Peer-test feedback** | Submitted separately per HW9 rubric |
 | **Optional white paper** | Not submitted — architecture docs in `/docs` serve this role |
 
