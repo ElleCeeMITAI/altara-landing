@@ -32,9 +32,10 @@ const MODEL_EXPERIMENT = "claude-haiku-3-5-20241022";
 // const MODEL_LIVE = "claude-sonnet-4-20250514";       // ← uncomment for investor demos
 // const MODEL_EXPERIMENT = "claude-sonnet-4-20250514";  // ← uncomment for investor demos
 
-// Cost per million tokens
+// Cost per million tokens (USD)
 const COSTS = {
   "claude-sonnet-4-20250514": { input: 3.0, output: 15.0 },
+  "claude-haiku-3-5-20241022": { input: 0.80, output: 4.0 },
   "claude-3-5-haiku-latest": { input: 0.80, output: 4.0 },
 };
 
