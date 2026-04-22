@@ -1,3 +1,42 @@
+# Dependencies
 node_modules/
+
+# Environment / secrets
 .env
+.env.*
+!.env.example
+
+# Logs & runtime
 logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Word / office temp files
+~$*
+~$*.docx
+~$*.xlsx
+~$*.pptx
+
+# --- Altara: commercial / business materials (keep private) ---
+vendor-pitch/
+youtube_scripts.md
+belle_integration_architecture.md
+belle_integration_architecture.docx
+Claude_AltaraKey.docx
+investor_pitch_deck.pptx
+generate_belle_doc.js
+generate_investor_deck.js
+LOGOimages/
+results/*.pdf
+results/*.docx
+
+# Claude Code local config
+.claude/projects/

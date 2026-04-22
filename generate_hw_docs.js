@@ -805,6 +805,206 @@ function buildExperimentReport() {
   });
 }
 
+// ── Build YouTube Scripts ──
+
+function buildYouTubeScripts() {
+  const children = [];
+
+  children.push(...altaraHeader());
+
+  children.push(title("YouTube Video Scripts"));
+
+  // Recording Instructions
+  children.push(heading2("Recording Instructions"));
+  children.push(numberedItem([run("Screen recording: Use QuickTime Player (Cmd+Shift+5 on Mac), select \"Record Selected Portion\" and frame your browser window.")]));
+  children.push(numberedItem([run("Demo URL: https://altara-landing.up.railway.app/simulate.html \u2014 have this open and ready before you start recording. Run a negotiation ahead of time so you have a completed one to show, then start a fresh one live.")]));
+  children.push(numberedItem([run("Audio: Record voiceover simultaneously (make sure your mic is selected in QuickTime). Alternatively, record screen first, then add voiceover in iMovie.")]));
+  children.push(numberedItem([run("Timing: Practice reading the script aloud with a timer. Each video should be exactly 60 seconds. Cut filler words \u2014 every second counts.")]));
+  children.push(numberedItem([run("Upload: Upload to YouTube as Unlisted. This keeps it accessible via link but not publicly searchable.")]));
+  children.push(numberedItem([run("Resolution: Record at 1920x1080 if possible. Close unnecessary tabs and notifications before recording.")]));
+  children.push(numberedItem([run("Browser: Use Chrome in a clean window. Zoom the page to 110-125% so text is readable in the video.")]));
+
+  // ── Video 1 ──
+  children.push(heading2("Video 1: HW7 \u2014 Initial Agent Experiments (1 minute)"));
+
+  children.push(heading3("Script"));
+
+  // [0:00-0:05]
+  children.push(bodyPara([
+    run("[0:00-0:05]", { bold: true }),
+  ]));
+  children.push(bodyPara([
+    run("SHOW: ", { bold: true, italics: true }),
+    run("Altara landing page hero section"),
+  ]));
+  children.push(bodyPara([
+    run("SAY: ", { bold: true, italics: true }),
+    run("\"Altara is an A2A wedding marketplace where a planner agent negotiates with vendor agents on behalf of couples.\""),
+  ]));
+
+  // [0:05-0:20]
+  children.push(bodyPara([
+    run("[0:05-0:20]", { bold: true }),
+  ]));
+  children.push(bodyPara([
+    run("SHOW: ", { bold: true, italics: true }),
+    run("Simulate page \u2014 start a negotiation, let it run. Scroll slowly so the viewer can see messages exchanging between planner and vendor agents in real time."),
+  ]));
+  children.push(bodyPara([
+    run("SAY: ", { bold: true, italics: true }),
+    run("\"Here's a live negotiation. The planner agent sends an RFP to a venue agent, they go back and forth on pricing and terms, and reach agreement \u2014 all autonomously. No human in the loop.\""),
+  ]));
+
+  // [0:20-0:35]
+  children.push(bodyPara([
+    run("[0:20-0:35]", { bold: true }),
+  ]));
+  children.push(bodyPara([
+    run("SHOW: ", { bold: true, italics: true }),
+    run("Switch to experiment results. If you have experiment_report.md open in a text editor or a screenshot of the results table, show that. Highlight the venue savings number."),
+  ]));
+  children.push(bodyPara([
+    run("SAY: ", { bold: true, italics: true }),
+    run("\"We ran three experiments. First: auction versus RFP. Auctions saved 17.8 percent on venue \u2014 our biggest line item \u2014 but backfired on boutique vendors. Bakery prices jumped 25 percent. Smaller vendors anchor defensively when they sense competitive pressure.\""),
+  ]));
+
+  // [0:35-0:50]
+  children.push(bodyPara([
+    run("[0:35-0:50]", { bold: true }),
+  ]));
+  children.push(bodyPara([
+    run("SHOW: ", { bold: true, italics: true }),
+    run("Scroll to experiment 2 and 3 results, or show a summary table with the key numbers."),
+  ]));
+  children.push(bodyPara([
+    run("SAY: ", { bold: true, italics: true }),
+    run("\"Experiment two: parallel negotiation gave us a 2.2x speedup at six vendors. And experiment three tested failure recovery \u2014 when a vendor crashes mid-negotiation, backups activate automatically. We hit 100 percent recovery, and backup vendors actually closed faster than the originals.\""),
+  ]));
+
+  // [0:50-1:00]
+  children.push(bodyPara([
+    run("[0:50-1:00]", { bold: true }),
+  ]));
+  children.push(bodyPara([
+    run("SHOW: ", { bold: true, italics: true }),
+    run("Summary slide or table with three key findings: Auction: 17.8% venue savings, bad for artisans; Parallel: 2.2x faster; Recovery: 100% rate"),
+  ]));
+  children.push(bodyPara([
+    run("SAY: ", { bold: true, italics: true }),
+    run("\"Key takeaway: A2A negotiation works, but mechanism choice matters by vendor category. Auctions for high-value venues, direct proposals for artisan vendors.\""),
+  ]));
+
+  // Screen Prep Checklist (Video 1)
+  children.push(heading3("Screen Prep Checklist"));
+  children.push(bullet([run("Landing page loaded at https://altara-landing.up.railway.app")]));
+  children.push(bullet([run("Simulate page loaded at https://altara-landing.up.railway.app/simulate.html")]));
+  children.push(bullet([run("One completed negotiation visible (run one beforehand)")]));
+  children.push(bullet([run("Experiment results ready to show (screenshot, text file, or slide)")]));
+  children.push(bullet([run("Summary table ready (can be a simple slide or text file)")]));
+
+  // Horizontal rule between video sections
+  children.push(hrParagraph());
+
+  // ── Video 2 ──
+  children.push(heading2("Video 2: HW8 \u2014 Scaled Experiments (1 minute)"));
+
+  children.push(heading3("Script"));
+
+  // [0:00-0:05]
+  children.push(bodyPara([
+    run("[0:00-0:05]", { bold: true }),
+  ]));
+  children.push(bodyPara([
+    run("SHOW: ", { bold: true, italics: true }),
+    run("Simulate page with the multi-category dropdown or view visible. If the UI shows category tabs (venue, catering, photographer, etc.), make sure those are visible."),
+  ]));
+  children.push(bodyPara([
+    run("SAY: ", { bold: true, italics: true }),
+    run("\"For HW8, we scaled Altara from 6 agents to 30 \u2014 negotiating across 7 vendor categories simultaneously.\""),
+  ]));
+
+  // [0:05-0:20]
+  children.push(bodyPara([
+    run("[0:05-0:20]", { bold: true }),
+  ]));
+  children.push(bodyPara([
+    run("SHOW: ", { bold: true, italics: true }),
+    run("Run or show a multi-category simulation. Scroll through the different category negotiations as they happen. If budget tracking is visible in the UI, point to it."),
+  ]));
+  children.push(bodyPara([
+    run("SAY: ", { bold: true, italics: true }),
+    run("\"The planner now negotiates venue first, then uses that as an anchor \u2014 filtering all downstream vendors by distance, partnerships, and availability. Budget tracks across every category in real time, redistributing savings automatically.\""),
+  ]));
+
+  // [0:20-0:40]
+  children.push(bodyPara([
+    run("[0:20-0:40]", { bold: true }),
+  ]));
+  children.push(bodyPara([
+    run("SHOW: ", { bold: true, italics: true }),
+    run("Results table showing scale vs latency. Key numbers: 6 agents: baseline; 30 agents: 4.3x speedup; Cost: 28% cheaper. If you have a chart or table, show it here."),
+  ]));
+  children.push(bodyPara([
+    run("SAY: ", { bold: true, italics: true }),
+    run("\"At 30 agents, parallel negotiation hit a 4.3x speedup \u2014 completing in 2 minutes instead of 9. It was also 28 percent cheaper, because concurrent negotiations avoid building up long context histories that inflate token costs.\""),
+  ]));
+
+  // [0:40-0:55]
+  children.push(bodyPara([
+    run("[0:40-0:55]", { bold: true }),
+  ]));
+  children.push(bodyPara([
+    run("SHOW: ", { bold: true, italics: true }),
+    run("\"What broke\" section \u2014 can be a slide, doc, or just scroll through notes. Highlight the 40% mismatch stat and the budget cascade problem."),
+  ]));
+  children.push(bodyPara([
+    run("SAY: ", { bold: true, italics: true }),
+    run("\"What broke: without pre-screening, 40 percent of vendors were poor matches \u2014 wrong location, wrong capacity. And budget redistribution had edge cases where a venue overage would starve downstream categories like florals and photography. We fixed both with an 8-criteria pre-screening pipeline and a 15 percent budget buffer per category.\""),
+  ]));
+
+  // [0:55-1:00]
+  children.push(bodyPara([
+    run("[0:55-1:00]", { bold: true }),
+  ]));
+  children.push(bodyPara([
+    run("SHOW: ", { bold: true, italics: true }),
+    run("Final summary \u2014 one line on screen: \"30 agents. 2 minutes. Under $1 in API cost.\""),
+  ]));
+  children.push(bodyPara([
+    run("SAY: ", { bold: true, italics: true }),
+    run("\"Bottom line: the system is production-viable. Thirty agents, two minutes, under a dollar in API cost.\""),
+  ]));
+
+  // Screen Prep Checklist (Video 2)
+  children.push(heading3("Screen Prep Checklist"));
+  children.push(bullet([run("Multi-category simulation ready to run or already completed")]));
+  children.push(bullet([run("Budget tracking visible in the UI")]));
+  children.push(bullet([run("Scale results table or chart prepared (6 vs 15 vs 30 agents)")]));
+  children.push(bullet([run("\"What broke\" summary ready to show")]));
+  children.push(bullet([run("Final summary slide or text ready")]));
+  children.push(bullet([run("Close all other browser tabs and silence notifications")]));
+
+  return new Document({
+    numbering: {
+      config: [
+        {
+          reference: "default-numbering",
+          levels: [
+            {
+              level: 0,
+              format: "decimal",
+              text: "%1.",
+              alignment: AlignmentType.START,
+              style: { paragraph: { indent: { left: convertInchesToTwip(0.5), hanging: convertInchesToTwip(0.25) } } },
+            },
+          ],
+        },
+      ],
+    },
+    sections: [{ children }],
+  });
+}
+
 // ── Main ──
 
 async function main() {
@@ -827,6 +1027,11 @@ async function main() {
   const reportBuf = await Packer.toBuffer(reportDoc);
   fs.writeFileSync("/Users/gpmacbookpro3/Desktop/altara-landing/results/experiment_report.docx", reportBuf);
   console.log("Created results/experiment_report.docx (" + reportBuf.length + " bytes)");
+
+  const ytDoc = buildYouTubeScripts();
+  const ytBuf = await Packer.toBuffer(ytDoc);
+  fs.writeFileSync("/Users/gpmacbookpro3/Desktop/altara-landing/youtube_scripts.docx", ytBuf);
+  console.log("Created youtube_scripts.docx (" + ytBuf.length + " bytes)");
 }
 
 main().catch((err) => {
