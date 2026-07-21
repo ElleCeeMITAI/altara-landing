@@ -866,6 +866,34 @@ async function negotiateWithVendor(formData, vendorConfig, model, sendEvent, sta
     if (finalTerms.total_price && outcome !== "unknown") break;
   }
 
+  // Sanity floor: reject any "accepted" offer that lands below the vendor's stated
+  // price_floor. Guards against the model conflating a fee (tasting fee, deposit,
+  // per-serving rate) with the total price. Applies to any category where the
+  // vendor config declares price_floor.
+  if (outcome === "accepted" && vendorConfig.price_floor && finalTerms.total_price) {
+    if (finalTerms.total_price < vendorConfig.price_floor) {
+      const badPrice = finalTerms.total_price;
+      outcome = "rejected";
+      finalTerms = {
+        ...finalTerms,
+        rejected_reason: `Accepted price $${badPrice} below vendor floor $${vendorConfig.price_floor} — likely a mis-parsed line item`,
+      };
+      if (sendEvent) {
+        sendEvent({
+          type: "message",
+          vendor_id: vendorConfig.id,
+          vendor_name: vendorConfig.name,
+          category: vendorConfig.category,
+          step: startStep + turnCount,
+          from: "couple",
+          label: `[${vendorConfig.name}] Rejected — invalid price`,
+          summary: `Belle flagged $${badPrice} as suspicious (below vendor's $${vendorConfig.price_floor} floor) — treating as no deal.`,
+          data: { message_type: "reject", proposed_terms: finalTerms },
+        });
+      }
+    }
+  }
+
   return {
     vendor_id: vendorConfig.id,
     vendor_name: vendorConfig.name,
