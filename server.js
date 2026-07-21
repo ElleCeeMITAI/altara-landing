@@ -246,7 +246,7 @@ app.get("/api/simulate-multi", async (req, res) => {
       // model omitted on purpose: falls back to MODEL_LIVE in negotiate-multi.js
       // (currently Haiku 3.5 — ~10x cheaper than Sonnet for class demos/peer testing).
       sendEvent,
-      vendorsPerCategory: 2,
+      vendorsPerCategory: 3,
     });
     sendEvent({ type: "complete", result });
   } catch (err) {

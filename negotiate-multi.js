@@ -26,20 +26,21 @@ if (!apiKey) {
 }
 const anthropic = new Anthropic({ apiKey });
 
-// Models — Haiku for testing (~10x cheaper), switch to Sonnet for investor demos
-const MODEL_LIVE = "claude-haiku-3-5-20241022";
-const MODEL_EXPERIMENT = "claude-haiku-3-5-20241022";
+// Models — Haiku 4.5 for live demos (better JSON reliability, low cost); Sonnet for investor demos
+const MODEL_LIVE = "claude-haiku-4-5-20251001";
+const MODEL_EXPERIMENT = "claude-haiku-4-5-20251001";
 // const MODEL_LIVE = "claude-sonnet-4-20250514";       // ← uncomment for investor demos
 // const MODEL_EXPERIMENT = "claude-sonnet-4-20250514";  // ← uncomment for investor demos
 
-// Cost per million tokens (USD)
+// Cost per million tokens (USD). Cached input reads billed at ~10% of input rate.
 const COSTS = {
-  "claude-sonnet-4-20250514": { input: 3.0, output: 15.0 },
-  "claude-haiku-3-5-20241022": { input: 0.80, output: 4.0 },
-  "claude-3-5-haiku-latest": { input: 0.80, output: 4.0 },
+  "claude-sonnet-4-20250514": { input: 3.0, output: 15.0, cached_input: 0.30 },
+  "claude-haiku-4-5-20251001": { input: 1.0, output: 5.0, cached_input: 0.10 },
+  "claude-3-5-haiku-20241022": { input: 0.80, output: 4.0, cached_input: 0.08 },
+  "claude-3-5-haiku-latest": { input: 0.80, output: 4.0, cached_input: 0.08 },
 };
 
-const MAX_TURNS_PER_VENDOR = 6; // 3 rounds each side
+const MAX_TURNS_PER_VENDOR = 4; // 2 rounds each side — most negotiations resolve in 2-3 turns
 
 // ── Category Negotiation Order ─────────────────────────────────────────
 // Mirrors real wedding planner protocol: lock venue first, then build outward
@@ -744,7 +745,7 @@ async function negotiateWithVendor(formData, vendorConfig, model, sendEvent, sta
         response = await anthropic.messages.create({
           model,
           max_tokens: 1024,
-          system: plannerPrompt,
+          system: [{ type: "text", text: plannerPrompt, cache_control: { type: "ephemeral" } }],
           messages: plannerMessages,
         });
       } else {
@@ -757,7 +758,7 @@ async function negotiateWithVendor(formData, vendorConfig, model, sendEvent, sta
         response = await anthropic.messages.create({
           model,
           max_tokens: 1024,
-          system: vendorPrompt,
+          system: [{ type: "text", text: vendorPrompt, cache_control: { type: "ephemeral" } }],
           messages: vendorMessages,
         });
       }
@@ -765,9 +766,17 @@ async function negotiateWithVendor(formData, vendorConfig, model, sendEvent, sta
       const text = response.content[0].text;
       const inputTokens = response.usage.input_tokens;
       const outputTokens = response.usage.output_tokens;
-      const cost = (inputTokens / 1e6) * costRate.input + (outputTokens / 1e6) * costRate.output;
+      const cacheReadTokens = response.usage.cache_read_input_tokens || 0;
+      const cacheWriteTokens = response.usage.cache_creation_input_tokens || 0;
+      // Cache writes bill at 1.25x normal input; cache reads at ~10% of input (per costRate.cached_input).
+      const cachedInputRate = costRate.cached_input || costRate.input * 0.1;
+      const cost =
+        (inputTokens / 1e6) * costRate.input +
+        (cacheReadTokens / 1e6) * cachedInputRate +
+        (cacheWriteTokens / 1e6) * costRate.input * 1.25 +
+        (outputTokens / 1e6) * costRate.output;
 
-      totalInputTokens += inputTokens;
+      totalInputTokens += inputTokens + cacheReadTokens + cacheWriteTokens;
       totalOutputTokens += outputTokens;
       totalCost += cost;
 
@@ -935,6 +944,9 @@ function assemblePackages(plannerState) {
     premium: { name: "Premium Package", vendors: {}, total: 0, notes: [] },
   };
 
+  // Track picks per category so we can rebalance for spread later
+  const picks = {}; // { cat: { budget, recommended, premium, options: [...] } }
+
   for (const cat of CATEGORY_ORDER) {
     if (plannerState.skippedCategories.has(cat)) continue;
 
@@ -947,21 +959,51 @@ function assemblePackages(plannerState) {
       continue;
     }
 
-    // Budget: cheapest accepted offer
-    const cheapest = results[0];
-    packages.budget.vendors[cat] = _formatVendorForPackage(cheapest, plannerState);
-    packages.budget.total += cheapest.final_terms?.total_price || 0;
+    // Assign strict distinct tiers: cheapest / middle / priciest.
+    // With 3 accepted offers, each package gets its own vendor.
+    // With 2, budget = cheapest, premium = priciest, recommended prefers venue partner
+    // but falls back to cheapest so it never ties with premium.
+    // With 1, all three tiers share the same vendor (unavoidable).
+    let budgetPick, recommendedPick, premiumPick;
+    if (results.length >= 3) {
+      budgetPick = results[0];
+      premiumPick = results[results.length - 1];
+      // Recommended = middle option, but bias toward venue partner if one is in the middle band
+      const middleBand = results.slice(1, results.length - 1);
+      const venuePartnerInMiddle = middleBand.find(r =>
+        plannerState.heldOffers[r.category]?.venue_partnership === "tried_and_true"
+      );
+      recommendedPick = venuePartnerInMiddle || middleBand[Math.floor(middleBand.length / 2)];
+    } else if (results.length === 2) {
+      budgetPick = results[0];
+      premiumPick = results[1];
+      // Recommended prefers venue partner among the 2, else defaults to the cheaper one
+      // (so it stays distinct from Premium)
+      const venuePartner = results.find(r =>
+        plannerState.heldOffers[r.category]?.venue_partnership === "tried_and_true"
+      );
+      recommendedPick = venuePartner || results[0];
+    } else {
+      budgetPick = premiumPick = recommendedPick = results[0];
+    }
 
-    // Premium: most expensive (often highest rated / venue partner)
-    const priciest = results[results.length - 1];
-    packages.premium.vendors[cat] = _formatVendorForPackage(priciest, plannerState);
-    packages.premium.total += priciest.final_terms?.total_price || 0;
+    picks[cat] = { budget: budgetPick, recommended: recommendedPick, premium: premiumPick, options: results };
 
-    // Recommended: best value (venue partner > high rating > mid price)
-    const recommended = _pickRecommended(results, plannerState);
-    packages.recommended.vendors[cat] = _formatVendorForPackage(recommended, plannerState);
-    packages.recommended.total += recommended.final_terms?.total_price || 0;
+    packages.budget.vendors[cat] = _formatVendorForPackage(budgetPick, plannerState);
+    packages.budget.total += budgetPick.final_terms?.total_price || 0;
+
+    packages.recommended.vendors[cat] = _formatVendorForPackage(recommendedPick, plannerState);
+    packages.recommended.total += recommendedPick.final_terms?.total_price || 0;
+
+    packages.premium.vendors[cat] = _formatVendorForPackage(premiumPick, plannerState);
+    packages.premium.total += premiumPick.final_terms?.total_price || 0;
   }
+
+  // Enforce a minimum spread of MIN_TIER_SPREAD between adjacent tiers.
+  // If Recommended is within MIN_TIER_SPREAD of Budget, swap in cheaper options in Recommended.
+  // If Premium is within MIN_TIER_SPREAD of Recommended, swap in pricier options in Premium.
+  const MIN_TIER_SPREAD = 2000;
+  _enforceMinimumSpread(packages, picks, plannerState, MIN_TIER_SPREAD);
 
   // Add hold expiration info
   for (const pkg of Object.values(packages)) {
@@ -995,6 +1037,59 @@ function _formatVendorForPackage(result, plannerState) {
     website: held?.website || null,
     hold_expires: held?.hold_expires || null,
   };
+}
+
+// Widen the gap between adjacent tiers so the 3 packages tell a real story in the demo.
+// Strategy: if Recommended - Budget < min, greedily swap Budget picks down (cheaper is already
+// the cheapest available, so this is limited — instead we swap Recommended UP toward Premium's picks).
+// If Premium - Recommended < min, swap Premium picks up to pricier alternatives per category.
+function _enforceMinimumSpread(packages, picks, plannerState, minSpread) {
+  const categories = Object.keys(picks);
+
+  // Pass 1: Recommended vs Budget — push Recommended up
+  let gap = packages.recommended.total - packages.budget.total;
+  const catsByLift = [...categories].sort((a, b) => {
+    const aLift = (picks[a].premium.final_terms?.total_price || 0) - (picks[a].recommended.final_terms?.total_price || 0);
+    const bLift = (picks[b].premium.final_terms?.total_price || 0) - (picks[b].recommended.final_terms?.total_price || 0);
+    return bLift - aLift;
+  });
+  for (const cat of catsByLift) {
+    if (gap >= minSpread) break;
+    const options = picks[cat].options;
+    const currentRec = picks[cat].recommended;
+    const currentRecPrice = currentRec.final_terms?.total_price || 0;
+    // Find a pricier option than current recommended, but not exceeding premium
+    const premiumPrice = picks[cat].premium.final_terms?.total_price || Infinity;
+    const upgrade = options.find(o => {
+      const p = o.final_terms?.total_price || 0;
+      return p > currentRecPrice && p <= premiumPrice && o !== currentRec;
+    });
+    if (upgrade) {
+      const delta = (upgrade.final_terms?.total_price || 0) - currentRecPrice;
+      picks[cat].recommended = upgrade;
+      packages.recommended.vendors[cat] = _formatVendorForPackage(upgrade, plannerState);
+      packages.recommended.total += delta;
+      gap += delta;
+    }
+  }
+
+  // Pass 2: Premium vs Recommended — push Premium up (only if we haven't already maxed it)
+  gap = packages.premium.total - packages.recommended.total;
+  for (const cat of catsByLift) {
+    if (gap >= minSpread) break;
+    const options = picks[cat].options;
+    const currentPrem = picks[cat].premium;
+    const currentPremPrice = currentPrem.final_terms?.total_price || 0;
+    // Premium should be the priciest — if it's already at the top of the options list, skip
+    const pricier = options.find(o => (o.final_terms?.total_price || 0) > currentPremPrice);
+    if (pricier) {
+      const delta = (pricier.final_terms?.total_price || 0) - currentPremPrice;
+      picks[cat].premium = pricier;
+      packages.premium.vendors[cat] = _formatVendorForPackage(pricier, plannerState);
+      packages.premium.total += delta;
+      gap += delta;
+    }
+  }
 }
 
 function _pickRecommended(results, plannerState) {
