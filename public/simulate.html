@@ -1525,6 +1525,25 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // ---- Owner mode (bypasses visitor limit + global cap) ----
+    // One-time setup: visit ?owner=<OWNER_KEY from Railway env> on each device.
+    // Key is stored in localStorage and stripped from the URL.
+    (function captureOwnerKey() {
+      var u = new URL(window.location.href);
+      var k = u.searchParams.get('owner');
+      if (k) {
+        localStorage.setItem('belle_owner_key', k);
+        u.searchParams.delete('owner');
+        window.history.replaceState({}, '', u.toString());
+      }
+    })();
+    function getOwnerKey() {
+      return localStorage.getItem('belle_owner_key') || null;
+    }
+    function isOwnerMode() {
+      return !!getOwnerKey();
+    }
+
     // ---- Rate limiting (3 simulations per visitor per day) ----
     var DAILY_LIMIT = 3;
     function getSimCount() {
@@ -1534,6 +1553,7 @@
       return data.count || 0;
     }
     function incrementSimCount() {
+      if (isOwnerMode()) return 0; // don't count owner runs
       var today = new Date().toISOString().slice(0, 10);
       var count = getSimCount() + 1;
       localStorage.setItem('belle_sims', JSON.stringify({ date: today, count: count }));
@@ -1545,8 +1565,8 @@
       e.preventDefault();
       if (isRunning) return;
 
-      // Check daily limit
-      if (getSimCount() >= DAILY_LIMIT) {
+      // Check daily limit (skipped for owner)
+      if (!isOwnerMode() && getSimCount() >= DAILY_LIMIT) {
         alert('You\u2019ve reached the daily limit of ' + DAILY_LIMIT + ' simulations. Come back tomorrow to try again!');
         return;
       }
@@ -1597,6 +1617,9 @@
       if (genrePreferences.length) params.set('genrePreferences', genrePreferences.join(','));
       params.set('floralScope', floralScope);
       params.set('transportScope', transportScope);
+      // Owner bypass — server checks OWNER_KEY env var
+      var ownerKey = getOwnerKey();
+      if (ownerKey) params.set('owner', ownerKey);
 
       // Switch to simulation view
       inputPanel.style.display = 'none';
@@ -1625,6 +1648,13 @@
         switch (data.type) {
           case 'start':
             addNotice('&#128640;', data.message || 'Starting negotiation...', '');
+            break;
+
+          case 'cap_reached':
+            addNotice('&#9888;&#65039;', data.message || 'Daily demo budget reached.', 'warn');
+            // Refund the local counter — the run didn't actually start
+            var d = JSON.parse(localStorage.getItem('belle_sims') || '{}');
+            if (d.count > 0) { d.count -= 1; localStorage.setItem('belle_sims', JSON.stringify(d)); }
             break;
 
           case 'category_start':

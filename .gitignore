@@ -40,3 +40,6 @@ results/*.docx
 
 # Claude Code local config
 .claude/projects/
+
+# Daily cost cap counter (regenerated at runtime)
+logs/daily_spend.json

@@ -1,12 +1,47 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
 const { runSimulation, CatererAgent, CONFIG } = require("./agents");
 const { runLiveNegotiation } = require("./negotiate");
 const { runFullWeddingNegotiation } = require("./negotiate-multi");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// ── Cost cap: global daily spend limit ────────────────────────────────
+// Simple JSON-file counter, keyed by UTC date. Not durable across Railway
+// restarts, but fine for a single-instance low-traffic app.
+const DAILY_COST_CAP_USD = parseFloat(process.env.DAILY_COST_CAP_USD || "5.00");
+const OWNER_KEY = process.env.OWNER_KEY || null; // if unset, owner bypass is disabled
+const SPEND_FILE = path.join(__dirname, "logs", "daily_spend.json");
+
+function todayUTC() {
+  return new Date().toISOString().slice(0, 10);
+}
+function readDailySpend() {
+  try {
+    const raw = fs.readFileSync(SPEND_FILE, "utf-8");
+    const data = JSON.parse(raw);
+    if (data.date === todayUTC()) return data.spend || 0;
+    return 0;
+  } catch {
+    return 0;
+  }
+}
+function writeDailySpend(spend) {
+  try {
+    fs.mkdirSync(path.dirname(SPEND_FILE), { recursive: true });
+    fs.writeFileSync(SPEND_FILE, JSON.stringify({ date: todayUTC(), spend }));
+  } catch (err) {
+    console.warn("Failed to persist daily spend:", err.message);
+  }
+}
+function isOwnerRequest(req) {
+  if (!OWNER_KEY) return false;
+  const key = req.query.owner || req.headers["x-owner-key"];
+  return key === OWNER_KEY;
+}
 
 // Parse JSON request bodies
 app.use(express.json());
@@ -241,13 +276,38 @@ app.get("/api/simulate-multi", async (req, res) => {
     res.write(`data: ${JSON.stringify(data)}\n\n`);
   }
 
+  // Global daily cost cap (owner bypasses)
+  const isOwner = isOwnerRequest(req);
+  if (!isOwner) {
+    const spentToday = readDailySpend();
+    if (spentToday >= DAILY_COST_CAP_USD) {
+      sendEvent({
+        type: "cap_reached",
+        message: `Belle has hit today's demo budget ($${DAILY_COST_CAP_USD.toFixed(2)}). Please try again tomorrow — this cap protects the live demo from runaway costs.`,
+        spent_today: Math.round(spentToday * 100) / 100,
+        cap: DAILY_COST_CAP_USD,
+      });
+      sendEvent({ type: "error", message: "Daily cost cap reached." });
+      res.write("data: [DONE]\n\n");
+      res.end();
+      return;
+    }
+  }
+
   try {
     const result = await runFullWeddingNegotiation(formData, {
       // model omitted on purpose: falls back to MODEL_LIVE in negotiate-multi.js
-      // (currently Haiku 3.5 — ~10x cheaper than Sonnet for class demos/peer testing).
+      // (currently Haiku 4.5 — cheap + reliable JSON for class demos/peer testing).
       sendEvent,
       vendorsPerCategory: 3,
     });
+
+    // Increment daily spend (owner runs don't count)
+    if (!isOwner) {
+      const runCost = result?.summary?.total_api_cost_usd || 0;
+      writeDailySpend(readDailySpend() + runCost);
+    }
+
     sendEvent({ type: "complete", result });
   } catch (err) {
     sendEvent({ type: "error", message: err.message });
